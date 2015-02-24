@@ -1,9 +1,0 @@
-*** Settings ***
-Library    ./PythonWhiteLibrary.py
-
-*** Test Cases ***
-Eka testi
-	alkujuttu
-    input_text    txtA    Ismo
-    input_text    txtA    Aro
-	sleep    5

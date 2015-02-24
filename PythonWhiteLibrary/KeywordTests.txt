@@ -1,0 +1,16 @@
+*** Settings ***
+Library    ./PythonWhiteLibrary.py
+Test Setup	Launch App
+Test Teardown	Close App
+
+*** Test Cases ***
+Write to Textbox
+    Input Text    txtA    Ismo
+    Input Text    txtB    Aro
+
+*** Keywords ***
+Launch App
+	Launch Application	C:\\robotframework-whitelibrary\\UIAutomationTest\\bin\\Debug\\UIAutomationTest.exe
+
+Close App
+	Close Application

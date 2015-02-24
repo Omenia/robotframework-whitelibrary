@@ -16,16 +16,18 @@ namespace WhiteLibrary
 {
     public class Keywords
     {
-        ///Application application = Application.Launch("UIAutomationTest.exe");
-        ///Window window = application.GetWindow("UI Automation Test Window", InitializeOption.NoCache);
+        private Application app;
+        private Window window;
 
-        ///System.Threading.Thread.Sleep(5000);
-
-
-        public void alkujuttu()
+        public void launch_application(string sut)
         {
-            Application application = Application.Launch("UIAutomationTest.exe");
-            Window window = application.GetWindow("UI Automation Test Window", InitializeOption.NoCache);
+            this.app = Application.Launch(sut);
+            this.window = app.GetWindow("UI Automation Test Window", InitializeOption.NoCache);
+        }
+
+        public void close_application()
+        {
+            app.Close();
         }
 
         public void input_text(string locator, string mytext)

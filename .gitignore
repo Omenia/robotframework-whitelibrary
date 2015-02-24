@@ -187,3 +187,11 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+
+# Robot logs
+log.html
+output.xml
+report.html
+
+# Python build files
+*.pyc
