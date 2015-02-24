@@ -5,12 +5,18 @@ Test Teardown	Close App
 
 *** Test Cases ***
 Write to Textbox
-    Input Text    txtA    Ismo
-    Input Text    txtB    Aro
+    Input Text	txtA    Ismo
+    Input Text  txtB	Aro
+
+Verify Text
+	Input Text	txtA	Antti
+	Verify Text	txtA	Antti
 
 *** Keywords ***
 Launch App
+	Set Logging Level	Warn
 	Launch Application	C:\\robotframework-whitelibrary\\UIAutomationTest\\bin\\Debug\\UIAutomationTest.exe
+	Attach Window	UI Automation Test Window
 
 Close App
 	Close Application
