@@ -12,7 +12,8 @@
                VerticalAlignment="Top" Width="62">
         </Label>
         <ComboBox x:Name="op" HorizontalAlignment="Left" Margin="190,47,0,0"
-                  VerticalAlignment="Top" Width="75" IsEditable="True" IsReadOnly="True" Text="Operator" SelectionChanged="operator_SelectionChanged" RenderTransformOrigin="0.52,0.545">
+                  VerticalAlignment="Top" Width="75" IsEditable="True" IsReadOnly="True"
+                  RenderTransformOrigin="0.52,0.545" SelectedIndex="0">
             <ComboBoxItem Content="+"/>
             <ComboBoxItem Content="-"/>
             <ComboBoxItem Content="*"/>

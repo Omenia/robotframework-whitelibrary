@@ -28,14 +28,18 @@ namespace UIAutomationTest
         {
             if (!string.IsNullOrEmpty(txtA.Text) && !string.IsNullOrEmpty(txtB.Text))
             {
-                int num1 = int.Parse(txtA.Text);
-                int num2 = int.Parse(txtB.Text);
-                string opp = (op.SelectedValue as ComboBoxItem).Content.ToString();
-                if (opp != "Operator") { tbResult.Text = calculate(num1, opp, num2).ToString(); }
+                try
+                {
+                    double num1 = double.Parse(txtA.Text);
+                    double num2 = double.Parse(txtB.Text);
+                    string opp = (op.SelectedValue as ComboBoxItem).Content.ToString();
+                    tbResult.Text = calculate(num1, opp, num2).ToString();
+                }
+                catch (FormatException) { }
             }
         }
 
-        private int calculate(int num1, string op, int num2)
+        private double calculate(double num1, string op, double num2)
         {
             switch (Convert.ToChar(op))
             {
@@ -50,11 +54,6 @@ namespace UIAutomationTest
                     else { return 0; }
             }
             return 0;
-        }
-
-        private void operator_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

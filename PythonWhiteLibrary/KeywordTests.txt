@@ -1,9 +1,15 @@
 *** Settings ***
 Library    ./PythonWhiteLibrary.py
-Test Setup	Launch App
-Test Teardown	Close App
+Suite Setup	Launch App
+Suite Teardown	Close App
+Test Teardown	Clean App
 
 *** Test Cases ***
+Verify Labels
+	Verify Label	lblA	Value 1
+	Verify Label	lblB	Value 2
+	Verify Label	lblResult	Result
+
 Write to Textbox
     Input Text To Textbox	txtA    Ismo
     Input Text To Textbox  txtB	Aro
@@ -11,11 +17,6 @@ Write to Textbox
 Verify Text
 	Input Text To Textbox	txtA	Antti
 	Verify Text In Textbox	txtA	Antti
-
-Verify Labes
-	Verify Label	lblA	Value 1
-	Verify Label	lblB	Value 2
-	Verify Label	lblResult	Result
 
 Verify Operation Selections
 	Select Combobox Value	op	+
@@ -31,21 +32,48 @@ Verify Button
 	Verify Button	btnCalc	Calculate
 
 Plus Calculation
-	Calculate 1 + 4 equals 5
+	Calculate 1 + 4 Equals 5
+
+Minus Calculation
+	Calculate 5 - 1 Equals 4
+
+Division Calculation
+	Calculate 5 / 2 Equals 2.5
+
+Multiplication Calculation
+	Calculate 5.5 * 3 Equals 16.5
+
+Calculate When First Number is Missing
+	Calculate 5 + ${EMPTY} Equals ${EMPTY}
+
+Calculate When Second Number is Missing
+	Calculate ${EMPTY} + 5 Equals ${EMPTY}
+
+Calculate When First Number Is Alphabet
+	Calculate a + 5 Equals ${EMPTY}
+
+Calculate When Second Number Is Alphabet
+	Calculate 1 + a Equals ${EMPTY}
 
 *** Keywords ***
 Launch App
 	Set Logging Level	Warn
-	Launch Application	C:\\robotframework-whitelibrary\\UIAutomationTest\\bin\\Debug\\UIAutomationTest.exe
+	Launch Application	..\\UIAutomationTest\\bin\\Debug\\UIAutomationTest.exe
 	Attach Window	UI Automation Test Window
 
 Close App
 	Close Application
 
+Clean App
+	Input Text To Textbox	txtA	${EMPTY}
+	Input Text To Textbox	txtB	${EMPTY}
+	Select Combobox Index	op	0
+	Input Text To Textbox	tbResult	${EMPTY}
+
 Verify ${operator} In Operators
 	Verify Combobox Item	op	${operator}
 
-Calculate ${num1} ${operator} ${num2} equals ${result}
+Calculate ${num1} ${operator} ${num2} Equals ${result}
 	Input Text To Textbox	txtA	${num1}
 	Select Combobox Value	op	${operator}
 	Input Text To Textbox	txtB	${num2}

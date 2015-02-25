@@ -76,6 +76,15 @@ class PythonWhiteLibrary(object):
         '''
         WHITE_LIB.select_combobox_value(locator, value)
 
+    def select_combobox_index(self, locator, index):
+        '''
+        Select combobox index
+        | Arguments | Usage | (M)andatory / (O)ptional |
+        | locator | element id | M |
+        | index | combobox index | M |
+        '''
+        WHITE_LIB.select_combobox_index(locator, int(index))
+
     def verify_combobox_item(self, locator, actual):
         '''
         Verify combobox selected value
@@ -99,4 +108,9 @@ class PythonWhiteLibrary(object):
             raise AssertionError("Expected: %s Found: %s" % (actual, found))
 
     def click_button(self, locator):
+        '''
+        Click button
+        | Arguments | Usage | (M)andatory / (O)ptional |
+        | locator | element id | M |
+        '''
         WHITE_LIB.click_button(locator)

@@ -63,6 +63,12 @@ namespace WhiteLibrary
             comboBox.Select(value);
         }
 
+        public void select_combobox_index(string locator, int index)
+        {
+            ComboBox comboBox = getComboBox(locator);
+            comboBox.Select(index);
+        }
+
         public string verify_combobox_item(string locator)
         {
             ComboBox comboBox = getComboBox(locator);
