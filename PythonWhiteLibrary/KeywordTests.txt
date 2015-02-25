@@ -5,12 +5,33 @@ Test Teardown	Close App
 
 *** Test Cases ***
 Write to Textbox
-    Input Text	txtA    Ismo
-    Input Text  txtB	Aro
+    Input Text To Textbox	txtA    Ismo
+    Input Text To Textbox  txtB	Aro
 
 Verify Text
-	Input Text	txtA	Antti
-	Verify Text	txtA	Antti
+	Input Text To Textbox	txtA	Antti
+	Verify Text In Textbox	txtA	Antti
+
+Verify Labes
+	Verify Label	lblA	Value 1
+	Verify Label	lblB	Value 2
+	Verify Label	lblResult	Result
+
+Verify Operation Selections
+	Select Combobox Value	op	+
+	Verify + In Operators
+	Select Combobox Value	op	-
+	Verify - In Operators
+	Select Combobox Value	op	*
+	Verify * In Operators
+	Select Combobox Value	op	/
+	Verify / In Operators
+
+Verify Button
+	Verify Button	btnCalc	Calculate
+
+Plus Calculation
+	Calculate 1 + 4 equals 5
 
 *** Keywords ***
 Launch App
@@ -20,3 +41,13 @@ Launch App
 
 Close App
 	Close Application
+
+Verify ${operator} In Operators
+	Verify Combobox Item	op	${operator}
+
+Calculate ${num1} ${operator} ${num2} equals ${result}
+	Input Text To Textbox	txtA	${num1}
+	Select Combobox Value	op	${operator}
+	Input Text To Textbox	txtB	${num2}
+	Click Button	btnCalc
+	Verify Text In Textbox	tbResult	${result}

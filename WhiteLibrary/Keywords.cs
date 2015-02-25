@@ -8,18 +8,16 @@ using TestStack.White.Factory;
 using TestStack.White.ScreenObjects.Services;
 using TestStack.White.ScreenObjects.Sessions;
 using TestStack.White.UIItems;
+using TestStack.White.UIItems.ListBoxItems;
 using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
-using TestStack.White.Configuration;
-using Castle.Core.Logging;
 
 
 namespace WhiteLibrary
 {
-    public class Keywords
+    public class Keywords : WhiteFW
     {
         private Application app;
-        private Window window;
 
         public void launch_application(string sut)
         {
@@ -31,39 +29,56 @@ namespace WhiteLibrary
             this.window = app.GetWindow(window, InitializeOption.NoCache);
         }
 
+        public void set_log_level(string level)
+        {
+            set_logging(level);
+        }
+
         public void close_application()
         {
             app.Close();
         }
 
-        public void set_log_level(string level)
+        public void input_text_textbox(string locator, string mytext)
         {
-            switch (level.ToLower())
-            {
-                case "info":
-                    CoreAppXmlConfiguration.Instance.LoggerFactory = new WhiteDefaultLoggerFactory(LoggerLevel.Info);
-                    break;
-                case "warn":
-                    CoreAppXmlConfiguration.Instance.LoggerFactory = new WhiteDefaultLoggerFactory(LoggerLevel.Warn);
-                    break;
-                case "debug":
-                    CoreAppXmlConfiguration.Instance.LoggerFactory = new WhiteDefaultLoggerFactory(LoggerLevel.Debug);
-                    break;
-            }
-        }
-
-        public void input_text(string locator, string mytext)
-        {
-            SearchCriteria searchCriteria = SearchCriteria.ByAutomationId(locator);
-            TextBox textBox = (TextBox)window.Get(searchCriteria);
+            TextBox textBox = getTextBox(locator);
             textBox.Text = mytext;
         }
 
-        public string verify_text(string locator)
+        public string verify_text_textbox(string locator)
         {
-            SearchCriteria searchCriteria = SearchCriteria.ByAutomationId(locator);
-            TextBox textBox = (TextBox)window.Get(searchCriteria);
+            TextBox textBox = getTextBox(locator);
             return textBox.Text;
+        }
+
+        public string verify_label(string locator)
+        {
+            Label label = getLabel(locator);
+            return label.Text;
+        }
+
+        public void select_combobox_value(string locator, string value)
+        {
+            ComboBox comboBox = getComboBox(locator);
+            comboBox.Select(value);
+        }
+
+        public string verify_combobox_item(string locator)
+        {
+            ComboBox comboBox = getComboBox(locator);
+            return comboBox.EditableText;
+        }
+
+        public string verify_button(string locator)
+        {
+            Button button = getButton(locator);
+            return button.Text;
+        }
+
+        public void click_button(string locator)
+        {
+            Button button = getButton(locator);
+            button.Click();
         }
     }
 }
