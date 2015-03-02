@@ -8,6 +8,7 @@ using TestStack.White.Factory;
 using TestStack.White.ScreenObjects.Services;
 using TestStack.White.ScreenObjects.Sessions;
 using TestStack.White.UIItems;
+using TestStack.White.UIItems.MenuItems;
 using TestStack.White.UIItems.ListBoxItems;
 using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
@@ -85,6 +86,24 @@ namespace WhiteLibrary
         {
             Button button = getButton(locator);
             button.Click();
+        }
+
+        public string verify_menu(string locator)
+        {
+            Menu menu = getMenu(locator);
+            return menu.Name;
+        }
+
+        public void click_menu_button(string locator)
+        {
+            Menu menu = getMenu(locator);
+            menu.Click();
+        }
+
+        public void select_modal_window(string locator)
+        {
+            List<Window> modalWindows = window.ModalWindows();
+            this.window = window.ModalWindow(locator);
         }
     }
 }

@@ -26,6 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="KeywordTests.txt" />
+    <Content Include="TestWindowsCalculator.txt" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

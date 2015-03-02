@@ -2,6 +2,7 @@
 Library    ./PythonWhiteLibrary.py
 Suite Setup	Launch App
 Suite Teardown	Close App
+Test Setup	Attach Main Window
 Test Teardown	Clean App
 
 *** Test Cases ***
@@ -30,6 +31,19 @@ Verify Operation Selections
 
 Verify Button
 	Verify Button	btnCalc	Calculate
+
+Verify Menu
+	Verify Menu	Help	Help
+	Click Menu Button	Help
+	Verify Menu	About	About
+
+Open About And Verify Text
+	Click Menu Button	Help
+	Click Menu Button	About
+	Select Modal Window	About
+	Verify Label	65535	This is basic calculator application for testing white library
+	Click Button	2
+	Attach Window	UI Automation Test Window
 
 Plus Calculation
 	Calculate 1 + 4 Equals 5
@@ -63,6 +77,9 @@ Launch App
 
 Close App
 	Close Application
+
+Attach Main Window
+	Attach Window	UI Automation Test Window
 
 Clean App
 	Input Text To Textbox	txtA	${EMPTY}

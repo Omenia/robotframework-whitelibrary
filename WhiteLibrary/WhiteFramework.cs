@@ -8,6 +8,7 @@ using TestStack.White.UIItems;
 using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
 using TestStack.White.UIItems.ListBoxItems;
+using TestStack.White.UIItems.MenuItems;
 using TestStack.White.Configuration;
 using Castle.Core.Logging;
 
@@ -55,6 +56,12 @@ namespace WhiteLibrary
         {
             SearchCriteria searchCriteria = SearchCriteria.ByAutomationId(locator);
             return window.Get<Button>(searchCriteria);
+        }
+
+        protected Menu getMenu(string locator)
+        {
+            SearchCriteria searchCriteria = SearchCriteria.ByText(locator);
+            return window.Get<Menu>(searchCriteria);
         }
     }
 }

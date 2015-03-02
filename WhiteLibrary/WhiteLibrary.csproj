@@ -62,8 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="WhiteFramework.cs" />
-    <Compile Include="Keywords.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WhiteLibrary.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

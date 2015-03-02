@@ -55,5 +55,13 @@ namespace UIAutomationTest
             }
             return 0;
         }
+
+        private void menuAboutClick(object sender, RoutedEventArgs e)
+        {
+            string text = "This is basic calculator application for testing white library";
+            string title = "About";
+            MessageBoxButton button = MessageBoxButton.OK;
+            MessageBox.Show(text, title, button);
+        }
     }
 }
