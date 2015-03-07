@@ -25,8 +25,8 @@
     <Compile Include="PythonWhiteLibrary.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="KeywordTests.txt" />
-    <Content Include="TestWindowsCalculator.txt" />
+    <Content Include="KeywordTests.robot" />
+    <Content Include="TestWindowsCalculator.robot" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
