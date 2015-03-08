@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhiteLibrary", "WhiteLibrary\WhiteLibrary.csproj", "{FD8BA129-5E2F-42E1-91A3-1F59C96BC30C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSWhiteLibrary", "WhiteLibrary\CSWhiteLibrary.csproj", "{FD8BA129-5E2F-42E1-91A3-1F59C96BC30C}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PythonWhiteLibrary", "PythonWhiteLibrary\PythonWhiteLibrary.pyproj", "{AE4B151B-1CA9-4053-99F1-7F31D9730372}"
 EndProject

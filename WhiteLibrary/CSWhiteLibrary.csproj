@@ -7,8 +7,8 @@
     <ProjectGuid>{FD8BA129-5E2F-42E1-91A3-1F59C96BC30C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WhiteLibrary</RootNamespace>
-    <AssemblyName>WhiteLibrary</AssemblyName>
+    <RootNamespace>CSWhiteLibrary</RootNamespace>
+    <AssemblyName>CSWhiteLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

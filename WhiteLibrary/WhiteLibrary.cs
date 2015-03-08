@@ -12,9 +12,10 @@ using TestStack.White.UIItems.MenuItems;
 using TestStack.White.UIItems.ListBoxItems;
 using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
+using WhiteLibrary;
 
 
-namespace WhiteLibrary
+namespace CSWhiteLibrary
 {
     public class Keywords : WhiteFW
     {
