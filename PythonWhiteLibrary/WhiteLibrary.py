@@ -1,10 +1,11 @@
 import clr
-clr.AddReferenceToFileAndPath('../WhiteLibrary/bin/CSWhiteLibrary.dll') #include full path to Dll if required
+clr.AddReferenceToFileAndPath('CSWhiteLibrary.dll') #include full path to Dll if required
 from CSWhiteLibrary import Keywords
-
 WHITE_LIB = Keywords()
 
-class PythonWhiteLibrary(object):
+
+class WhiteLibrary(object):
+
     def launch_application(self, sut):
         '''
         Launch windows application

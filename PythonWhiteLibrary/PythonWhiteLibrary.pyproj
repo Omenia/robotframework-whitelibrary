@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>ae4b151b-1ca9-4053-99f1-7f31d9730372</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>PythonWhiteLibrary.py</StartupFile>
+    <StartupFile>WhiteLibrary.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,7 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="PythonWhiteLibrary.py" />
+    <Compile Include="WhiteLibrary.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="KeywordTests.robot" />

@@ -1,5 +1,5 @@
 *** Settings ***
-Library    ./PythonWhiteLibrary.py
+Library    WhiteLibrary
 Suite Setup	Launch App
 Suite Teardown	Close App
 Test Teardown	Clean App
