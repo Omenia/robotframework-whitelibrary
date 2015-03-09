@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>ae4b151b-1ca9-4053-99f1-7f31d9730372</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>WhiteLibrary.py</StartupFile>
+    <StartupFile>src\WhiteLibrary.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,11 +22,14 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="WhiteLibrary.py" />
+    <Compile Include="src\WhiteLibrary.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="KeywordTests.robot" />
     <Content Include="TestWindowsCalculator.robot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
