@@ -1,1 +1,1 @@
-ipybot -P ..\CSWhiteLibrary\bin .
+ipybot -P ..\WhiteLibrary\bin .

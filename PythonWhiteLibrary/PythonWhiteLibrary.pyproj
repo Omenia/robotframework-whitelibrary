@@ -29,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="KeywordTests.robot" />
+    <Content Include="run_tests.cmd" />
     <Content Include="TestWindowsCalculator.robot" />
   </ItemGroup>
   <ItemGroup>
