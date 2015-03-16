@@ -1,0 +1,1 @@
+ipybot -P ..\CSWhiteLibrary\bin .
