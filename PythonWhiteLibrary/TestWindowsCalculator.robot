@@ -45,7 +45,7 @@ Verify About Calculator Is Found
 	Click Menu Button	Help
 	Click Menu Button	About Calculator
 	Select Modal Window	About Calculator
-	Verify Label	13568	Microsoft Windows Server
+	Verify Label	13568	Microsoft Windows
 	Click Button	1
 	Attach Window	Calculator
 
