@@ -9,9 +9,6 @@
 <li>Silverlight</li>
 <li>SWT (Java) platforms</li>
 </ul>
-
-[1] https://github.com/TestStack/White
-
 <p><b>Development Environment</b></p>
 <ul>
 <li>Install Visual Studio: https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx</li>
@@ -27,3 +24,4 @@
 <li>Install Robot with Iron Python: https://github.com/robotframework/robotframework/blob/master/INSTALL.rst#ironpython-installation</il>
 <li>Inside the solution execute tests from folder: \PythonWhiteLibrary execute: ipybot *.robot</li>
 </ul>
+[1] https://github.com/TestStack/White
