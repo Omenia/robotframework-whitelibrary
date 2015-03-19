@@ -11,3 +11,19 @@
 </ul>
 
 [1] https://github.com/TestStack/White
+
+Development Environment
+<ul>
+<li>Install Visual Studio: https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx</li>
+<li>Install Python Tools: http://pytools.codeplex.com/</li>
+<li>Clone project from Github</li>
+<ul>
+<li>Howto: http://rickrainey.com/2013/07/27/visual-studio-and-gitub-the-basics-of-working-with-existing-repositories-2/</li>
+<li>Reporsitory https://github.com/Omenia/robotframework-whitelibrary</li>
+</ul>
+</ul>
+<p>Running tests with Robot</p>
+<ul>
+<li>Install Robot with Iron Python: https://github.com/robotframework/robotframework/blob/master/INSTALL.rst#ironpython-installation</il>
+<li>Inside the solution execute tests from folder: \PythonWhiteLibrary execute: ipybot *.robot</li>
+</ul>
