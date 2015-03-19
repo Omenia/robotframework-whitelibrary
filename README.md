@@ -5,7 +5,7 @@
 <ul>
 <li>Win32</li>
 <li>WinForms</li>
-<li>WPF</li>
+<li>WPF (Windows Presentation Foundation)</li>
 <li>Silverlight</li>
 <li>SWT (Java) platforms</li>
 </ul>
