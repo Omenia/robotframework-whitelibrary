@@ -16,12 +16,13 @@
 <li>Clone project from Github</li>
 <ul>
 <li>Howto: http://rickrainey.com/2013/07/27/visual-studio-and-gitub-the-basics-of-working-with-existing-repositories-2/</li>
-<li>Reporsitory https://github.com/Omenia/robotframework-whitelibrary</li>
+<li>Repository https://github.com/Omenia/robotframework-whitelibrary</li>
 </ul>
 </ul>
 <p><b>Running tests with Robot</b></p>
 <ul>
 <li>Install Robot with Iron Python: https://github.com/robotframework/robotframework/blob/master/INSTALL.rst#ironpython-installation</il>
+<li> Install ElementTree toolkit http://effbot.org/media/downloads/elementtree-1.2.7-20070827-preview.zip . Unpack it and run "python setup.py install" </il>
 <li>Inside the solution execute tests from folder: \PythonWhiteLibrary execute: ipybot *.robot</li>
 </ul>
 [1] https://github.com/TestStack/White
