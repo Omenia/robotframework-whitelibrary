@@ -23,6 +23,6 @@
 <ul>
 <li>Install Robot with Iron Python: https://github.com/robotframework/robotframework/blob/master/INSTALL.rst#ironpython-installation</il>
 <li> Install ElementTree toolkit http://effbot.org/media/downloads/elementtree-1.2.7-20070827-preview.zip . Unpack it and run "python setup.py install" </il>
-<li>Inside the solution execute tests from folder: \PythonWhiteLibrary execute: ipybot *.robot</li>
+<li>Inside the solution execute tests from folder: \PythonWhiteLibrary execute: run_tests.cmd</li>
 </ul>
 [1] https://github.com/TestStack/White
