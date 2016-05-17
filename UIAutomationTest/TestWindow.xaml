@@ -1,7 +1,7 @@
 ﻿<Window x:Class="UIAutomationTest.TestWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="UI Automation Test Window" Height="250" Width="300">
+    Title="UI Automation Test Window" Height="358.836" Width="316.164">
     <Grid>
         <Menu IsMainMenu="True" Name="mainMenu" Width="auto" Height="22" Background="#FFA9D1F4" VerticalAlignment="Top">
             <MenuItem Header="_Help" Name="menuHeader">
@@ -20,8 +20,9 @@
                   VerticalAlignment="Top" Width="75" IsEditable="True" IsReadOnly="True"
                   RenderTransformOrigin="0.52,0.545" SelectedIndex="0">
             <ComboBoxItem Content="+"/>
-            <ComboBoxItem Content="-"/>
             <ComboBoxItem Content="*"/>
+            <ComboBoxItem Content="-"/>
+            <ComboBoxItem Content="%"/>
             <ComboBoxItem Content="/"/>
         </ComboBox>
         <Button Content="Calculate" Name="btnCalc" HorizontalAlignment="Left" Margin="180,125,25,0" VerticalAlignment="Top" 
@@ -31,5 +32,12 @@
                Width="62" RenderTransformOrigin="0.468,0.115" Name="lblResult">
         </Label>
         <TextBox Height="23" Margin="80,160,25,0" Name="tbResult" VerticalAlignment="Top" />
+        <StackPanel >
+            <RadioButton GroupName="Man" Content="Ismo" Margin="80,200,25,0" Name="rb_ismo" VerticalAlignment="Bottom"/>
+            <RadioButton GroupName="Man" Content="Peke" IsChecked="True" Margin="80,10,25,0" Name="rb_peke" VerticalAlignment="Bottom"/>
+
+        </StackPanel>
+
+
     </Grid>
 </Window>

@@ -58,6 +58,12 @@ namespace WhiteLibrary
             return window.Get<Button>(searchCriteria);
         }
 
+        protected RadioButton getRadioButton(string locator)
+        {
+            SearchCriteria searchCriteria = SearchCriteria.ByAutomationId(locator);
+            return window.Get<RadioButton>(searchCriteria);
+        }
+
         protected Menu getMenu(string locator)
         {
             SearchCriteria searchCriteria = SearchCriteria.ByText(locator);

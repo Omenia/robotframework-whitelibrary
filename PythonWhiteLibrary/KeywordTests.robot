@@ -28,6 +28,8 @@ Verify Operation Selections
 	Verify * In Operators
 	Select Combobox Value	op	/
 	Verify / In Operators
+	Select Combobox Value	op	%
+	Verify % In Operators
 
 Verify Button
 	Verify Button	btnCalc	Calculate
@@ -44,6 +46,12 @@ Open About And Verify Text
 	Verify Label	65535	This is basic calculator application for testing white library
 	Click Button	2
 	Attach Window	UI Automation Test Window
+	
+Multiplication Calculation
+	Calculate 5 * 2 Equals 10
+
+Quotient Calculation
+	Calculate 7 % 3 Equals 1
 
 Plus Calculation
 	Calculate 1 + 4 Equals 5
@@ -52,10 +60,7 @@ Minus Calculation
 	Calculate 5 - 1 Equals 4
 
 Division Calculation
-	Calculate 5 / 2 Equals 2.5
-
-Multiplication Calculation
-	Calculate 5.5 * 3 Equals 16.5
+	Calculate 5 / 2 Equals 2,5
 
 Calculate When First Number is Missing
 	Calculate 5 + ${EMPTY} Equals ${EMPTY}

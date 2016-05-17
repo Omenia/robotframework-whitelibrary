@@ -89,6 +89,18 @@ namespace CSWhiteLibrary
             button.Click();
         }
 
+        public void select_radio_button(string locator)
+        {
+            RadioButton radio_button = getRadioButton(locator);
+            radio_button.Select();
+        }
+
+        public Boolean verify_radio_button(string locator)
+        {
+            RadioButton radio_button = getRadioButton(locator);
+            return radio_button.IsSelected;
+        }
+
         public string verify_menu(string locator)
         {
             Menu menu = getMenu(locator);

@@ -112,6 +112,24 @@ class WhiteLibrary(object):
         '''
         WHITE_LIB.click_button(locator)
 
+    def verify_radio_button(self, locator, expected):
+        '''
+        Verify value of radio button
+        | Arguments | Usage | (M)andatory / (O)ptional |
+        | locator | element id | M |
+        | actual | expected value | M |
+        '''
+        actual = WHITE_LIB.verify_radio_button(locator)
+        verify_value(expected, actual)
+
+    def select_radio_button(self, locator):
+        '''
+        Click button
+        | Arguments | Usage | (M)andatory / (O)ptional |
+        | locator | element id | M |
+        '''
+        WHITE_LIB.select_radio_button(locator)
+
     def verify_menu(self, locator, expected):
         '''
         Verify menu item exists
