@@ -74,6 +74,11 @@ Calculate When First Number Is Alphabet
 Calculate When Second Number Is Alphabet
 	Calculate 1 + a Equals ${EMPTY}
 
+Verify Radio Buttons
+	Verify Radio Button    rb_peke    ${TRUE}
+	Select Radio Button    rb_ismo
+	Verify Radio Button    rb_ismo    ${TRUE}
+
 *** Keywords ***
 Launch App
 	Set Logging Level	Warn
