@@ -47,10 +47,23 @@ namespace CSWhiteLibrary
             textBox.Text = mytext;
         }
 
+        public void set_slider(string locator, Double myvalue)
+        {
+            Slider myslider = getSlider(locator);
+            myslider.Value = myvalue;
+        }
+
         public string verify_text_textbox(string locator)
         {
             TextBox textBox = getTextBox(locator);
             return textBox.Text;
+        }
+
+        
+        public Double verify_slider(string locator)
+        {
+            Slider mySlider = getSlider(locator);
+            return mySlider.Value;
         }
 
         public string verify_label(string locator)

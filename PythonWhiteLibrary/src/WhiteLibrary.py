@@ -46,6 +46,25 @@ class WhiteLibrary(object):
         '''
         WHITE_LIB.input_text_textbox(locator, text)
 
+    def set_slider_value(self, locator, double):
+        '''
+        Write slider to value double
+        | Arguments | Usage | (M)andatory / (O)ptional |
+        | locator | element id | M |
+        | double | inserted value (must be between scale) | M |
+        '''
+        WHITE_LIB.set_slider(locator, double)
+
+    def verify_slider_value(self, locator, expected):
+        '''
+        Verify slider value
+        | Arguments | Usage | (M)andatory / (O)ptional |
+        | locator | element id | M |
+        | actual | expected double | M |
+        '''
+        actual = WHITE_LIB.verify_slider(locator)
+        verify_value(expected, actual)
+
     def verify_text_in_textbox(self, locator, expected):
         '''
         Verify text in textbox

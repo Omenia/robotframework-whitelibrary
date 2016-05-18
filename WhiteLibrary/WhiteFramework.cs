@@ -40,6 +40,12 @@ namespace WhiteLibrary
             return (TextBox)window.Get(searchCriteria);
         }
 
+        protected Slider getSlider(string locator)
+        {
+            SearchCriteria searchCriteria = SearchCriteria.ByAutomationId(locator);
+            return (Slider)window.Get(searchCriteria);
+        }
+
         protected Label getLabel(string locator)
         {
             SearchCriteria searchCriteria = SearchCriteria.ByAutomationId(locator);

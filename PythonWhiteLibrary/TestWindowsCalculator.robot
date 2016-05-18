@@ -53,6 +53,7 @@ Verify About Calculator Is Found
 Launch App
 	Set Logging Level	Warn
 	Launch Application	C:\\Windows\\System32\\calc.exe
+	sleep    2
 	Attach Window	Calculator
 
 Close App

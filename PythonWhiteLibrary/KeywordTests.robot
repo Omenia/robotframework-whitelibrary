@@ -79,6 +79,12 @@ Verify Radio Buttons
 	Select Radio Button    rb_ismo
 	Verify Radio Button    rb_ismo    ${TRUE}
 
+Verify Slider
+	Verify Slider Value	   sladdu		${0}
+	Set Slider Value	   sladdu		${6}
+	Verify Slider Value	   sladdu		${6}
+
+
 *** Keywords ***
 Launch App
 	Set Logging Level	Warn
