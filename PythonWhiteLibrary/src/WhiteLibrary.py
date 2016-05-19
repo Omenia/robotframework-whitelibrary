@@ -94,6 +94,14 @@ class WhiteLibrary(object):
         '''
         WHITE_LIB.select_combobox_value(locator, value)
 
+    def toggle_check_box(self, locator):
+        '''
+        Toggle check box
+        | Arguments | Usage | (M)andatory / (O)ptional |
+        | locator | element id | M |
+        '''
+        WHITE_LIB.toggle_check_box(locator)
+
     def select_combobox_index(self, locator, index):
         '''
         Select combobox index
@@ -139,6 +147,16 @@ class WhiteLibrary(object):
         | actual | expected value | M |
         '''
         actual = WHITE_LIB.verify_radio_button(locator)
+        verify_value(expected, actual)
+
+    def verify_check_box(self, locator, expected):
+        '''
+        Verify value of check box
+        | Arguments | Usage | (M)andatory / (O)ptional |
+        | locator | element id | M |
+        | actual | expected value | M |
+        '''
+        actual = WHITE_LIB.verify_check_box(locator)
         verify_value(expected, actual)
 
     def select_radio_button(self, locator):

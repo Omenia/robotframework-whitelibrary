@@ -84,6 +84,12 @@ Verify Slider
 	Set Slider Value	   sladdu		${6}
 	Verify Slider Value	   sladdu		${6}
 
+Verify Check Boxes
+	Verify Check Box		cb_omena		${FALSE}
+	Toggle Check Box		cb_omena
+	Verify Check Box		cb_omena		${TRUE}
+	Verify Check Box		cb_omen			${FALSE}
+	Verify Check Box		cb_omenia		${FALSE}
 
 *** Keywords ***
 Launch App

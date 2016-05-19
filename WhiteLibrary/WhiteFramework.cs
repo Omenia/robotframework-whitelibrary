@@ -63,11 +63,23 @@ namespace WhiteLibrary
             SearchCriteria searchCriteria = SearchCriteria.ByAutomationId(locator);
             return window.Get<Button>(searchCriteria);
         }
-
+      
         protected RadioButton getRadioButton(string locator)
         {
             SearchCriteria searchCriteria = SearchCriteria.ByAutomationId(locator);
             return window.Get<RadioButton>(searchCriteria);
+        }
+
+        protected CheckBox getCheckBox(string locator)
+        {
+            SearchCriteria searchCriteria = SearchCriteria.ByAutomationId(locator);
+            return window.Get<CheckBox>(searchCriteria);
+        }
+
+        protected GroupBox getGroupBox(string locator)
+        {
+            SearchCriteria searchCriteria = SearchCriteria.ByAutomationId(locator);
+            return window.Get<GroupBox>(searchCriteria);
         }
 
         protected Menu getMenu(string locator)

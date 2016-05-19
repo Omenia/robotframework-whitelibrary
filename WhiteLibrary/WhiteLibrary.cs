@@ -58,8 +58,6 @@ namespace CSWhiteLibrary
             TextBox textBox = getTextBox(locator);
             return textBox.Text;
         }
-
-        
         public Double verify_slider(string locator)
         {
             Slider mySlider = getSlider(locator);
@@ -107,11 +105,23 @@ namespace CSWhiteLibrary
             RadioButton radio_button = getRadioButton(locator);
             radio_button.Select();
         }
-
+        
         public Boolean verify_radio_button(string locator)
         {
             RadioButton radio_button = getRadioButton(locator);
             return radio_button.IsSelected;
+        }
+
+        public Boolean verify_check_box(string locator)
+        {
+            CheckBox check_box = getCheckBox(locator);
+            return check_box.IsSelected;
+        }
+
+        public void toggle_check_box(string locator)
+        {
+            CheckBox check_box = getCheckBox(locator);
+            check_box.Toggle();
         }
 
         public string verify_menu(string locator)
