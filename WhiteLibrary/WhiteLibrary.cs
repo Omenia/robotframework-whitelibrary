@@ -58,6 +58,7 @@ namespace CSWhiteLibrary
             TextBox textBox = getTextBox(locator);
             return textBox.Text;
         }
+     
         public Double verify_slider(string locator)
         {
             Slider mySlider = getSlider(locator);

@@ -13,7 +13,8 @@ Verify Labels
 
 Write to Textbox
     Input Text To Textbox	txtA    Ismo
-    Input Text To Textbox  txtB	Aro
+    Input Text To Textbox   txtB	Aro
+	Input Text To Textbox   passwordBox		viisi
 
 Verify Text
 	Input Text To Textbox	txtA	Antti
