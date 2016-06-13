@@ -51,7 +51,7 @@ namespace WhiteLibrary
             SearchCriteria searchCriteria = SearchCriteria.ByAutomationId(locator);
             return window.Get<Label>(searchCriteria);
         }
-
+        
         protected ComboBox getComboBox(string locator)
         {
             SearchCriteria searchCriteria = SearchCriteria.ByAutomationId(locator);
@@ -87,5 +87,12 @@ namespace WhiteLibrary
             SearchCriteria searchCriteria = SearchCriteria.ByText(locator);
             return window.Get<Menu>(searchCriteria);
         }
+
+        protected ListBox getListBox(string locator)
+        {
+            SearchCriteria searchCriteria = SearchCriteria.ByText(locator);
+            return window.Get<ListBox>(searchCriteria);
+        }
+        
     }
 }

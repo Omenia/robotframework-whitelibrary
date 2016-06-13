@@ -28,7 +28,7 @@ namespace CSWhiteLibrary
 
         public void attach_window(string window)
         {
-            this.window = app.GetWindow(window, InitializeOption.NoCache);
+            this.window = app.GetWindow(window);
         }
 
         public void set_log_level(string level)
@@ -76,7 +76,7 @@ namespace CSWhiteLibrary
             ComboBox comboBox = getComboBox(locator);
             comboBox.Select(value);
         }
-
+    
         public void select_combobox_index(string locator, int index)
         {
             ComboBox comboBox = getComboBox(locator);
