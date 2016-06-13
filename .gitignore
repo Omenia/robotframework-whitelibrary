@@ -72,7 +72,7 @@ ipch/
 *.psess
 *.vsp
 *.vspx
-.vp/
+.vs/
 
 # TFS 2012 Local Workspace
 $tf/
