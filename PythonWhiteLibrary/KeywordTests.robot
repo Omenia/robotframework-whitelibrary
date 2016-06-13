@@ -92,6 +92,9 @@ Verify Check Boxes
 	Verify Check Box		cb_omen			${FALSE}
 	Verify Check Box		cb_omenia		${FALSE}
 
+Verify List Box
+	Choose List Box			list_box
+
 *** Keywords ***
 Launch App
 	Set Logging Level	Warn
