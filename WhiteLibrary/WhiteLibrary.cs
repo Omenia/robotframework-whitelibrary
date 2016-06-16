@@ -65,12 +65,18 @@ namespace CSWhiteLibrary
             return mySlider.Value;
         }
 
+        public Double verify_progressbar(string locator)
+        {
+            ProgressBar myProgressBar = getProgressBar(locator);
+            return myProgressBar.Value;
+        }
+
         public string verify_label(string locator)
         {
             Label label = getLabel(locator);
             return label.Text;
         }
-
+        
         public void select_combobox_value(string locator, string value)
         {
             ComboBox comboBox = getComboBox(locator);
@@ -81,6 +87,19 @@ namespace CSWhiteLibrary
         {
             ComboBox comboBox = getComboBox(locator);
             comboBox.Select(index);
+        }
+
+        public void select_listbox_value(string locator, string value)
+        {
+            ComboBox listBox = getComboBox(locator);
+           // ListItem listItem = getListItem(value);
+           // listBox.Select(getListItem(value).ToString());
+        }
+
+        public string verify_listbox_value(string locator, string value)
+        {
+            ListBox listBox = getListBox(locator);
+            return listBox.SelectedItemText;
         }
 
         public string verify_combobox_item(string locator)

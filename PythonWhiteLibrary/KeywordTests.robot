@@ -6,6 +6,7 @@ Test Setup	Attach Main Window
 Test Teardown	Clean App
 
 *** Test Cases ***
+
 Verify Labels
 	Verify Label	lblA	Value 1
 	Verify Label	lblB	Value 2
@@ -43,7 +44,7 @@ Verify Menu
 Open About And Verify Text
 	Click Menu Button	Help
 	Click Menu Button	About
-	Select Modal Window	About
+	Select Modal Window	 About
 	Verify Label	65535	This is basic calculator application for testing white library
 	Click Button	2
 	Attach Window	UI Automation Test Window
@@ -85,12 +86,18 @@ Verify Slider
 	Set Slider Value	   sladdu		${6}
 	Verify Slider Value	   sladdu		${6}
 
+Verify Progressbar
+	Verify Progressbar Value	   proggis		${78}
+
 Verify Check Boxes
 	Verify Check Box		cb_omena		${FALSE}
 	Toggle Check Box		cb_omena
 	Verify Check Box		cb_omena		${TRUE}
 	Verify Check Box		cb_omen			${FALSE}
 	Verify Check Box		cb_omenia		${FALSE}
+
+#Verify ListBox
+	#Select Listbox Value		op		box_item_teppo
 
 *** Keywords ***
 Launch App

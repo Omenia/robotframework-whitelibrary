@@ -65,6 +65,16 @@ class WhiteLibrary(object):
         actual = WHITE_LIB.verify_slider(locator)
         verify_value(expected, actual)
 
+    def verify_progressbar_value(self, locator, expected):
+        '''
+        Verify progressbar value
+        | Arguments | Usage | (M)andatory / (O)ptional |
+        | locator | element id | M |
+        | actual | expected double | M |
+        '''
+        actual = WHITE_LIB.verify_progressbar(locator)
+        verify_value(expected, actual)
+
     def verify_text_in_textbox(self, locator, expected):
         '''
         Verify text in textbox
@@ -93,6 +103,15 @@ class WhiteLibrary(object):
         | value | selected value | M |
         '''
         WHITE_LIB.select_combobox_value(locator, value)
+
+    def select_listbox_value(self, locator, value):
+        '''
+        Select listbox value
+        | Arguments | Usage | (M)andatory / (O)ptional |
+        | locator | element id | M |
+        | value | selected value | M |
+        '''
+        WHITE_LIB.select_listbox_value(locator, value)
 
     def toggle_check_box(self, locator):
         '''
