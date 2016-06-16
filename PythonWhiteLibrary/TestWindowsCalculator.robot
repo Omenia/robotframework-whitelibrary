@@ -20,7 +20,7 @@ Minus Calculation
 	Calculate 139 94 136 Equals 3
 
 Division Calculation
-	Calculate 135 91 132 Equals 2.5
+	Calculate 135 91 132 Equals 2,5
 
 Multiplication Calculation
 	Calculate 132 92 133 Equals 6
@@ -52,7 +52,8 @@ Verify About Calculator Is Found
 *** Keywords ***
 Launch App
 	Set Logging Level	Warn
-	Launch Application	C:\\Windows\\System32\\calc.exe
+	LOG    Install calculator for Windows 7/8: http://winaero.com/download.php?view.1795
+	Launch Application	 C:\\Windows\\System32\\calc1.exe
 	Attach Window	Calculator
 
 Close App
