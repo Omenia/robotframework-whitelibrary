@@ -1,4 +1,5 @@
 *** Settings ***
+# install oldcalcwin10 first! 
 Library    src/WhiteLibrary.py
 Suite Setup	Launch App
 Suite Teardown	Close App
