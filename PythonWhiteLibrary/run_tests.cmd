@@ -1,1 +1,1 @@
-ipybot -P ..\WhiteLibrary\bin %* --loglevel DEBUG:INFO .
+pybot -P ..\WhiteLibrary\bin %* --loglevel DEBUG:INFO .

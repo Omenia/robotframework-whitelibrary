@@ -1,5 +1,5 @@
 import clr
-clr.AddReferenceToFileAndPath('CSWhiteLibrary.dll') #include full path to Dll if required
+clr.AddReference('CSWhiteLibrary') #include full path to Dll if required
 from CSWhiteLibrary import Keywords
 WHITE_LIB = Keywords()
 

@@ -21,8 +21,8 @@
 </ul>
 <p><b>Running tests with Robot</b></p>
 <ul>
-<li>Install Robot with Iron Python: https://github.com/robotframework/robotframework/blob/master/INSTALL.rst#ironpython-installation</il>
-<li> Install ElementTree toolkit http://effbot.org/media/downloads/elementtree-1.2.7-20070827-preview.zip . Unpack it and run "python setup.py install" </il>
+<li>Install Python</il>
+<li>Install Robot Framework and Python for .NET: pip install robotframework pythonnet</il>
 <li>Inside the solution execute tests from folder: \PythonWhiteLibrary execute: "run_tests.cmd". Single test cases can be run with command "run_tests.cmd -t "Test case name""</li>
 </ul>
 [1] https://github.com/TestStack/White
