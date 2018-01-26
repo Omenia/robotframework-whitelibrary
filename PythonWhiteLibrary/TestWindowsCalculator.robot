@@ -27,24 +27,24 @@ Multiplication Calculation
 	Calculate 132 92 133 Equals 6
 
 Verify Different Calculator Types
-	Click Menu Button	View
-	Click Menu Button	Scientific
-	Click Menu Button	View
-	Click Menu Button	Programmer
-	Click Menu Button	View
-	Click Menu Button	Statistics
-	Click Menu Button	View
-	Click Menu Button	Unit conversion
-	Click Menu Button	View
-	Click Menu Button	Date calculation
-	Click Menu Button	View
-	Click Menu Button	Standard
-	Click Menu Button	View
-	Click Menu Button	Basic
+	Click Menu Button	text=View
+	Click Menu Button	text=Scientific
+	Click Menu Button	text=View
+	Click Menu Button	text=Programmer
+	Click Menu Button	text=View
+	Click Menu Button	text=Statistics
+	Click Menu Button	text=View
+	Click Menu Button	text=Unit conversion
+	Click Menu Button	text=View
+	Click Menu Button	text=Date calculation
+	Click Menu Button	text=View
+	Click Menu Button	text=Standard
+	Click Menu Button	text=View
+	Click Menu Button	text=Basic
 
 Verify About Calculator Is Found
-	Click Menu Button	Help
-	Click Menu Button	About Calculator
+	Click Menu Button	text=Help
+	Click Menu Button	text=About Calculator
 	Select Modal Window	About Calculator
 	Verify Label	13568	Microsoft Windows
 	Click Button	1
