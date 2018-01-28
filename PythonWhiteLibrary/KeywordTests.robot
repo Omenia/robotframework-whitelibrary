@@ -99,6 +99,13 @@ Verify Check Boxes
 #Verify ListBox
     #Select Listbox Value    op    box_item_teppo
 
+Calculate Using Index Locators
+    Input Text To Textbox    index=0    1
+    Select Combobox Value    index=0    +
+    Input Text To Textbox    index=2    2
+    Click Button    btnCalc
+    Verify Text In Textbox    index=3    3
+    
 *** Keywords ***
 Launch App
     Set Logging Level    Warn
