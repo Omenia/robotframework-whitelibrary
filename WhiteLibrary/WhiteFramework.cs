@@ -23,7 +23,6 @@ namespace WhiteLibrary
         {
             {"id", "ByAutomationId"},
             {"text", "ByText"},
-            {"index", "AndByIndex"},
         };
 
         protected void set_logging(string level)
@@ -137,8 +136,15 @@ namespace WhiteLibrary
             SearchCriteria searchCriteria = getSearchCriteria(searchStrategy, locatorValue);
             return window.Get<T>(searchCriteria);
         }
+
         private SearchCriteria getSearchCriteria(string searchStrategy, string locatorValue)
         {
+            if (searchStrategy == "index")
+            {
+                int index = int.Parse(locatorValue);
+                return SearchCriteria.Indexed(index);
+            }
+
             string methodName;
             strategies.TryGetValue(searchStrategy, out methodName);
             MethodInfo searchMethod = typeof(SearchCriteria).GetMethod(methodName);
