@@ -5,4 +5,7 @@ node {
             echo 'Ajan testit whitelle'
         stage 'Publish'
             echo 'Julkaisen'
+        stage 'Test'
+            echo 'Testi'
+
 }
