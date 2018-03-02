@@ -1,10 +1,6 @@
 node {
-    stages {
-        stage {
+        stage 'Build'
             echo 'Buildaan whitea'
-        }
-        stage {
+        stage 'Execute tests'
             echo 'Ajan testit whitelle'
-        }
-    }
 }
