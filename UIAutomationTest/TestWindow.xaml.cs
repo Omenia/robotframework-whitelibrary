@@ -65,5 +65,41 @@ namespace UIAutomationTest
             MessageBoxButton button = MessageBoxButton.OK;
             MessageBox.Show(text, title, button);
         }
+
+        private void treeNodeSelect(object sender, RoutedEventArgs e)
+        {
+            treeNodeEvent(sender, e, "selected");
+        }
+
+        private void treeNodeDoubleClick(object sender, RoutedEventArgs e)
+        {
+            treeNodeEvent(sender, e, "double-clicked");
+        }
+
+        private void treeNodeRightClick(object sender, RoutedEventArgs e)
+        {
+            treeNodeEvent(sender, e, "right-clicked");
+        }
+
+        private void treeNodeExpanded(object sender, RoutedEventArgs e)
+        {
+            treeNodeEvent(sender, e, "expanded");
+        }
+
+        private void treeNodeEvent(object sender, RoutedEventArgs e, string message)
+        {
+            TreeViewItem node = sender as TreeViewItem;
+            if (node != null)
+            {
+                selectionIndicatorLabel.Content = node.Header + " " + message;
+            }
+            e.Handled = true;
+
+        }
+
+        private void toolStripButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
