@@ -3,6 +3,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="UI Automation Test Window">
     <Grid Margin="0,0,-5,43.8">
+        <Grid.Resources>
+            <Style TargetType="{x:Type TreeViewItem}">
+                <EventSetter Event="Selected" Handler="treeNodeSelect"/>
+                <EventSetter Event="MouseDoubleClick" Handler="treeNodeDoubleClick"/>
+                <EventSetter Event="MouseRightButtonDown" Handler="treeNodeRightClick"/>
+                <EventSetter Event="Expanded" Handler="treeNodeExpanded"/>
+            </Style>
+        </Grid.Resources>
         <TabControl AutomationProperties.AutomationId="tabControl">
             <TabItem Header="Tab1">
                 <Grid>
@@ -70,22 +78,22 @@
             </TabItem>
             <TabItem Header="Tab2">
                 <StackPanel Orientation="Vertical">
+                    <Label Name="selectionIndicatorLabel">nothing selected</Label>
                     <ToolBar AutomationProperties.AutomationId="tools">
-                        <Button>Don't click</Button>
-                        <Button>Don't click</Button>
-                        <Button>Click me!</Button>
+                        <Button>Toolstrip button 1</Button>
+                        <Button>Toolstrip button 2</Button>
+                        <Button>Toolstrip button 3</Button>
                     </ToolBar>
                     <ListView AutomationProperties.AutomationId="list_view">
-                        <ListViewItem>duck</ListViewItem>
-                        <ListViewItem>pigeon</ListViewItem>
-                        <ListViewItem>grackle</ListViewItem>
+                        <ListViewItem>ListView item 1</ListViewItem>
+                        <ListViewItem>ListView item 2</ListViewItem>
+                        <ListViewItem>ListView item 3</ListViewItem>
                     </ListView>
-                    <Label>nothing selected</Label>
                     <TreeView AutomationProperties.AutomationId="tree" Margin="0,0,-186,0" Height="Auto">
-                        <TreeViewItem Header="Node 1">
-                            <TreeViewItem Header="Node 1.1" />
-                            <TreeViewItem Header="Node 1.2">
-                                <TreeViewItem Header="Node 1.2.1" ></TreeViewItem>
+                        <TreeViewItem Header="Tree node 1">
+                            <TreeViewItem Header="Tree node 1.1" />
+                            <TreeViewItem Header="Tree node 1.2">
+                                <TreeViewItem Header="Tree node 1.2.1" />
                             </TreeViewItem>
                         </TreeViewItem>
                     </TreeView>
