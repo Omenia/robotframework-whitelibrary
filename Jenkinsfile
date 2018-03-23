@@ -1,6 +1,9 @@
 node {
+        stage 'Checkout'
+            git url: 'https://github.com/Omenia/robotframework-whitelibrary.git'
         stage 'Build'
-            echo 'Buildaan whitea'
+            bat 'nuget RobotFrameworkWhiteLibrary.sln'
+		    bat 'msbuild RobotFrameworkWhiteLibrary.sln /toolsversion:12.0'
         stage 'Execute tests'
             echo 'Ajan testit whitelle'
         stage 'Publish'
