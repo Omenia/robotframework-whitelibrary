@@ -12,6 +12,8 @@ using TestStack.White.UIItems.MenuItems;
 using TestStack.White.Configuration;
 using Castle.Core.Logging;
 using System.Reflection;
+using TestStack.White.UIItems.TreeItems;
+using TestStack.White.UIItems.TabItems;
 
 namespace WhiteLibrary
 {
@@ -99,6 +101,17 @@ namespace WhiteLibrary
         protected ProgressBar getProgressBar(string locator)
         {
             return getItemByLocator<ProgressBar>(locator);
+        }
+
+        protected Tab getTab(string locator)
+        {
+            return getItemByLocator<Tab>(locator);
+        }
+
+        protected TreeNode getTreeNode(string locator, string[] nodePath)
+        {
+            Tree tree = getItemByLocator<Tree>(locator);
+            return tree.Nodes.GetItem(nodePath);
         }
 
         private T getItemByLocator<T>(string locator) where T : IUIItem

@@ -212,6 +212,26 @@ class WhiteLibrary(object):
         '''
         WHITE_LIB.select_modal_window(locator)
 
+    def select_tab_page(self, locator, title):
+        """ Selects a tab page. """
+        WHITE_LIB.selectTabPage(locator, title)
+
+    def select_tree_node(self, locator, *node_path):
+        """ Selects a tree node. """
+        WHITE_LIB.selectTreeNode(locator, node_path)
+
+    def expand_tree_node(self, locator, *node_path):
+        """ Expands a tree node. """
+        WHITE_LIB.expandTreeNode(locator, node_path)
+
+    def double_click_tree_node(self, locator, *node_path):
+        """ Double-clicks a tree node. """
+        WHITE_LIB.doubleClickTreeNode(locator, node_path)
+
+    def right_click_tree_node(self, locator, *node_path):
+        """ Right-clicks a tree node. """
+        WHITE_LIB.rightClickTreeNode(locator, node_path)        
+
 def verify_value(expected, actual):
     if expected != actual:
         raise AssertionError("Correct value not found: %s != %s" % (expected, actual))

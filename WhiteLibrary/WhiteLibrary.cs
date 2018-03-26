@@ -13,7 +13,8 @@ using TestStack.White.UIItems.ListBoxItems;
 using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
 using WhiteLibrary;
-
+using TestStack.White.UIItems.TreeItems;
+using TestStack.White.UIItems.TabItems;
 
 namespace CSWhiteLibrary
 {
@@ -160,6 +161,36 @@ namespace CSWhiteLibrary
         {
             List<Window> modalWindows = window.ModalWindows();
             this.window = window.ModalWindow(locator);
+        }
+
+        public void selectTabPage(string locator, string tabTitle)
+        {
+            Tab tab = getTab(locator);
+            tab.SelectTabPage(tabTitle);
+        }
+
+        public void selectTreeNode(string locator, string[] nodePath)
+        {
+            TreeNode node = getTreeNode(locator, nodePath);
+            node.Select();
+        }
+
+        public void expandTreeNode(string locator, string[] nodePath)
+        {
+            TreeNode node = getTreeNode(locator, nodePath);
+            node.Expand();
+        }
+
+        public void doubleClickTreeNode(string locator, string[] nodePath)
+        {
+            TreeNode node = getTreeNode(locator, nodePath);
+            node.DoubleClick();
+        }
+
+        public void rightClickTreeNode(string locator, string[] nodePath)
+        {
+            TreeNode node = getTreeNode(locator, nodePath);
+            node.RightClick();
         }
     }
 }
