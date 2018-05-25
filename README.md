@@ -1,5 +1,4 @@
 <p> <b>This library is still very much under construction.<p> <b>
-
 <p>WhiteLibrary will give a way to test Windows UI technologies with Robot Framework. WhiteLibrary wraps White test automation framework [1] </p>
 <p><b>Techonologies</b></p>
 <ul>

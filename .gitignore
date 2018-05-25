@@ -196,3 +196,7 @@ report.html
 
 # Python build files
 *.pyc
+
+# PyPi Packaged
+PythonWhiteLibrary/MANIFEST
+PythonWhiteLibrary/dist/
