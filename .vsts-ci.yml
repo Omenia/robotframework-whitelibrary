@@ -26,3 +26,8 @@ steps:
     ArtifactType: container
     TargetPath: ""
     ArtifactName: Robot Test results
+
+- task: PyPIPublisher@0
+  inputs:
+    pypiConnection: https://test.pypi.org/legacy/
+    packageDirectory: PythonWhiteLibrary
