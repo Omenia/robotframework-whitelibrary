@@ -28,6 +28,7 @@ steps:
     ArtifactName: Robot Test results
 
 - task: PyPIPublisher@0
+  displayName: Publis to the test PyPi
   inputs:
     pypiConnection: TestPypi
     packageDirectory: PythonWhiteLibrary
