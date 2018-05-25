@@ -3,7 +3,7 @@ steps:
 - script: |
   pip install robotframework
   pip install pythonnet
-displayName: Install needed compoments from PyPi
+  displayName: Install needed compoments from PyPi
 
 - task: NuGetCommand@2
 
