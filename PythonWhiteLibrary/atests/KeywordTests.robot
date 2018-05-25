@@ -1,12 +1,16 @@
+*** Variables ***
+${TEST APPLICATION}      UIAutomationTest${/}bin${/}Debug${/}app.publish${/}UIAutomationTest.exe
+
+
 *** Settings ***
-Library    src/WhiteLibrary.py
+Library    WhiteLibrary
 Suite Setup    Launch App
 Suite Teardown    Close App
 Test Setup    Attach Main Window
 Test Teardown    Clean App
 
-*** Test Cases ***
 
+*** Test Cases ***
 Verify Labels
     Verify Label    lblA    Value 1
     Verify Label    lblB    Value 2
@@ -62,6 +66,7 @@ Minus Calculation
     Calculate 5 - 1 Equals 4
 
 Division Calculation
+    [Tags]   unstable
     Calculate 5 / 2 Equals 2,5
 
 Calculate When First Number is Missing
@@ -105,11 +110,11 @@ Calculate Using Index Locators
     Input Text To Textbox    index=2    2
     Click Button    btnCalc
     Verify Text In Textbox    index=3    3
-    
+
 *** Keywords ***
 Launch App
-    Set Logging Level    Warn
-    Launch Application    ..\\UIAutomationTest\\bin\\Debug\\UIAutomationTest.exe
+    Set Log Level    Warn
+    Launch Application    ${TEST APPLICATION}
     Attach Window    UI Automation Test Window
 
 Close App

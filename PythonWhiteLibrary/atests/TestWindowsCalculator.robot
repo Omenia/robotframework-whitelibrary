@@ -1,6 +1,7 @@
 *** Settings ***
-# install oldcalcwin10 first! 
-Library    src/WhiteLibrary.py
+# install oldcalcwin10 first!
+Force Tags     no_ci
+Library    WhiteLibrary
 Suite Setup	Launch App
 Suite Teardown	Close App
 Test Teardown	Clean App
@@ -61,7 +62,7 @@ Close App
 	Close Application
 
 Clean App
-	Click Button	82 
+	Click Button	82
 
 Calculate ${num1} ${op} ${num2} Equals ${result}
 	Click Button	${num1}
