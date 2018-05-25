@@ -20,9 +20,9 @@ steps:
     testResultsFiles: output/xunit.xml
 
 - task: PublishBuildArtifacts@1
-    displayName: Publish Robot Framework logs and results
-    inputs:
-      PathtoPublish: output
-      ArtifactType: container
-      TargetPath: ""
-      ArtifactName: Robot Test results
+  displayName: Publish Robot Framework logs and results
+  inputs:
+    PathtoPublish: output
+    ArtifactType: container
+    TargetPath: ""
+    ArtifactName: Robot Test results
