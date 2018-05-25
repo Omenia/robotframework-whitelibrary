@@ -21,7 +21,7 @@
 </ul>
 <p><b>Running tests with Robot</b></p>
 <ul>
-<li>Install Python </il>
+<li>Install Python</il>
 <li>Install Robot Framework and Python for .NET: pip install robotframework pythonnet</il>
 <li>Inside the solution execute tests from folder: \PythonWhiteLibrary execute: "run_tests.cmd". Single test cases can be run with command "run_tests.cmd -t "Test case name""</li>
 </ul>
