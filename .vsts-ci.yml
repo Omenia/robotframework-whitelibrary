@@ -29,5 +29,5 @@ steps:
 
 - task: PyPIPublisher@0
   inputs:
-    pypiConnection: https://test.pypi.org/legacy/
+    pypiConnection: TestPypi
     packageDirectory: PythonWhiteLibrary
