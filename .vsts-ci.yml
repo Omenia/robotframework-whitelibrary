@@ -1,8 +1,8 @@
 
 steps:
 - script: |
-  pip install robotframework
-  pip install pythonnet
+      pip install robotframework
+      pip install pythonnet
   displayName: Install needed compoments from PyPi
 
 - task: NuGetCommand@2
@@ -10,7 +10,7 @@ steps:
 - task: VSBuild@1
 
 - script: |
-  run_tests.cmd --exclude no_ci --xunit xunit.xml
+    run_tests.cmd --exclude no_ci --xunit xunit.xml
   continueOnError: true
   displayName: Execute Acceptance tests
 
