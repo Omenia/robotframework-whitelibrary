@@ -1,35 +1,27 @@
 
 steps:
+- script: |
+  pip install robotframework
+  pip install pythonnet
+displayName: Install needed compoments from PyPi
 
-  - script: |
-      pip install robotframework
-      pip install pythonnet
-    displayName: Install needed compoments from PyPi
+- task: NuGetCommand@2
 
-  - task: NuGetCommand@2
+- task: VSBuild@1
 
-  - task: VSBuild@1
-
-  - script: |
-      run_tests.cmd --exclude no_ci --xunit xunit.xml
-    displayName: Executing tests
-
-  - task: PublishTestResults@2
-    inputs:
-      testRunner: JUnit
-      testResultsFiles: output/xunit.xml
+- script: |
+  run_tests.cmd --exclude no_ci --xunit xunit.xml
   continueOnError: true
   displayName: Execute Acceptance tests
 
 - task: PublishTestResults@2
-  displayName: Publish Robot Framework test results
   inputs:
     testRunner: JUnit
     testResultsFiles: output/xunit.xml
 
 - task: PublishBuildArtifacts@1
-  displayName: Publish Robot Framework logs and results
-  inputs:
+    displayName: Publish Robot Framework logs and results
+    inputs:
     PathtoPublish: output
     ArtifactType: container
     TargetPath: ""
