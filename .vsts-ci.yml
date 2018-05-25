@@ -18,17 +18,19 @@ steps:
     inputs:
       testRunner: JUnit
       testResultsFiles: output/xunit.xml
-  
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: output/log.html
-      ArtifactType: Container
-      TargetPath: ""
-      ArtifactName: Test Logs
+  continueOnError: true
+  displayName: Execute Acceptance tests
 
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: output/report.html
-      ArtifactType: Container
-      TargetPath: ""
-      ArtifactName: Test Report
+- task: PublishTestResults@2
+  displayName: Publish Robot Framework test results
+  inputs:
+    testRunner: JUnit
+    testResultsFiles: output/xunit.xml
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Robot Framework logs and results
+  inputs:
+    PathtoPublish: output
+    ArtifactType: container
+    TargetPath: ""
+    ArtifactName: Robot Test results
