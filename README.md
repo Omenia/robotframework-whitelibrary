@@ -1,6 +1,6 @@
 <p> <b>This library is still very much under construction.<p> <b>
 
-<p>WhiteLibrary will give a way to test Windows UI technologies with Robot Framework. WhiteLibrary wraps White test automation framework [1] </p> 
+<p>WhiteLibrary will give a way to test Windows UI technologies with Robot Framework. WhiteLibrary wraps White test automation framework [1] </p>
 <p><b>Techonologies</b></p>
 <ul>
 <li>Win32</li>
@@ -21,7 +21,7 @@
 </ul>
 <p><b>Running tests with Robot</b></p>
 <ul>
-<li>Install Python</il>
+<li>Install Python </il>
 <li>Install Robot Framework and Python for .NET: pip install robotframework pythonnet</il>
 <li>Inside the solution execute tests from folder: \PythonWhiteLibrary execute: "run_tests.cmd". Single test cases can be run with command "run_tests.cmd -t "Test case name""</li>
 </ul>
