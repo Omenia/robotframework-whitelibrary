@@ -29,6 +29,6 @@ steps:
 
 - task: PyPIPublisher@0
   displayName: Publish to the test PyPi!
-    inputs:
-      pypiConnection: TestPypi
-      packageDirectory: PythonWhiteLibrary
+  inputs:
+    pypiConnection: TestPypi
+    packageDirectory: PythonWhiteLibrary
