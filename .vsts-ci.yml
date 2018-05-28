@@ -31,4 +31,5 @@ steps:
   displayName: Publish to the test PyPi!
   inputs:
     pypiConnection: TestPypi
+    serviceEndpoint: TestPypi
     packageDirectory: PythonWhiteLibrary
