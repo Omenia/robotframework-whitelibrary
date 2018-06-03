@@ -27,9 +27,9 @@ steps:
     TargetPath: ""
     ArtifactName: Robot Test results
 
-#- task: PyPIPublisher@0
-#  displayName: Publish to the test PyPi!
-#  inputs:
-#    pypiConnection: TestPypi
-#    serviceEndpoint: TestPypi
-#    packageDirectory: PythonWhiteLibrary
+- task: PublishBuildArtifacts@1
+  displayName: Publish whitelibrary
+  inputs:
+    ArtifactType: container
+    TargetPath: ""
+    ArtifactName: WhiteLibrary
