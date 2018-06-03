@@ -6,6 +6,6 @@ setup(name         = 'robotframework-whitelibrary',
       author       = 'SALabs',
       url          = 'https://github.com/Omenia/robotframework-whitelibrary',
       package_dir  = {'' : 'src'},
-      py_modules = ['WhiteLibrary'],
-      package_data = {'robotframework-whitelibrary': ["../WhiteLibrary/bin/WhiteLibrary.dll"]}
+      py_modules   = ['WhiteLibrary'],
+      package_data = {'robotframework-whitelibrary': ["WhiteLibrary/bin/CSWhiteLibrary.dl"]},
       )
