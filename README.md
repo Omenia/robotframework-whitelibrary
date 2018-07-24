@@ -15,7 +15,7 @@ Python Tools are required but they're now part of Visual Studio 2017 installer, 
 </li>
 <li>Clone project from Github</li>
 <ul>
-<li><span style="text-decoration: line-through;">Howto: http://rickrainey.com/2013/07/27/visual-studio-and-gitub-the-basics-of-working-with-existing-repositories-2/</span> (currently unavailable)</br>
+<li>~~ Howto: http://rickrainey.com/2013/07/27/visual-studio-and-gitub-the-basics-of-working-with-existing-repositories-2/ ~~ (currently unavailable)</br>
 Howto: https://docs.microsoft.com/en-us/vsts/git/gitquickstart?view=vsts&tabs=visual-studio
 </li>
 <li>Repository https://github.com/Omenia/robotframework-whitelibrary</li>
