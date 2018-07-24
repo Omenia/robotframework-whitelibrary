@@ -10,18 +10,21 @@
 </ul>
 <p><b>Development Environment</b></p>
 <ul>
-<li>Install Visual Studio: https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx</li>
-<li>Install Python Tools: http://pytools.codeplex.com/</li>
+<li>Install Visual Studio: https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx</br>
+Python Tools are required but they're now part of Visual Studio 2017 installer, see details what to select when installing Visual Studio: https://github.com/Microsoft/PTVS
+</li>
 <li>Clone project from Github</li>
 <ul>
-<li>Howto: http://rickrainey.com/2013/07/27/visual-studio-and-gitub-the-basics-of-working-with-existing-repositories-2/</li>
+<li><span style="text-decoration: line-through;">Howto: http://rickrainey.com/2013/07/27/visual-studio-and-gitub-the-basics-of-working-with-existing-repositories-2/</span> (currently unavailable)</br>
+Howto: https://docs.microsoft.com/en-us/vsts/git/gitquickstart?view=vsts&tabs=visual-studio
+</li>
 <li>Repository https://github.com/Omenia/robotframework-whitelibrary</li>
 </ul>
 </ul>
 <p><b>Running tests with Robot</b></p>
 <ul>
-<li>Install Python</il>
-<li>Install Robot Framework and Python for .NET: pip install robotframework pythonnet</il>
+<li>Install Python</li>
+<li>Install Robot Framework and Python for .NET: pip install robotframework pythonnet</li>
 <li>Inside the solution execute tests from folder: \PythonWhiteLibrary execute: "run_tests.cmd". Single test cases can be run with command "run_tests.cmd -t "Test case name""</li>
 </ul>
 [1] https://github.com/TestStack/White
