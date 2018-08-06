@@ -13,7 +13,7 @@
 <li>Install Visual Studio: https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx</br>
 Python Tools are required but they're now part of Visual Studio 2017 installer, see details what to select when installing Visual Studio: https://github.com/Microsoft/PTVS
 </li>
-<li>Clone project from Github</li>
+<li>Clone project from GitHub</li>
 <ul>
 <li><del>Howto: http://rickrainey.com/2013/07/27/visual-studio-and-gitub-the-basics-of-working-with-existing-repositories-2/</del> (currently unavailable)</br>
 Howto: https://docs.microsoft.com/en-us/vsts/git/gitquickstart?view=vsts&tabs=visual-studio
