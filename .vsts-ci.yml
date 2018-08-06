@@ -36,5 +36,5 @@ steps:
 
 - task: PyPIPublisher@0
   inputs:
-    pypiConnection: TestPypi
+    pypiConnection: JMTestPypi
     packageDirectory: PythonWhiteLibrary
