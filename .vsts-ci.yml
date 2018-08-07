@@ -34,7 +34,4 @@ steps:
     TargetPath: ""
     ArtifactName: WhiteLibrary
 
-- task: PyPIPublisher@0
-  inputs:
-    pypiConnection: 'TestPypi'
-    packageDirectory: PythonWhiteLibrary
+
