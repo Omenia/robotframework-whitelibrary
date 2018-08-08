@@ -1,6 +1,6 @@
 import distutils.sysconfig
 from distutils.core import setup
-setup(name         = 'robotframework-whitelibrary',
+setup(name         = 'robotframework-whitelibrary2',
       version      = '0.0.2',
       description  = 'Windows GUI testing library for Robot Framework',
       author       = 'SALabs',
