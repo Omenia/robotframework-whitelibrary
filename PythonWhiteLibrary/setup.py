@@ -6,5 +6,5 @@ setup(name         = 'robotframework-whitelibrary',
       author       = 'SALabs',
       author_email = 'to.be.added@noexist89a887.org',
       url          = 'https://github.com/Omenia/robotframework-whitelibrary',
-      py_modules   = 'WhiteLibrary'
+      py_modules   = ['WhiteLibrary']
       )
