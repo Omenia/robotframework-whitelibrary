@@ -36,9 +36,17 @@ steps:
     ArtifactName: WhiteLibrary
 
 - task: PublishBuildArtifacts@1
-  displayName: Publish whitelibrary .py
+  displayName: Publish Whitelibrary.py
   inputs:
-    PathToPublish: PythonWhiteLibrary/**/*.py
+    PathToPublish: PythonWhiteLibrary/src/WhiteLibrary.py
+    ArtifactType: container
+    TargetPath: ""
+    ArtifactName: WhiteLibrary
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish setup.py
+  inputs:
+    PathToPublish: PythonWhiteLibrary/setup.py
     ArtifactType: container
     TargetPath: ""
     ArtifactName: WhiteLibrary
