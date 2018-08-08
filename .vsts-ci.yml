@@ -39,6 +39,7 @@ steps:
   displayName: Publish whitelibrary .py
   inputs:
     PathToPublish: PythonWhiteLibrary/src/WhiteLibrary.py
+                   PythonWhiteLibrary/setup.py
     ArtifactType: container
     TargetPath: ""
     ArtifactName: WhiteLibrary
