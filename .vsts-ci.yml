@@ -28,9 +28,17 @@ steps:
     ArtifactName: Robot Test results
 
 - task: PublishBuildArtifacts@1
-  displayName: Publish whitelibrary
+  displayName: Publish whitelibrary DLL
   inputs:
-    PathToPublish: WhiteLibrary\bin
+    PathToPublish: WhiteLibrary/bin/CSWhiteLibrary.dll
+    ArtifactType: container
+    TargetPath: ""
+    ArtifactName: WhiteLibrary
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish whitelibrary .py
+  inputs:
+    PathToPublish: PythonWhiteLibrary/src/WhiteLibrary.py
     ArtifactType: container
     TargetPath: ""
     ArtifactName: WhiteLibrary
