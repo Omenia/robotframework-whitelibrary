@@ -9,5 +9,5 @@ setup(name         = 'robotframework-whitelibrary2',
       url          = 'https://github.com/Omenia/robotframework-whitelibrary',
       packages     = ['WhiteLibrary'],
       package_dir  = {'WhiteLibrary' : ''},
-      package_data = {'WhiteLibrary' : 'CSWhiteLibrary.dll'},
+      package_data = {'WhiteLibrary' : ['CSWhiteLibrary.dll']},
       )
