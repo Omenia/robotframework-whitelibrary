@@ -8,4 +8,5 @@ setup(name         = 'robotframework-whitelibrary2',
       author_email = 'to.be.added@noexist89a887.org',
       url          = 'https://github.com/Omenia/robotframework-whitelibrary',
       packages     = ['WhiteLibrary'],
+      package_dir  = {'WhiteLibrary' : ''}
       )
