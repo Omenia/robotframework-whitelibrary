@@ -7,6 +7,6 @@ setup(name         = 'robotframework-whitelibrary2',
       author       = 'SALabs',
       author_email = 'to.be.added@noexist89a887.org',
       url          = 'https://github.com/Omenia/robotframework-whitelibrary',
-      py_modules   = ['WhiteLibrary']
+      py_modules   = ['WhiteLibrary'],
       ext_modules  = [Extension('CSWhiteLibrary', ['CSWhiteLibrary.dll'])],
       )
