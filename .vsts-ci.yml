@@ -51,4 +51,36 @@ steps:
     TargetPath: ""
     ArtifactName: WhiteLibrary
 
+- task: PublishBuildArtifacts@1
+  displayName: Publish Dependency library DLL
+  inputs:
+    PathToPublish: WhiteLibrary/bin/Castle.Core.dll
+    ArtifactType: container
+    TargetPath: ""
+    ArtifactName: WhiteLibrary
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Dependency library DLL
+  inputs:
+    PathToPublish: WhiteLibrary/bin/TestStack.White.dll
+    ArtifactType: container
+    TargetPath: ""
+    ArtifactName: WhiteLibrary
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Dependency library DLL
+  inputs:
+    PathToPublish: WhiteLibrary/bin/TestStack.White.Reporting.dll
+    ArtifactType: container
+    TargetPath: ""
+    ArtifactName: WhiteLibrary
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Dependency library DLL
+  inputs:
+    PathToPublish: WhiteLibrary/bin/TestStack.White.ScreenObjects.dll
+    ArtifactType: container
+    TargetPath: ""
+    ArtifactName: WhiteLibrary
+
 
