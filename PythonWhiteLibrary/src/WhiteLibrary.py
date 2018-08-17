@@ -1,5 +1,5 @@
 import clr
-clr.AddReference('CSWhiteLibrary') #include full path to Dll if required
+clr.AddReference('C:\Python27\Lib\Site-packages\WhiteLibrary\CSWhiteLibrary.dll')
 from CSWhiteLibrary import Keywords
 WHITE_LIB = Keywords()
 
