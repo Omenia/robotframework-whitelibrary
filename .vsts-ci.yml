@@ -19,7 +19,6 @@ steps:
     testRunner: JUnit
     testResultsFiles: output/xunit.xml
 
-
 - task: Bash@3
   inputs:
     targetType: inline
