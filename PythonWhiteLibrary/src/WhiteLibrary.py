@@ -1,9 +1,11 @@
 import clr
 import os
 
-dll_path = os.path.dirname(os.path.abspath(__file__)) + r'\CSWhiteLibrary.dll'
-clr.AddReference('CSWhiteLibrary')
-clr.AddReference(dll_path)
+try:
+    clr.AddReference('CSWhiteLibrary')
+except FileNotFoundException:
+    dll_path = os.path.dirname(os.path.abspath(__file__)) + r'\CSWhiteLibrary.dll'
+    clr.AddReference(dll_path)
 
 from CSWhiteLibrary import Keywords
 WHITE_LIB = Keywords()
