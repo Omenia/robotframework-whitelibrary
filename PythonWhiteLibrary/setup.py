@@ -2,7 +2,7 @@ import distutils.sysconfig
 from distutils.core import setup
 from distutils.extension import Extension
 setup(name         = 'robotframework-whitelibrary',
-      version      = '0.0.20',
+      version      = '0.0.21',
       description  = 'Windows GUI testing library for Robot Framework',
       author       = 'SALabs',
       author_email = 'to.be.added@noexist89a887.org',
