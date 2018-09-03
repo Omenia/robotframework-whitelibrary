@@ -23,7 +23,7 @@ steps:
 - task: Bash@3
   inputs:
     targetType: inline
-    script: echo $BUILD_NUMBER >> build.info
+    script: echo $BUILD_BUILDNUMBER >> build.info
 
 - task: PublishBuildArtifacts@1
   displayName: Publish Robot Framework logs and results
