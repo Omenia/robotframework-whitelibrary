@@ -3,6 +3,7 @@
 import distutils.sysconfig
 from distutils.core import setup
 from distutils.extension import Extension
+import os
 
 def __path(filename):
     return os.path.join(os.path.dirname(__file__),
