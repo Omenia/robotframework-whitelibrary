@@ -2,7 +2,7 @@ import distutils.sysconfig
 from distutils.core import setup
 from distutils.extension import Extension
 setup(name         = 'robotframework-whitelibrary',
-      version      = '0.0.19',
+      version      = '0.0.20',
       description  = 'Windows GUI testing library for Robot Framework',
       author       = 'SALabs',
       author_email = 'to.be.added@noexist89a887.org',
@@ -10,9 +10,9 @@ setup(name         = 'robotframework-whitelibrary',
       install_requires     = ['pythonnet'],
       packages     = ['WhiteLibrary'],
       package_dir  = {'WhiteLibrary' : ''},
-      package_data = {'WhiteLibrary' : ['bin/CSWhiteLibrary.dll',
-                                        'bin/Castle.Core.dll',
-                                        'bin/TestStack.White.dll',
-                                        'bin/TestStack.White.Reporting.dll',
-                                        'bin/TestStack.White.ScreenObjects.dll']},
+      package_data = {'WhiteLibrary' : ['CSWhiteLibrary.dll',
+                                        'Castle.Core.dll',
+                                        'TestStack.White.dll',
+                                        'TestStack.White.Reporting.dll',
+                                        'TestStack.White.ScreenObjects.dll']},
       )
