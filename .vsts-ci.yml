@@ -28,8 +28,67 @@ steps:
     ArtifactName: Robot Test results
 
 - task: PublishBuildArtifacts@1
-  displayName: Publish whitelibrary
+  displayName: Publish whitelibrary DLL
   inputs:
+    PathToPublish: WhiteLibrary/bin/CSWhiteLibrary.dll
+    ArtifactType: container
+    TargetPath: "bin/"
+    ArtifactName: WhiteLibrary
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Whitelibrary.py
+  inputs:
+    PathToPublish: PythonWhiteLibrary/src/WhiteLibrary.py
     ArtifactType: container
     TargetPath: ""
     ArtifactName: WhiteLibrary
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish __init__.py
+  inputs:
+    PathToPublish: PythonWhiteLibrary/src/__init__.py
+    ArtifactType: container
+    TargetPath: ""
+    ArtifactName: WhiteLibrary
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish setup.py
+  inputs:
+    PathToPublish: PythonWhiteLibrary/setup.py
+    ArtifactType: container
+    TargetPath: ""
+    ArtifactName: WhiteLibrary
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Dependency library DLL
+  inputs:
+    PathToPublish: WhiteLibrary/bin/Castle.Core.dll
+    ArtifactType: container
+    TargetPath: "bin/"
+    ArtifactName: WhiteLibrary
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Dependency library DLL
+  inputs:
+    PathToPublish: WhiteLibrary/bin/TestStack.White.dll
+    ArtifactType: container
+    TargetPath: "bin/"
+    ArtifactName: WhiteLibrary
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Dependency library DLL
+  inputs:
+    PathToPublish: WhiteLibrary/bin/TestStack.White.Reporting.dll
+    ArtifactType: container
+    TargetPath: "bin/"
+    ArtifactName: WhiteLibrary
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Dependency library DLL
+  inputs:
+    PathToPublish: WhiteLibrary/bin/TestStack.White.ScreenObjects.dll
+    ArtifactType: container
+    TargetPath: "bin/"
+    ArtifactName: WhiteLibrary
+
+
