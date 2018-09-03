@@ -19,6 +19,11 @@ steps:
     testRunner: JUnit
     testResultsFiles: output/xunit.xml
 
+
+- task: Bash@3
+  inputs:
+    script: echo $BUILD_NUMBER >> build.info
+
 - task: PublishBuildArtifacts@1
   displayName: Publish Robot Framework logs and results
   inputs:
@@ -26,6 +31,14 @@ steps:
     ArtifactType: container
     TargetPath: ""
     ArtifactName: Robot Test results
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish build.info
+  inputs:
+    PathToPublish: build.info
+    ArtifactType: container
+    TargetPath: ""
+    ArtifactName: WhiteLibrary
 
 - task: PublishBuildArtifacts@1
   displayName: Publish whitelibrary DLL
@@ -90,5 +103,4 @@ steps:
     ArtifactType: container
     TargetPath: "bin/"
     ArtifactName: WhiteLibrary
-
 
