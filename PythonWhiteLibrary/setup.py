@@ -12,7 +12,7 @@ build = 0
 if os.path.exists(__path('build.info')):
     build = open(__path('build.info')).read().strip()
 
-version= '0.0.{}.pre0'.format(build)
+version= '0.0.{}.dev0'.format(build)
 
 setup(name         = 'robotframework-whitelibrary',
       version      = version,
