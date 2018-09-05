@@ -3,7 +3,7 @@ ${TEST APPLICATION}      UIAutomationTest${/}bin${/}Debug${/}app.publish${/}UIAu
 
 
 *** Settings ***
-Library    WhiteLibrary
+Library    WhiteLibrary    dev=${TRUE}
 Suite Setup    Launch App
 Suite Teardown    Close App
 Test Setup    Attach Main Window
