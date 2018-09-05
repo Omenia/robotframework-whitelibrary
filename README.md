@@ -18,7 +18,10 @@ pip install --pre robotframework-whitelibrary
 
 # Running tests with Robot #
 * Install Python
-* Install Robot Framework and Python for .NET: pip install robotframework pythonnet
+* Install Robot Framework and Python for .NET
+```
+pip install robotframework pythonnet
+```
 * Inside the solution execute tests from folder: \PythonWhiteLibrary execute: "run_tests.cmd". Single test cases can be run with command 
 ```
 run_tests.cmd -t "Test case name"
