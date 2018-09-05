@@ -1,2 +1,2 @@
-VERSION= "0.0.1"
-STABLE= True
+VERSION= "0.0.0"
+STABLE= False
