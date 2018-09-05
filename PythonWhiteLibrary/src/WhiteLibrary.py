@@ -6,7 +6,7 @@ class WhiteLibrary(object):
     WHITE_LIB=None
 
     def __init__(self, dev=False):
-        print '{}'.format(dev)
+        print '%r' % dev
         if dev:
             clr.AddReference('CSWhiteLibrary')
         else:
