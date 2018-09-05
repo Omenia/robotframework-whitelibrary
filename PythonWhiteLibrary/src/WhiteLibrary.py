@@ -2,7 +2,7 @@ import clr
 import os
 
 class WhiteLibrary(object):
-
+    ROBOT_LIBRARY_SCOPE = 'GLOBAL'
     WHITE_LIB=None
 
     def __init__(self, dev=False):
