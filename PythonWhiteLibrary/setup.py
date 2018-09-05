@@ -14,7 +14,7 @@ if os.path.exists(__path('build.info')):
     build = open(__path('build.info')).read().strip()
 
 if version.STABLE:
-    version= '{}.{}'.format(version.VERSION, build)
+    version= '{}'.format(version.VERSION)
 else: 
     version= '{}.{}.pre'.format(version.VERSION, build)
 
