@@ -2,6 +2,7 @@ import os
 import distutils.sysconfig
 from distutils.core import setup
 from distutils.extension import Extension
+import version
 
 def __path(filename):
     return os.path.join(os.path.dirname(__file__),
@@ -12,7 +13,10 @@ build = 0
 if os.path.exists(__path('build.info')):
     build = open(__path('build.info')).read().strip()
 
-version= '0.0.{}.pre'.format(build)
+if version.STABLE:
+    version= '{}.{}'.format(version.VERSION, build)
+else: 
+    version= '{}.{}.pre'.format(version.VERSION, build)
 
 setup(name         = 'robotframework-whitelibrary',
       version      = version,
