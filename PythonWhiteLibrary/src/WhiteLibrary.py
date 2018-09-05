@@ -1,17 +1,18 @@
 import clr
 import os
 
-try:
-    clr.AddReference('CSWhiteLibrary')
-except FileNotFoundException:
-    dll_path = os.path.dirname(os.path.abspath(__file__)) + r'\CSWhiteLibrary.dll'
-    clr.AddReference(dll_path)
-
-from CSWhiteLibrary import Keywords
-WHITE_LIB = Keywords()
-
-
 class WhiteLibrary(object):
+    ROBOT_LIBRARY_SCOPE = 'GLOBAL'
+    WHITE_LIB=None
+
+    def __init__(self, dev=False):
+        if dev:
+            clr.AddReference('CSWhiteLibrary')
+        else:
+            dll_path = os.path.dirname(os.path.abspath(__file__)) + r'\CSWhiteLibrary.dll'
+            clr.AddReference(dll_path)
+        from CSWhiteLibrary import Keywords
+        self.WHITE_LIB = Keywords()
 
     def launch_application(self, sut):
         '''
@@ -19,7 +20,7 @@ class WhiteLibrary(object):
         | Arguments | Usage | (M)andatory / (O)ptional |
         | sut | application under testing | M |
         '''
-        WHITE_LIB.launch_application(sut)
+        self.WHITE_LIB.launch_application(sut)
 
     def attach_window(self, window):
         '''
@@ -27,14 +28,14 @@ class WhiteLibrary(object):
         | Arguments | Usage | (M)andatory / (O)ptional |
         | window | window to attach | M |
         '''
-        WHITE_LIB.attach_window(window)
+        self.WHITE_LIB.attach_window(window)
 
     def close_application(self):
         '''
         Close application
         | No arguments |
         '''
-        WHITE_LIB.close_application()
+        self.WHITE_LIB.close_application()
 
     def set_logging_level(self, level):
         '''
@@ -42,7 +43,7 @@ class WhiteLibrary(object):
         | Arguments | Usage | (M)andatory / (O)ptional |
         | level | log level (info / debug / warn) | M |
         '''
-        WHITE_LIB.set_log_level(level)
+        self.WHITE_LIB.set_log_level(level)
 
     def input_text_to_textbox(self, locator, text):
         '''
@@ -51,7 +52,7 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | text | inserted string | M |
         '''
-        WHITE_LIB.input_text_textbox(locator, text)
+        self.WHITE_LIB.input_text_textbox(locator, text)
 
     def set_slider_value(self, locator, double):
         '''
@@ -60,7 +61,7 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | double | inserted value (must be between scale) | M |
         '''
-        WHITE_LIB.set_slider(locator, double)
+        self.WHITE_LIB.set_slider(locator, double)
 
     def verify_slider_value(self, locator, expected):
         '''
@@ -69,7 +70,7 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | actual | expected double | M |
         '''
-        actual = WHITE_LIB.verify_slider(locator)
+        actual = self.WHITE_LIB.verify_slider(locator)
         verify_value(expected, actual)
 
     def verify_progressbar_value(self, locator, expected):
@@ -79,7 +80,7 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | actual | expected double | M |
         '''
-        actual = WHITE_LIB.verify_progressbar(locator)
+        actual = self.WHITE_LIB.verify_progressbar(locator)
         verify_value(expected, actual)
 
     def verify_text_in_textbox(self, locator, expected):
@@ -89,7 +90,7 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | actual | expected text | M |
         '''
-        actual = WHITE_LIB.verify_text_textbox(locator)
+        actual = self.WHITE_LIB.verify_text_textbox(locator)
         verify_value(expected, actual)
 
     def verify_label(self, locator, expected):
@@ -99,7 +100,7 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | actual | expected text | M |
         '''
-        actual = WHITE_LIB.verify_label(locator)
+        actual = self.WHITE_LIB.verify_label(locator)
         verify_value(expected, actual)
 
     def select_combobox_value(self, locator, value):
@@ -109,7 +110,7 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | value | selected value | M |
         '''
-        WHITE_LIB.select_combobox_value(locator, value)
+        self.WHITE_LIB.select_combobox_value(locator, value)
 
     def select_listbox_value(self, locator, value):
         '''
@@ -118,7 +119,7 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | value | selected value | M |
         '''
-        WHITE_LIB.select_listbox_value(locator, value)
+        self.WHITE_LIB.select_listbox_value(locator, value)
 
     def toggle_check_box(self, locator):
         '''
@@ -126,7 +127,7 @@ class WhiteLibrary(object):
         | Arguments | Usage | (M)andatory / (O)ptional |
         | locator | element id | M |
         '''
-        WHITE_LIB.toggle_check_box(locator)
+        self.WHITE_LIB.toggle_check_box(locator)
 
     def select_combobox_index(self, locator, index):
         '''
@@ -135,7 +136,7 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | index | combobox index | M |
         '''
-        WHITE_LIB.select_combobox_index(locator, int(index))
+        self.WHITE_LIB.select_combobox_index(locator, int(index))
 
     def verify_combobox_item(self, locator, expected):
         '''
@@ -144,7 +145,7 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | actual | expected value | M |
         '''
-        actual = WHITE_LIB.verify_combobox_item(locator)
+        actual = self.WHITE_LIB.verify_combobox_item(locator)
         verify_value(expected, actual)
 
     def verify_button(self, locator, expected):
@@ -154,7 +155,7 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | actual | expected text | M |
         '''
-        actual = WHITE_LIB.verify_button(locator)
+        actual = self.WHITE_LIB.verify_button(locator)
         verify_value(expected, actual)
 
     def click_button(self, locator):
@@ -163,7 +164,7 @@ class WhiteLibrary(object):
         | Arguments | Usage | (M)andatory / (O)ptional |
         | locator | element id | M |
         '''
-        WHITE_LIB.click_button(locator)
+        self.WHITE_LIB.click_button(locator)
 
     def verify_radio_button(self, locator, expected):
         '''
@@ -172,7 +173,7 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | actual | expected value | M |
         '''
-        actual = WHITE_LIB.verify_radio_button(locator)
+        actual = self.WHITE_LIB.verify_radio_button(locator)
         verify_value(expected, actual)
 
     def verify_check_box(self, locator, expected):
@@ -182,7 +183,7 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | actual | expected value | M |
         '''
-        actual = WHITE_LIB.verify_check_box(locator)
+        actual = self.WHITE_LIB.verify_check_box(locator)
         verify_value(expected, actual)
 
     def select_radio_button(self, locator):
@@ -191,7 +192,7 @@ class WhiteLibrary(object):
         | Arguments | Usage | (M)andatory / (O)ptional |
         | locator | element id | M |
         '''
-        WHITE_LIB.select_radio_button(locator)
+        self.WHITE_LIB.select_radio_button(locator)
 
     def verify_menu(self, locator, expected):
         '''
@@ -200,7 +201,7 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | expected | expected text in value | M |
         '''
-        actual = WHITE_LIB.verify_menu(locator)
+        actual = self.WHITE_LIB.verify_menu(locator)
         verify_value(expected, actual)
 
     def click_menu_button(self, locator):
@@ -209,7 +210,7 @@ class WhiteLibrary(object):
         | Arguments | Usage | (M)andatory / (O)ptional |
         | locator | element id | M |
         '''
-        WHITE_LIB.click_menu_button(locator)
+        self.WHITE_LIB.click_menu_button(locator)
 
     def select_modal_window(self, locator):
         '''
@@ -217,27 +218,27 @@ class WhiteLibrary(object):
         | Arguments | Usage | (M)andatory / (O)ptional |
         | Title | Modal window title | M |
         '''
-        WHITE_LIB.select_modal_window(locator)
+        self.WHITE_LIB.select_modal_window(locator)
 
     def select_tab_page(self, locator, title):
         """ Selects a tab page. """
-        WHITE_LIB.selectTabPage(locator, title)
+        self.WHITE_LIB.selectTabPage(locator, title)
 
     def select_tree_node(self, locator, *node_path):
         """ Selects a tree node. """
-        WHITE_LIB.selectTreeNode(locator, node_path)
+        self.WHITE_LIB.selectTreeNode(locator, node_path)
 
     def expand_tree_node(self, locator, *node_path):
         """ Expands a tree node. """
-        WHITE_LIB.expandTreeNode(locator, node_path)
+        self.WHITE_LIB.expandTreeNode(locator, node_path)
 
     def double_click_tree_node(self, locator, *node_path):
         """ Double-clicks a tree node. """
-        WHITE_LIB.doubleClickTreeNode(locator, node_path)
+        self.WHITE_LIB.doubleClickTreeNode(locator, node_path)
 
     def right_click_tree_node(self, locator, *node_path):
         """ Right-clicks a tree node. """
-        WHITE_LIB.rightClickTreeNode(locator, node_path)        
+        self.WHITE_LIB.rightClickTreeNode(locator, node_path)        
 
 def verify_value(expected, actual):
     if expected != actual:
