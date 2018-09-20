@@ -7,8 +7,8 @@ steps:
 
 - task: NuGetCommand@2
   inputs:
-    command: install
-    arguments: Teststack.White Castle.Core
+    command: custom
+    arguments: install Teststack.White Castle.Core
 
 - script: |
     run_tests.cmd --exclude no_ci --xunit xunit.xml
