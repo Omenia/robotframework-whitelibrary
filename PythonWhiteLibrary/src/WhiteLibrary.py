@@ -13,7 +13,8 @@ from robot.api import logger
 
 
 STRATEGIES = {"id": "ByAutomationId",
-              "text": "ByText"}
+              "text": "ByText",
+              "index": "Indexed"}
 
 
 class WhiteLibrary(object):
@@ -45,7 +46,7 @@ class WhiteLibrary(object):
         | Arguments | Usage | (M)andatory / (O)ptional |
         | locator | element id | M |
         | text | inserted string | M |
-        """            
+        """
         textBox = self._get_item_by_locator(TextBox, locator)
         textBox.Text = text
 
@@ -124,7 +125,8 @@ class WhiteLibrary(object):
         | Arguments | Usage | (M)andatory / (O)ptional |
         | locator | element id | M |
         """
-        self.WHITE_LIB.toggle_check_box(locator)
+        checkbox = self._get_item_by_locator(CheckBox, locator)
+        checkbox.Toggle()
 
     def select_combobox_index(self, locator, index):
         """
@@ -179,6 +181,8 @@ class WhiteLibrary(object):
         if "=" not in locator:
             locator = "id=" + locator
         search_strategy, locator_value = locator.split("=")
+        if search_strategy == "index":
+            locator_value = int(locator_value)
         search_method = STRATEGIES[search_strategy]
         method = getattr(SearchCriteria, search_method)
         search_criteria = method(locator_value)
