@@ -3,6 +3,7 @@ clr.AddReference('System')
 clr.AddReference('TestStack.White') #include full path to Dll if required
 from TestStack.White.UIItems.WindowItems import Window
 from TestStack.White.UIItems import Button, TextBox, Label
+from TestStack.White.UIItems.MenuItems import Menu
 from TestStack.White import Application
 from TestStack.White.UIItems.Finders import SearchCriteria
 
@@ -213,7 +214,8 @@ class WhiteLibrary(object):
         | Arguments | Usage | (M)andatory / (O)ptional |
         | locator | element id | M |
         '''
-        self.WHITE_LIB.click_menu_button(locator)
+        menu_button = self._get_item_by_locator(Menu, locator)
+        menu_button.Click()
 
     def select_modal_window(self, locator):
         '''
