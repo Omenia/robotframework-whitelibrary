@@ -8,7 +8,7 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: custom
-    arguments: install Teststack.White --Version 0.13.3 Castle.Core --Version 4.3.1
+    arguments: install Teststack.White -Version 0.13.3 Castle.Core -Version 4.3.1
 
 - script: |
     run_tests.cmd --exclude no_ci --xunit xunit.xml
