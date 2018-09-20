@@ -1,41 +1,28 @@
 import clr
-import os
+clr.AddReference('System')
+clr.AddReference('TestStack.White') #include full path to Dll if required
+from TestStack.White.UIItems.WindowItems import Window
+from TestStack.White import Application
+
 
 class WhiteLibrary(object):
-    ROBOT_LIBRARY_SCOPE = 'GLOBAL'
-    WHITE_LIB=None
+    def __init__(self):
+        self.app = None
+        self.window = None
 
-    def __init__(self, dev=False):
-        if dev:
-            clr.AddReference('CSWhiteLibrary')
-        else:
-            dll_path = os.path.dirname(os.path.abspath(__file__)) + r'\CSWhiteLibrary.dll'
-            clr.AddReference(dll_path)
-        from CSWhiteLibrary import Keywords
-        self.WHITE_LIB = Keywords()
+    def launch_application(self, sut_path):
+        self.app = Application.Launch(sut_path)
 
-    def launch_application(self, sut):
-        '''
-        Launch windows application
-        | Arguments | Usage | (M)andatory / (O)ptional |
-        | sut | application under testing | M |
-        '''
-        self.WHITE_LIB.launch_application(sut)
-
-    def attach_window(self, window):
-        '''
-        Attach to window in application
-        | Arguments | Usage | (M)andatory / (O)ptional |
-        | window | window to attach | M |
-        '''
-        self.WHITE_LIB.attach_window(window)
+    def attach_window(self, window_title):
+        self.window = self.app.GetWindow(window_title)
 
     def close_application(self):
         '''
         Close application
         | No arguments |
         '''
-        self.WHITE_LIB.close_application()
+        self.app.Close()
+        self.app = None
 
     def set_logging_level(self, level):
         '''
@@ -51,8 +38,9 @@ class WhiteLibrary(object):
         | Arguments | Usage | (M)andatory / (O)ptional |
         | locator | element id | M |
         | text | inserted string | M |
-        '''
-        self.WHITE_LIB.input_text_textbox(locator, text)
+        '''            
+        textBox = getTextBox(locator)
+        textBox.Text = mytext
 
     def set_slider_value(self, locator, double):
         '''
@@ -238,8 +226,4 @@ class WhiteLibrary(object):
 
     def right_click_tree_node(self, locator, *node_path):
         """ Right-clicks a tree node. """
-        self.WHITE_LIB.rightClickTreeNode(locator, node_path)        
-
-def verify_value(expected, actual):
-    if expected != actual:
-        raise AssertionError("Correct value not found: %s != %s" % (expected, actual))
+        self.WHITE_LIB.rightClickTreeNode(locator, node_path) 
