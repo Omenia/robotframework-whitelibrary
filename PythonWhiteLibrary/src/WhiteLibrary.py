@@ -2,7 +2,7 @@ import clr
 clr.AddReference('System')
 clr.AddReference('TestStack.White') #include full path to Dll if required
 from TestStack.White.UIItems.WindowItems import Window
-from TestStack.White.UIItems import Button, TextBox, Label
+from TestStack.White.UIItems import Button, TextBox, Label, RadioButton, Slider, CheckBox
 from TestStack.White.UIItems.ListBoxItems import ComboBox
 from TestStack.White.UIItems.MenuItems import Menu
 from TestStack.White import Application
@@ -49,14 +49,15 @@ class WhiteLibrary(object):
         textBox = self._get_item_by_locator(TextBox, locator)
         textBox.Text = text
 
-    def set_slider_value(self, locator, double):
+    def set_slider_value(self, locator, value):
         """
         Write slider to value double
         | Arguments | Usage | (M)andatory / (O)ptional |
         | locator | element id | M |
-        | double | inserted value (must be between scale) | M |
+        | value | inserted value (must be between scale) | M |
         """
-        self.WHITE_LIB.set_slider(locator, double)
+        slider = self._get_item_by_locator(Slider, locator)
+        slider.SetValue(float(value))
 
     def verify_slider_value(self, locator, expected):
         """
@@ -65,8 +66,8 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | actual | expected double | M |
         """
-        actual = self.WHITE_LIB.verify_slider(locator)
-        verify_value(expected, actual)
+        slider = self._get_item_by_locator(Slider, locator)
+        self._verify_value(float(expected), slider.Value)
 
     def verify_progressbar_value(self, locator, expected):
         """
@@ -190,8 +191,8 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | actual | expected value | M |
         """
-        actual = self.WHITE_LIB.verify_radio_button(locator)
-        verify_value(expected, actual)
+        radiobutton = self._get_item_by_locator(RadioButton, locator)
+        self._verify_value(bool(expected), radiobutton.IsSelected)
 
     def verify_check_box(self, locator, expected):
         """
@@ -200,8 +201,8 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | actual | expected value | M |
         """
-        actual = self.WHITE_LIB.verify_check_box(locator)
-        verify_value(expected, actual)
+        checkbox = self._get_item_by_locator(CheckBox, locator)
+        self._verify_value(bool(expected), checkbox.IsSelected)
 
     def select_radio_button(self, locator):
         """
@@ -209,7 +210,8 @@ class WhiteLibrary(object):
         | Arguments | Usage | (M)andatory / (O)ptional |
         | locator | element id | M |
         """
-        self.WHITE_LIB.select_radio_button(locator)
+        radiobutton = self._get_item_by_locator(RadioButton, locator)
+        radiobutton.Select()
 
     def verify_menu(self, locator, expected):
         """
