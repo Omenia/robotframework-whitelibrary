@@ -8,7 +8,7 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: custom
-    arguments: install TestStack.White -OutputDirectory PythonWhiteLibrary
+    arguments: install TestStack.White -OutputDirectory PythonWhiteLibrary/src
 
 - script: |
     run_tests.cmd --exclude no_ci --xunit xunit.xml
