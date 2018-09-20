@@ -2,7 +2,7 @@ import clr
 clr.AddReference('System')
 clr.AddReference('TestStack.White') #include full path to Dll if required
 from TestStack.White.UIItems.WindowItems import Window
-from TestStack.White.UIItems import Button, TextBox, Label, RadioButton, Slider, CheckBox
+from TestStack.White.UIItems import Button, TextBox, Label, RadioButton, Slider, CheckBox, ProgressBar
 from TestStack.White.UIItems.ListBoxItems import ComboBox
 from TestStack.White.UIItems.MenuItems import Menu
 from TestStack.White import Application
@@ -58,7 +58,7 @@ class WhiteLibrary(object):
         | value | inserted value (must be between scale) | M |
         """
         slider = self._get_item_by_locator(Slider, locator)
-        slider.SetValue(float(value))
+        slider.Value = value
 
     def verify_slider_value(self, locator, expected):
         """
@@ -77,8 +77,8 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | actual | expected double | M |
         """
-        actual = self.WHITE_LIB.verify_progressbar(locator)
-        verify_value(expected, actual)
+        progressbar = self._get_item_by_locator(ProgressBar, locator)
+        self._verify_value(float(expected), progressbar.Value)
 
     def verify_text_in_textbox(self, locator, expected):
         """
