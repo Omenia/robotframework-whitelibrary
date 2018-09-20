@@ -3,9 +3,15 @@ clr.AddReference('System')
 clr.AddReference('TestStack.White') #include full path to Dll if required
 from TestStack.White.UIItems.WindowItems import Window
 from TestStack.White import Application
+from TestStack.White.UIItems.Finders import SearchCriteria
+
+
+from robot.api import logger
 
 
 class WhiteLibrary(object):
+    ROBOT_LIBRARY_SCOPE = "Global"
+    
     def __init__(self):
         self.app = None
         self.window = None
@@ -15,6 +21,7 @@ class WhiteLibrary(object):
 
     def attach_window(self, window_title):
         self.window = self.app.GetWindow(window_title)
+        logger.console("window {}".format(self.window))
 
     def close_application(self):
         '''
@@ -23,14 +30,7 @@ class WhiteLibrary(object):
         '''
         self.app.Close()
         self.app = None
-
-    def set_logging_level(self, level):
-        '''
-        Set log level
-        | Arguments | Usage | (M)andatory / (O)ptional |
-        | level | log level (info / debug / warn) | M |
-        '''
-        self.WHITE_LIB.set_log_level(level)
+        self.window = None
 
     def input_text_to_textbox(self, locator, text):
         '''
@@ -152,7 +152,21 @@ class WhiteLibrary(object):
         | Arguments | Usage | (M)andatory / (O)ptional |
         | locator | element id | M |
         '''
-        self.WHITE_LIB.click_button(locator)
+        button = self._get_item_by_locator(locator)
+        button.Click()
+
+    def _get_item_by_locator(self, locator):
+    
+        strategies = {"id": "ByAutomationId",
+                      "text": "ByText"}
+        if "=" not in locator:
+            locator = "id=" + locator
+        search_strategy, locator_value = locator.split("=")
+       
+        search_method = strategies[search_strategy]
+        method = getattr(SearchCriteria, search_method)
+        search_criteria = method(locator_value)
+        return self.window.Get(search_criteria)
 
     def verify_radio_button(self, locator, expected):
         '''

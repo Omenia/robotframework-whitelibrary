@@ -1,7 +1,7 @@
 *** Settings ***
 # install oldcalcwin10 first!
 Force Tags     no_ci
-Library    WhiteLibrary
+Library    ../src/WhiteLibrary.py
 Suite Setup	Launch App
 Suite Teardown	Close App
 Test Teardown	Clean App
@@ -53,7 +53,7 @@ Verify About Calculator Is Found
 
 *** Keywords ***
 Launch App
-	Set Logging Level	Warn
+#	Set Logging Level	Warn
 	LOG    Install calculator for Windows 7/8: http://winaero.com/download.php?view.1795
 	Launch Application	 C:\\Windows\\System32\\calc1.exe
 	Attach Window	Calculator
