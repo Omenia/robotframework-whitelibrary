@@ -85,8 +85,8 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | actual | expected text | M |
         """
-        actual = self.WHITE_LIB.verify_text_textbox(locator)
-        verify_value(expected, actual)
+        textbox = self._get_item_by_locator(TextBox, locator)
+        self._verify_value(expected, textbox.Text)
 
     def verify_label(self, locator, expected):
         """
@@ -136,6 +136,17 @@ class WhiteLibrary(object):
         combobox.Select(int(index))
 
     def verify_combobox_item(self, locator, expected):
+        """
+        *DEPRECATED* Please use Verify Combobox Selection instead
+        Verify combobox selected value
+        | Arguments | Usage | (M)andatory / (O)ptional |
+        | locator | element id | M |
+        | actual | expected value | M |
+        """
+        combobox = self._get_item_by_locator(ComboBox, locator)
+        self._verify_value(expected, combobox.EditableText)
+
+    def verify_combobox_selection(self, locator, expected):
         """
         Verify combobox selected value
         | Arguments | Usage | (M)andatory / (O)ptional |
