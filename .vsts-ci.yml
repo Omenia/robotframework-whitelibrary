@@ -6,8 +6,9 @@ steps:
   displayName: Install needed compoments from PyPi
 
 - task: NuGetCommand@2
-
-- task: VSBuild@1
+	inputs:
+		command: custom
+		arguments: install Teststack.White Castle.Core
 
 - script: |
     run_tests.cmd --exclude no_ci --xunit xunit.xml
