@@ -133,7 +133,7 @@ class WhiteLibrary(object):
         | index | combobox index | M |
         """
         combobox = self._get_item_by_locator(ComboBox, locator)
-        combobox.Select(index)
+        combobox.Select(int(index))
 
     def verify_combobox_item(self, locator, expected):
         """
