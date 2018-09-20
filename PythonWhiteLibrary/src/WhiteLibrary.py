@@ -75,7 +75,7 @@ class WhiteLibrary(object):
         Verify progressbar value
         | Arguments | Usage | (M)andatory / (O)ptional |
         | locator | element id | M |
-        | actual | expected double | M |
+        | expected | expected value | M |
         """
         progressbar = self._get_item_by_locator(ProgressBar, locator)
         self._verify_value(float(expected), progressbar.Value)

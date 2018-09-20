@@ -93,7 +93,7 @@ Verify Slider
     Verify Slider Value    sladdu    4.20
 
 Verify Progressbar
-    Verify Progressbar Value    proggis    ${78}
+    Verify Progressbar Value    proggis    78
 
 Verify Check Boxes
     Verify Check Box    cb_omena    ${FALSE}
