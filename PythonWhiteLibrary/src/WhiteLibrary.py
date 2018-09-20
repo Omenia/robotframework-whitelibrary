@@ -143,8 +143,7 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | actual | expected value | M |
         """
-        combobox = self._get_item_by_locator(ComboBox, locator)
-        self._verify_value(expected, combobox.EditableText)
+        self.verify_combobox_selection(locator, expected)
 
     def verify_combobox_selection(self, locator, expected):
         """
@@ -153,8 +152,8 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | actual | expected value | M |
         """
-        actual = self.WHITE_LIB.verify_combobox_item(locator)
-        verify_value(expected, actual)
+        combobox = self._get_item_by_locator(ComboBox, locator)
+        self._verify_value(expected, combobox.EditableText)
 
     def verify_button(self, locator, expected):
         """
@@ -163,8 +162,8 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | actual | expected text | M |
         """
-        actual = self.WHITE_LIB.verify_button(locator)
-        verify_value(expected, actual)
+        button = self._get_item_by_locator(Button, locator)
+        self._verify_value(expected, button.Text)
 
     def click_button(self, locator):
         """
@@ -219,8 +218,8 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | expected | expected text in value | M |
         """
-        actual = self.WHITE_LIB.verify_menu(locator)
-        verify_value(expected, actual)
+        menu = self._get_item_by_locator(Menu, locator)
+        self._verify_value(expected, menu.Name)
 
     def click_menu_button(self, locator):
         """
