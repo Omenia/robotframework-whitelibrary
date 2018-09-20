@@ -2,11 +2,16 @@ import clr
 clr.AddReference('System')
 clr.AddReference('TestStack.White') #include full path to Dll if required
 from TestStack.White.UIItems.WindowItems import Window
+from TestStack.White.UIItems import Button, TextBox, Label
 from TestStack.White import Application
 from TestStack.White.UIItems.Finders import SearchCriteria
 
 
 from robot.api import logger
+
+
+STRATEGIES = {"id": "ByAutomationId",
+              "text": "ByText"}
 
 
 class WhiteLibrary(object):
@@ -39,8 +44,8 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | text | inserted string | M |
         '''            
-        textBox = getTextBox(locator)
-        textBox.Text = mytext
+        textBox = self._get_item_by_locator(TextBox, locator)
+        textBox.Text = text
 
     def set_slider_value(self, locator, double):
         '''
@@ -88,8 +93,8 @@ class WhiteLibrary(object):
         | locator | element id | M |
         | actual | expected text | M |
         '''
-        actual = self.WHITE_LIB.verify_label(locator)
-        verify_value(expected, actual)
+        label = self._get_item_by_locator(Label, locator)
+        self._verify_value(expected, label.Text)
 
     def select_combobox_value(self, locator, value):
         '''
@@ -152,21 +157,17 @@ class WhiteLibrary(object):
         | Arguments | Usage | (M)andatory / (O)ptional |
         | locator | element id | M |
         '''
-        button = self._get_item_by_locator(locator)
+        button = self._get_item_by_locator(Button, locator)
         button.Click()
 
-    def _get_item_by_locator(self, locator):
-    
-        strategies = {"id": "ByAutomationId",
-                      "text": "ByText"}
+    def _get_item_by_locator(self, item_type, locator):
         if "=" not in locator:
             locator = "id=" + locator
         search_strategy, locator_value = locator.split("=")
-       
-        search_method = strategies[search_strategy]
+        search_method = STRATEGIES[search_strategy]
         method = getattr(SearchCriteria, search_method)
         search_criteria = method(locator_value)
-        return self.window.Get(search_criteria)
+        return self.window.Get[item_type](search_criteria)
 
     def verify_radio_button(self, locator, expected):
         '''
@@ -241,3 +242,7 @@ class WhiteLibrary(object):
     def right_click_tree_node(self, locator, *node_path):
         """ Right-clicks a tree node. """
         self.WHITE_LIB.rightClickTreeNode(locator, node_path) 
+        
+    def _verify_value(self, expected, actual):
+        if expected != actual:
+            raise AssertionError("Expected value {}, but found {}".format(expected, actual))
