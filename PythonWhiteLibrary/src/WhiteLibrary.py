@@ -58,7 +58,7 @@ class WhiteLibrary(object):
         | value | inserted value (must be between scale) | M |
         """
         slider = self._get_item_by_locator(Slider, locator)
-        slider.Value = value
+        slider.Value = float(value)
 
     def verify_slider_value(self, locator, expected):
         """

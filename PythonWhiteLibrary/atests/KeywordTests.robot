@@ -88,9 +88,9 @@ Verify Radio Buttons
     Verify Radio Button    rb_ismo    ${TRUE}
 
 Verify Slider
-    Verify Slider Value    sladdu    ${0}
-    Set Slider Value       sladdu    ${6}
-    Verify Slider Value    sladdu    ${6}
+    Verify Slider Value    sladdu    0
+    Set Slider Value       sladdu    4.20
+    Verify Slider Value    sladdu    4.20
 
 Verify Progressbar
     Verify Progressbar Value    proggis    ${78}
