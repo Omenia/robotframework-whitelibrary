@@ -9,7 +9,6 @@ pip install --pre robotframework-whitelibrary
 * Win32
 * WinForms
 * WPF (Windows Presentation Foundation)
-* Silverlight
 * SWT (Java) platforms
 
 # Development Environment #
@@ -27,3 +26,4 @@ pip install robotframework pythonnet
 run_tests.cmd -t "Test case name"
 ```
 [1] https://github.com/TestStack/White
+
