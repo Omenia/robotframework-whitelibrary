@@ -1,3 +1,7 @@
+variables:
+  deployment_base: deploy
+  deployment_bin: deploy/bin
+  nuget_base: PythonWhiteLibrary/src
 
 steps:
 - script: |
@@ -8,9 +12,21 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: custom
-    arguments: install TestStack.White -Version 0.13.3 -OutputDirectory PythonWhiteLibrary/src
+    arguments: install TestStack.White -Version 0.13.3 -OutputDirectory ${nuget_base}
+
 
 - script: |
+    set DEPLOYMENT_BASE=${deployment_base}
+    set DEPLOYMENT_BIN=${deployment_bin}
+    set NUGET_BASE=${nuget_base}
+    dir /s
+    deploy_structure.cmd
+  continueOnError: false
+  displayName: Copy build artifacts to deployment directory
+
+- script: |
+    set DEPLOYMENT_BASE=${deployment_base}
+    set DEPLOYMENT_BIN=${deployment_bin}
     run_tests.cmd --exclude no_ci --xunit xunit.xml
   continueOnError: true
   displayName: Execute Acceptance tests
@@ -34,82 +50,9 @@ steps:
     ArtifactName: Robot Test results
 
 - task: PublishBuildArtifacts@1
-  displayName: Publish build.info
+  displayName: Publish WhiteLibrary
   inputs:
-    PathToPublish: build.info
+    PathToPublish: ${deployment_base}
     ArtifactType: container
     TargetPath: ""
     ArtifactName: WhiteLibrary
-
-- task: PublishBuildArtifacts@1
-  displayName: Publish whitelibrary DLL
-  inputs:
-    PathToPublish: WhiteLibrary/bin/CSWhiteLibrary.dll
-    ArtifactType: container
-    TargetPath: "bin/"
-    ArtifactName: WhiteLibrary
-
-- task: PublishBuildArtifacts@1
-  displayName: Publish Whitelibrary.py
-  inputs:
-    PathToPublish: PythonWhiteLibrary/src/WhiteLibrary.py
-    ArtifactType: container
-    TargetPath: ""
-    ArtifactName: WhiteLibrary
-
-- task: PublishBuildArtifacts@1
-  displayName: Publish version.py
-  inputs:
-    PathToPublish: PythonWhiteLibrary/version.py
-    ArtifactType: container
-    TargetPath: ""
-    ArtifactName: WhiteLibrary
-
-- task: PublishBuildArtifacts@1
-  displayName: Publish __init__.py
-  inputs:
-    PathToPublish: PythonWhiteLibrary/src/__init__.py
-    ArtifactType: container
-    TargetPath: ""
-    ArtifactName: WhiteLibrary
-
-- task: PublishBuildArtifacts@1
-  displayName: Publish setup.py
-  inputs:
-    PathToPublish: PythonWhiteLibrary/setup.py
-    ArtifactType: container
-    TargetPath: ""
-    ArtifactName: WhiteLibrary
-
-- task: PublishBuildArtifacts@1
-  displayName: Publish Dependency library DLL
-  inputs:
-    PathToPublish: WhiteLibrary/bin/Castle.Core.dll
-    ArtifactType: container
-    TargetPath: "bin/"
-    ArtifactName: WhiteLibrary
-
-- task: PublishBuildArtifacts@1
-  displayName: Publish Dependency library DLL
-  inputs:
-    PathToPublish: WhiteLibrary/bin/TestStack.White.dll
-    ArtifactType: container
-    TargetPath: "bin/"
-    ArtifactName: WhiteLibrary
-
-- task: PublishBuildArtifacts@1
-  displayName: Publish Dependency library DLL
-  inputs:
-    PathToPublish: WhiteLibrary/bin/TestStack.White.Reporting.dll
-    ArtifactType: container
-    TargetPath: "bin/"
-    ArtifactName: WhiteLibrary
-
-- task: PublishBuildArtifacts@1
-  displayName: Publish Dependency library DLL
-  inputs:
-    PathToPublish: WhiteLibrary/bin/TestStack.White.ScreenObjects.dll
-    ArtifactType: container
-    TargetPath: "bin/"
-    ArtifactName: WhiteLibrary
-
