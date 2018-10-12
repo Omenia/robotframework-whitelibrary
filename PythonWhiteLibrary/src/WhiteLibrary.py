@@ -1,11 +1,11 @@
 import clr
 clr.AddReference('System')
 clr.AddReference('TestStack.White') #include full path to Dll if required
+from TestStack.White import Application
 from TestStack.White.UIItems.WindowItems import Window
 from TestStack.White.UIItems import Button, TextBox, Label, RadioButton, Slider, CheckBox, ProgressBar
 from TestStack.White.UIItems.ListBoxItems import ComboBox
 from TestStack.White.UIItems.MenuItems import Menu
-from TestStack.White import Application
 from TestStack.White.UIItems.Finders import SearchCriteria
 
 
@@ -19,7 +19,7 @@ STRATEGIES = {"id": "ByAutomationId",
 
 class WhiteLibrary(object):
     ROBOT_LIBRARY_SCOPE = "Global"
-    
+
     def __init__(self):
         self.app = None
         self.window = None
@@ -262,8 +262,8 @@ class WhiteLibrary(object):
 
     def right_click_tree_node(self, locator, *node_path):
         """ Right-clicks a tree node. """
-        self.WHITE_LIB.rightClickTreeNode(locator, node_path) 
-        
+        self.WHITE_LIB.rightClickTreeNode(locator, node_path)
+
     def _verify_value(self, expected, actual):
         if expected != actual:
             raise AssertionError("Expected value {}, but found {}".format(expected, actual))
