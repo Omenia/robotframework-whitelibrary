@@ -3,19 +3,15 @@ variables:
   nuget: packages
 
 steps:
+- task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    packDestination: $(nuget)
+    projects: WhiteLibrary
+
 - script: |
       pip install -r requirements.txt
   displayName: Install needed compoments from PyPi
-
-- task: NuGetCommand@2
-  inputs:
-    command: custom
-    arguments: install TestStack.White -Version 0.13.3 -OutputDirectory $(nuget)
-
-- task: NuGetCommand@2
-  inputs:
-    command: custom
-    arguments: install TestStack.White.ScreenObjects -Version 0.13.3 -OutputDirectory $(nuget)
 
 - task: VSBuild@1
   inputs:
