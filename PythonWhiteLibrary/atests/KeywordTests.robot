@@ -3,7 +3,8 @@ ${TEST APPLICATION}      UIAutomationTest${/}bin${/}Debug${/}app.publish${/}UIAu
 
 
 *** Settings ***
-Library    WhiteLibrary    dev=${TRUE}
+Library    ../src/WhiteLibrary.py
+#Library    WhiteLibrary    dev=${TRUE}
 Suite Setup    Launch App
 Suite Teardown    Close App
 Test Setup    Attach Main Window
@@ -87,12 +88,12 @@ Verify Radio Buttons
     Verify Radio Button    rb_ismo    ${TRUE}
 
 Verify Slider
-    Verify Slider Value    sladdu    ${0}
-    Set Slider Value       sladdu    ${6}
-    Verify Slider Value    sladdu    ${6}
+    Verify Slider Value    sladdu    0
+    Set Slider Value       sladdu    4.20
+    Verify Slider Value    sladdu    4.20
 
 Verify Progressbar
-    Verify Progressbar Value    proggis    ${78}
+    Verify Progressbar Value    proggis    78
 
 Verify Check Boxes
     Verify Check Box    cb_omena    ${FALSE}
