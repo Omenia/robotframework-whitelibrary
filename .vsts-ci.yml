@@ -21,6 +21,7 @@ steps:
   inputs:
     targetType: inline
     script: echo $BUILD_BUILDNUMBER >> build.info
+  displayName: Generate build.info
 
 - script: |
     set DEPLOYMENT=$(deployment)
