@@ -114,12 +114,12 @@ Calculate Using Index Locators
     Verify Text In Textbox    index=3    3
 
 Take screenshots
-    ${count_1}=    Count Files In Directory    ${OUTPUTDIR}    win_desktop_*.png
+    ${count_1}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
     Take Desktop Screenshot
-    ${count_2}=    Count Files In Directory    ${OUTPUTDIR}    win_desktop_*.png
+    ${count_2}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
     Should Be True    ${count_2} > ${count_1}
     Take Desktop Screenshot
-    ${count_3}=    Count Files In Directory    ${OUTPUTDIR}    win_desktop_*.png
+    ${count_3}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
     Should Be True    ${count_3} > ${count_2}
 
 *** Keywords ***
