@@ -1,7 +1,10 @@
+import os
 import clr
 clr.AddReference('System')
 clr.AddReference('TestStack.White') #include full path to Dll if required
-from TestStack.White import Application
+from System.Drawing import Bitmap
+from System.Drawing.Imaging import ImageFormat
+from TestStack.White import Application, Desktop
 from TestStack.White.UIItems.WindowItems import Window
 from TestStack.White.UIItems import Button, TextBox, Label, RadioButton, Slider, CheckBox, ProgressBar
 from TestStack.White.UIItems.ListBoxItems import ComboBox
@@ -10,6 +13,8 @@ from TestStack.White.UIItems.Finders import SearchCriteria
 
 
 from robot.api import logger
+from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
+from robot.utils import get_link_path
 
 
 STRATEGIES = {"id": "ByAutomationId",
@@ -263,6 +268,40 @@ class WhiteLibrary(object):
     def right_click_tree_node(self, locator, *node_path):
         """ Right-clicks a tree node. """
         self.WHITE_LIB.rightClickTreeNode(locator, node_path)
+
+    def take_desktop_screenshot(self):
+        """ Takes a screenshot of the whole desktop and inserts screenshot link to log file.
+        Returns path to screenshot file. """
+        filepath = self._get_screenshot_path("whitelib_screenshot_{index}.png")
+        logger.info(get_link_path(filepath, self._log_directory), also_console=True)
+        logger.info(
+            '</td></tr><tr><td colspan="3">''<a href="{src}"><img src="{src}" width="800px"></a>'.format(
+                src=get_link_path(filepath, self._log_directory)), html=True)
+        bmp = Desktop.CaptureScreenshot()
+        bmp.Save(filepath, ImageFormat.Png)
+        return filepath
+
+    @property
+    def _log_directory(self):
+        try:
+            logfile = BuiltIn().get_variable_value('${LOG FILE}')
+            if logfile is None:
+                return BuiltIn().get_variable_value('${OUTPUTDIR}')
+            return os.path.dirname(logfile)
+        except RobotNotRunningError:
+            return os.getcwdu() if PY2 else os.getcwd()
+
+    def _get_screenshot_path(self, filename):
+        directory = self._log_directory
+        filename = filename.replace('/', os.sep)
+        index = 0
+        while True:
+            index += 1
+            formatted = filename.format(index=index)
+            filepath = os.path.join(directory, formatted)
+            # filename didn't contain {index} or unique path was found
+            if formatted == filename or not os.path.exists(filepath):
+                return filepath
 
     def _verify_value(self, expected, actual):
         if expected != actual:

@@ -3,6 +3,7 @@ ${TEST APPLICATION}      UIAutomationTest${/}bin${/}Debug${/}app.publish${/}UIAu
 
 
 *** Settings ***
+Library    OperatingSystem
 Library    ../src/WhiteLibrary.py
 #Library    WhiteLibrary    dev=${TRUE}
 Suite Setup    Launch App
@@ -112,9 +113,18 @@ Calculate Using Index Locators
     Click Button    btnCalc
     Verify Text In Textbox    index=3    3
 
+Take screenshots
+    ${count_1}=    Count Files In Directory    ${OUTPUTDIR}    win_desktop_*.png
+    Take Desktop Screenshot
+    ${count_2}=    Count Files In Directory    ${OUTPUTDIR}    win_desktop_*.png
+    Should Be True    ${count_2} > ${count_1}
+    Take Desktop Screenshot
+    ${count_3}=    Count Files In Directory    ${OUTPUTDIR}    win_desktop_*.png
+    Should Be True    ${count_3} > ${count_2}
+
 *** Keywords ***
 Launch App
-    Set Log Level    Warn
+    Set Log Level    Info
     Launch Application    ${TEST APPLICATION}
     Attach Window    UI Automation Test Window
 
