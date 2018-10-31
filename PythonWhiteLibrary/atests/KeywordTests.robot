@@ -118,7 +118,7 @@ Take screenshots
     Take Desktop Screenshot
     ${count_2}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
     Should Be True    ${count_2} > ${count_1}
-    Take Window Screenshot
+    Take Desktop Screenshot
     ${count_3}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
     Should Be True    ${count_3} > ${count_2}
 
