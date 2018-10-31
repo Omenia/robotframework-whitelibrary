@@ -24,10 +24,14 @@ STRATEGIES = {"id": "ByAutomationId",
 
 class WhiteLibrary(object):
     ROBOT_LIBRARY_SCOPE = "Global"
+    ROBOT_LISTENER_API_VERSION = 2
 
     def __init__(self):
         self.app = None
         self.window = None
+        self.ROBOT_LIBRARY_LISTENER = self
+        self.screenshot_type = 'desktop'
+        self.screenshots_enabled = True
 
     def launch_application(self, sut_path):
         self.app = Application.Launch(sut_path)
@@ -271,7 +275,11 @@ class WhiteLibrary(object):
 
     def take_desktop_screenshot(self):
         """ Takes a screenshot of the whole desktop and inserts screenshot link to log file.
-        Returns path to screenshot file. """
+        Returns
+        -------
+        string
+            path to the screenshot file
+        """
         filepath = self._get_screenshot_path("whitelib_screenshot_{index}.png")
         logger.info(get_link_path(filepath, self._log_directory), also_console=True)
         logger.info(
@@ -280,6 +288,17 @@ class WhiteLibrary(object):
         bmp = Desktop.CaptureScreenshot()
         bmp.Save(filepath, ImageFormat.Png)
         return filepath
+
+    def take_screenshots_on_failure(self, status):
+        """ Disable or enable automatic screenshot creation on failure.
+        Parameters
+        ----------
+        status: bool or str
+            True or False, boolean or string, case insensitive. """
+        if (str(status).lower() == 'false'):
+            self.screenshots_enabled = False
+        else:
+            self.screenshots_enabled = True
 
     @property
     def _log_directory(self):
@@ -302,6 +321,11 @@ class WhiteLibrary(object):
             # filename didn't contain {index} or unique path was found
             if formatted == filename or not os.path.exists(filepath):
                 return filepath
+
+    def _end_keyword(self, name, attrs):
+        if attrs['status'] == 'FAIL':
+            if self.screenshot_type == 'desktop' and self.screenshots_enabled:
+                self.take_desktop_screenshot()
 
     def _verify_value(self, expected, actual):
         if expected != actual:
