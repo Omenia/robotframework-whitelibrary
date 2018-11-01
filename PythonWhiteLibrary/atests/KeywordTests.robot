@@ -112,9 +112,27 @@ Calculate Using Index Locators
     Click Button    btnCalc
     Verify Text In Textbox    index=3    3
 
+Switch Tab
+    Select Tab Page    tabControl    Tab2
+    [Teardown]    Select Tab Page    tabControl    Tab1
+
+Handle Tree Nodes
+    [Setup]    Run Keywords    Attach Main Window    AND    Select Tab Page    tabControl    Tab2
+    @{node 1} =    Create List    Tree node 1
+    @{node 2} =    Create List    Tree node 1    Tree node 1.1
+    Select Tree Node    tree    @{node 1}
+    Verify Label    selectionIndicatorLabel    Tree node 1 selected
+    Expand Tree Node    tree    @{node 1}
+    Verify Label    selectionIndicatorLabel    Tree node 1 expanded
+    Double Click Tree Node    tree    @{node 1}
+    Verify Label    selectionIndicatorLabel    Tree node 1 double-clicked
+    Right Click Tree Node    tree    @{node 2}
+    Verify Label    selectionIndicatorLabel    Tree node 1.1 right-clicked
+    [Teardown]    Select Tab Page    tabControl    Tab1
+
 *** Keywords ***
 Launch App
-    Set Log Level    Warn
+    Set Log Level    Info
     Launch Application    ${TEST APPLICATION}
     Attach Window    UI Automation Test Window
 
