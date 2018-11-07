@@ -3,6 +3,7 @@ ${TEST APPLICATION}      UIAutomationTest${/}bin${/}Debug${/}app.publish${/}UIAu
 
 
 *** Settings ***
+Library    OperatingSystem
 Library    ../src/WhiteLibrary.py
 #Library    WhiteLibrary    dev=${TRUE}
 Suite Setup    Launch App
@@ -111,6 +112,32 @@ Calculate Using Index Locators
     Input Text To Textbox    index=2    2
     Click Button    btnCalc
     Verify Text In Textbox    index=3    3
+
+Take screenshots
+    ${count_1}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    Take Desktop Screenshot
+    ${count_2}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    Should Be True    ${count_2} > ${count_1}
+    Take Desktop Screenshot
+    ${count_3}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    Should Be True    ${count_3} > ${count_2}
+
+Take screenshot on failure
+    ${count_1}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    Run Keyword And Expect Error    *    Verify Text In Textbox    index=3    3
+    ${count_2}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    Should Be True    ${count_2} > ${count_1}
+
+Disable and enable screenshots on failure
+    ${count_1}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    Take Screenshots On Failure    false
+    Run Keyword And Expect Error    *    Verify Text In Textbox    index=3    3
+    ${count_2}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    Should Be Equal    ${count_2}    ${count_1}
+    Take Screenshots On Failure    ${True}
+    Run Keyword And Expect Error    *    Verify Text In Textbox    index=3    3
+    ${count_3}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    Should Be True    ${count_3} > ${count_2}
 
 Switch Tab
     Select Tab Page    tabControl    Tab2
