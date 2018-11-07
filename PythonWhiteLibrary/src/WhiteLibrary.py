@@ -7,6 +7,8 @@ from System.Drawing.Imaging import ImageFormat
 from TestStack.White import Application, Desktop
 from TestStack.White.UIItems.WindowItems import Window
 from TestStack.White.UIItems import Button, TextBox, Label, RadioButton, Slider, CheckBox, ProgressBar
+from TestStack.White.UIItems.TabItems import Tab
+from TestStack.White.UIItems.TreeItems import Tree
 from TestStack.White.UIItems.ListBoxItems import ComboBox
 from TestStack.White.UIItems.MenuItems import Menu
 from TestStack.White.UIItems.Finders import SearchCriteria
@@ -255,23 +257,28 @@ class WhiteLibrary(object):
 
     def select_tab_page(self, locator, title):
         """ Selects a tab page. """
-        self.WHITE_LIB.selectTabPage(locator, title)
+        tab = self._get_item_by_locator(Tab, locator)
+        tab.SelectTabPage(title)
 
     def select_tree_node(self, locator, *node_path):
         """ Selects a tree node. """
-        self.WHITE_LIB.selectTreeNode(locator, node_path)
+        tree = self._get_item_by_locator(Tree, locator)
+        tree.Nodes.GetItem(node_path).Select()
 
     def expand_tree_node(self, locator, *node_path):
         """ Expands a tree node. """
-        self.WHITE_LIB.expandTreeNode(locator, node_path)
+        tree = self._get_item_by_locator(Tree, locator)
+        tree.Nodes.GetItem(node_path).Expand()
 
     def double_click_tree_node(self, locator, *node_path):
         """ Double-clicks a tree node. """
-        self.WHITE_LIB.doubleClickTreeNode(locator, node_path)
+        tree = self._get_item_by_locator(Tree, locator)
+        tree.Nodes.GetItem(node_path).DoubleClick()
 
     def right_click_tree_node(self, locator, *node_path):
         """ Right-clicks a tree node. """
-        self.WHITE_LIB.rightClickTreeNode(locator, node_path)
+        tree = self._get_item_by_locator(Tree, locator)
+        tree.Nodes.GetItem(node_path).RightClick()
 
     def take_desktop_screenshot(self):
         """ Takes a screenshot of the whole desktop and inserts screenshot link to log file.
