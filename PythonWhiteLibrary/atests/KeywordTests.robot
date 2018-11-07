@@ -69,7 +69,7 @@ Minus Calculation
 
 Division Calculation
     [Tags]   unstable
-    Calculate 5 / 2 Equals 2,5
+    Calculate 6 / 2 Equals 3
 
 Calculate When First Number is Missing
     Calculate 5 + ${EMPTY} Equals ${EMPTY}
