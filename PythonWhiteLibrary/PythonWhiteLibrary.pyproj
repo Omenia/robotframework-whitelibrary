@@ -26,14 +26,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\WhiteLibrary.py" />
+    <Compile Include="src\__init__.py" />
+    <Compile Include="version.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="KeywordTests.robot" />
-    <Content Include="run_tests.cmd" />
-    <Content Include="TestWindowsCalculator.robot" />
-  </ItemGroup>
-  <ItemGroup>
+    <Folder Include="atests\" />
     <Folder Include="src\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="atests\KeywordTests.robot" />
+    <Content Include="atests\TestWindowsCalculator.robot" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
