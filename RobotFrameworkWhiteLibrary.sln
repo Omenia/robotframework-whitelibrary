@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSWhiteLibrary", "WhiteLibrary\CSWhiteLibrary.csproj", "{FD8BA129-5E2F-42E1-91A3-1F59C96BC30C}"
-EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PythonWhiteLibrary", "PythonWhiteLibrary\PythonWhiteLibrary.pyproj", "{AE4B151B-1CA9-4053-99F1-7F31D9730372}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIAutomationTest", "UIAutomationTest\UIAutomationTest.csproj", "{00B6613A-0471-4AC8-9CCB-FC39E7D29D1F}"
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FD8BA129-5E2F-42E1-91A3-1F59C96BC30C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD8BA129-5E2F-42E1-91A3-1F59C96BC30C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD8BA129-5E2F-42E1-91A3-1F59C96BC30C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD8BA129-5E2F-42E1-91A3-1F59C96BC30C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AE4B151B-1CA9-4053-99F1-7F31D9730372}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AE4B151B-1CA9-4053-99F1-7F31D9730372}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00B6613A-0471-4AC8-9CCB-FC39E7D29D1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
