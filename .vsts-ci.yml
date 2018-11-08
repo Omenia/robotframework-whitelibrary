@@ -31,8 +31,6 @@ steps:
 
 - script: |
     set DEPLOYMENT=$(deployment)
-    type run_tests.cmd
-    echo *********
     run_tests.cmd --exclude no_ci --xunit xunit.xml
   continueOnError: true
   displayName: Execute Acceptance tests
