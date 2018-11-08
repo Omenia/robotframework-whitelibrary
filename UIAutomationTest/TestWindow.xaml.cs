@@ -19,6 +19,7 @@ namespace UIAutomationTest
     /// </summary>
     public partial class TestWindow : Window
     {
+        private int doubleClickCounter = 0;
         public TestWindow()
         {
             InitializeComponent();
@@ -56,6 +57,28 @@ namespace UIAutomationTest
                     else { return 0; }
             }
             return 0;
+        }
+
+        private void progressClick(object sender, RoutedEventArgs e)
+        {
+            double newVal = proggis.Value + 20;
+            if (newVal > 100) { newVal = 4; }
+            proggis.Value = newVal;
+        }
+
+        private void changeName(object sender, RoutedEventArgs e)
+        {
+            MenuItem mi = sender as MenuItem;
+            ContextMenu cm = mi.CommandParameter as ContextMenu;
+            ListBox lb = cm.PlacementTarget as ListBox;
+            ListBoxItem item = lb.SelectedItem as ListBoxItem;
+            MessageBox.Show("Not implemented yet.\nWhat's wrong with " + item.Content.ToString() +" anyway?");
+        }
+
+        private void doubleClickLabel(object sender, RoutedEventArgs e)
+        {
+            Label lab = sender as Label;
+            lab.Content = "Double-clicked " + ++this.doubleClickCounter + " times";
         }
 
         private void menuAboutClick(object sender, RoutedEventArgs e)
