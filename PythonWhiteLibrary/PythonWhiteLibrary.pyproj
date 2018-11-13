@@ -34,6 +34,7 @@
     <Folder Include="src\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="atests\AttachTest.robot" />
     <Content Include="atests\KeywordTests.robot" />
     <Content Include="atests\TestWindowsCalculator.robot" />
   </ItemGroup>

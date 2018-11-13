@@ -38,6 +38,24 @@ class WhiteLibrary(object):
     def launch_application(self, sut_path):
         self.app = Application.Launch(sut_path)
 
+    def attach_application_by_name(self, sut_name):
+        """ Attaches to a running application by name.
+        Parameters
+        ---------- 
+        sut_name: string
+            Application process name
+        """
+        self.app = Application.Attach(sut_name)
+
+    def attach_application_by_id(self, sut_id):
+        """ Attaches to a running application by id.
+        Parameters
+        ---------- 
+        sut_id: int
+            Application process id
+        """
+        self.app = Application.Attach(sut_id)
+
     def attach_window(self, window_title):
         self.window = self.app.GetWindow(window_title)
         logger.console("window {}".format(self.window))
