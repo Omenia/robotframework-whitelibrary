@@ -6,7 +6,7 @@ from System.Drawing import Bitmap
 from System.Drawing.Imaging import ImageFormat
 from TestStack.White import Application, Desktop
 from TestStack.White.UIItems.WindowItems import Window
-from TestStack.White.UIItems import Button, TextBox, Label, RadioButton, Slider, CheckBox, ProgressBar
+from TestStack.White.UIItems import Button, TextBox, Label, RadioButton, Slider, CheckBox, ProgressBar, UIItem
 from TestStack.White.UIItems.TabItems import Tab
 from TestStack.White.UIItems.TreeItems import Tree
 from TestStack.White.UIItems.ListBoxItems import ComboBox
@@ -60,6 +60,26 @@ class WhiteLibrary(object):
         """
         textBox = self._get_item_by_locator(TextBox, locator)
         textBox.Text = text
+
+    def right_click_item(self, locator):
+        """
+        Right click an item
+        Parameters
+        ----------
+        locator - element id, text or index prefixed with <locator_type>=
+        """
+        item = self._get_item_by_locator(UIItem, locator)
+        item.RightClick()
+
+    def double_click_item(self, locator):
+        """
+        Double click an item
+        Parameters
+        ----------
+        locator - element id, text or index prefixed with <locator_type>=
+        """
+        item = self._get_item_by_locator(UIItem, locator)
+        item.DoubleClick()
 
     def set_slider_value(self, locator, value):
         """

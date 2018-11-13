@@ -94,7 +94,9 @@ Verify Slider
     Verify Slider Value    sladdu    4.20
 
 Verify Progressbar
-    Verify Progressbar Value    proggis    78
+    Verify Progressbar Value    proggis    4
+    Click Button    progressBtn
+    Verify Progressbar Value    proggis    24
 
 Verify Check Boxes
     Verify Check Box    cb_omena    ${FALSE}
@@ -156,6 +158,16 @@ Handle Tree Nodes
     Right Click Tree Node    tree    @{node 2}
     Verify Label    selectionIndicatorLabel    Tree node 1.1 right-clicked
     [Teardown]    Select Tab Page    tabControl    Tab1
+
+Right Click An Item
+    Right Click Item    text=Teppo
+    Click Menu Button    text=Change Name
+    Verify Label    65535    Not implemented yet.\nWhat's wrong with Teppo anyway?
+    Click Button    text=OK
+
+Double Click An Item
+    Double Click Item    eventIndicatorLabel
+    Verify Label    eventIndicatorLabel    Double-clicked 1 times
 
 *** Keywords ***
 Launch App
