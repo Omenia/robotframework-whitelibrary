@@ -4,6 +4,7 @@ ${TEST APPLICATION}      UIAutomationTest${/}bin${/}Debug${/}app.publish${/}UIAu
 
 *** Settings ***
 Library    OperatingSystem
+Library    String
 Library    ../src/WhiteLibrary.py
 #Library    WhiteLibrary    dev=${TRUE}
 Suite Setup    Launch App
@@ -138,20 +139,19 @@ Disable and enable screenshots on failure
 
 Switch Tab
     Select Tab Page    tabControl    Tab2
+    Verify Label    selectionIndicatorLabel    nothing selected
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Handle Tree Nodes
-    [Setup]    Run Keywords    Attach Main Window    AND    Select Tab Page    tabControl    Tab2
-    @{node 1} =    Create List    Tree node 1
-    @{node 2} =    Create List    Tree node 1    Tree node 1.1
-    Select Tree Node    tree    @{node 1}
-    Verify Label    selectionIndicatorLabel    Tree node 1 selected
-    Expand Tree Node    tree    @{node 1}
-    Verify Label    selectionIndicatorLabel    Tree node 1 expanded
-    Double Click Tree Node    tree    @{node 1}
-    Verify Label    selectionIndicatorLabel    Tree node 1 double-clicked
-    Right Click Tree Node    tree    @{node 2}
-    Verify Label    selectionIndicatorLabel    Tree node 1.1 right-clicked
+    [Setup]    Setup for Tab 2 Tests
+    Select Tree Node    tree    @{Tree node 1}
+    Tree node 1 Should Be Selected
+    Expand Tree Node    tree    @{Tree node 1}
+    Tree node 1 Should Be Expanded
+    Double Click Tree Node    tree    @{Tree node 1}
+    Tree node 1 Should Be Double-clicked
+    Right Click Tree Node    tree    @{Tree node 1.1}
+    Tree node 1.1 Should Be Right-clicked
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Right Click An Item
@@ -205,3 +205,16 @@ New Screenshot Should Be Created
 New Screenshot Should Not Be Created
     ${new_count}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
     Should Be Equal    ${new_count}    ${COUNT}
+
+Setup For Tab 2 Tests
+    Attach Main Window
+    Select Tab Page    tabControl    Tab2
+    @{Tree node 1} =    Create List    Tree node 1
+    @{Tree node 1.1} =    Create List    Tree node 1    Tree node 1.1
+    Set Test Variable    @{Tree node 1}
+    Set Test Variable    @{Tree node 1.1}
+
+${node label} Should Be ${status}
+    [Documentation]    Note that node label is case sensitive
+    ${status}=    Convert To Lowercase    ${status}
+    Verify Label    selectionIndicatorLabel    ${node label} ${status}
