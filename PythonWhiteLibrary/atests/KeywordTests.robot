@@ -116,30 +116,25 @@ Calculate Using Index Locators
     Verify Text In Textbox    index=3    3
 
 Take screenshots
-    ${count_1}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    [Setup]    Screenshot Setup
     Take Desktop Screenshot
-    ${count_2}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
-    Should Be True    ${count_2} > ${count_1}
+    New Screenshot Should Be Created
     Take Desktop Screenshot
-    ${count_3}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
-    Should Be True    ${count_3} > ${count_2}
+    New Screenshot Should Be Created
 
 Take screenshot on failure
-    ${count_1}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
-    Run Keyword And Expect Error    *    Verify Text In Textbox    index=3    3
-    ${count_2}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
-    Should Be True    ${count_2} > ${count_1}
+    [Setup]    Screenshot Setup
+    Run Keyword And Expect Error    *    Should Be True    ${FALSE}
+    New Screenshot Should Be Created
 
 Disable and enable screenshots on failure
-    ${count_1}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    [Setup]    Screenshot Setup
     Take Screenshots On Failure    false
-    Run Keyword And Expect Error    *    Verify Text In Textbox    index=3    3
-    ${count_2}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
-    Should Be Equal    ${count_2}    ${count_1}
+    Run Keyword And Expect Error    *    Should Be True    ${FALSE}
+    New Screenshot Should Not Be Created
     Take Screenshots On Failure    ${True}
-    Run Keyword And Expect Error    *    Verify Text In Textbox    index=3    3
-    ${count_3}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
-    Should Be True    ${count_3} > ${count_2}
+    Run Keyword And Expect Error    *    Should Be True    ${FALSE}
+    New Screenshot Should Be Created
 
 Switch Tab
     Select Tab Page    tabControl    Tab2
@@ -229,3 +224,17 @@ Use Special Keys To Press Calculate Button
 Calculation Result Should Be
     [Arguments]    ${result}
     Verify Text In Textbox    tbResult    ${result}
+
+Screenshot Setup
+    Attach Main Window
+    ${COUNT}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    Set Test Variable    ${COUNT}
+
+New Screenshot Should Be Created
+    ${new_count}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    Should Be Equal    ${new_count}    ${COUNT+1}
+    Set Test Variable    ${COUNT}    ${new_count}
+
+New Screenshot Should Not Be Created
+    ${new_count}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    Should Be Equal    ${new_count}    ${COUNT}
