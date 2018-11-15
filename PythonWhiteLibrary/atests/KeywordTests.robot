@@ -169,6 +169,19 @@ Double Click An Item
     Double Click Item    eventIndicatorLabel
     Verify Label    eventIndicatorLabel    Double-clicked 1 times
 
+Click Button By Pressing Special Keys
+    Input 1 + 2 To Calculator
+    Use Special Keys To Press Calculate Button
+    Calculation Result Should Be    3
+
+Try To Press Unsupported Special Key
+    Run Keyword And Expect Error    AttributeError: Allowed special keys are*    Press Special Key    PANIC
+
+Write To Textbox By Pressing Keys
+    Activate Textbox    txtA
+    Press Keys    Text and (123}!
+    Verify Text In Textbox    txtA    Text and (123}!
+
 *** Keywords ***
 Launch App
     Set Log Level    Info
@@ -186,6 +199,7 @@ Clean App
     Input Text To Textbox    txtB    ${EMPTY}
     Select Combobox Index    op    0
     Input Text To Textbox    tbResult    ${EMPTY}
+    Click Button    progressResetBtn
 
 Verify ${operator} In Operators
     Verify Combobox Item    op    ${operator}
@@ -195,4 +209,23 @@ Calculate ${num1} ${operator} ${num2} Equals ${result}
     Select Combobox Value    op    ${operator}
     Input Text To Textbox    txtB    ${num2}
     Click Button    btnCalc
+    Verify Text In Textbox    tbResult    ${result}
+
+Activate Textbox
+    [Documentation]    Note that this empties the textbox
+    [Arguments]    ${locator}
+    Input Text To Textbox    ${locator}    ${EMPTY}
+
+Input ${num1} ${operator} ${num2} To Calculator
+    Input Text To Textbox    txtA    ${num1}
+    Input Text To Textbox    txtB    ${num2}
+    # Use combobox last to leave focus at the right place
+    Select Combobox Value    op    ${operator}
+
+Use Special Keys To Press Calculate Button
+    Press Special Key    TAB
+    Press Special Key    RETURN
+
+Calculation Result Should Be
+    [Arguments]    ${result}
     Verify Text In Textbox    tbResult    ${result}
