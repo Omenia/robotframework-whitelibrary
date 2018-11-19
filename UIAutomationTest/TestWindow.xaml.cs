@@ -20,6 +20,7 @@ namespace UIAutomationTest
     public partial class TestWindow : Window
     {
         private int doubleClickCounter = 0;
+        private int initialProgress = 4;
         public TestWindow()
         {
             InitializeComponent();
@@ -62,8 +63,13 @@ namespace UIAutomationTest
         private void progressClick(object sender, RoutedEventArgs e)
         {
             double newVal = proggis.Value + 20;
-            if (newVal > 100) { newVal = 4; }
+            if (newVal > 100) { newVal = this.initialProgress; }
             proggis.Value = newVal;
+        }
+
+        private void progressReset(object sender, RoutedEventArgs e)
+        {
+            proggis.Value = this.initialProgress;
         }
 
         private void changeName(object sender, RoutedEventArgs e)

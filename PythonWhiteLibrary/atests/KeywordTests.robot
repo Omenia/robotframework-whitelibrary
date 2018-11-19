@@ -4,6 +4,7 @@ ${TEST APPLICATION}      UIAutomationTest${/}bin${/}Debug${/}app.publish${/}UIAu
 
 *** Settings ***
 Library    OperatingSystem
+Library    String
 Library    ../src/WhiteLibrary.py
 #Library    WhiteLibrary    dev=${TRUE}
 Suite Setup    Launch App
@@ -123,47 +124,41 @@ Calculate Using Index Locators
     Verify Text In Textbox    index=3    3
 
 Take screenshots
-    ${count_1}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    [Setup]    Screenshot Setup
     Take Desktop Screenshot
-    ${count_2}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
-    Should Be True    ${count_2} > ${count_1}
+    New Screenshot Should Be Created
     Take Desktop Screenshot
-    ${count_3}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
-    Should Be True    ${count_3} > ${count_2}
+    New Screenshot Should Be Created
 
 Take screenshot on failure
-    ${count_1}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
-    Run Keyword And Expect Error    *    Verify Text In Textbox    index=3    3
-    ${count_2}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
-    Should Be True    ${count_2} > ${count_1}
+    [Setup]    Screenshot Setup
+    Run Keyword And Expect Error    *    Should Be True    ${FALSE}
+    New Screenshot Should Be Created
 
 Disable and enable screenshots on failure
-    ${count_1}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    [Setup]    Screenshot Setup
     Take Screenshots On Failure    false
-    Run Keyword And Expect Error    *    Verify Text In Textbox    index=3    3
-    ${count_2}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
-    Should Be Equal    ${count_2}    ${count_1}
+    Run Keyword And Expect Error    *    Should Be True    ${FALSE}
+    New Screenshot Should Not Be Created
     Take Screenshots On Failure    ${True}
-    Run Keyword And Expect Error    *    Verify Text In Textbox    index=3    3
-    ${count_3}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
-    Should Be True    ${count_3} > ${count_2}
+    Run Keyword And Expect Error    *    Should Be True    ${FALSE}
+    New Screenshot Should Be Created
 
 Switch Tab
     Select Tab Page    tabControl    Tab2
+    Verify Label    selectionIndicatorLabel    nothing selected
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Handle Tree Nodes
-    [Setup]    Run Keywords    Attach Main Window    AND    Select Tab Page    tabControl    Tab2
-    @{node 1} =    Create List    Tree node 1
-    @{node 2} =    Create List    Tree node 1    Tree node 1.1
-    Select Tree Node    tree    @{node 1}
-    Verify Label    selectionIndicatorLabel    Tree node 1 selected
-    Expand Tree Node    tree    @{node 1}
-    Verify Label    selectionIndicatorLabel    Tree node 1 expanded
-    Double Click Tree Node    tree    @{node 1}
-    Verify Label    selectionIndicatorLabel    Tree node 1 double-clicked
-    Right Click Tree Node    tree    @{node 2}
-    Verify Label    selectionIndicatorLabel    Tree node 1.1 right-clicked
+    [Setup]    Setup for Tab 2 Tests
+    Select Tree Node    tree    @{Tree node 1}
+    Tree node 1 Should Be Selected
+    Expand Tree Node    tree    @{Tree node 1}
+    Tree node 1 Should Be Expanded
+    Double Click Tree Node    tree    @{Tree node 1}
+    Tree node 1 Should Be Double-clicked
+    Right Click Tree Node    tree    @{Tree node 1.1}
+    Tree node 1.1 Should Be Right-clicked
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Right Click An Item
@@ -175,6 +170,19 @@ Right Click An Item
 Double Click An Item
     Double Click Item    eventIndicatorLabel
     Verify Label    eventIndicatorLabel    Double-clicked 1 times
+
+Click Button By Pressing Special Keys
+    Input 1 + 2 To Calculator
+    Use Special Keys To Press Calculate Button
+    Calculation Result Should Be    3
+
+Try To Press Unsupported Special Key
+    Run Keyword And Expect Error    AttributeError: Allowed special keys are*    Press Special Key    PANIC
+
+Write To Textbox By Pressing Keys
+    Activate Textbox    txtA
+    Press Keys    Text and (123}!
+    Verify Text In Textbox    txtA    Text and (123}!
 
 *** Keywords ***
 Launch App
@@ -193,7 +201,8 @@ Clean App
     Input Text To Textbox    txtB    ${EMPTY}
     Select Combobox Index    op    0
     Input Text To Textbox    tbResult    ${EMPTY}
-	Select Radio Button    rb_peke
+    Select Radio Button    rb_peke
+    Click Button    progressResetBtn
 
 Verify ${operator} In Operators
     Verify Combobox Item    op    ${operator}
@@ -204,3 +213,49 @@ Calculate ${num1} ${operator} ${num2} Equals ${result}
     Input Text To Textbox    txtB    ${num2}
     Click Button    btnCalc
     Verify Text In Textbox    tbResult    ${result}
+
+Activate Textbox
+    [Documentation]    Note that this empties the textbox
+    [Arguments]    ${locator}
+    Input Text To Textbox    ${locator}    ${EMPTY}
+
+Input ${num1} ${operator} ${num2} To Calculator
+    Input Text To Textbox    txtA    ${num1}
+    Input Text To Textbox    txtB    ${num2}
+    # Use combobox last to leave focus at the right place
+    Select Combobox Value    op    ${operator}
+
+Use Special Keys To Press Calculate Button
+    Press Special Key    TAB
+    Press Special Key    RETURN
+
+Calculation Result Should Be
+    [Arguments]    ${result}
+    Verify Text In Textbox    tbResult    ${result}
+
+Screenshot Setup
+    Attach Main Window
+    ${COUNT}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    Set Test Variable    ${COUNT}
+
+New Screenshot Should Be Created
+    ${new_count}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    Should Be Equal    ${new_count}    ${COUNT+1}
+    Set Test Variable    ${COUNT}    ${new_count}
+
+New Screenshot Should Not Be Created
+    ${new_count}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    Should Be Equal    ${new_count}    ${COUNT}
+
+Setup For Tab 2 Tests
+    Attach Main Window
+    Select Tab Page    tabControl    Tab2
+    @{Tree node 1} =    Create List    Tree node 1
+    @{Tree node 1.1} =    Create List    Tree node 1    Tree node 1.1
+    Set Test Variable    @{Tree node 1}
+    Set Test Variable    @{Tree node 1.1}
+
+${node label} Should Be ${status}
+    [Documentation]    Note that node label is case sensitive
+    ${status}=    Convert To Lowercase    ${status}
+    Verify Label    selectionIndicatorLabel    ${node label} ${status}

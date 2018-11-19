@@ -12,6 +12,8 @@ from TestStack.White.UIItems.TreeItems import Tree
 from TestStack.White.UIItems.ListBoxItems import ComboBox, ListBox
 from TestStack.White.UIItems.MenuItems import Menu
 from TestStack.White.UIItems.Finders import SearchCriteria
+from TestStack.White.InputDevices import Keyboard
+from TestStack.White.WindowsAPI import KeyboardInput
 
 
 from robot.api import logger
@@ -22,6 +24,14 @@ from robot.utils import get_link_path
 STRATEGIES = {"id": "ByAutomationId",
               "text": "ByText",
               "index": "Indexed"}
+
+SPECIAL_KEYS = ["SHIFT", "CONTROL", "ALT", "LEFT_ALT", "RIGHT_ALT", "RETURN",
+                "RIGHT", "BACKSPACE", "LEFT", "ESCAPE", "TAB", "HOME", "END",
+                "UP", "DOWN", "INSERT", "DELETE", "CAPS", "F1", "F2", "F3",
+                "F4", "F5", "F6", "F7", "F8", "F9", "F11", "F12", "F13", "F14",
+                "F15", "F16", "F17", "F18", "F19", "F20", "F21", "F22", "F23",
+                "F24", "PAGEUP", "PAGEDOWN", "PRINT", "PRINTSCREEN", "SPACE",
+                "NUMLOCK", "SCROLL", "LWIN", "RWIN"]
 
 
 class WhiteLibrary(object):
@@ -108,6 +118,32 @@ class WhiteLibrary(object):
         """
         item = self._get_item_by_locator(locator)
         item.DoubleClick()
+
+    def press_special_key(self, key):
+        """
+        Press a special key (Ctrl, tab, alt for example)
+        Accepted special keys are: SHIFT, CONTROL, ALT, LEFT_ALT, RIGHT_ALT,
+        RETURN ,RIGHT, BACKSPACE, LEFT, ESCAPE, TAB, HOME, END, UP, DOWN,
+        INSERT, DELETE, CAPS, F1, F2, F3, F4, F5, F6, F7, F8, F9, F11, F12,
+        F13, F14,F15, F16, F17, F18, F19, F20, F21, F22, F23,F24, PAGEUP,
+        PAGEDOWN, PRINT, PRINTSCREEN, SPACE, NUMLOCK, SCROLL, LWIN, RWIN
+        Parameters
+        ----------
+        key - one of the accepted special keys listed above
+        """
+        if key not in SPECIAL_KEYS:
+            raise AttributeError("Allowed special keys are " + str(SPECIAL_KEYS))
+        attribute = getattr(KeyboardInput.SpecialKeys, key)
+        self.window.Keyboard.PressSpecialKey(attribute)
+
+    def press_keys(self, keys):
+        """
+        Press a key or keys
+        Parameters
+        ----------
+        keys - key or keys to press as string
+        """
+        self.window.Keyboard.Enter(keys)
 
     def set_slider_value(self, locator, value):
         """
