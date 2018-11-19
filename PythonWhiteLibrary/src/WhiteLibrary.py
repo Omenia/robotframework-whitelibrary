@@ -136,6 +136,34 @@ class WhiteLibrary(object):
         attribute = getattr(KeyboardInput.SpecialKeys, key)
         self.window.Keyboard.PressSpecialKey(attribute)
 
+    def hold_special_key(self, key):
+        """
+        Hold down a special key.
+        See keyword Press Special Key for more information about accepted
+        special keys.
+        Parameters
+        ----------
+        key - one of the accepted special keys
+        """
+        if key not in SPECIAL_KEYS:
+            raise AttributeError("Allowed special keys are " + str(SPECIAL_KEYS))
+        attribute = getattr(KeyboardInput.SpecialKeys, key)
+        self.window.Keyboard.HoldKey(attribute)
+
+    def leave_special_key(self, key):
+        """
+        Leave a special key that was previously held down.
+        See keyword Press Special Key for more information about accepted
+        special keys.
+        Parameters
+        ----------
+        key - one of the accepted special keys
+        """
+        if key not in SPECIAL_KEYS:
+            raise AttributeError("Allowed special keys are " + str(SPECIAL_KEYS))
+        attribute = getattr(KeyboardInput.SpecialKeys, key)
+        self.window.Keyboard.LeaveKey(attribute)
+
     def press_keys(self, keys):
         """
         Press a key or keys
