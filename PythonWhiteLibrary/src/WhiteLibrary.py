@@ -222,6 +222,9 @@ class WhiteLibrary(object):
         ----------
         locator - element id, text or index prefixed with <locator_type>=
         value - value that should be selected
+        Raises
+        ------
+        AssertionError - if the selection was not as expected
         """
         listbox = self._get_typed_item_by_locator(ListBox, locator)
         if listbox.SelectedItemText != value:
