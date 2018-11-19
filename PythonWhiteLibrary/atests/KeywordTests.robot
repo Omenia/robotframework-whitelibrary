@@ -105,8 +105,11 @@ Verify Check Boxes
     Verify Check Box    cb_omen    ${FALSE}
     Verify Check Box    cb_omenia    ${FALSE}
 
-#Verify ListBox
-    #Select Listbox Value    op    box_item_teppo
+Verify ListBox
+    Select Listbox Value    list_box    Teppo
+	Listbox Selection Should Be    list_box    Teppo
+	Run Keyword And Expect Error    Expected listbox selection to be Yamis, was Teppo
+	...                             Listbox Selection Should Be	   list_box    Yamis
 
 Calculate Using Index Locators
     Input Text To Textbox    index=0    1
