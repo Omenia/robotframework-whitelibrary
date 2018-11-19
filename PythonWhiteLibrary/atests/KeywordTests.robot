@@ -112,6 +112,10 @@ Verify ListBox
 	Run Keyword And Expect Error    Expected listbox selection to be Yamis, was Teppo
 	...                             Listbox Selection Should Be	   list_box    Yamis
 
+Click An Item
+	Click Item    rb_ismo
+	Verify Radio Button    rb_ismo    ${TRUE}
+	
 Calculate Using Index Locators
     Input Text To Textbox    index=0    1
     Select Combobox Value    index=0    +
@@ -198,6 +202,7 @@ Clean App
     Select Combobox Index    op    0
     Input Text To Textbox    tbResult    ${EMPTY}
     Click Button    progressResetBtn
+	Select Radio Button    rb_peke
 
 Verify ${operator} In Operators
     Verify Combobox Item    op    ${operator}
