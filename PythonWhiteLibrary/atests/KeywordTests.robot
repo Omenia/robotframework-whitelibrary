@@ -149,6 +149,12 @@ Switch Tab
     Verify Label    selectionIndicatorLabel    nothing selected
     [Teardown]    Select Tab Page    tabControl    Tab1
 
+Open Menu By Holding Keys
+	Hold Special Key    ALT
+	Press Keys    h
+	Leave Special Key    ALT
+	Verify Menu          text=About    About
+
 Handle Tree Nodes
     [Setup]    Setup for Tab 2 Tests
     Select Tree Node    tree    @{Tree node 1}
