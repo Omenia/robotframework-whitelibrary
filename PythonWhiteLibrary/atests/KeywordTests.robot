@@ -153,7 +153,7 @@ Open Menu By Holding Keys
 	Hold Special Key    ALT
 	Press Keys    h
 	Leave Special Key    ALT
-	Verify Menu          text=About    About
+	Verify Menu    text=About    About
 
 Handle Tree Nodes
     [Setup]    Setup for Tab 2 Tests
