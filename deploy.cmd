@@ -12,6 +12,7 @@ copy PythonWhiteLibrary\src\keywords\keyboard.py %DEPLOYMENT%\keywords\
 copy PythonWhiteLibrary\src\keywords\librarycomponent.py %DEPLOYMENT%\keywords\
 copy PythonWhiteLibrary\src\keywords\robotlibcore.py %DEPLOYMENT%\keywords\
 copy PythonWhiteLibrary\src\keywords\window.py %DEPLOYMENT%\keywords\
+copy PythonWhiteLibrary\src\keywords\screenshot.py %DEPLOYMENT%\keywords\
 copy PythonWhiteLibrary\src\keywords\items\__init__.py %DEPLOYMENT%\keywords\items\
 copy PythonWhiteLibrary\src\keywords\items\buttons.py %DEPLOYMENT%\keywords\items\
 copy PythonWhiteLibrary\src\keywords\items\label.py %DEPLOYMENT%\keywords\items\
