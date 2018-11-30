@@ -1,9 +1,9 @@
 *** Variables ***
-${TEST APPLICATION}      UIAutomationTest${/}bin${/}Debug${/}app.publish${/}UIAutomationTest.exe
+${TEST APPLICATION}      UIAutomationTest${/}bin${/}Debug${/}UIAutomationTest.exe
 ${TEST APPLICATION NAME}    UIAutomationTest
 
 *** Settings ***
-Library    ../src/WhiteLibrary.py
+Library    WhiteLibrary
 Library    Process
 Test Setup    Start Test Application
 Test Teardown    Terminate Process    ${handle}    kill=true

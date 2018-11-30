@@ -1,6 +1,6 @@
 import os
-from librarycomponent import LibraryComponent
-from robotlibcore import keyword
+from WhiteLibrary.keywords.librarycomponent import LibraryComponent
+from WhiteLibrary.keywords.robotlibcore import keyword
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
 from robot.utils import get_link_path
@@ -14,7 +14,7 @@ class ScreenshotKeywords(LibraryComponent):
 
     def __init__(self, state):
         super(ScreenshotKeywords, self).__init__(state)
-        self.state.screenshotter = self
+        self.state.screenshooter = self
 
     @keyword
     def take_desktop_screenshot(self):

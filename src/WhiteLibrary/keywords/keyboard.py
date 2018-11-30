@@ -1,5 +1,5 @@
-from librarycomponent import LibraryComponent
-from robotlibcore import keyword
+from WhiteLibrary.keywords.librarycomponent import LibraryComponent
+from WhiteLibrary.keywords.robotlibcore import keyword
 from TestStack.White.InputDevices import Keyboard
 from TestStack.White.WindowsAPI import KeyboardInput
 

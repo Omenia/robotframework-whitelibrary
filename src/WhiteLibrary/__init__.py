@@ -1,10 +1,11 @@
 import clr
+import os
+dll_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin', 'TestStack.White.dll')
 clr.AddReference('System')
-clr.AddReference('TestStack.White') #include full path to Dll if required
+clr.AddReference(dll_path)
 from TestStack.White.UIItems.Finders import SearchCriteria
 
 from robot.api import logger
-#from robot.libraries.BuiltIn import BuiltIn
 
 from keywords import ApplicationKeywords, KeyboardKeywords, WindowKeywords, ScreenshotKeywords
 from keywords.items import (ButtonKeywords, 
@@ -19,8 +20,6 @@ from keywords.items import (ButtonKeywords,
                             UiItemKeywords)
 from keywords.robotlibcore import DynamicCore
 
-
-
 STRATEGIES = {"id": "ByAutomationId",
               "text": "ByText",
               "index": "Indexed"}
@@ -33,7 +32,7 @@ class WhiteLibrary(DynamicCore):
     def __init__(self):
         self.app = None
         self.window = None
-        self.screenshotter = None
+        self.screenshooter = None
         self.ROBOT_LIBRARY_LISTENER = self
         self.screenshot_type = 'desktop'
         self.screenshots_enabled = True
@@ -74,9 +73,7 @@ class WhiteLibrary(DynamicCore):
     def _end_keyword(self, name, attrs):
         if attrs['status'] == 'FAIL':
             if self.screenshot_type == 'desktop' and self.screenshots_enabled:
-                self.screenshotter.take_desktop_screenshot()
-                # Alternative solution:
-                #BuiltIn().run_keyword("WhiteLibrary.Take Desktop Screenshot")
+                self.screenshooter.take_desktop_screenshot()
 
     def _verify_value(self, expected, actual):
         if expected != actual:

@@ -1,5 +1,5 @@
-from librarycomponent import LibraryComponent
-from robotlibcore import keyword
+from WhiteLibrary.keywords.librarycomponent import LibraryComponent
+from WhiteLibrary.keywords.robotlibcore import keyword
 from TestStack.White.UIItems.WindowItems import Window
 from robot.api import logger
 

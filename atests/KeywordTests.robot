@@ -1,11 +1,11 @@
 *** Variables ***
-${TEST APPLICATION}      UIAutomationTest${/}bin${/}Debug${/}app.publish${/}UIAutomationTest.exe
+${TEST APPLICATION}      ${EXECDIR}${/}UIAutomationTest${/}bin${/}Debug${/}UIAutomationTest.exe
 
 
 *** Settings ***
 Library    OperatingSystem
 Library    String
-Library    ../src/WhiteLibrary.py
+Library    WhiteLibrary
 #Library    WhiteLibrary    dev=${TRUE}
 Suite Setup    Launch App
 Suite Teardown    Close App

@@ -7,7 +7,7 @@ steps:
   inputs:
     command: 'restore'
     packDestination: $(nuget)
-    projects: PythonWhiteLibrary
+    projects: src/WhiteLibrary
 
 - script: |
       pip install -r requirements.txt

@@ -1,7 +1,7 @@
 *** Settings ***
 # install oldcalcwin10 first!
 Force Tags     no_ci
-Library    ../src/WhiteLibrary.py
+Library    WhiteLibrary
 Suite Setup	Launch App
 Suite Teardown	Close App
 Test Teardown	Clean App
