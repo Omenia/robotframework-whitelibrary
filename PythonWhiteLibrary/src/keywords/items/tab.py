@@ -1,6 +1,6 @@
 from TestStack.White.UIItems.TabItems import Tab
-from ..librarycomponent import LibraryComponent
-from ..robotlibcore import keyword
+from librarycomponent import LibraryComponent
+from robotlibcore import keyword
 
 
 class TabKeywords(LibraryComponent):

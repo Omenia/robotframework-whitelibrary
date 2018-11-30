@@ -1,6 +1,6 @@
 from TestStack.White.UIItems.TreeItems import Tree
-from ..librarycomponent import LibraryComponent
-from ..robotlibcore import keyword
+from librarycomponent import LibraryComponent
+from robotlibcore import keyword
 
 
 class TreeKeywords(LibraryComponent):

@@ -1,6 +1,6 @@
 from TestStack.White.UIItems import TextBox
-from ..librarycomponent import LibraryComponent
-from ..robotlibcore import keyword
+from librarycomponent import LibraryComponent
+from robotlibcore import keyword
 
 class TextBoxKeywords(LibraryComponent):
     @keyword

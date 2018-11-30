@@ -1,6 +1,6 @@
 from TestStack.White.UIItems.MenuItems import Menu
-from ..librarycomponent import LibraryComponent
-from ..robotlibcore import keyword
+from librarycomponent import LibraryComponent
+from robotlibcore import keyword
 
 
 class MenuKeywords(LibraryComponent):

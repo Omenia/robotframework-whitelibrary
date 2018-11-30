@@ -1,6 +1,6 @@
 from TestStack.White.UIItems import UIItem
-from ..librarycomponent import LibraryComponent
-from ..robotlibcore import keyword
+from librarycomponent import LibraryComponent
+from robotlibcore import keyword
 
 
 class UiItemKeywords(LibraryComponent):

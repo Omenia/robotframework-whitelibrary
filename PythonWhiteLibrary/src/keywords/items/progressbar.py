@@ -1,6 +1,6 @@
 from TestStack.White.UIItems import ProgressBar
-from ..librarycomponent import LibraryComponent
-from ..robotlibcore import keyword
+from librarycomponent import LibraryComponent
+from robotlibcore import keyword
 
 
 class ProgressbarKeywords(LibraryComponent):
