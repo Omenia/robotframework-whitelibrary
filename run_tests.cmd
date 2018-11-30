@@ -7,4 +7,6 @@ if "%DEPLOYMENT%" == "" (
 ) else (
   set PP=-P %DEPLOYMENT% -P %DEPLOYMENT%\keywords -P %DEPLOYMENT%\keywords\items
 )
+pushd %~dp0
 robot --outputdir output --noncritical unstable %PP% %* --loglevel DEBUG:INFO PythonWhiteLibrary/atests
+popd
