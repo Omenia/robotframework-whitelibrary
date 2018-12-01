@@ -7,7 +7,7 @@ steps:
   inputs:
     command: 'restore'
     packDestination: $(nuget)
-    projects: src/WhiteLibrary
+    projects: WhiteLibrary\src\packages.config
 
 - script: |
       pip install -r requirements.txt
@@ -29,6 +29,9 @@ steps:
   continueOnError: false
   displayName: Copy build artifacts to deployment directory
 
+ - script: 'python setup.py install'
+  displayName: 'Build sdist'
+  
 - script: |
     set DEPLOYMENT=$(deployment)
     run_tests.cmd --exclude no_ci --xunit xunit.xml
