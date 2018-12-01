@@ -7,7 +7,7 @@ steps:
   inputs:
     command: 'restore'
     packDestination: $(nuget)
-    projects: WhiteLibrary\src\
+    projects: src\WhiteLibrary
   displayName: Download NuGet packages
 
 - script: |
