@@ -3,11 +3,12 @@ variables:
   nuget: packages
 
 steps:
-- task: NuGetCommand@2
+- task: NuGetToolInstaller@0
   inputs:
-    command: 'restore'
-    packDestination: $(nuget)
-    restoreSolution: src\WhiteLibrary\pack
+    versionSpec: '4.3.0'
+    
+- script: |
+      nuget restore src\WhiteLibrary\packages.config -PackagesDirectory $(nuget)
   displayName: Download NuGet packages
 
 - script: |
