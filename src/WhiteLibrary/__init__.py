@@ -7,8 +7,8 @@ from TestStack.White.UIItems.Finders import SearchCriteria
 
 from robot.api import logger
 
-from keywords import ApplicationKeywords, KeyboardKeywords, WindowKeywords, ScreenshotKeywords
-from keywords.items import (ButtonKeywords, 
+from WhiteLibrary.keywords import ApplicationKeywords, KeyboardKeywords, WindowKeywords, ScreenshotKeywords
+from WhiteLibrary.keywords.items import (ButtonKeywords, 
                             LabelKeywords,
                             ListKeywords, 
                             MenuKeywords,
@@ -18,7 +18,7 @@ from keywords.items import (ButtonKeywords,
                             TreeKeywords, 
                             TextBoxKeywords,
                             UiItemKeywords)
-from keywords.robotlibcore import DynamicCore
+from WhiteLibrary.keywords.robotlibcore import DynamicCore
 
 STRATEGIES = {"id": "ByAutomationId",
               "text": "ByText",
