@@ -26,10 +26,10 @@ steps:
   displayName: Generate build.info
 
 - script: |
-    set DEPLOYMENT=$(deployment)
-    deploy.cmd
+    mkdir src\WhiteLibrary\bin
+    copy $(nuget)\*.dll src\WhiteLibrary\bin
   continueOnError: false
-  displayName: Copy build artifacts to deployment directory
+  displayName: Copy dlls to WhiteLibrary package
 
 - script: | 
       python setup.py install
