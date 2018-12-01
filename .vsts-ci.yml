@@ -7,7 +7,8 @@ steps:
   inputs:
     command: 'restore'
     packDestination: $(nuget)
-    projects: WhiteLibrary\src\packages.config
+    projects: WhiteLibrary\src\
+  displayName: Download NuGet packages
 
 - script: |
       pip install -r requirements.txt
