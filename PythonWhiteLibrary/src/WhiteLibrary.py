@@ -2,8 +2,7 @@ import os
 from sys import version_info
 import clr
 clr.AddReference('System')
-dll_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin', 'TestStack.White.dll')
-clr.AddReference(dll_path) #include full path to Dll if required
+clr.AddReference('TestStack.White') #include full path to Dll if required
 from System.Drawing import Bitmap
 from System.Drawing.Imaging import ImageFormat
 from TestStack.White import Application, Desktop
