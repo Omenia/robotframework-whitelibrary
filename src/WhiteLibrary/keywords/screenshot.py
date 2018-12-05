@@ -1,6 +1,6 @@
 import os
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
-from WhiteLibrary.keywords.robotlibcore import keyword
+from WhiteLibrary.keywords.robotlibcore import keyword, PY2
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
 from robot.utils import get_link_path
