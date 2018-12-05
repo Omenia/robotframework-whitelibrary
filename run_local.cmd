@@ -2,7 +2,7 @@
 pushd %~dp0
 set DEPLOYMENT=deploy
 set NUGET=packages
-echo > build.info
+echo. 2> build.info
 call deploy.cmd
 call run_tests.cmd %*
 popd
