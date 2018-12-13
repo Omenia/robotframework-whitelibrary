@@ -1,9 +1,13 @@
 This library is still very much under construction.
 WhiteLibrary will give a way to test Windows UI technologies with Robot Framework. WhiteLibrary wraps White test automation framework [1]
 
-# Pre-release version available # 
+# Stable version  #
 ```
-pip install --pre robotframework-whitelibrary
+pip install --upgrade robotframework-whitelibrary
+```
+# Development version # 
+```
+pip install --upgrade --pre robotframework-whitelibrary
 ```
 # Techonologies #
 * Win32
