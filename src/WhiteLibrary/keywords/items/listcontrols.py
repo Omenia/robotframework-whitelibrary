@@ -27,9 +27,9 @@ class ListKeywords(LibraryComponent):
         ``expected`` is the expected selection value.
         """
         listbox = self.state._get_typed_item_by_locator(ListBox, locator)
-        if listbox.SelectedItemText != value:
+        if listbox.SelectedItemText != expected:
             raise AssertionError("Expected listbox selection to be " +
-                                 value + ", was " + listbox.SelectedItemText)
+                                 expected + ", was " + listbox.SelectedItemText)
 
     @keyword
     def select_combobox_value(self, locator, value):
