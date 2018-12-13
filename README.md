@@ -29,8 +29,6 @@ pip install robotframework pythonnet
 ```
 run_tests.cmd -t "Test case name"
 ```
-[1] https://github.com/TestStack/White
-
 # Documentation #
 Keyword [documentation](http://omenia.github.io/robotframework-whitelibrary/keywords.html) 
-
+[1] https://github.com/TestStack/White
