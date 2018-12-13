@@ -9,9 +9,10 @@ copy %NUGET%\TestStack.White.ScreenObjects.0.13.3\lib\net40\TestStack.White.Scre
 
 rmdir docs /s /q
 
-[~,cmdout] = system(python src/WhiteLibrary/version.py)
+application python src/WhiteLibrary/version.py > temp.txt
+set /p CMDOUT=<temp.txt
 
-IF "%cmdout%" == "True" (
+IF "%CMDOUT%" == "True" (
     mkdir docs
     python -m robot.libdoc src\WhiteLibrary docs\keywords.html
     xcopy docs %DEPLOYMENT%\docs\ /s /a
