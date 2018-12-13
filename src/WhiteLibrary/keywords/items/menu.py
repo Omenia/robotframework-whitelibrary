@@ -7,10 +7,11 @@ class MenuKeywords(LibraryComponent):
     @keyword
     def verify_menu(self, locator, expected):
         """
-        Verify menu item exists
-        | Arguments | Usage | (M)andatory / (O)ptional |
-        | locator | element id | M |
-        | expected | expected text in value | M |
+        Verifies the text of a menu item.
+
+        ``locator`` is the locator of the menu item.
+
+        ``expected`` is the expected text of the menu item.
         """
         menu = self.state._get_typed_item_by_locator(Menu, locator)
         self.state._verify_value(expected, menu.Name)
@@ -18,9 +19,9 @@ class MenuKeywords(LibraryComponent):
     @keyword
     def click_menu_button(self, locator):
         """
-        Click menu button
-        | Arguments | Usage | (M)andatory / (O)ptional |
-        | locator | element id | M |
+        Clicks a menu button.
+        
+        ``locator`` is the locator of the menu button.
         """
         menu_button = self.state._get_typed_item_by_locator(Menu, locator)
         menu_button.Click()

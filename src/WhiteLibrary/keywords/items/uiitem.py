@@ -7,10 +7,9 @@ class UiItemKeywords(LibraryComponent):
     @keyword
     def click_item(self, locator):
         """
-        Click an item
-        Parameters
-        ----------
-        locator - element id, text or index prefixed with <locator_type>=
+        Clicks an item.
+        
+        ``locator`` is the locator of the item.
         """
         item = self.state._get_item_by_locator(locator)
         item.Click()
@@ -18,10 +17,9 @@ class UiItemKeywords(LibraryComponent):
     @keyword
     def right_click_item(self, locator):
         """
-        Right click an item
-        Parameters
-        ----------
-        locator - element id, text or index prefixed with <locator_type>=
+        Right clicks an item.
+
+        ``locator`` is the locator of the item.
         """
         item = self.state._get_item_by_locator(locator)
         item.RightClick()
@@ -29,10 +27,9 @@ class UiItemKeywords(LibraryComponent):
     @keyword
     def double_click_item(self, locator):
         """
-        Double click an item
-        Parameters
-        ----------
-        locator - element id, text or index prefixed with <locator_type>=
+        Double clicks an item.
+        
+        ``locator`` is the locator of the item.
         """
         item = self.state._get_item_by_locator(locator)
         item.DoubleClick()
