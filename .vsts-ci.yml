@@ -47,6 +47,7 @@ steps:
     testResultsFiles: output/xunit.xml
 
 - task: PublishBuildArtifacts@1
+  condition: always()
   displayName: Publish Robot Framework logs and results
   inputs:
     PathtoPublish: output

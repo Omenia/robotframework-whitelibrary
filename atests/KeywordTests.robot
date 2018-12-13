@@ -25,7 +25,7 @@ Write to Textbox
     Input Text To Textbox   passwordBox    viisi
 
 Verify Text
-    Input Text To Textbox     txtA    Antti
+    Input Text To Textbox     txtA    Juha
     Verify Text In Textbox    txtA    Antti
 
 Verify Operation Selections
