@@ -9,7 +9,7 @@ copy %NUGET%\TestStack.White.ScreenObjects.0.13.3\lib\net40\TestStack.White.Scre
 
 rmdir docs /s /q
 
-application python src/WhiteLibrary/version.py > temp.txt
+python src/WhiteLibrary/version.py > temp.txt
 set /p CMDOUT=<temp.txt
 
 IF "%CMDOUT%" == "True" (
