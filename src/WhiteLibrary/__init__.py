@@ -19,6 +19,8 @@ from WhiteLibrary.keywords.items import (ButtonKeywords,
                             TextBoxKeywords,
                             UiItemKeywords)
 from WhiteLibrary.keywords.robotlibcore import DynamicCore
+from WhiteLibrary import version
+
 
 STRATEGIES = {"id": "ByAutomationId",
               "text": "ByText",
@@ -26,6 +28,31 @@ STRATEGIES = {"id": "ByAutomationId",
 
 
 class WhiteLibrary(DynamicCore):
+    """WhiteLibrary is a Robot Framework library for automating Windows GUI.
+    It is a wrapper for [https://github.com/TestStack/White | TestStack.White].
+
+    = Applications and windows =
+
+
+    = Item locators =
+    Keywords that access UI items (e.g. `Click Button`) use a ``locator`` argument.
+    The locator consists of a locator prefix that specifies the search criteria, and the locator value.
+
+    The following properties can be used in locators:
+
+    | = Prefix =        | = Description =                 |
+    | id (or no prefix) | Search by AutomationID. If no prefix is given, the item is searched by AutomationID by default. |
+    | text              | Search by exact item text/name. |
+    | index             | Search by item index.           |
+    
+    Examples:
+    
+    | Click Button | myButton         | # clicks button by its AutomationID |
+    | Click Button | id=myButton      | # clicks button by its AutomationID |
+    | Click Button | text=Click here! | # clicks button by the button text  |
+    | Click Button | index=2          | # clicks button whose index is 2    |
+    """
+    ROBOT_LIBRARY_VERSION = version.VERSION
     ROBOT_LIBRARY_SCOPE = "Global"
     ROBOT_LISTENER_API_VERSION = 2
 
