@@ -1,9 +1,12 @@
-This library is still very much under construction.
 WhiteLibrary will give a way to test Windows UI technologies with Robot Framework. WhiteLibrary wraps White test automation framework [1]
 
-# Pre-release version available # 
+# Stable version  #
 ```
-pip install --pre robotframework-whitelibrary
+pip install --upgrade robotframework-whitelibrary
+```
+# Development version # 
+```
+pip install --upgrade --pre robotframework-whitelibrary
 ```
 # Techonologies #
 * Win32
@@ -25,8 +28,6 @@ pip install robotframework pythonnet
 ```
 run_tests.cmd -t "Test case name"
 ```
-[1] https://github.com/TestStack/White
-
 # Documentation #
 Keyword [documentation](http://omenia.github.io/robotframework-whitelibrary/keywords.html) 
-
+[1] https://github.com/TestStack/White
