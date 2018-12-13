@@ -1,11 +1,11 @@
 *** Variables ***
-${TEST APPLICATION}      UIAutomationTest${/}bin${/}Debug${/}app.publish${/}UIAutomationTest.exe
+${TEST APPLICATION}      ${EXECDIR}${/}UIAutomationTest${/}bin${/}Debug${/}UIAutomationTest.exe
 
 
 *** Settings ***
 Library    OperatingSystem
 Library    String
-Library    ../src/WhiteLibrary.py
+Library    WhiteLibrary
 #Library    WhiteLibrary    dev=${TRUE}
 Suite Setup    Launch App
 Suite Teardown    Close App
@@ -183,7 +183,9 @@ Click Button By Pressing Special Keys
     Calculation Result Should Be    3
 
 Try To Press Unsupported Special Key
-    Run Keyword And Expect Error    AttributeError: Allowed special keys are*    Press Special Key    PANIC
+    [Setup]    Run Keywords    Attach Main Window    AND    Take Screenshots On Failure    false
+    Run Keyword And Expect Error    AttributeError: Allowed special keys are*    Press Special Key    PANIC	
+	[Teardown]    Run Keywords    Take Screenshots On Failure    true    AND    Clean App
 
 Write To Textbox By Pressing Keys
     Activate Textbox    txtA
