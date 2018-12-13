@@ -12,6 +12,7 @@ rmdir docs /s /q
 [~,cmdout] = system(python src/WhiteLibrary/version.py)
 
 IF "%cmdout%" == "True" (
+    mkdir docs
     python -m robot.libdoc src\WhiteLibrary docs\keywords.html
     xcopy docs %DEPLOYMENT%\docs\ /s /a
 )
