@@ -7,6 +7,15 @@ copy %NUGET%\TestStack.White.0.13.3\lib\net40\TestStack.White.dll src\WhiteLibra
 copy %NUGET%\TestStack.White.ScreenObjects.0.13.3\lib\net40\TestStack.White.Reporting.dll src\WhiteLibrary\bin\
 copy %NUGET%\TestStack.White.ScreenObjects.0.13.3\lib\net40\TestStack.White.ScreenObjects.dll src\WhiteLibrary\bin\
 
+del docs\*.* /y
+
+[~,cmdout] = system(python src/WhiteLibrary/version.py)
+
+IF "%cmdout%" == "True" (
+    python -m robot.libdoc src\WhiteLibrary docs\keywords.html
+)
+
+xcopy docs %DEPLOYMENT%\docs\ /s /a
 xcopy src %DEPLOYMENT%\src\ /s /a
 copy setup.py %DEPLOYMENT%\
 copy build.info %DEPLOYMENT%\
