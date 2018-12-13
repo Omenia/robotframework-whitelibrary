@@ -6,6 +6,6 @@ copy %NUGET%\TestStack.White.0.13.3\lib\net40\TestStack.White.dll src\WhiteLibra
 copy %NUGET%\TestStack.White.ScreenObjects.0.13.3\lib\net40\TestStack.White.Reporting.dll src\WhiteLibrary\bin\
 copy %NUGET%\TestStack.White.ScreenObjects.0.13.3\lib\net40\TestStack.White.ScreenObjects.dll src\WhiteLibrary\bin\
 
-xcopy src\ %DEPLOYMENT%\ /s /a
+xcopy src %DEPLOYMENT%\ /s /a
 copy setup.py %DEPLOYMENT%\
 copy build.info %DEPLOYMENT%\
