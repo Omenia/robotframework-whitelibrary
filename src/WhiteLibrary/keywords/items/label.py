@@ -7,10 +7,11 @@ class LabelKeywords(LibraryComponent):
     @keyword
     def verify_label(self, locator, expected):
         """
-        Verify text in label
-        | Arguments | Usage | (M)andatory / (O)ptional |
-        | locator | element id | M |
-        | actual | expected text | M |
+        Verifies text of a label.
+
+        ``locator`` is the locator of the label.
+
+        ``expected`` is the expected text.
         """
         label = self.state._get_typed_item_by_locator(Label, locator)
         self.state._verify_value(expected, label.Text)

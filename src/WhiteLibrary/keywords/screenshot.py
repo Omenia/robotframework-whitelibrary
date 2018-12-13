@@ -18,11 +18,9 @@ class ScreenshotKeywords(LibraryComponent):
 
     @keyword
     def take_desktop_screenshot(self):
-        """ Takes a screenshot of the whole desktop and inserts screenshot link to log file.
-        Returns
-        -------
-        string
-            path to the screenshot file
+        """
+        Takes a screenshot of the whole desktop and inserts screenshot link to log file.
+        Returns path to the screenshot file.
         """
         filepath = self._get_screenshot_path("whitelib_screenshot_{index}.png")
         logger.info(get_link_path(filepath, self._log_directory), also_console=True)
@@ -35,11 +33,11 @@ class ScreenshotKeywords(LibraryComponent):
 
     @keyword
     def take_screenshots_on_failure(self, status):
-        """ Disable or enable automatic screenshot creation on failure.
-        Parameters
-        ----------
-        status: bool or str
-            True or False, boolean or string, case insensitive. """
+        """
+        Disables or enables automatic screenshot creation on failure.
+        
+        ``status`` is the desired state (True/False) of automatic creation.
+        """
         if (str(status).lower() == 'false'):
             self.state.screenshots_enabled = False
         else:

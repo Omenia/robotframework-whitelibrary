@@ -6,25 +6,25 @@ class ListKeywords(LibraryComponent):
     @keyword
     def select_listbox_value(self, locator, value):
         """
-        Select listbox value
-        | Arguments | Usage | (M)andatory / (O)ptional |
-        | locator | element id | M |
-        | value | selected value | M |
+        Selects a value from a listbox.
+        
+        ``locator`` is the locator of the listbox.
+
+        ``value`` is the value to be selected.
         """
         listbox = self.state._get_typed_item_by_locator(ListBox, locator)
         listbox.Select(value)
 
     @keyword    
-    def listbox_selection_should_be(self, locator, value):
+    def listbox_selection_should_be(self, locator, expected):
         """
-        Check that the value on the listbox is selected
-        Parameters
-        ----------
-        locator - element id, text or index prefixed with <locator_type>=
-        value - value that should be selected
-        Raises
-        ------
-        AssertionError - if the selection was not as expected
+        Checks the listbox selection.
+
+        Fails if the selection was not as expected.
+
+        ``locator`` is the locator of the listbox.
+
+        ``expected`` is the expected selection value.
         """
         listbox = self.state._get_typed_item_by_locator(ListBox, locator)
         if listbox.SelectedItemText != value:
@@ -34,10 +34,11 @@ class ListKeywords(LibraryComponent):
     @keyword
     def select_combobox_value(self, locator, value):
         """
-        Select combobox value
-        | Arguments | Usage | (M)andatory / (O)ptional |
-        | locator | element id | M |
-        | value | selected value | M |
+        Selects a value from a combobox.
+        
+        ``locator`` is the locator of the combobox.
+
+        ``value`` is the value to be selected.
         """
         combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
         combobox.Select(value)
@@ -45,10 +46,11 @@ class ListKeywords(LibraryComponent):
     @keyword
     def select_combobox_index(self, locator, index):
         """
-        Select combobox index
-        | Arguments | Usage | (M)andatory / (O)ptional |
-        | locator | element id | M |
-        | index | combobox index | M |
+        Selects a value from combobox by using its index.
+
+        ``locator`` is the locator of the combobox.
+
+        ``index`` is the index to be selected.
         """
         combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
         combobox.Select(int(index))
@@ -57,20 +59,22 @@ class ListKeywords(LibraryComponent):
     def verify_combobox_item(self, locator, expected):
         """
         *DEPRECATED* Please use Verify Combobox Selection instead
-        Verify combobox selected value
-        | Arguments | Usage | (M)andatory / (O)ptional |
-        | locator | element id | M |
-        | actual | expected value | M |
+        Verifies the selected value of a combobox.
+        
+        ``locator`` is the locator of the combobox.
+
+        ``expected`` is the expected selection value.
         """
         self.verify_combobox_selection(locator, expected)
 
     @keyword
     def verify_combobox_selection(self, locator, expected):
         """
-        Verify combobox selected value
-        | Arguments | Usage | (M)andatory / (O)ptional |
-        | locator | element id | M |
-        | actual | expected value | M |
+        Verifies the selected value of a combobox.
+        
+        ``locator`` is the locator of the combobox.
+
+        ``expected`` is the expected selection value.
         """
         combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
         self.state._verify_value(expected, combobox.EditableText)

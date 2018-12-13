@@ -7,10 +7,11 @@ class SliderKeywords(LibraryComponent):
     @keyword
     def set_slider_value(self, locator, value):
         """
-        Write slider to value double
-        | Arguments | Usage | (M)andatory / (O)ptional |
-        | locator | element id | M |
-        | value | inserted value (must be between scale) | M |
+        Sets a slider to the specified value.
+
+        ``locator`` is the locator of the slider.
+        
+        ``value`` is the value to set.
         """
         slider = self.state._get_typed_item_by_locator(Slider, locator)
         slider.Value = float(value)
@@ -18,10 +19,11 @@ class SliderKeywords(LibraryComponent):
     @keyword
     def verify_slider_value(self, locator, expected):
         """
-        Verify slider value
-        | Arguments | Usage | (M)andatory / (O)ptional |
-        | locator | element id | M |
-        | actual | expected double | M |
+        Verifies a slider value.
+
+        ``locator`` is the locator of the slider.
+
+        ``expected`` is the expected value of the slider.
         """
         slider = self.state._get_typed_item_by_locator(Slider, locator)
         self.state._verify_value(float(expected), slider.Value)

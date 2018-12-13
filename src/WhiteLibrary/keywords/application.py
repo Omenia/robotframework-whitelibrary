@@ -11,28 +11,23 @@ class ApplicationKeywords(LibraryComponent):
     @keyword
     def attach_application_by_name(self, sut_name):
         """ Attaches to a running application by name.
-        Parameters
-        ---------- 
-        sut_name: string
-            Application process name
+
+        ``sut_name`` is the application process name.
         """
         self.state.app = Application.Attach(sut_name)
 
     @keyword
     def attach_application_by_id(self, sut_id):
         """ Attaches to a running application by id.
-        Parameters
-        ---------- 
-        sut_id: int
-            Application process id
+        
+        ``sut_id`` is the application process id.
         """
-        self.state.app = Application.Attach(sut_id)
+        self.state.app = Application.Attach(int(sut_id))
 
     @keyword
     def close_application(self):
         """
-        Close application
-        | No arguments |
+        Closes the application.
         """
         self.state.app.Close()
         self.state.app = None

@@ -25,7 +25,7 @@ class ButtonKeywords(LibraryComponent):
     def verify_button(self, locator, expected):
         """*DEPRECATED.* Use `Button Text Should Be` or `Button Text Should Contain` instead.
 
-        Verifies text in button.
+        Verifies text in a button.
 
         ``locator`` is the locator of the button.
 
@@ -37,9 +37,9 @@ class ButtonKeywords(LibraryComponent):
     @keyword
     def select_radio_button(self, locator):
         """
-        Click button
-        | Arguments | Usage | (M)andatory / (O)ptional |
-        | locator | element id | M |
+        Selects a radio button.
+        
+        ``locator`` is the locator of the radio button.
         """
         radiobutton = self.state._get_typed_item_by_locator(RadioButton, locator)
         radiobutton.Select()
@@ -47,10 +47,11 @@ class ButtonKeywords(LibraryComponent):
     @keyword
     def verify_radio_button(self, locator, expected):
         """
-        Verify value of radio button
-        | Arguments | Usage | (M)andatory / (O)ptional |
-        | locator | element id | M |
-        | actual | expected value | M |
+        Verifies state of a radio button.
+
+        ``locator`` is the locator of the radio button.
+
+        ``expected`` is the expected state (True/False).
         """
         radiobutton = self.state._get_typed_item_by_locator(RadioButton, locator)
         self.state._verify_value(bool(expected), radiobutton.IsSelected)
@@ -58,9 +59,9 @@ class ButtonKeywords(LibraryComponent):
     @keyword
     def toggle_check_box(self, locator):
         """
-        Toggle check box
-        | Arguments | Usage | (M)andatory / (O)ptional |
-        | locator | element id | M |
+        Toggles a check box.
+
+        ``locator`` is the locator of the check box.
         """
         checkbox = self.state._get_typed_item_by_locator(CheckBox, locator)
         checkbox.Toggle()
@@ -68,10 +69,11 @@ class ButtonKeywords(LibraryComponent):
     @keyword
     def verify_check_box(self, locator, expected):
         """
-        Verify value of check box
-        | Arguments | Usage | (M)andatory / (O)ptional |
-        | locator | element id | M |
-        | actual | expected value | M |
+        Verifies state of a check box.
+        
+        ``locator`` is the locator of the check box.
+
+        ``expected`` is the expected state (True/False).
         """
         checkbox = self.state._get_typed_item_by_locator(CheckBox, locator)
         self.state._verify_value(bool(expected), checkbox.IsSelected)
