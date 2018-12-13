@@ -19,7 +19,7 @@ if os.path.exists(__path('build.info')):
 if version_data['STABLE']:
     version= '{}'.format(version_data['VERSION'])
 else: 
-    version= '{}.{}.pre'.format(version_data['VERSION'], build)
+    version= '{}.{}.pre'.format(version_data['VERSION'], build) 
 
 setup(name         = 'robotframework-whitelibrary',
       version      = version,
@@ -27,8 +27,13 @@ setup(name         = 'robotframework-whitelibrary',
       author       = 'SALabs',
       author_email = 'to.be.added@noexist89a887.org',
       url          = 'https://github.com/Omenia/robotframework-whitelibrary',
-      install_requires     = ['pythonnet'],
+      install_requires = ['pythonnet', 'robotframework'],
       packages     = ['WhiteLibrary', 'WhiteLibrary.keywords', 'WhiteLibrary.keywords.items'],
       package_dir  = {'WhiteLibrary' : 'src\WhiteLibrary'},
       package_data = {'WhiteLibrary' : ['bin\*.dll']},
+      classifiers = [Programming Language :: Python :: 2,
+                     Programming Language :: Python :: 2.7,
+                     Programming Language :: Python :: 3,
+                     Programming Language :: Python :: 3.5,
+                     Programming Language :: Python :: 3.6],
       )
