@@ -1,6 +1,6 @@
 WhiteLibrary provides the means to test Windows GUI technologies with Robot Framework. WhiteLibrary wraps White test automation framework [\[1\]](#white).
 
-# Techonologies #
+# Technologies #
 * Win32
 * WinForms
 * WPF (Windows Presentation Foundation)
@@ -32,7 +32,7 @@ pip install robotframework pythonnet
 ```
 local_install.cmd
 ```
-* Open UIAutomationTest\UIAutomationTest.sln and build the solution in Visual Studio. This will create the SUT executable, UIAutomationTest\bin\Debug\UIAutomationTest.exe.
+* Open `UIAutomationTest\UIAutomationTest.sln` and build the solution in Visual Studio. This will create the SUT executable, `UIAutomationTest\bin\Debug\UIAutomationTest.exe`.
 
 ## Running tests with Robot Framework ##
 * To execute the test suite against SUT, in the root folder of the project run
@@ -43,6 +43,8 @@ robot --outputdir output --exclude no_ci --loglevel DEBUG:INFO atests
 ```
 robot --outputdir output --exclude no_ci --loglevel DEBUG:INFO -t "Example Test Case" atests
 ```
-* The test suite tagged with 'no_ci' will run tests against the old (Win32) version of Windows calculator, and is typically excluded from test runs.
+* The test suite tagged with `no_ci` will run tests against the old (Win32) version of Windows calculator, and is typically excluded from test runs.
+
+# References #
 
 \[1\] <a name="white">https://github.com/TestStack/White</a>
