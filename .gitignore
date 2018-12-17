@@ -203,3 +203,6 @@ report.html
 # PyPi Packaged
 PythonWhiteLibrary/MANIFEST
 PythonWhiteLibrary/dist/
+
+# WhiteLibrary temporary installed files list
+files.txt
