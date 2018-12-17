@@ -6,7 +6,6 @@ ${TEST APPLICATION}      ${EXECDIR}${/}UIAutomationTest${/}bin${/}Debug${/}UIAut
 Library    OperatingSystem
 Library    String
 Library    WhiteLibrary
-#Library    WhiteLibrary    dev=${TRUE}
 Suite Setup    Launch App
 Suite Teardown    Close App
 Test Setup    Attach Main Window
@@ -60,28 +59,33 @@ Multiplication Calculation
     Calculate 5 * 2 Equals 10
 
 Quotient Calculation
+    [Tags]    no_ci
     Calculate 7 % 3 Equals 1
 
 Plus Calculation
+    [Tags]    no_ci
     Calculate 1 + 4 Equals 5
 
 Minus Calculation
+    [Tags]    no_ci
     Calculate 5 - 1 Equals 4
 
 Division Calculation
-    [Tags]   unstable
+    [Tags]   no_ci
     Calculate 6 / 2 Equals 3
 
 Calculate When First Number is Missing
     Calculate 5 + ${EMPTY} Equals ${EMPTY}
 
 Calculate When Second Number is Missing
+    [Tags]    no_ci
     Calculate ${EMPTY} + 5 Equals ${EMPTY}
 
 Calculate When First Number Is Alphabet
     Calculate a + 5 Equals ${EMPTY}
 
 Calculate When Second Number Is Alphabet
+    [Tags]    no_ci
     Calculate 1 + a Equals ${EMPTY}
 
 Verify Radio Buttons
