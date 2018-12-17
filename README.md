@@ -37,12 +37,12 @@ local_install.cmd
 ## Running tests with Robot Framework ##
 * To execute the test suite against SUT, in the root folder of the project run
 ```
-robot --outputdir output --noncritical unstable --exclude no_ci --loglevel DEBUG:INFO atests
+robot --outputdir output --exclude no_ci --loglevel DEBUG:INFO atests
 ```
 * To execute a single test case called "Example Test Case", run
 ```
-robot --outputdir output --noncritical unstable --exclude no_ci --loglevel DEBUG:INFO -t "Example Test Case" atests
+robot --outputdir output --exclude no_ci --loglevel DEBUG:INFO -t "Example Test Case" atests
 ```
-* The test suite tagged with 'no_ci' will run tests against the old version of Windows calculator, and is typically excluded from test runs.
+* The test suite tagged with 'no_ci' will run tests against the old (Win32) version of Windows calculator, and is typically excluded from test runs.
 
 \[1\] <a name="white">https://github.com/TestStack/White</a>
