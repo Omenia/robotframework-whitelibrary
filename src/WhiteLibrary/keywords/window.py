@@ -15,6 +15,13 @@ class WindowKeywords(LibraryComponent):
         self.state.window = self.state.app.GetWindow(window_title)
         logger.console("window {}".format(self.state.window))
 
+    @keyword
+    def list_windows(self, window_title):
+        """
+        Returns a list of all main windows in belonging to an application. It doesn't return modal windows.
+        """
+        return self.state.app.GetWindow()
+
     @keyword    
     def select_modal_window(self, window_title):
         """
