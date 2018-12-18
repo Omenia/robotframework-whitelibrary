@@ -23,7 +23,7 @@ class WindowKeywords(LibraryComponent):
         return self.state.app.GetWindows()
 
     @keyword
-    def attach_window_with_the_index(self, window_index):
+    def attach_window_by_index(self, window_index):
         """
         Attach WhiteLibrary with the index.
 
