@@ -20,7 +20,7 @@ class WindowKeywords(LibraryComponent):
         """
         Returns a list of all main windows in belonging to an application. It doesn't return modal windows.
         """
-        return self.state.app.GetWindow()
+        return self.state.app.GetWindows()
 
     @keyword    
     def select_modal_window(self, window_title):
