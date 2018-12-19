@@ -55,10 +55,6 @@ Open About And Verify Text
     Click Button    2
     Attach Window    UI Automation Test Window
 
-List all available windows
-    ${windows}    List Windows
-    Log     ${windows}
-
 Multiplication Calculation
     Calculate 5 * 2 Equals 10
 
