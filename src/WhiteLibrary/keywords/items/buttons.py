@@ -15,11 +15,11 @@ class ButtonKeywords(LibraryComponent):
 
     @keyword
     def button_text_should_be(self, locator, expected_text):
-       raise NotImplementedError()
+        raise NotImplementedError()
 
     @keyword
     def button_text_should_contain(self, locator, expected_text):
-       raise NotImplementedError()
+        raise NotImplementedError()
 
     @keyword
     def verify_button(self, locator, expected):
@@ -38,12 +38,12 @@ class ButtonKeywords(LibraryComponent):
     def select_radio_button(self, locator):
         """
         Selects a radio button.
-        
+
         ``locator`` is the locator of the radio button.
         """
         radiobutton = self.state._get_typed_item_by_locator(RadioButton, locator)
         radiobutton.Select()
-        
+
     @keyword
     def verify_radio_button(self, locator, expected):
         """
@@ -65,12 +65,12 @@ class ButtonKeywords(LibraryComponent):
         """
         checkbox = self.state._get_typed_item_by_locator(CheckBox, locator)
         checkbox.Toggle()
-        
+
     @keyword
     def verify_check_box(self, locator, expected):
         """
         Verifies state of a check box.
-        
+
         ``locator`` is the locator of the check box.
 
         ``expected`` is the expected state (True/False).

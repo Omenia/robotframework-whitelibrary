@@ -19,7 +19,7 @@ class ApplicationKeywords(LibraryComponent):
     @keyword
     def attach_application_by_id(self, sut_id):
         """ Attaches to a running application by id.
-        
+
         ``sut_id`` is the application process id.
         """
         self.state.app = Application.Attach(int(sut_id))
