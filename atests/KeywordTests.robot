@@ -59,7 +59,6 @@ List all available windows
     ${windows}    List Windows
     Log     ${windows}
 
-
 Multiplication Calculation
     Calculate 5 * 2 Equals 10
 
@@ -200,6 +199,19 @@ Write To Textbox By Pressing Keys
     Activate Textbox    txtA
     Press Keys    Text and (123}!
     Verify Text In Textbox    txtA    Text and (123}!
+
+List Windows
+    Click Menu Button    text=Help
+    Click Menu Button    text=About
+    @{windows}=    List Desktop Windows
+    Log Many    @{windows}
+    @{windows}=    List Application Windows
+    Log Many    @{windows}
+    @{windows}=    List Modal Windows
+    Log Many    @{windows}
+    Select Modal Window    About
+    Click Button    2
+    Attach Window    UI Automation Test Window
 
 *** Keywords ***
 Launch App
