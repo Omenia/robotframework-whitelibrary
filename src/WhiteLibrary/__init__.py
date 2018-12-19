@@ -1,25 +1,23 @@
 import clr
 import os
+from robot.api import logger   # noqa: F401
 dll_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin', 'TestStack.White.dll')
 clr.AddReference('System')
 clr.AddReference(dll_path)
-from TestStack.White.UIItems.Finders import SearchCriteria
-
-from robot.api import logger
-
-from WhiteLibrary.keywords import ApplicationKeywords, KeyboardKeywords, WindowKeywords, ScreenshotKeywords
-from WhiteLibrary.keywords.items import (ButtonKeywords, 
+from TestStack.White.UIItems.Finders import SearchCriteria   # noqa: E402
+from WhiteLibrary.keywords import ApplicationKeywords, KeyboardKeywords, WindowKeywords, ScreenshotKeywords   # noqa: E402
+from WhiteLibrary.keywords.items import (ButtonKeywords,
                             LabelKeywords,
-                            ListKeywords, 
+                            ListKeywords,
                             MenuKeywords,
                             ProgressbarKeywords,
                             SliderKeywords,
                             TabKeywords,
-                            TreeKeywords, 
+                            TreeKeywords,
                             TextBoxKeywords,
-                            UiItemKeywords)
-from WhiteLibrary.keywords.robotlibcore import DynamicCore
-from WhiteLibrary import version
+                            UiItemKeywords)   # noqa: E402
+from WhiteLibrary.keywords.robotlibcore import DynamicCore   # noqa: E402
+from WhiteLibrary import version   # noqa: E402
 
 
 STRATEGIES = {"id": "ByAutomationId",
@@ -44,9 +42,9 @@ class WhiteLibrary(DynamicCore):
     | id (or no prefix) | Search by AutomationID. If no prefix is given, the item is searched by AutomationID by default. |
     | text              | Search by exact item text/name. |
     | index             | Search by item index.           |
-    
+
     Examples:
-    
+
     | Click Button | myButton         | # clicks button by its AutomationID |
     | Click Button | id=myButton      | # clicks button by its AutomationID |
     | Click Button | text=Click here! | # clicks button by the button text  |
@@ -78,7 +76,7 @@ class WhiteLibrary(DynamicCore):
                           WindowKeywords(self),
                           ScreenshotKeywords(self)]
         DynamicCore.__init__(self, self.libraries)
-        
+
     def _get_typed_item_by_locator(self, item_type, locator):
         search_criteria = self._get_search_criteria(locator)
         return self.window.Get[item_type](search_criteria)

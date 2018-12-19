@@ -29,7 +29,7 @@ class TreeKeywords(LibraryComponent):
         """
         tree = self.state._get_typed_item_by_locator(Tree, locator)
         tree.Nodes.GetItem(node_path).Select()
-        
+
     @keyword
     def expand_tree_node(self, locator, *node_path):
         """
@@ -39,11 +39,11 @@ class TreeKeywords(LibraryComponent):
 
         ``node_path`` is the path the to node to expand.
 
-        See examples of the node path in `Select Tree Node` documentation. 
+        See examples of the node path in `Select Tree Node` documentation.
         """
         tree = self.state._get_typed_item_by_locator(Tree, locator)
         tree.Nodes.GetItem(node_path).Expand()
-        
+
     @keyword
     def double_click_tree_node(self, locator, *node_path):
         """
@@ -57,7 +57,7 @@ class TreeKeywords(LibraryComponent):
         """
         tree = self.state._get_typed_item_by_locator(Tree, locator)
         tree.Nodes.GetItem(node_path).DoubleClick()
-        
+
     @keyword
     def right_click_tree_node(self, locator, *node_path):
         """

@@ -20,7 +20,7 @@ class MenuKeywords(LibraryComponent):
     def click_menu_button(self, locator):
         """
         Clicks a menu button.
-        
+
         ``locator`` is the locator of the menu button.
         """
         menu_button = self.state._get_typed_item_by_locator(Menu, locator)

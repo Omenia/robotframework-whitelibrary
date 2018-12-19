@@ -2,12 +2,13 @@ from TestStack.White.UIItems.ListBoxItems import ComboBox, ListBox
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 
+
 class ListKeywords(LibraryComponent):
     @keyword
     def select_listbox_value(self, locator, value):
         """
         Selects a value from a listbox.
-        
+
         ``locator`` is the locator of the listbox.
 
         ``value`` is the value to be selected.
@@ -15,7 +16,7 @@ class ListKeywords(LibraryComponent):
         listbox = self.state._get_typed_item_by_locator(ListBox, locator)
         listbox.Select(value)
 
-    @keyword    
+    @keyword
     def listbox_selection_should_be(self, locator, expected):
         """
         Checks the listbox selection.
@@ -28,14 +29,14 @@ class ListKeywords(LibraryComponent):
         """
         listbox = self.state._get_typed_item_by_locator(ListBox, locator)
         if listbox.SelectedItemText != expected:
-            raise AssertionError("Expected listbox selection to be " +
+            raise AssertionError("Expected listbox selection to be " +   # noqa: W504
                                  expected + ", was " + listbox.SelectedItemText)
 
     @keyword
     def select_combobox_value(self, locator, value):
         """
         Selects a value from a combobox.
-        
+
         ``locator`` is the locator of the combobox.
 
         ``value`` is the value to be selected.
@@ -60,7 +61,7 @@ class ListKeywords(LibraryComponent):
         """
         *DEPRECATED* Please use Verify Combobox Selection instead
         Verifies the selected value of a combobox.
-        
+
         ``locator`` is the locator of the combobox.
 
         ``expected`` is the expected selection value.
@@ -71,7 +72,7 @@ class ListKeywords(LibraryComponent):
     def verify_combobox_selection(self, locator, expected):
         """
         Verifies the selected value of a combobox.
-        
+
         ``locator`` is the locator of the combobox.
 
         ``expected`` is the expected selection value.

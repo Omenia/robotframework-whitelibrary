@@ -10,7 +10,7 @@ class SliderKeywords(LibraryComponent):
         Sets a slider to the specified value.
 
         ``locator`` is the locator of the slider.
-        
+
         ``value`` is the value to set.
         """
         slider = self.state._get_typed_item_by_locator(Slider, locator)

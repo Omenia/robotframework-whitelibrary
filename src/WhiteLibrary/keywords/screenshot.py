@@ -5,7 +5,7 @@ from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
 from robot.utils import get_link_path
 
-from System.Drawing import Bitmap
+from System.Drawing import Bitmap   # noqa: F401
 from System.Drawing.Imaging import ImageFormat
 from TestStack.White import Desktop
 
@@ -35,7 +35,7 @@ class ScreenshotKeywords(LibraryComponent):
     def take_screenshots_on_failure(self, status):
         """
         Disables or enables automatic screenshot creation on failure.
-        
+
         ``status`` is the desired state (True/False) of automatic creation.
         """
         if (str(status).lower() == 'false'):

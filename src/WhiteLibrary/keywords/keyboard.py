@@ -1,6 +1,6 @@
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
-from TestStack.White.InputDevices import Keyboard
+from TestStack.White.InputDevices import Keyboard   # noqa: F401
 from TestStack.White.WindowsAPI import KeyboardInput
 
 
@@ -14,7 +14,7 @@ SPECIAL_KEYS = ["SHIFT", "CONTROL", "ALT", "LEFT_ALT", "RIGHT_ALT", "RETURN",
 
 
 class KeyboardKeywords(LibraryComponent):
-    @keyword    
+    @keyword
     def press_special_key(self, key):
         """
         Press a special key (Ctrl, tab, alt for example).
@@ -63,7 +63,7 @@ class KeyboardKeywords(LibraryComponent):
         Press a key or keys.
 
         ``keys`` is the key or keys to press.
-        
+
         Example:
         | Press Keys | a |
         | Press Keys | Text with special characters! |
