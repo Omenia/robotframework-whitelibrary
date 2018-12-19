@@ -105,7 +105,8 @@ class DynamicCore(HybridCore):
     def get_keyword_arguments(self, name):
         kw = self.keywords[name] if name != '__init__' else self.__init__
         args, defaults, varargs, kwargs = self._get_arg_spec(kw)
-        args += ['{}={}'.format(name, value) for name, value in defaults]
+        args += ['{}={}'.format(arg_name, arg_value)
+                 for arg_name, arg_value in defaults]
         if varargs:
             args.append('*{}'.format(varargs))
         if kwargs:
