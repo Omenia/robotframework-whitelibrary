@@ -15,3 +15,14 @@ class ProgressbarKeywords(LibraryComponent):
         """
         progressbar = self.state._get_typed_item_by_locator(ProgressBar, locator)
         self.state._verify_value(float(expected), progressbar.Value)
+
+    @keyword
+    def get_progressbar_value(self, locator):
+        """
+        Gets the value of a progress bar.
+
+        ``locator`` is the locator of the progress bar.
+
+        """
+        progressbar = self.state._get_typed_item_by_locator(ProgressBar, locator)
+        return progressbar.Value

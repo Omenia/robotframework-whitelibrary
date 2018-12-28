@@ -122,10 +122,22 @@ Verify Slider
     Set Slider Value       sladdu    4.20
     Verify Slider Value    sladdu    4.20
 
+Verify Get Slider Value
+    Set Slider Value       sladdu    4.20
+    ${slider_value}=  Get Slider Value    sladdu
+    Should Be Equal     ${slider_value}   4.20
+
 Verify Progressbar
     Verify Progressbar Value    proggis    4
     Click Button    progressBtn
     Verify Progressbar Value    proggis    24
+
+Verify Get Progressbar Value
+    ${progressbar_value}=   Get Progressbar Value    proggis
+    Should Be Equal   ${progressbar_value}  4
+    Click Button    progressBtn
+    ${progressbar_value}=   Get Progressbar Value    proggis
+    Should Be Equal   ${progressbar_value}  24
 
 Verify Check Boxes
     Verify Check Box    cb_omena    ${FALSE}
