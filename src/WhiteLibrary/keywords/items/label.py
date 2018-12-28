@@ -15,3 +15,14 @@ class LabelKeywords(LibraryComponent):
         """
         label = self.state._get_typed_item_by_locator(Label, locator)
         self.state._verify_value(expected, label.Text)
+
+    @keyword
+    def get_text_from_label(self, locator):
+        """
+        Gets text from a label.
+
+        ``locator`` is the locator of the label.
+
+        """
+        label = self.state._get_typed_item_by_locator(Label, locator)
+        return label.Text
