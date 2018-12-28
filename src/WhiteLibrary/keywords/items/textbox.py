@@ -27,3 +27,14 @@ class TextBoxKeywords(LibraryComponent):
         """
         textbox = self.state._get_typed_item_by_locator(TextBox, locator)
         self.state._verify_value(expected, textbox.Text)
+
+    @keyword
+    def get_text_from_textbox(self, locator):
+        """
+        Gets text from text box.
+
+        ``locator`` is the locator of the text box.
+
+        """
+        textbox = self.state._get_typed_item_by_locator(TextBox, locator)
+        return textbox.Text

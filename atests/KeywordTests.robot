@@ -27,6 +27,12 @@ Verify Text
     Input Text To Textbox     txtA    Antti
     Verify Text In Textbox    txtA    Antti
 
+Verify Get Text
+    ${input_txt}=    Set Variable    Kilroy Was Here!
+    Input Text To Textbox     txtA    ${input_txt}
+    ${output_txt}=   Get Text From Textbox     txtA
+    Should Be Equal As Strings    ${output_txt}    ${input_txt}
+
 Verify Operation Selections
     Select Combobox Value    op    +
     Verify + In Operators
@@ -112,14 +118,14 @@ Verify Check Boxes
 
 Verify ListBox
     Select Listbox Value    list_box    Teppo
-	Listbox Selection Should Be    list_box    Teppo
-	Run Keyword And Expect Error    Expected listbox selection to be Yamis, was Teppo
-	...                             Listbox Selection Should Be	   list_box    Yamis
+    Listbox Selection Should Be    list_box    Teppo
+    Run Keyword And Expect Error    Expected listbox selection to be Yamis, was Teppo
+    ...                             Listbox Selection Should Be    list_box    Yamis
 
 Click An Item
-	Click Item    rb_ismo
-	Verify Radio Button    rb_ismo    ${TRUE}
-	
+    Click Item    rb_ismo
+    Verify Radio Button    rb_ismo    ${TRUE}
+
 Calculate Using Index Locators
     Input Text To Textbox    index=0    1
     Select Combobox Value    index=0    +
@@ -154,10 +160,10 @@ Switch Tab
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Open Menu By Holding Keys
-	Hold Special Key    ALT
-	Press Keys    h
-	Leave Special Key    ALT
-	Verify Menu    text=About    About
+    Hold Special Key    ALT
+    Press Keys    h
+    Leave Special Key    ALT
+    Verify Menu    text=About    About
 
 Handle Tree Nodes
     [Setup]    Setup for Tab 2 Tests
@@ -189,7 +195,7 @@ Click Button By Pressing Special Keys
 Try To Press Unsupported Special Key
     [Setup]    Run Keywords    Attach Main Window    AND    Take Screenshots On Failure    false
     Run Keyword And Expect Error    AttributeError: Allowed special keys are*    Press Special Key    PANIC	
-	[Teardown]    Run Keywords    Take Screenshots On Failure    true    AND    Clean App
+    [Teardown]    Run Keywords    Take Screenshots On Failure    true    AND    Clean App
 
 Write To Textbox By Pressing Keys
     Activate Textbox    txtA
@@ -214,7 +220,7 @@ Clean App
     Select Combobox Index    op    0
     Input Text To Textbox    tbResult    ${EMPTY}
     Click Button    progressResetBtn
-	Select Radio Button    rb_peke
+    Select Radio Button    rb_peke
 
 Verify ${operator} In Operators
     Verify Combobox Item    op    ${operator}
