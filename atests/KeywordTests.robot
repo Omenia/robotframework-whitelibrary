@@ -52,6 +52,14 @@ Verify Operation Selections
 Verify Button
     Verify Button    btnCalc    Calculate
 
+Verify Button Text Should Be
+    Button Text Should Be   btnCalc    Calculate
+    Button Text Should Be   btnCalc    calculate    case_sensitive=False
+
+Verify Button Text Should Contain
+    Button Text Should Contain   btnCalc    alcu    case_sensitive=True
+    Button Text Should Contain   btnCalc    ULATE   case_sensitive=False
+
 Verify Menu
     Verify Menu          text=Help    Help
     Click Menu Button    text=Help

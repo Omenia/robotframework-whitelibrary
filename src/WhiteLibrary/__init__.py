@@ -99,6 +99,20 @@ class WhiteLibrary(DynamicCore):
             if self.screenshot_type == 'desktop' and self.screenshots_enabled:
                 self.screenshooter.take_desktop_screenshot()
 
+    def _contains_string_value(self, expected, actual, case_sensitive=True):
+        expected_value = expected if not case_sensitive else expected.upper()
+        actual_value = actual if not case_sensitive else actual.upper()
+
+        if expected_value not in actual_value:
+            raise AssertionError("Expected value {} not found in {}".format(expected, actual))
+
+    def _verify_string_value(self, expected, actual, case_sensitive=True):
+        expected_value = expected if not case_sensitive else expected.upper()
+        actual_value = actual if not case_sensitive else actual.upper()
+
+        if expected_value != actual_value:
+            raise AssertionError("Expected value {}, but found {}".format(expected, actual))
+
     def _verify_value(self, expected, actual):
         if expected != actual:
             raise AssertionError("Expected value {}, but found {}".format(expected, actual))
