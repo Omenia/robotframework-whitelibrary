@@ -27,3 +27,14 @@ class SliderKeywords(LibraryComponent):
         """
         slider = self.state._get_typed_item_by_locator(Slider, locator)
         self.state._verify_value(float(expected), slider.Value)
+
+    @keyword
+    def get_slider_value(self, locator):
+        """
+        Gets a slider value.
+
+        ``locator`` is the locator of the slider.
+
+        """
+        slider = self.state._get_typed_item_by_locator(Slider, locator)
+        return slider.Value
