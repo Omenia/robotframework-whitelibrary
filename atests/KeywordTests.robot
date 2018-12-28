@@ -18,6 +18,10 @@ Verify Labels
     Verify Label    lblB    Value 2
     Verify Label    lblResult    Result
 
+Verify Get Text From Label
+    ${txt}=   Get Text From Label   lblResult
+    Should Be Equal As Strings    ${txt}    Result
+
 Write to Textbox
     Input Text To Textbox    txtA    Ismo
     Input Text To Textbox    txtB    Aro
