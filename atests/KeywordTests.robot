@@ -103,6 +103,12 @@ Verify Radio Buttons
     Select Radio Button    rb_ismo
     Verify Radio Button    rb_ismo    ${TRUE}
 
+Verify Get Radio Button State
+    ${old_button_state}=    Get Radio Button State   rb_ismo
+    Select Radio Button     rb_ismo
+    ${new_button_state}=    Get Radio Button State   rb_ismo
+    Should Not Be Equal     ${old_button_state}   ${new_button_state}
+
 Verify Slider
     Verify Slider Value    sladdu    0
     Set Slider Value       sladdu    4.20
@@ -119,6 +125,12 @@ Verify Check Boxes
     Verify Check Box    cb_omena    ${TRUE}
     Verify Check Box    cb_omen    ${FALSE}
     Verify Check Box    cb_omenia    ${FALSE}
+
+Verify Get Check Box State
+    ${old_check_box_state}=   Get Check Box State   cb_omena
+    Toggle Check Box    cb_omena
+    ${new_check_box_state}=   Get Check Box State   cb_omena
+    Should Not Be Equal     ${old_check_box_state}   ${new_check_box_state}
 
 Verify ListBox
     Select Listbox Value    list_box    Teppo

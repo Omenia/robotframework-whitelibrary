@@ -57,6 +57,17 @@ class ButtonKeywords(LibraryComponent):
         self.state._verify_value(bool(expected), radiobutton.IsSelected)
 
     @keyword
+    def get_radio_button_state(self, locator):
+        """
+        Gets the state of a radio button.
+
+        ``locator`` is the locator of the radio button.
+
+        """
+        radiobutton = self.state._get_typed_item_by_locator(RadioButton, locator)
+        return radiobutton.IsSelected
+
+    @keyword
     def toggle_check_box(self, locator):
         """
         Toggles a check box.
@@ -77,3 +88,14 @@ class ButtonKeywords(LibraryComponent):
         """
         checkbox = self.state._get_typed_item_by_locator(CheckBox, locator)
         self.state._verify_value(bool(expected), checkbox.IsSelected)
+
+    @keyword
+    def get_check_box_state(self, locator):
+        """
+        Gets the state of a check box.
+
+        ``locator`` is the locator of the check box.
+
+        """
+        checkbox = self.state._get_typed_item_by_locator(CheckBox, locator)
+        return checkbox.IsSelected
