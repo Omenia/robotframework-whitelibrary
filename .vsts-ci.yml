@@ -6,7 +6,7 @@ steps:
 - task: NuGetToolInstaller@0
   inputs:
     versionSpec: '4.3.0'
-    
+
 - script: |
       nuget restore src\WhiteLibrary\packages.config -PackagesDirectory $(nuget)
   displayName: Download NuGet packages
@@ -31,10 +31,10 @@ steps:
   continueOnError: false
   displayName: Copy build artifacts to deployment directory
 
-- script: | 
+- script: |
       python setup.py install
   displayName: Install WhiteLibrary
-  
+
 - script: |
     set DEPLOYMENT=$(deployment)
     run_tests.cmd --exclude no_ci --xunit xunit.xml
