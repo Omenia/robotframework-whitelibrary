@@ -55,7 +55,6 @@ class WhiteLibrary(DynamicCore):
     ROBOT_LISTENER_API_VERSION = 2
 
     def __init__(self):
-        self.app = None
         self.window = None
         self.screenshooter = None
         self.ROBOT_LIBRARY_LISTENER = self
