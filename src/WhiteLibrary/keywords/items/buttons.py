@@ -26,7 +26,6 @@ class ButtonKeywords(LibraryComponent):
         button = self.state._get_typed_item_by_locator(Button, locator)
         self.state._verify_string_value(expected_text, button.Text, case_sensitive)
 
-
     @keyword
     def button_text_should_contain(self, locator, expected_text, case_sensitive=True):
         """Verifies expected text is found in a button.
@@ -39,7 +38,6 @@ class ButtonKeywords(LibraryComponent):
         """
         button = self.state._get_typed_item_by_locator(Button, locator)
         self.state._contains_string_value(expected_text, button.Text, case_sensitive)
-
 
     @keyword
     def verify_button(self, locator, expected):

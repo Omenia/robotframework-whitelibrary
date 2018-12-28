@@ -123,9 +123,9 @@ Verify Slider
     Verify Slider Value    sladdu    4.20
 
 Verify Get Slider Value
-    Set Slider Value       sladdu    4.20
+    Set Slider Value       sladdu    4.2
     ${slider_value}=  Get Slider Value    sladdu
-    Should Be Equal     ${slider_value}   4.20
+    Should Be Equal     ${slider_value}   ${4.2}
 
 Verify Progressbar
     Verify Progressbar Value    proggis    4
@@ -134,10 +134,10 @@ Verify Progressbar
 
 Verify Get Progressbar Value
     ${progressbar_value}=   Get Progressbar Value    proggis
-    Should Be Equal   ${progressbar_value}  4
+    Should Be Equal   ${progressbar_value}  ${4.0}
     Click Button    progressBtn
     ${progressbar_value}=   Get Progressbar Value    proggis
-    Should Be Equal   ${progressbar_value}  24
+    Should Be Equal   ${progressbar_value}  ${24}
 
 Verify Check Boxes
     Verify Check Box    cb_omena    ${FALSE}
