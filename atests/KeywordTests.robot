@@ -25,7 +25,8 @@ Verify Get Text From Label
 Write to Textbox
     Input Text To Textbox    txtA    Ismo
     Input Text To Textbox    txtB    Aro
-    Input Text To Textbox   passwordBox    viisi
+    Input Text To Textbox    text=Calc1    Ismo!
+    Input Text To Textbox    passwordBox    viisi
 
 Verify Text
     Input Text To Textbox     txtA    Antti

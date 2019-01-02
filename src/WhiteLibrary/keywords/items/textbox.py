@@ -5,16 +5,16 @@ from WhiteLibrary.keywords.robotlibcore import keyword
 
 class TextBoxKeywords(LibraryComponent):
     @keyword
-    def input_text_to_textbox(self, locator, text):
+    def input_text_to_textbox(self, locator, input):
         """
         Writes text to a textbox.
 
         ``locator`` is the locator of the text box.
 
-        ``text`` is the text to write.
+        ``input`` is the text to write.
         """
         textBox = self.state._get_typed_item_by_locator(TextBox, locator)
-        textBox.Text = text
+        textBox.Text = input
 
     @keyword
     def verify_text_in_textbox(self, locator, expected):
