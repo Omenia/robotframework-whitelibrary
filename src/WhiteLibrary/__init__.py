@@ -93,7 +93,7 @@ class WhiteLibrary(DynamicCore):
         if "=" not in locator:
             locator = "id=" + locator
 
-        search_strategy, locator_value = locator.split("=")
+        search_strategy, locator_value = locator.split("=", 1)
         if search_strategy == "index":
             locator_value = int(locator_value)
 
