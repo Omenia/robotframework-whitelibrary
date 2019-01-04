@@ -21,9 +21,11 @@ from WhiteLibrary.keywords.robotlibcore import DynamicCore   # noqa: E402
 from WhiteLibrary import version   # noqa: E402
 
 
-STRATEGIES = {"id": "ByAutomationId",
-              "text": "ByText",
-              "index": "Indexed"}
+STRATEGIES = dict(id={"method": "ByAutomationId"},
+                  text={"method": "ByText"},
+                  index={"method": "Indexed"},
+                  helptext={"method": "ByNativeProperty", "property": "HelpTextProperty"},
+                  classname={"method": "ByNativeProperty", "property": "ClassNameProperty"})
 
 
 class WhiteLibrary(DynamicCore):
@@ -31,17 +33,20 @@ class WhiteLibrary(DynamicCore):
     It is a wrapper for [https://github.com/TestStack/White | TestStack.White].
 
     = Applications and windows =
-    
+
 
     = Item locators =
     Keywords that access UI items (e.g. `Click Button`) use a ``locator`` argument.
     The locator consists of a locator prefix that specifies the search criteria, and the locator value.
 
-    | = Search criteria = | = Prefix =              | = Description =                 |
-    | By AutomationID     | id (or no prefix)       | Search by AutomationID. If no prefix is given, the item is searched by AutomationID by default. |
-    | By text             | text                    | Search by exact item text/name. |
-    | Indexed             | index                   | Search by item index.           |
-    | By native property  | property name, e.g. ClassNameProperty  | Search by native property. |
+    The following locator prefixes are available:
+
+    | = Prefix =        | = Description =                 |
+    | id (or no prefix) | Search by AutomationID. If no prefix is given, the item is searched by AutomationID by default. |
+    | text              | Search by exact item text/name. |
+    | index             | Search by item index.           |
+    | classname         | Search by ClassNameProperty.    |
+    | helptext          | Search by HelpTextProperty.     |
 
     Examples:
 
@@ -87,29 +92,25 @@ class WhiteLibrary(DynamicCore):
     def _get_search_criteria(self, locator):
         if "=" not in locator:
             locator = "id=" + locator
-        try:
-            search_method, search_params = self._get_search_method(locator)
-        except AttributeError as e:
-            raise ValueError("Invalid locator prefix. " + e.message)
 
-        method = getattr(SearchCriteria, search_method)
-        logger.debug("Search method: {}, parameters: {}".format(method, search_params))
-        return method(*search_params)
-
-    def _get_search_method(self, locator):
         search_strategy, locator_value = locator.split("=")
         if search_strategy == "index":
             locator_value = int(locator_value)
 
-        if search_strategy in STRATEGIES:
-            search_method = STRATEGIES[search_strategy]
-            search_params = (locator_value,)
-        else:
-            search_method = "ByNativeProperty"
-            property_name = getattr(AutomationElement, search_strategy)
-            search_params = (property_name, locator_value)
+        try:
+            search_method = STRATEGIES[search_strategy]["method"]
+        except KeyError:
+            raise ValueError("'{}' is not a valid locator prefix".format(search_strategy))
 
-        return search_method, search_params
+        if search_method == "ByNativeProperty":
+            property_name = STRATEGIES[search_strategy]["property"]
+            property_name = getattr(AutomationElement, property_name)
+            search_params = (property_name, locator_value)
+        else:
+            search_params = (locator_value,)
+
+        method = getattr(SearchCriteria, search_method)
+        return method(*search_params)
 
     def _end_keyword(self, name, attrs):
         if attrs['status'] == 'FAIL':
