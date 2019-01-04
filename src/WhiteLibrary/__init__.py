@@ -4,6 +4,7 @@ from robot.api import logger   # noqa: F401
 dll_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin', 'TestStack.White.dll')
 clr.AddReference('System')
 clr.AddReference(dll_path)
+from System.Windows.Automation import AutomationElement   # noqa: E402
 from TestStack.White.UIItems.Finders import SearchCriteria   # noqa: E402
 from WhiteLibrary.keywords import ApplicationKeywords, KeyboardKeywords, WindowKeywords, ScreenshotKeywords   # noqa: E402
 from WhiteLibrary.keywords.items import (ButtonKeywords,
@@ -30,18 +31,17 @@ class WhiteLibrary(DynamicCore):
     It is a wrapper for [https://github.com/TestStack/White | TestStack.White].
 
     = Applications and windows =
-
+    
 
     = Item locators =
     Keywords that access UI items (e.g. `Click Button`) use a ``locator`` argument.
     The locator consists of a locator prefix that specifies the search criteria, and the locator value.
 
-    The following properties can be used in locators:
-
-    | = Prefix =        | = Description =                 |
-    | id (or no prefix) | Search by AutomationID. If no prefix is given, the item is searched by AutomationID by default. |
-    | text              | Search by exact item text/name. |
-    | index             | Search by item index.           |
+    | = Search criteria = | = Prefix =              | = Description =                 |
+    | By AutomationID     | id (or no prefix)       | Search by AutomationID. If no prefix is given, the item is searched by AutomationID by default. |
+    | By text             | text                    | Search by exact item text/name. |
+    | Indexed             | index                   | Search by item index.           |
+    | By native property  | property name, e.g. ClassNameProperty  | Search by native property. |
 
     Examples:
 
@@ -87,12 +87,29 @@ class WhiteLibrary(DynamicCore):
     def _get_search_criteria(self, locator):
         if "=" not in locator:
             locator = "id=" + locator
+        try:
+            search_method, search_params = self._get_search_method(locator)
+        except AttributeError as e:
+            raise ValueError("Invalid locator prefix. " + e.message)
+
+        method = getattr(SearchCriteria, search_method)
+        logger.debug("Search method: {}, parameters: {}".format(method, search_params))
+        return method(*search_params)
+
+    def _get_search_method(self, locator):
         search_strategy, locator_value = locator.split("=")
         if search_strategy == "index":
             locator_value = int(locator_value)
-        search_method = STRATEGIES[search_strategy]
-        method = getattr(SearchCriteria, search_method)
-        return method(locator_value)
+
+        if search_strategy in STRATEGIES:
+            search_method = STRATEGIES[search_strategy]
+            search_params = (locator_value,)
+        else:
+            search_method = "ByNativeProperty"
+            property_name = getattr(AutomationElement, search_strategy)
+            search_params = (property_name, locator_value)
+
+        return search_method, search_params
 
     def _end_keyword(self, name, attrs):
         if attrs['status'] == 'FAIL':
