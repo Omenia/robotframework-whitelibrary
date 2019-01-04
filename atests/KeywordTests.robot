@@ -170,6 +170,16 @@ Calculate Using Index Locators
     Click Button    btnCalc
     Verify Text In Textbox    index=3    3
 
+Calculate Using Native Property Locators
+    Input Text To Textbox    HelpTextProperty=First addend    12
+    Select Combobox Value    index=0    +
+    Input Text To Textbox    HelpTextProperty=Second addend    21
+    Click Button    btnCalc
+    Verify Text In Textbox    HelpTextProperty=Sum    33
+
+Unexisting Locator
+    Run Keyword And Expect Error    *    Click Item    unexisting-locator=whatever
+
 Take screenshots
     [Setup]    Screenshot Setup
     Take Desktop Screenshot
