@@ -52,7 +52,7 @@
                             <ComboBoxItem Content="%"/>
                             <ComboBoxItem Content="/"/>
                         </ComboBox>
-                        <Button Content="Calculate" Name="btnCalc" HorizontalAlignment="Left" Margin="0,5,0,5" VerticalAlignment="Top" 
+                        <Button Content="Calculate (=)" Name="btnCalc" HorizontalAlignment="Left" Margin="0,5,0,5" VerticalAlignment="Top" 
                 Width="75" Click="calculate_click" Grid.Column="1" Grid.Row="4">
 
                         </Button>

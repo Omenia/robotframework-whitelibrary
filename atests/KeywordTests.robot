@@ -1,7 +1,6 @@
 *** Variables ***
 ${TEST APPLICATION}      ${EXECDIR}${/}UIAutomationTest${/}bin${/}Debug${/}UIAutomationTest.exe
 
-
 *** Settings ***
 Library    OperatingSystem
 Library    String
@@ -10,7 +9,6 @@ Suite Setup    Launch App
 Suite Teardown    Close App
 Test Setup    Attach Main Window
 Test Teardown    Clean App
-
 
 *** Test Cases ***
 Verify Labels
@@ -51,15 +49,15 @@ Verify Operation Selections
     Verify % In Operators
 
 Verify Button
-    Verify Button    btnCalc    Calculate
+    Verify Button    btnCalc    Calculate (=)
 
 Verify Button Text Should Be
-    Button Text Should Be   btnCalc    Calculate
-    Button Text Should Be   btnCalc    calculate    case_sensitive=False
+    Button Text Should Be   btnCalc    Calculate (=)
+    Button Text Should Be   btnCalc    calculate (=)    case_sensitive=False
 
 Verify Button Text Should Contain
     Button Text Should Contain   btnCalc    alcu    case_sensitive=True
-    Button Text Should Contain   btnCalc    ULATE   case_sensitive=False
+    Button Text Should Contain   btnCalc    ULaTE   case_sensitive=False
 
 Verify Menu
     Verify Menu          text=Help    Help
@@ -177,8 +175,16 @@ Calculate Using Native Property Locators
     Click Button    btnCalc
     Verify Text In Textbox    helptext=Sum    33
 
+Click Button With = In Locator Value
+    Input Text To Textbox    txtA    1
+    Select Combobox Value    op    +
+    Input Text To Textbox    txtB    2
+    Click Button    text=Calculate (=)
+    Verify Text In Textbox    tbResult    3
+
 Unexisting Locator
-    Run Keyword And Expect Error    *    Click Item    unexisting-locator=whatever
+    ${error}    Run Keyword And Expect Error    *    Click Item    unexisting-locator=whatever
+    Should Contain    ${error}    'unexisting-locator' is not a valid locator prefix
 
 Take screenshots
     [Setup]    Screenshot Setup
