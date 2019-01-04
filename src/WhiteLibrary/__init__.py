@@ -33,7 +33,22 @@ class WhiteLibrary(DynamicCore):
     It is a wrapper for [https://github.com/TestStack/White | TestStack.White].
 
     = Applications and windows =
+    To interact with UI items, the correct application and window must be attached to WhiteLibrary.
 
+    When application is started with `Launch Application`, the keyword also attaches the application to WhiteLibrary.
+    Attaching a running application is done with `Attach Application By Name` or `Attach Application By Id`.
+
+    Once the application is attached, the window to interact with is attached with `Attach Window`.
+
+    Examples:
+
+    | # Launch application, no separate step for attaching application needed | |
+    | `Launch Application` | C:\\myApplication.exe |
+    | `Attach Window`      | Main window |
+    | | |
+    | # Switch to an application that is already running | |
+    | `Attach Application By Name` | calc1 |
+    | `Attach Window`              | Calculator |
 
     = Item locators =
     Keywords that access UI items (e.g. `Click Button`) use a ``locator`` argument.
@@ -50,10 +65,10 @@ class WhiteLibrary(DynamicCore):
 
     Examples:
 
-    | Click Button | myButton         | # clicks button by its AutomationID |
-    | Click Button | id=myButton      | # clicks button by its AutomationID |
-    | Click Button | text=Click here! | # clicks button by the button text  |
-    | Click Button | index=2          | # clicks button whose index is 2    |
+    | `Click Button` | myButton         | # clicks button by its AutomationID |
+    | `Click Button` | id=myButton      | # clicks button by its AutomationID |
+    | `Click Button` | text=Click here! | # clicks button by the button text  |
+    | `Click Button` | index=2          | # clicks button whose index is 2    |
     """
     ROBOT_LIBRARY_VERSION = version.VERSION
     ROBOT_LIBRARY_SCOPE = "Global"
