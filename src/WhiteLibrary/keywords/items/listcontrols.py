@@ -45,16 +45,16 @@ class ListKeywords(LibraryComponent):
         combobox.Select(value)
 
     @keyword
-    def select_combobox_index(self, locator, index):
+    def select_combobox_index(self, locator, item_index):
         """
         Selects a value from combobox by using its index.
 
         ``locator`` is the locator of the combobox.
 
-        ``index`` is the index to be selected.
+        ``item_index`` is the index to be selected.
         """
         combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
-        combobox.Select(int(index))
+        combobox.Select(int(item_index))
 
     @keyword
     def verify_combobox_item(self, locator, expected):
