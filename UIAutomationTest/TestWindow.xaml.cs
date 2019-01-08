@@ -157,7 +157,7 @@ namespace UIAutomationTest
             ListViewItem node = sender as ListViewItem;
             if (node != null)
             {
-                selectionIndicatorLabel.Content = node.Content + " " + message;
+                selectionIndicatorLabel.Content = node.Parent.GetType() + " " + message;
             }
             e.Handled = true;
 

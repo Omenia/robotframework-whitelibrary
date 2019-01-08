@@ -1,7 +1,8 @@
 from TestStack.White.UIItems.ListBoxItems import ComboBox, ListBox
+from TestStack.White.UIItems import ListView
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
-
+from robot.api import logger
 
 class ListKeywords(LibraryComponent):
     @keyword
@@ -79,3 +80,29 @@ class ListKeywords(LibraryComponent):
         """
         combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
         self.state._verify_value(expected, combobox.EditableText)
+
+    @keyword
+    def select_listview_row_by_value(self, locator, value):
+        """
+        Selects a value from a listview.
+
+        ``locator`` is the locator of the listview.
+
+        ``value`` is the value to be selected.
+        """
+
+        logger.debug(locator, html)
+        listview = self.state._get_typed_item_by_locator(ListView , locator)
+        listview.Select(value)
+
+    @keyword
+    def select_listview_row_by_index(self, locator, index):
+        """
+        Selects a value from a listview.
+
+        ``locator`` is the locator of the listview.
+
+        ``value`` is the value to be selected.
+        """
+        listview = self.state._get_typed_item_by_locator(ListView , locator)
+        listview.Select(int(value))

@@ -245,8 +245,8 @@ Handle ToolStripButtons
 Handle ListView
     [Tags]    under_test
     [Setup]    Setup for Tab 2 Tests
-    Select ListView Row By Value    locator    row_value
-    Select ListView Row By Index    locator    row_index
+    #Select ListView Row By Value    list_view    ListView item 1
+    Select ListView Row By Index    list_view    2
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Right Click An Item
