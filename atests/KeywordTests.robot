@@ -255,6 +255,11 @@ Write To Textbox By Pressing Keys
     Press Keys    Text and (123}!
     Verify Text In Textbox    txtA    Text and (123}!
 
+List UI Items
+    ${items}    Get Items    control_type=Button
+    ${count}    Get Length    ${items}
+    Should Be True    ${count} > 1
+
 *** Keywords ***
 Launch App
     Set Log Level    Info
