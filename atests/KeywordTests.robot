@@ -233,7 +233,6 @@ Handle Tree Nodes
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Handle ToolStripButtons
-    [Tags]    under_test
     [Setup]    Setup for Tab 2 Tests
     Click Button    text=Toolstrip button 1
     Toolstrip button 1 Should Be Clicked
@@ -241,6 +240,13 @@ Handle ToolStripButtons
     Toolstrip button 2 Should Be Clicked
     Click Button    text=Toolstrip button 3
     Toolstrip button 3 Should Be Clicked
+    [Teardown]    Select Tab Page    tabControl    Tab1
+
+Handle ListView
+    [Tags]    under_test
+    [Setup]    Setup for Tab 2 Tests
+    Select ListView Row By Value    locator    row_value
+    Select ListView Row By Index    locator    row_index
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Right Click An Item

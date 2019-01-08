@@ -141,6 +141,27 @@ namespace UIAutomationTest
             e.Handled = true;
 
         }
+        
+        private void listViewItemSelect(object sender, RoutedEventArgs e)
+        {
+            listViewEvent(sender, e, "selected");
+        }
+
+        private void listViewItemDoubleClick(object sender, RoutedEventArgs e)
+        {
+            listViewEvent(sender, e, "double clicked");
+        }
+
+        private void listViewEvent(object sender, RoutedEventArgs e, string message)
+        {
+            ListViewItem node = sender as ListViewItem;
+            if (node != null)
+            {
+                selectionIndicatorLabel.Content = node.Content + " " + message;
+            }
+            e.Handled = true;
+
+        }
 
     }
 }

@@ -10,6 +10,10 @@
                 <EventSetter Event="MouseRightButtonDown" Handler="treeNodeRightClick"/>
                 <EventSetter Event="Expanded" Handler="treeNodeExpanded"/>
             </Style>
+            <Style TargetType="{x:Type ListViewItem}">
+                <EventSetter Event="Selected" Handler="listViewItemSelect"/>
+                <EventSetter Event="MouseDoubleClick" Handler="listViewItemDoubleClick"/>
+            </Style>
         </Grid.Resources>
         <ScrollViewer>
             <TabControl AutomationProperties.AutomationId="tabControl" Grid.ColumnSpan="2" Margin="0,0,0,0.2">
