@@ -1,5 +1,5 @@
 import os
-from setuptools import setup
+from setuptools import setup, find_packages
 
 version_data = {}
 with open(os.path.join("src", "WhiteLibrary", "version.py")) as f:
@@ -28,7 +28,7 @@ setup(name="robotframework-whitelibrary",
       author_email="to.be.added@noexist89a887.org",
       url="https://github.com/Omenia/robotframework-whitelibrary",
       install_requires=["pythonnet", "robotframework"],
-      packages=["WhiteLibrary", "WhiteLibrary.keywords", "WhiteLibrary.keywords.items"],
+      packages=find_packages("src"),
       package_dir={"WhiteLibrary": "src/WhiteLibrary"},
       package_data={"WhiteLibrary": ["bin/*.dll"]},
       classifiers=["Programming Language :: Python :: 2",
