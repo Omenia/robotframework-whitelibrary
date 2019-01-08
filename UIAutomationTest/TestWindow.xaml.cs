@@ -127,8 +127,20 @@ namespace UIAutomationTest
         }
 
         private void toolStripButtonClick(object sender, RoutedEventArgs e)
+        {            
+            toolStripButtonEvent(sender, e, "clicked");
+        }
+
+        private void toolStripButtonEvent(object sender, RoutedEventArgs e, string message)
         {
+            if (sender != null)
+            {
+                Button node = sender as Button;
+                selectionIndicatorLabel.Content = node.Content + " " + message;
+            }
+            e.Handled = true;
 
         }
+
     }
 }

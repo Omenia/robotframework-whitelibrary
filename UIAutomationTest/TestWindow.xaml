@@ -12,83 +12,85 @@
             </Style>
         </Grid.Resources>
         <ScrollViewer>
-        <TabControl AutomationProperties.AutomationId="tabControl" Grid.ColumnSpan="2" Margin="0,0,0,0.2">
-            <TabItem Header="Tab1">
+            <TabControl AutomationProperties.AutomationId="tabControl" Grid.ColumnSpan="2" Margin="0,0,0,0.2">
+                <TabItem Header="Tab1">
                     <StackPanel>
                         <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"></ColumnDefinition>
-                            <ColumnDefinition Width="150*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Menu IsMainMenu="True" Name="mainMenu" Width="auto" Height="22" Background="#FFA9D1F4" VerticalAlignment="Top" Margin="0,5,0,5" Grid.ColumnSpan="2" Grid.Row="0">
-                            <MenuItem Header="_Help" Name="menuHeader">
-                                <MenuItem Header="_About" Name="menuAbout" Click="menuAboutClick" Background="#FFA9D1F4"></MenuItem>
-                            </MenuItem>
-                        </Menu>
-                        <TextBox Height="23" Margin="0,5,0,5" Name="txtA" AutomationProperties.Name="Calc1" AutomationProperties.HelpText="First addend" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1">
-                        </TextBox>
-                        <TextBox Height="23" Margin="0,5,0,5" Name="txtB" AutomationProperties.HelpText="Second addend" VerticalAlignment="Top" Grid.Column="1" Grid.Row="3">
-                        </TextBox>
-                        <Label  Content="Value 1" Height="28" HorizontalAlignment="Left" Margin="0,5,0,5" Name="lblA"
-               VerticalAlignment="Top" Width="62" Grid.Column="0" Grid.Row="1">
-                        </Label>
-                        <Label Content="Value 2" Height="28" HorizontalAlignment="Left" Margin="0,5,0,5" Name="lblB" 
-               VerticalAlignment="Top" Width="62" Grid.Column="0" Grid.Row="3">
-                        </Label>
-                        <ComboBox x:Name="op" HorizontalAlignment="Left" Margin="0,5,0,5"
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15.326"></ColumnDefinition>
+                                <ColumnDefinition Width="134.674"/>
+                                <ColumnDefinition Width="150*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Menu IsMainMenu="True" Name="mainMenu" Width="auto" Height="22" Background="#FFA9D1F4" VerticalAlignment="Top" Margin="0,5,0,0" Grid.ColumnSpan="3" Grid.Row="0">
+                                <MenuItem Header="_Help" Name="menuHeader">
+                                    <MenuItem Header="_About" Name="menuAbout" Click="menuAboutClick" Background="#FFA9D1F4"></MenuItem>
+                                </MenuItem>
+                            </Menu>
+                            <TextBox Height="23" Margin="0,5,0,0" Name="txtA" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1">
+                            </TextBox>
+                            <TextBox Height="23" Margin="0,5,0,0" Name="txtB" VerticalAlignment="Top" Grid.Column="2" Grid.Row="3">
+                            </TextBox>
+                            <Label  Content="Value 1" Height="28" HorizontalAlignment="Left" Margin="0,5,0,0" Name="lblA"
+               VerticalAlignment="Top" Width="62" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            </Label>
+                            <Label Content="Value 2" Height="28" HorizontalAlignment="Left" Margin="0,5,0,0" Name="lblB"
+               VerticalAlignment="Top" Width="62" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2">
+                            </Label>
+                            <ComboBox x:Name="op" HorizontalAlignment="Left" Margin="0,5,0,0"
                   VerticalAlignment="Top" Width="75" IsEditable="True" IsReadOnly="True"
-                  SelectedIndex="0" Grid.Column="1" Grid.Row="2">
-                            <ComboBoxItem Content="+"/>
-                            <ComboBoxItem Content="*"/>
-                            <ComboBoxItem Content="-"/>
-                            <ComboBoxItem Content="%"/>
-                            <ComboBoxItem Content="/"/>
-                        </ComboBox>
-                        <Button Content="Calculate (=)" Name="btnCalc" HorizontalAlignment="Left" Margin="0,5,0,5" VerticalAlignment="Top" 
-                Width="75" Click="calculate_click" Grid.Column="1" Grid.Row="4">
+                  SelectedIndex="0" Grid.Column="2" Grid.Row="2">
+                                <ComboBoxItem Content="+"/>
+                                <ComboBoxItem Content="*"/>
+                                <ComboBoxItem Content="-"/>
+                                <ComboBoxItem Content="%"/>
+                                <ComboBoxItem Content="/"/>
+                            </ComboBox>
+                            <Button Content="Calculate" Name="btnCalc" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top"
+                Width="75" Click="calculate_click" Grid.Column="2" Grid.Row="4">
 
-                        </Button>
-                        <Label Content="Result" HorizontalAlignment="Left" Margin="0,5,0,5" VerticalAlignment="Top"
-               Width="62" Name="lblResult" Grid.Column="0" Grid.Row="5">
-                        </Label>
-                        <TextBox Height="23" Margin="0,5,0,5" Name="tbResult" AutomationProperties.HelpText="Sum" VerticalAlignment="Top" Grid.Column="1" Grid.Row="5" />
-                    </Grid>
-                    <StackPanel>
-                        <Slider Minimum="0" Maximum="10" IsSnapToTickEnabled="True" TickFrequency="1" Name="sladdu" VerticalAlignment="Top" Margin="10,20,20,10"></Slider>
-                        <GroupBox Header="More Options" Margin="0,10,0,10">
-                            <StackPanel VerticalAlignment="Bottom" Margin="0,0,0,5">
-                                <CheckBox Margin="4" Name="cb_omen" Content="Omen" />
-                                <CheckBox Margin="4" Name="cb_omena" Content="Omena" />
-                                <CheckBox Margin="4" Name="cb_omenia" Content="Omenia" />
+                            </Button>
+                            <Label Content="Result" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top"
+               Width="62" Name="lblResult" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2">
+                            </Label>
+                            <TextBox Height="23" Margin="0,5,0,0" Name="tbResult" VerticalAlignment="Top" Grid.Column="2" Grid.Row="5" />
+                        </Grid>
+                        <StackPanel>
+                            <Slider Minimum="0" Maximum="10" IsSnapToTickEnabled="True" TickFrequency="1" Name="sladdu" VerticalAlignment="Top" Margin="10,20,20,10"></Slider>
+                            <GroupBox Header="More Options" Margin="0,10,0,10">
+                                <StackPanel VerticalAlignment="Bottom" Margin="0,0,0,5">
+                                    <CheckBox Margin="4" Name="cb_omen" Content="Omen" />
+                                    <CheckBox Margin="4" Name="cb_omena" Content="Omena" />
+                                    <CheckBox Margin="4" Name="cb_omenia" Content="Omenia" />
+                                </StackPanel>
+                            </GroupBox>
+>>>>>>> UIAutomationTest: toolStripButton click event
+
+                            <StackPanel Margin="0,0,0,10">
+                                <Label Content="Password:" Height="26.46" HorizontalAlignment="Left" />
+                                <PasswordBox x:Name="passwordBox" Height="18.96" Margin="10,5,10,5" />
                             </StackPanel>
-                        </GroupBox>
 
-                        <StackPanel Margin="0,0,0,10">
-                            <Label Content="Password:" Height="26.46" HorizontalAlignment="Left" />
-                            <PasswordBox x:Name="passwordBox" Height="18.96" Margin="10,5,10,5" />
-                        </StackPanel>
+                            <Label Name="eventIndicatorLabel" MouseDoubleClick="doubleClickLabel">Double click me</Label>
+                            <ListBox Margin="30,0,25,0" x:Name="list_box" VerticalAlignment="Bottom" Grid.Column="1">
+                                <ListBox.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Change Name" Click="changeName" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}"/>
+                                    </ContextMenu>
+                                </ListBox.ContextMenu>
+                                <ListBoxItem Name="box_item_teppo">Teppo</ListBoxItem>
+                                <ListBoxItem>Toni</ListBoxItem>
+                                <ListBoxItem>Yamis</ListBoxItem>
+                            </ListBox>
 
-                        <Label Name="eventIndicatorLabel" MouseDoubleClick="doubleClickLabel">Double click me</Label>
-                        <ListBox Margin="30,0,25,0" x:Name="list_box" VerticalAlignment="Bottom" Grid.Column="1">
-                            <ListBox.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Change Name" Click="changeName" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}"/>
-                                </ContextMenu>
-                            </ListBox.ContextMenu>
-                            <ListBoxItem Name="box_item_teppo">Teppo</ListBoxItem>
-                            <ListBoxItem>Toni</ListBoxItem>
-                            <ListBoxItem>Yamis</ListBoxItem>
-                        </ListBox>
-
-                        <Grid Height="Auto" Margin="0,10,0,10">
+                            <Grid Height="Auto" Margin="0,10,0,10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="100"></ColumnDefinition>
                                     <ColumnDefinition Width="100"></ColumnDefinition>
@@ -99,21 +101,21 @@
                                 <Button  Content="Reset" Name="progressResetBtn" HorizontalAlignment="Left" Margin="0,5,0,5" Width="75" Click="progressReset" Grid.Column="1">
                                 </Button>
                                 <ProgressBar Minimum="0" Maximum="100" Name="proggis" Value="4" VerticalAlignment="Bottom" Height="24" Grid.Column="2" Margin="5,5,5,5"/>
-                        </Grid>
-                        <StackPanel Margin="0,0,0,0" >
-                            <RadioButton GroupName="Man" Content="Ismo" Margin="20,0,0,5" Name="rb_ismo" VerticalAlignment="Bottom"/>
-                            <RadioButton GroupName="Man" Content="Peke" IsChecked="True" Margin="20,0,0,5" Name="rb_peke" VerticalAlignment="Bottom"/>
+                            </Grid>
+                            <StackPanel Margin="0,0,0,0" >
+                                <RadioButton GroupName="Man" Content="Ismo" Margin="20,0,0,5" Name="rb_ismo" VerticalAlignment="Bottom"/>
+                                <RadioButton GroupName="Man" Content="Peke" IsChecked="True" Margin="20,0,0,5" Name="rb_peke" VerticalAlignment="Bottom"/>
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
-                </StackPanel>
-            </TabItem>
-            <TabItem Header="Tab2">
+                </TabItem>
+                <TabItem Header="Tab2">
                     <StackPanel Orientation="Vertical">
                         <Label Name="selectionIndicatorLabel">nothing selected</Label>
                         <ToolBar AutomationProperties.AutomationId="tools">
-                            <Button>Toolstrip button 1</Button>
-                            <Button>Toolstrip button 2</Button>
-                            <Button>Toolstrip button 3</Button>
+                            <Button Click="toolStripButtonClick">Toolstrip button 1</Button>
+                            <Button Click="toolStripButtonClick">Toolstrip button 2</Button>
+                            <Button Click="toolStripButtonClick">Toolstrip button 3</Button>
                         </ToolBar>
                         <ListView AutomationProperties.AutomationId="list_view">
                             <ListViewItem>ListView item 1</ListViewItem>
@@ -130,7 +132,7 @@
                         </TreeView>
                     </StackPanel>
                 </TabItem>
-        </TabControl>
-    </ScrollViewer>
+            </TabControl>
+        </ScrollViewer>
     </Grid>
 </Window>
