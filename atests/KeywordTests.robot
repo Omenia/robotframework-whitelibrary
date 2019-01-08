@@ -232,6 +232,17 @@ Handle Tree Nodes
     Tree node 1.1 Should Be Right-clicked
     [Teardown]    Select Tab Page    tabControl    Tab1
 
+Handle ToolStripButtons
+    [Tags]    under_test
+    [Setup]    Setup for Tab 2 Tests
+    Click Button    text=Toolstrip button 1
+    Toolstrip button 1 Should Be Clicked
+    Click Button    text=Toolstrip button 2
+    Toolstrip button 2 Should Be Clicked
+    Click Button    text=Toolstrip button 3
+    Toolstrip button 3 Should Be Clicked
+    [Teardown]    Select Tab Page    tabControl    Tab1
+
 Right Click An Item
     Right Click Item    text=Teppo
     Click Menu Button    text=Change Name
@@ -249,7 +260,7 @@ Click Button By Pressing Special Keys
 
 Try To Press Unsupported Special Key
     [Setup]    Run Keywords    Attach Main Window    AND    Take Screenshots On Failure    false
-    Run Keyword And Expect Error    AttributeError: Allowed special keys are*    Press Special Key    PANIC	
+    Run Keyword And Expect Error    AttributeError: Allowed special keys are*    Press Special Key    PANIC
     [Teardown]    Run Keywords    Take Screenshots On Failure    true    AND    Clean App
 
 Write To Textbox By Pressing Keys
