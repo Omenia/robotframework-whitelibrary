@@ -47,6 +47,8 @@ Verify Operation Selections
     Verify / In Operators
     Select Combobox Value    op    %
     Verify % In Operators
+    Select Combobox Index    index=0    1    #multiplication
+    Verify * In Operators
 
 Verify Button
     Verify Button    btnCalc    Calculate (=)
