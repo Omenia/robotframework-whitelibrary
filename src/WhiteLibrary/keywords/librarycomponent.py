@@ -1,5 +1,4 @@
 import clr
-
 clr.AddReference("TestStack.White")
 
 

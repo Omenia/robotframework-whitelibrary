@@ -1,7 +1,6 @@
 *** Variables ***
 ${TEST APPLICATION}      ${EXECDIR}${/}UIAutomationTest${/}bin${/}Debug${/}UIAutomationTest.exe
 
-
 *** Settings ***
 Library    OperatingSystem
 Library    String
@@ -10,7 +9,6 @@ Suite Setup    Launch App
 Suite Teardown    Close App
 Test Setup    Attach Main Window
 Test Teardown    Clean App
-
 
 *** Test Cases ***
 Verify Labels
@@ -53,15 +51,15 @@ Verify Operation Selections
     Verify * In Operators
 
 Verify Button
-    Verify Button    btnCalc    Calculate
+    Verify Button    btnCalc    Calculate (=)
 
 Verify Button Text Should Be
-    Button Text Should Be   btnCalc    Calculate
-    Button Text Should Be   btnCalc    calculate    case_sensitive=False
+    Button Text Should Be   btnCalc    Calculate (=)
+    Button Text Should Be   btnCalc    calculate (=)    case_sensitive=False
 
 Verify Button Text Should Contain
     Button Text Should Contain   btnCalc    alcu    case_sensitive=True
-    Button Text Should Contain   btnCalc    ULATE   case_sensitive=False
+    Button Text Should Contain   btnCalc    ULaTE   case_sensitive=False
 
 Verify Menu
     Verify Menu          text=Help    Help
@@ -172,6 +170,24 @@ Calculate Using Index Locators
     Click Button    btnCalc
     Verify Text In Textbox    index=3    3
 
+Calculate Using Native Property Locators
+    Input Text To Textbox    help_text=First addend    12
+    Select Combobox Value    index=0    +
+    Input Text To Textbox    help_text=Second addend    21
+    Click Button    btnCalc
+    Verify Text In Textbox    help_text=Sum    33
+
+Click Button With = In Locator Value
+    Input Text To Textbox    txtA    1
+    Select Combobox Value    op    +
+    Input Text To Textbox    txtB    2
+    Click Button    text=Calculate (=)
+    Verify Text In Textbox    tbResult    3
+
+Unexisting Locator
+    ${error}    Run Keyword And Expect Error    *    Click Item    unexisting-locator=whatever
+    Should Contain    ${error}    'unexisting-locator' is not a valid locator prefix
+
 Take screenshots
     [Setup]    Screenshot Setup
     Take Desktop Screenshot
@@ -240,6 +256,11 @@ Write To Textbox By Pressing Keys
     Activate Textbox    txtA
     Press Keys    Text and (123}!
     Verify Text In Textbox    txtA    Text and (123}!
+
+List UI Items
+    ${items}    Get Items    control_type=Button
+    ${count}    Get Length    ${items}
+    Should Be True    ${count} > 1
 
 *** Keywords ***
 Launch App

@@ -1,11 +1,12 @@
 import clr
 import os
-from robot.api import logger   # noqa: F401
+from robot.api import logger    # noqa: F401
 dll_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin', 'TestStack.White.dll')
 clr.AddReference('System')
 clr.AddReference(dll_path)
-from TestStack.White.UIItems.Finders import SearchCriteria   # noqa: E402
-from WhiteLibrary.keywords import ApplicationKeywords, KeyboardKeywords, WindowKeywords, ScreenshotKeywords   # noqa: E402
+from System.Windows.Automation import AutomationElement, ControlType    # noqa: E402
+from TestStack.White.UIItems.Finders import SearchCriteria    # noqa: E402
+from WhiteLibrary.keywords import ApplicationKeywords, KeyboardKeywords, WindowKeywords, ScreenshotKeywords    # noqa: E402
 from WhiteLibrary.keywords.items import (ButtonKeywords,
                             LabelKeywords,
                             ListKeywords,
@@ -20,9 +21,12 @@ from WhiteLibrary.keywords.robotlibcore import DynamicCore   # noqa: E402
 from WhiteLibrary import version   # noqa: E402
 
 
-STRATEGIES = {"id": "ByAutomationId",
-              "text": "ByText",
-              "index": "Indexed"}
+STRATEGIES = dict(id={"method": "ByAutomationId"},
+                  text={"method": "ByText"},
+                  index={"method": "Indexed"},
+                  help_text={"method": "ByNativeProperty", "property": "HelpTextProperty"},
+                  class_name={"method": "ByClassName"},
+                  control_type={"method": "ByControlType"})
 
 
 class WhiteLibrary(DynamicCore):
@@ -30,25 +34,43 @@ class WhiteLibrary(DynamicCore):
     It is a wrapper for [https://github.com/TestStack/White | TestStack.White].
 
     = Applications and windows =
+    To interact with UI items, the correct application and window must be attached to WhiteLibrary.
 
+    When application is started with `Launch Application`, the keyword also attaches the application to WhiteLibrary.
+    Attaching a running application is done with `Attach Application By Name` or `Attach Application By Id`.
+
+    Once the application is attached, the window to interact with is attached with `Attach Window`.
+
+    Examples:
+
+    | # Launch application, no separate step for attaching application needed | |
+    | `Launch Application` | C:\\myApplication.exe |
+    | `Attach Window`      | Main window |
+    | | |
+    | # Switch to an application that is already running | |
+    | `Attach Application By Name` | calc1 |
+    | `Attach Window`              | Calculator |
 
     = Item locators =
     Keywords that access UI items (e.g. `Click Button`) use a ``locator`` argument.
     The locator consists of a locator prefix that specifies the search criteria, and the locator value.
 
-    The following properties can be used in locators:
+    The following locator prefixes are available:
 
     | = Prefix =        | = Description =                 |
     | id (or no prefix) | Search by AutomationID. If no prefix is given, the item is searched by AutomationID by default. |
     | text              | Search by exact item text/name. |
     | index             | Search by item index.           |
+    | help_text         | Search by HelpTextProperty.     |
+    | class_name        | Search by class name.           |
+    | control_type      | Search by control type.         |
 
     Examples:
 
-    | Click Button | myButton         | # clicks button by its AutomationID |
-    | Click Button | id=myButton      | # clicks button by its AutomationID |
-    | Click Button | text=Click here! | # clicks button by the button text  |
-    | Click Button | index=2          | # clicks button whose index is 2    |
+    | `Click Button` | myButton         | # clicks button by its AutomationID |
+    | `Click Button` | id=myButton      | # clicks button by its AutomationID |
+    | `Click Button` | text=Click here! | # clicks button by the button text  |
+    | `Click Button` | index=2          | # clicks button whose index is 2    |
     """
     ROBOT_LIBRARY_VERSION = version.VERSION
     ROBOT_LIBRARY_SCOPE = "Global"
@@ -84,15 +106,34 @@ class WhiteLibrary(DynamicCore):
         search_criteria = self._get_search_criteria(locator)
         return self.window.Get(search_criteria)
 
+    def _get_multiple_items_by_locator(self, locator):
+        search_criteria = self._get_search_criteria(locator)
+        return self.window.GetMultiple(search_criteria)
+
     def _get_search_criteria(self, locator):
         if "=" not in locator:
             locator = "id=" + locator
-        search_strategy, locator_value = locator.split("=")
+
+        search_strategy, locator_value = locator.split("=", 1)
         if search_strategy == "index":
             locator_value = int(locator_value)
-        search_method = STRATEGIES[search_strategy]
+
+        try:
+            search_method = STRATEGIES[search_strategy]["method"]
+        except KeyError:
+            raise ValueError("'{}' is not a valid locator prefix".format(search_strategy))
+
+        if search_method == "ByNativeProperty":
+            property_name = STRATEGIES[search_strategy]["property"]
+            property_name = getattr(AutomationElement, property_name)
+            search_params = (property_name, locator_value)
+        else:
+            if search_method == "ByControlType":
+                locator_value = getattr(ControlType, locator_value)
+            search_params = (locator_value,)
+
         method = getattr(SearchCriteria, search_method)
-        return method(locator_value)
+        return method(*search_params)
 
     def _end_keyword(self, name, attrs):
         if attrs['status'] == 'FAIL':
