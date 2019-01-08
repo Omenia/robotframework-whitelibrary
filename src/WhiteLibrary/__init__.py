@@ -1,12 +1,12 @@
 import clr
 import os
-from robot.api import logger   # noqa: F401
+from robot.api import logger    # noqa: F401
 dll_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin', 'TestStack.White.dll')
 clr.AddReference('System')
 clr.AddReference(dll_path)
-from System.Windows.Automation import AutomationElement   # noqa: E402
-from TestStack.White.UIItems.Finders import SearchCriteria   # noqa: E402
-from WhiteLibrary.keywords import ApplicationKeywords, KeyboardKeywords, WindowKeywords, ScreenshotKeywords   # noqa: E402
+from System.Windows.Automation import AutomationElement, ControlType    # noqa: E402
+from TestStack.White.UIItems.Finders import SearchCriteria    # noqa: E402
+from WhiteLibrary.keywords import ApplicationKeywords, KeyboardKeywords, WindowKeywords, ScreenshotKeywords    # noqa: E402
 from WhiteLibrary.keywords.items import (ButtonKeywords,
                             LabelKeywords,
                             ListKeywords,
@@ -24,8 +24,9 @@ from WhiteLibrary import version   # noqa: E402
 STRATEGIES = dict(id={"method": "ByAutomationId"},
                   text={"method": "ByText"},
                   index={"method": "Indexed"},
-                  helptext={"method": "ByNativeProperty", "property": "HelpTextProperty"},
-                  classname={"method": "ByNativeProperty", "property": "ClassNameProperty"})
+                  help_text={"method": "ByNativeProperty", "property": "HelpTextProperty"},
+                  class_name={"method": "ByClassName"},
+                  control_type={"method": "ByControlType"})
 
 
 class WhiteLibrary(DynamicCore):
@@ -60,8 +61,9 @@ class WhiteLibrary(DynamicCore):
     | id (or no prefix) | Search by AutomationID. If no prefix is given, the item is searched by AutomationID by default. |
     | text              | Search by exact item text/name. |
     | index             | Search by item index.           |
-    | classname         | Search by ClassNameProperty.    |
-    | helptext          | Search by HelpTextProperty.     |
+    | help_text         | Search by HelpTextProperty.     |
+    | class_name        | Search by class name.           |
+    | control_type      | Search by control type.         |
 
     Examples:
 
@@ -104,6 +106,10 @@ class WhiteLibrary(DynamicCore):
         search_criteria = self._get_search_criteria(locator)
         return self.window.Get(search_criteria)
 
+    def _get_multiple_items_by_locator(self, locator):
+        search_criteria = self._get_search_criteria(locator)
+        return self.window.GetMultiple(search_criteria)
+
     def _get_search_criteria(self, locator):
         if "=" not in locator:
             locator = "id=" + locator
@@ -122,6 +128,8 @@ class WhiteLibrary(DynamicCore):
             property_name = getattr(AutomationElement, property_name)
             search_params = (property_name, locator_value)
         else:
+            if search_method == "ByControlType":
+                locator_value = getattr(ControlType, locator_value)
             search_params = (locator_value,)
 
         method = getattr(SearchCriteria, search_method)
