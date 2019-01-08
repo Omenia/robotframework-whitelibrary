@@ -171,11 +171,11 @@ Calculate Using Index Locators
     Verify Text In Textbox    index=3    3
 
 Calculate Using Native Property Locators
-    Input Text To Textbox    helptext=First addend    12
+    Input Text To Textbox    help_text=First addend    12
     Select Combobox Value    index=0    +
-    Input Text To Textbox    helptext=Second addend    21
+    Input Text To Textbox    help_text=Second addend    21
     Click Button    btnCalc
-    Verify Text In Textbox    helptext=Sum    33
+    Verify Text In Textbox    help_text=Sum    33
 
 Click Button With = In Locator Value
     Input Text To Textbox    txtA    1
