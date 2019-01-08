@@ -5,6 +5,10 @@ version_data = {}
 with open(os.path.join("src", "WhiteLibrary", "version.py")) as f:
     exec(f.read(), version_data)
 
+requirements = []
+with open("requirements.txt", "r") as f:
+    requirements = list(filter(lambda s: s!="", f.read().split("\n")))
+
 
 def __path(filename):
     return os.path.join(os.path.dirname(__file__),
@@ -27,7 +31,7 @@ setup(name="robotframework-whitelibrary",
       author="SALabs",
       author_email="to.be.added@noexist89a887.org",
       url="https://github.com/Omenia/robotframework-whitelibrary",
-      install_requires=["pythonnet", "robotframework"],
+      install_requires=requirements,
       packages=find_packages("src"),
       package_dir={"WhiteLibrary": "src/WhiteLibrary"},
       package_data={"WhiteLibrary": ["bin/*.dll"]},

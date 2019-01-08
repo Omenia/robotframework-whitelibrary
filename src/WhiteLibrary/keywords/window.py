@@ -1,7 +1,7 @@
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from TestStack.White.UIItems.WindowItems import Window   # noqa: F401
-from robot.api import logger
+from robot.api import logger    # noqa: F401
 
 
 class WindowKeywords(LibraryComponent):
