@@ -142,22 +142,23 @@ namespace UIAutomationTest
 
         }
         
-        private void listViewItemSelect(object sender, RoutedEventArgs e)
+        private void dataGridCellSelect(object sender, RoutedEventArgs e)
         {
-            listViewEvent(sender, e, "selected");
+            dataGridCellEvent(sender, e, "selected");
         }
 
-        private void listViewItemDoubleClick(object sender, RoutedEventArgs e)
+        private void dataGridCellDoubleClick(object sender, RoutedEventArgs e)
         {
-            listViewEvent(sender, e, "double clicked");
+            dataGridCellEvent(sender, e, "double clicked");
         }
 
-        private void listViewEvent(object sender, RoutedEventArgs e, string message)
+        private void dataGridCellEvent(object sender, RoutedEventArgs e, string message)
         {
-            ListViewItem node = sender as ListViewItem;
+            DataGridCell node = sender as DataGridCell;
+            TextBlock cellText = node.Content as TextBlock;
             if (node != null)
             {
-                selectionIndicatorLabel.Content = node.Parent.GetType() + " " + message;
+                selectionIndicatorLabel.Content = cellText.Text + " " + message;
             }
             e.Handled = true;
 

@@ -2,6 +2,17 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="UI Automation Test Window" Height="700" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <XmlDataProvider x:Key="MockList"   XPath="/MockObjects/*" >
+            <x:XData >
+                <MockObjects xmlns="">
+                    <MockObject Title="Robinson Crusoe" />
+                    <MockObject Title="Bible" />
+                    <MockObject Title="The Art of Computer Programming" />
+                </MockObjects>
+            </x:XData>
+        </XmlDataProvider>
+    </Window.Resources>
     <Grid Margin="0,0,-5,0">
         <Grid.Resources>
             <Style TargetType="{x:Type TreeViewItem}">
@@ -10,9 +21,8 @@
                 <EventSetter Event="MouseRightButtonDown" Handler="treeNodeRightClick"/>
                 <EventSetter Event="Expanded" Handler="treeNodeExpanded"/>
             </Style>
-            <Style TargetType="{x:Type ListViewItem}">
-                <EventSetter Event="Selected" Handler="listViewItemSelect"/>
-                <EventSetter Event="MouseDoubleClick" Handler="listViewItemDoubleClick"/>
+            <Style TargetType="{x:Type DataGridCell}">
+                <EventSetter Event="Selected" Handler="dataGridCellSelect"/>
             </Style>
         </Grid.Resources>
         <ScrollViewer>
@@ -121,11 +131,15 @@
                             <Button Click="toolStripButtonClick">Toolstrip button 2</Button>
                             <Button Click="toolStripButtonClick">Toolstrip button 3</Button>
                         </ToolBar>
-                        <ListView AutomationProperties.AutomationId="list_view">
-                            <ListViewItem>ListView item 1</ListViewItem>
-                            <ListViewItem>ListView item 2</ListViewItem>
-                            <ListViewItem>ListView item 3</ListViewItem>
-                        </ListView>
+                        <Grid DataContext="{Binding Source={StaticResource MockList}}" >
+                            <DataGrid AutomationProperties.AutomationId="list_view" ColumnWidth="200" 
+                                      ItemsSource="{Binding Mode=Default, XPath=/MockObjects/MockObject}" 
+                                      AutoGenerateColumns="False" >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header = "Title"  Binding="{Binding XPath=@Title}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>                        
                         <TreeView AutomationProperties.AutomationId="tree" Margin="0,0,0,0" Height="Auto">
                             <TreeViewItem Header="Tree node 1">
                                 <TreeViewItem Header="Tree node 1.1" />

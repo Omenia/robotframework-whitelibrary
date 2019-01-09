@@ -18,6 +18,18 @@ class ListKeywords(LibraryComponent):
         listbox.Select(value)
 
     @keyword
+    def select_listbox_index(self, locator, index):
+        """
+        Selects a value from a listbox.
+
+        ``locator`` is the locator of the listbox.
+
+        ``value`` is the value to be selected.
+        """
+        listbox = self.state._get_typed_item_by_locator(ListBox, locator)
+        listbox.Select(int(index))
+
+    @keyword
     def listbox_selection_should_be(self, locator, expected):
         """
         Checks the listbox selection.
@@ -90,8 +102,6 @@ class ListKeywords(LibraryComponent):
 
         ``value`` is the value to be selected.
         """
-
-        logger.debug(locator, html)
         listview = self.state._get_typed_item_by_locator(ListView , locator)
         listview.Select(value)
 
@@ -104,5 +114,5 @@ class ListKeywords(LibraryComponent):
 
         ``value`` is the value to be selected.
         """
-        listview = self.state._get_typed_item_by_locator(ListView , locator)
-        listview.Select(int(value))
+        listview = self.state._get_typed_item_by_locator(ListView, locator)
+        listview.Select(int(index))

@@ -154,6 +154,8 @@ Verify Get Check Box State
     Should Not Be Equal     ${old_check_box_state}   ${new_check_box_state}
 
 Verify ListBox
+    Select Listbox Index    list_box    1
+    Listbox Selection Should Be    list_box    Toni
     Select Listbox Value    list_box    Teppo
     Listbox Selection Should Be    list_box    Teppo
     Run Keyword And Expect Error    Expected listbox selection to be Yamis, was Teppo
@@ -243,10 +245,13 @@ Handle ToolStripButtons
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Handle ListView
-    [Tags]    under_test
     [Setup]    Setup for Tab 2 Tests
     #Select ListView Row By Value    list_view    ListView item 1
+    Select ListView Row By Index    list_view    1
+    Bible Should Be Selected
     Select ListView Row By Index    list_view    2
+    The Art of Computer Programming Should Be Selected
+    #Select ListView Row By Value    list_view    ListView item 1
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Right Click An Item
