@@ -18,4 +18,8 @@ IF "%CMDOUT%" == "True" (
 
 xcopy src %DEPLOYMENT%\src\ /s /a
 copy setup.py %DEPLOYMENT%\
+copy requirements.txt %DEPLOYMENT%\
+copy MANIFEST* %DEPLOYMENT%\
+copy LICENSE %DEPLOYMENT%\
+copy README.md %DEPLOYMENT%\
 copy build.info %DEPLOYMENT%\
