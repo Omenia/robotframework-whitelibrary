@@ -246,12 +246,14 @@ Handle ToolStripButtons
 
 Handle ListView
     [Setup]    Setup for Tab 2 Tests
-    #Select ListView Row By Value    list_view    ListView item 1
     Select ListView Row By Index    list_view    1
     Bible Should Be Selected
     Select ListView Row By Index    list_view    2
     The Art of Computer Programming Should Be Selected
-    #Select ListView Row By Value    list_view    ListView item 1
+    Right Click Listview Cell By Column And Index    list_view2    Title    1
+    Bible Should Be Right Clicked
+    Right Click Listview Cell By Column And Index    list_view2    Author    0
+    Daniel Defoe Should Be Right Clicked
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Right Click An Item

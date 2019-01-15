@@ -147,6 +147,11 @@ namespace UIAutomationTest
             dataGridCellEvent(sender, e, "selected");
         }
 
+        private void dataGridCellRightClick(object sender, RoutedEventArgs e)
+        {
+            dataGridCellEvent(sender, e, "right clicked");
+        }
+
         private void dataGridCellDoubleClick(object sender, RoutedEventArgs e)
         {
             dataGridCellEvent(sender, e, "double clicked");
@@ -154,6 +159,7 @@ namespace UIAutomationTest
 
         private void dataGridCellEvent(object sender, RoutedEventArgs e, string message)
         {
+            
             DataGridCell node = sender as DataGridCell;
             TextBlock cellText = node.Content as TextBlock;
             if (node != null)

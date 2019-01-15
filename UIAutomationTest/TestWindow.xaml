@@ -12,6 +12,15 @@
                 </MockObjects>
             </x:XData>
         </XmlDataProvider>
+        <XmlDataProvider x:Key="MockList2"   XPath="/MockObjects/*" >
+            <x:XData >
+                <MockObjects xmlns="">
+                    <MockObject Author="Daniel Defoe" Title="Robinson Crusoe" Category="Fiction"/>
+                    <MockObject Author="Various Artists" Title="Bible" Category="Religious" />
+                    <MockObject Author="Donald Knuth" Title="The Art of Computer Programming" Category="Science" />
+                </MockObjects>
+            </x:XData>
+        </XmlDataProvider>
     </Window.Resources>
     <Grid Margin="0,0,-5,0">
         <Grid.Resources>
@@ -22,7 +31,8 @@
                 <EventSetter Event="Expanded" Handler="treeNodeExpanded"/>
             </Style>
             <Style TargetType="{x:Type DataGridCell}">
-                <EventSetter Event="Selected" Handler="dataGridCellSelect"/>
+                <EventSetter Event="MouseRightButtonDown"  Handler="dataGridCellRightClick"/>
+                <EventSetter Event="Selected"  Handler="dataGridCellSelect"/>
             </Style>
         </Grid.Resources>
         <ScrollViewer>
@@ -85,13 +95,10 @@
                                     <CheckBox Margin="4" Name="cb_omenia" Content="Omenia" />
                                 </StackPanel>
                             </GroupBox>
->>>>>>> UIAutomationTest: toolStripButton click event
-
                             <StackPanel Margin="0,0,0,10">
                                 <Label Content="Password:" Height="26.46" HorizontalAlignment="Left" />
                                 <PasswordBox x:Name="passwordBox" Height="18.96" Margin="10,5,10,5" />
                             </StackPanel>
-
                             <Label Name="eventIndicatorLabel" MouseDoubleClick="doubleClickLabel">Double click me</Label>
                             <ListBox Margin="30,0,25,0" x:Name="list_box" VerticalAlignment="Bottom" Grid.Column="1">
                                 <ListBox.ContextMenu>
@@ -132,14 +139,25 @@
                             <Button Click="toolStripButtonClick">Toolstrip button 3</Button>
                         </ToolBar>
                         <Grid DataContext="{Binding Source={StaticResource MockList}}" >
-                            <DataGrid AutomationProperties.AutomationId="list_view" ColumnWidth="200" 
-                                      ItemsSource="{Binding Mode=Default, XPath=/MockObjects/MockObject}" 
+                            <DataGrid AutomationProperties.AutomationId="list_view" 
+                                      ItemsSource="{Binding Mode=Default, XPath=/MockObjects/MockObject}"
                                       AutoGenerateColumns="False" >
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header = "Title"  Binding="{Binding XPath=@Title}"/>
+                                    <DataGridTextColumn Header = "Title"  Binding="{Binding XPath=@Title}" Width="*" />
                                 </DataGrid.Columns>
                             </DataGrid>
-                        </Grid>                        
+                        </Grid>
+                        <Grid DataContext="{Binding Source={StaticResource MockList2}}" >
+                            <DataGrid AutomationProperties.AutomationId="list_view2" 
+                                      ItemsSource="{Binding Mode=Default, XPath=/MockObjects/MockObject}"
+                                      AutoGenerateColumns="False" >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header = "Author"  Binding="{Binding XPath=@Author}" Width="Auto" />
+                                    <DataGridTextColumn Header = "Title"  Binding="{Binding XPath=@Title}" Width="Auto" />
+                                    <DataGridTextColumn Header = "Category"  Binding="{Binding XPath=@Category}" Width="Auto" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
                         <TreeView AutomationProperties.AutomationId="tree" Margin="0,0,0,0" Height="Auto">
                             <TreeViewItem Header="Tree node 1">
                                 <TreeViewItem Header="Tree node 1.1" />
