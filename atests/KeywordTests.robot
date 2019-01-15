@@ -250,9 +250,9 @@ Handle ListView
     Bible Should Be Selected
     Select ListView Row By Index    list_view    2
     The Art of Computer Programming Should Be Selected
-    Right Click Listview Cell By Column And Index    list_view2    Title    1
+    Right Click Listview Cell    list_view2    Title    1
     Bible Should Be Right Clicked
-    Right Click Listview Cell By Column And Index    list_view2    Author    0
+    Right Click Listview Cell    list_view2    Author    0
     Daniel Defoe Should Be Right Clicked
     [Teardown]    Select Tab Page    tabControl    Tab1
 

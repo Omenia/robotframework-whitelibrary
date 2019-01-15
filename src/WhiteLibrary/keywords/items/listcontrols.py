@@ -19,7 +19,7 @@ class ListKeywords(LibraryComponent):
         listbox.Select(value)
 
     @keyword
-    def select_listbox_index(self, locator, index):
+    def select_listbox_index(self, locator, item_index):
         """
         Selects a value from a listbox.
 
@@ -28,7 +28,7 @@ class ListKeywords(LibraryComponent):
         ``value`` is the value to be selected.
         """
         listbox = self.state._get_typed_item_by_locator(ListBox, locator)
-        listbox.Select(int(index))
+        listbox.Select(int(item_index))
 
     @keyword
     def listbox_selection_should_be(self, locator, expected):
@@ -95,7 +95,7 @@ class ListKeywords(LibraryComponent):
         self.state._verify_value(expected, combobox.EditableText)
 
     @keyword
-    def right_click_listview_cell_by_column_and_index(self, locator, columnName, index):
+    def right_click_listview_cell(self, locator, columnName, item_index):
         """
         Selects a value from a listview.
 
@@ -104,12 +104,12 @@ class ListKeywords(LibraryComponent):
         ``value`` is the value to be selected.
         """
         listview = self.state._get_typed_item_by_locator(ListView , locator)
-        cell = listview.Cell(columnName, int(index))
+        cell = listview.Cell(columnName, int(item_index))
         cell.Click()
         cell.RightClick()
 
     @keyword
-    def select_listview_row_by_index(self, locator, index):
+    def select_listview_row_by_index(self, locator, row_index):
         """
         Selects a value from a listview.
 
@@ -118,5 +118,4 @@ class ListKeywords(LibraryComponent):
         ``value`` is the value to be selected.
         """
         listview = self.state._get_typed_item_by_locator(ListView, locator)
-        listview.Select(int(index))
-        #logger.info("select_listview_row_by_index: " + str(testing), html=True)
+        listview.Select(int(row_index))
