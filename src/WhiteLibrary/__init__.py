@@ -44,26 +44,31 @@ class WhiteLibrary(DynamicCore):
     Examples:
 
     | # Launch application, no separate step for attaching application needed | |
-    | `Launch Application` | C:\\myApplication.exe |
+    | `Launch Application` | C:/myApplication.exe |
     | `Attach Window`      | Main window |
     | | |
     | # Switch to an application that is already running | |
     | `Attach Application By Name` | calc1 |
     | `Attach Window`              | Calculator |
 
-    = Item locators =
+    = UI items =
+    Keywords in WhiteLibrary use the same names for control types that are used in White.
+    See [https://teststackwhite.readthedocs.io/en/latest/UIItems | White's documentation] for details about mapping
+    UIA Control Types to classes in White.
+
+    == Item locators ==
     Keywords that access UI items (e.g. `Click Button`) use a ``locator`` argument.
     The locator consists of a locator prefix that specifies the search criteria, and the locator value.
 
     The following locator prefixes are available:
 
-    | = Prefix =        | = Description =                 |
+    | = Prefix =        | = Description =                    |
     | id (or no prefix) | Search by AutomationID. If no prefix is given, the item is searched by AutomationID by default. |
-    | text              | Search by exact item text/name. |
-    | index             | Search by item index.           |
-    | help_text         | Search by HelpTextProperty.     |
-    | class_name        | Search by class name.           |
-    | control_type      | Search by control type.         |
+    | text              | Search by exact item text or name. |
+    | index             | Search by item index.              |
+    | help_text         | Search by HelpTextProperty.        |
+    | class_name        | Search by class name.              |
+    | control_type      | Search by control type.            |
 
     Examples:
 

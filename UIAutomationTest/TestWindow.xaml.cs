@@ -127,8 +127,48 @@ namespace UIAutomationTest
         }
 
         private void toolStripButtonClick(object sender, RoutedEventArgs e)
+        {            
+            toolStripButtonEvent(sender, e, "clicked");
+        }
+
+        private void toolStripButtonEvent(object sender, RoutedEventArgs e, string message)
         {
+            if (sender != null)
+            {
+                Button node = sender as Button;
+                selectionIndicatorLabel.Content = node.Content + " " + message;
+            }
+            e.Handled = true;
 
         }
+        
+        private void dataGridCellSelect(object sender, RoutedEventArgs e)
+        {
+            dataGridCellEvent(sender, e, "selected");
+        }
+
+        private void dataGridCellRightClick(object sender, RoutedEventArgs e)
+        {
+            dataGridCellEvent(sender, e, "right clicked");
+        }
+
+        private void dataGridCellDoubleClick(object sender, RoutedEventArgs e)
+        {
+            dataGridCellEvent(sender, e, "double clicked");
+        }
+
+        private void dataGridCellEvent(object sender, RoutedEventArgs e, string message)
+        {
+            
+            DataGridCell node = sender as DataGridCell;
+            TextBlock cellText = node.Content as TextBlock;
+            if (node != null)
+            {
+                selectionIndicatorLabel.Content = cellText.Text + " " + message;
+            }
+            e.Handled = true;
+
+        }
+
     }
 }

@@ -154,6 +154,8 @@ Verify Get Check Box State
     Should Not Be Equal     ${old_check_box_state}   ${new_check_box_state}
 
 Verify ListBox
+    Select Listbox Index    list_box    1
+    Listbox Selection Should Be    list_box    Toni
     Select Listbox Value    list_box    Teppo
     Listbox Selection Should Be    list_box    Teppo
     Run Keyword And Expect Error    Expected listbox selection to be Yamis, was Teppo
@@ -232,6 +234,29 @@ Handle Tree Nodes
     Tree node 1.1 Should Be Right-clicked
     [Teardown]    Select Tab Page    tabControl    Tab1
 
+Handle ToolStripButtons
+    [Setup]    Setup for Tab 2 Tests
+    Click Button    text=Toolstrip button 1
+    Toolstrip button 1 Should Be Clicked
+    Click Button    text=Toolstrip button 2
+    Toolstrip button 2 Should Be Clicked
+    Click Button    text=Toolstrip button 3
+    Toolstrip button 3 Should Be Clicked
+    [Teardown]    Select Tab Page    tabControl    Tab1
+
+Handle ListView
+    [Setup]    Setup for Tab 2 Tests
+    Select ListView Row By Index    list_view    1
+    Bible Should Be Selected
+    Select ListView Row By Index    list_view    2
+    The Art of Computer Programming Should Be Selected
+
+    Repeat Keyword    2    Right Click Listview Cell    list_view2    Title    1
+    Bible Should Be Right Clicked
+    Repeat Keyword    2    Right Click Listview Cell    list_view2    Author    0
+    Daniel Defoe Should Be Right Clicked
+    [Teardown]    Select Tab Page    tabControl    Tab1
+
 Right Click An Item
     Right Click Item    text=Teppo
     Click Menu Button    text=Change Name
@@ -249,7 +274,7 @@ Click Button By Pressing Special Keys
 
 Try To Press Unsupported Special Key
     [Setup]    Run Keywords    Attach Main Window    AND    Take Screenshots On Failure    false
-    Run Keyword And Expect Error    AttributeError: Allowed special keys are*    Press Special Key    PANIC	
+    Run Keyword And Expect Error    AttributeError: Allowed special keys are*    Press Special Key    PANIC
     [Teardown]    Run Keywords    Take Screenshots On Failure    true    AND    Clean App
 
 Write To Textbox By Pressing Keys
