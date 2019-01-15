@@ -1,6 +1,5 @@
 from TestStack.White.UIItems.ListBoxItems import ComboBox, ListBox
 from TestStack.White.UIItems import ListView
-from TestStack.White.UIItems import ListViewCell
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from robot.api import logger
@@ -105,7 +104,6 @@ class ListKeywords(LibraryComponent):
         """
         listview = self.state._get_typed_item_by_locator(ListView , locator)
         cell = listview.Cell(columnName, int(item_index))
-        cell.Click()
         cell.RightClick()
 
     @keyword
