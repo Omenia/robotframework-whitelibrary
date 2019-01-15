@@ -7,8 +7,7 @@ from robot.api import logger
 class ListKeywords(LibraryComponent):
     @keyword
     def select_listbox_value(self, locator, value):
-        """
-        Selects a value from a listbox.
+        """Selects a value from a listbox.
 
         ``locator`` is the locator of the listbox.
 
@@ -19,12 +18,11 @@ class ListKeywords(LibraryComponent):
 
     @keyword
     def select_listbox_index(self, locator, item_index):
-        """
-        Selects a value from a listbox.
+        """Selects an item by its index from a listbox.
 
         ``locator`` is the locator of the listbox.
 
-        ``value`` is the value to be selected.
+        ``item_index`` is the index of the item to select.
         """
         listbox = self.state._get_typed_item_by_locator(ListBox, locator)
         listbox.Select(int(item_index))
@@ -94,26 +92,27 @@ class ListKeywords(LibraryComponent):
         self.state._verify_value(expected, combobox.EditableText)
 
     @keyword
-    def right_click_listview_cell(self, locator, columnName, item_index):
+    def right_click_listview_cell(self, locator, column_name, row_index):
         """
         Selects a value from a listview.
 
         ``locator`` is the locator of the listview.
 
-        ``value`` is the value to be selected.
+        ``column_name`` is the name of the column.
+
+        ``row_index`` is the index of the row.
         """
-        listview = self.state._get_typed_item_by_locator(ListView , locator)
-        cell = listview.Cell(columnName, int(item_index))
+        listview = self.state._get_typed_item_by_locator(ListView, locator)
+        cell = listview.Cell(column_name, int(row_index))
         cell.RightClick()
 
     @keyword
     def select_listview_row_by_index(self, locator, row_index):
-        """
-        Selects a value from a listview.
+        """Selects a row from a listview.
 
         ``locator`` is the locator of the listview.
 
-        ``value`` is the value to be selected.
+        ``row_index`` is the index to select.
         """
         listview = self.state._get_typed_item_by_locator(ListView, locator)
         listview.Select(int(row_index))
