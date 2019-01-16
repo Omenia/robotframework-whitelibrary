@@ -257,6 +257,16 @@ Handle ListView
     Daniel Defoe Should Be Right Clicked
     [Teardown]    Select Tab Page    tabControl    Tab1
 
+Handle Delayed Actions
+    [Tags]    under_test
+    [Setup]    Setup for Tab 2 Tests
+    Set White Busy Timeout    5
+    Click Button    text=Fast alert
+    Fast Alert Should Be Right Occurred
+    Click Button    text=Slow alert
+    Slow Alert Should Be Right Occurred
+    [Teardown]    Select Tab Page    tabControl    Tab1
+
 Right Click An Item
     Right Click Item    text=Teppo
     Click Menu Button    text=Change Name
