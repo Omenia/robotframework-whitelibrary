@@ -6,11 +6,13 @@ WhiteLibrary provides the means to test Windows GUI technologies with Robot Fram
 * WPF (Windows Presentation Foundation)
 * SWT (Java) platforms
 
-# Stable version #
+# Installation #
+
+## Stable version ##
 ```
 pip install --upgrade robotframework-whitelibrary
 ```
-# Development version # 
+## Development version ##
 ```
 pip install --upgrade --pre robotframework-whitelibrary
 ```
@@ -19,16 +21,16 @@ Keyword [documentation](http://omenia.github.io/robotframework-whitelibrary/keyw
 
 # Development Environment #
 ## Prerequisities ##
-* Install [Visual Studio](https://visualstudio.microsoft.com/). It is needed for modifying and building the System Under Test (SUT). The SUT is a WPF application developed with C#.
-* If you want to edit Python with Visual Studio, Python Tools are required. They're part of Visual Studio 2017 installer, see details about what to select during installation: https://github.com/Microsoft/PTVS
-* Install [NuGet Command Line Interface (CLI)](https://docs.microsoft.com/en-us/nuget/tools/nuget-exe-cli-reference) to install White DLL packages.
+* Install [NuGet Command Line Interface (CLI)](https://docs.microsoft.com/en-us/nuget/tools/nuget-exe-cli-reference) to install required DLL packages (TestStack.White and Castle.Core).
 * Install [Python](https://www.python.org/downloads/), if not already installed. Versions 2.7, 3.5 and 3.6 are supported at the moment.
 * To install Robot Framework and Python for .NET, run
 ```
 pip install robotframework pythonnet
 ```
+* To make modifications to and build the test application (UIAutomationTest.exe), install [Visual Studio](https://visualstudio.microsoft.com/). The test application is a WPF application developed with C#.
+* If you want to edit Python with Visual Studio, Python Tools are required. They're part of Visual Studio 2017 installer, see details about what to select during installation: https://github.com/Microsoft/PTVS
 ## WhiteLibrary installation ##
-* To install WhiteLibrary, in the root folder of the project run
+* To install WhiteLibrary from source, in the root folder of the project run
 ```
 local_install.cmd
 ```
