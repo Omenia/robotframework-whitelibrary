@@ -260,7 +260,8 @@ Handle ListView
 Handle Delayed Actions
     [Tags]    under_test
     [Setup]    Setup for Tab 2 Tests
-    Set White Busy Timeout    5
+    ${BUSY_TIMEOUT}    Set White Busy Timeout    10000
+    Should Be Equal    ${BUSY_TIMEOUT}	10000
     Click Button    text=Fast alert
     Fast Alert Should Be Right Occurred
     Click Button    text=Slow alert
