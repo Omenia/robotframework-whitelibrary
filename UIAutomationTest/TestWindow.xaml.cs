@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -169,6 +170,19 @@ namespace UIAutomationTest
             e.Handled = true;
 
         }
+
+        private async void alertFast(object sender, RoutedEventArgs e)
+        {
+            await TaskEx.Delay(1000);
+            selectionIndicatorLabel.Content = "Fast alert occurred";
+        }
+
+        private async void alertSlow(object sender, RoutedEventArgs e)
+        {
+            await TaskEx.Delay(5000);
+            selectionIndicatorLabel.Content = "Slow alert occurred";
+        }
+
 
     }
 }
