@@ -6,5 +6,6 @@ from .progressbar import ProgressbarKeywords   # noqa: F401
 from .slider import SliderKeywords   # noqa: F401
 from .tab import TabKeywords   # noqa: F401
 from .textbox import TextBoxKeywords   # noqa: F401
+from .timeout import TimeoutKeywords   # noqa: F401
 from .tree import TreeKeywords   # noqa: F401
 from .uiitem import UiItemKeywords   # noqa: F401
