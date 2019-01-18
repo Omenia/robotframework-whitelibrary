@@ -1,0 +1,1 @@
+python make_stable_release.py "$1"
