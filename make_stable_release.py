@@ -19,7 +19,7 @@ def change_version_number(ver):
     with open(VERSION_FILE, 'r') as file :
         filedata = file.read()
 
-    filedata = filedata.replace('VERSION = ' + VERSION, 'VERSION = ' + ver)
+    filedata = filedata.replace('VERSION = "{0}"'.format(VERSION), 'VERSION = "{0}"'.format(ver))
 
     with open(VERSION_FILE, 'w') as file:
         file.write(filedata)
@@ -27,7 +27,8 @@ def change_version_number(ver):
 repo = git.Repo( '.' )
 
 change_stable("False", "True")
-change_version_number(sys.argv[0])
+print(str(sys.argv))
+change_version_number(sys.argv[1])
 libdoc("./src/WhiteLibrary", "./docs/keywords.html", version=VERSION)
 
 repo.git.add(VERSION_FILE)

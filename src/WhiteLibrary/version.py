@@ -1,4 +1,4 @@
-VERSION = "1.1.2"
+VERSION = "1.1.1"
 STABLE = False
 
 if __name__ == '__main__':
