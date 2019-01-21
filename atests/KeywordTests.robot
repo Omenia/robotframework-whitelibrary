@@ -332,7 +332,6 @@ Handle ListView
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Handle Delayed Actions
-    [Tags]    under_test
     [Timeout]    10
     [Setup]    Setup for Tab 2 Tests
     Click Button    text=Fast alert
