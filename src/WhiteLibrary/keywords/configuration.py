@@ -5,7 +5,7 @@ from WhiteLibrary.keywords.robotlibcore import keyword
 from robot.api import logger
 
 
-class TimeoutKeywords(LibraryComponent):
+class WhiteConfigurationKeywords(LibraryComponent):
 
     #This class variable lists possible date format options
     dateFormats = {"DayMonthYear":  DateFormat.DayMonthYear,
