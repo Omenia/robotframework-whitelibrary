@@ -116,10 +116,7 @@ class WhiteLibrary(DynamicCore):
         return self.window.GetMultiple(search_criteria)
 
     def _get_search_criteria(self, locator):
-        if "=" not in locator:
-            locator = "id=" + locator
-
-        search_strategy, locator_value = locator.split("=", 1)
+        search_strategy, locator_value = self._parse_locator(locator)
         if search_strategy == "index":
             locator_value = int(locator_value)
 
@@ -139,6 +136,19 @@ class WhiteLibrary(DynamicCore):
 
         method = getattr(SearchCriteria, search_method)
         return method(*search_params)
+
+    def _parse_locator(self, locator):
+        if "=" not in locator and ":" not in locator:
+            locator = "id:" + locator
+        idx = self._get_locator_delimiter_index(locator)
+        return locator[:idx], locator[idx+1:]
+
+    def _get_locator_delimiter_index(self, locator):
+        if "=" not in locator:
+            return locator.index(":")
+        if ":" not in locator:
+            return locator.index("=")
+        return min(locator.index(":"), locator.index("="))
 
     def _end_keyword(self, name, attrs):
         if attrs['status'] == 'FAIL':
