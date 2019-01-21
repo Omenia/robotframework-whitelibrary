@@ -13,11 +13,7 @@ steps:
 
 - script: |
       pip install -r requirements.txt
-  displayName: Install needed compoments from PyPi
-
-- script: |
-      python -m unittest discover
-  displayName: Run Python unit tests
+  displayName: Install needed components from PyPi
 
 - task: VSBuild@1
   inputs:
@@ -34,6 +30,10 @@ steps:
     deploy.cmd
   continueOnError: false
   displayName: Copy build artifacts to deployment directory
+
+- script: |
+      python -m unittest discover
+  displayName: Run Python unit tests
 
 - script: |
       python setup.py install
