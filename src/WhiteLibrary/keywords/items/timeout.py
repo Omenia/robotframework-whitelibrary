@@ -1,10 +1,20 @@
 from TestStack.White.Configuration import CoreAppXmlConfiguration
+from TestStack.White.UIItems import DateFormat
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from robot.api import logger
 
 
 class TimeoutKeywords(LibraryComponent):
+
+    #This class variable lists possible date format options
+    dateFormats = {"DayMonthYear":  DateFormat.DayMonthYear,
+                   "DayYearMonth":  DateFormat.DayYearMonth,
+                   "MonthDayYear":  DateFormat.MonthDayYear,
+                   "MonthYearDay":  DateFormat.MonthYearDay,
+                   "YearMonthDay":  DateFormat.YearMonthDay,
+                   "YearDayMonth":  DateFormat.DayMonthYear}
+
     @keyword
     def set_white_busy_timeout(self, value):
         """Sets busy timeout for White Teststack
@@ -45,13 +55,13 @@ class TimeoutKeywords(LibraryComponent):
 
     @keyword
     def set_white_wait_based_on_hourglass(self, value):
-        """Sets WaitBasedOnHourGlass timeout for White Teststack
+        """Sets WaitBasedOnHourGlass for White Teststack
 
-        ``value`` is integer or timeout in milli seconds.
+        ``value`` is boolean.
 
         """
 
-        CoreAppXmlConfiguration.Instance.WaitBasedOnHourGlass = int(value)
+        CoreAppXmlConfiguration.Instance.WaitBasedOnHourGlass = bool(value)
         #self.state.busyTimeout = str(test)
         logger.info("White WaitBasedOnHourGlass Timeout set to" + str(CoreAppXmlConfiguration.Instance.WaitBasedOnHourGlass))
         return CoreAppXmlConfiguration.Instance.WaitBasedOnHourGlass
@@ -143,16 +153,23 @@ class TimeoutKeywords(LibraryComponent):
     def set_white_default_date_format(self, value):
         """Sets DefaultDateFormat for White Teststack
 
-        ``value`` is string or date format. TODO: Explain the format.
+        ``value`` is string or date format. Format choices are following:
+        DayMonthYear, DayYearMonth, MonthDayYear, MonthYearDay, YearMonthDay, YearDayMonth
 
         """
 
-        CoreAppXmlConfiguration.Instance.DefaultDateFormat = int(value)
+        if value in self.dateFormats.keys():
+            CoreAppXmlConfiguration.Instance.DefaultDateFormat = self.dateFormats[value]
+        else:
+            logger.error("You try to set incorrect DateFormat " + str(value))
+
         logger.info("White DefaultDateFormat set to" + str(CoreAppXmlConfiguration.Instance.DefaultDateFormat))
-        return CoreAppXmlConfiguration.Instance.DefaultDateFormat
+        return str(CoreAppXmlConfiguration.Instance.DefaultDateFormat).replace(",", "")
     @keyword
     def get_white_default_date_format(self):
         """Gets DefaultDateFormat for White Teststack
+        Returns one of the following:
+        DayMonthYear, DayYearMonth, MonthDayYear, MonthYearDay, YearMonthDay, YearDayMonth
 
         """
-        return CoreAppXmlConfiguration.Instance.DefaultDateFormat
+        return str(CoreAppXmlConfiguration.Instance.DefaultDateFormat).replace(",", "")

@@ -11,6 +11,44 @@ Test Setup    Attach Main Window
 Test Teardown    Clean App
 
 *** Test Cases ***
+Configuration Parameters
+    [Tags]    under_test
+    Set White Busy Timeout    10000
+    ${BUSY_TIMEOUT}    Get White Busy Timeout
+    Should Be Equal   ${BUSY_TIMEOUT}	${10000}
+
+    Set White Find Window Timeout    10000
+    ${WHITE FIND WINDOW_TIMEOUT}    Get White Find Window Timeout
+    Should Be Equal    ${WHITE FIND WINDOW_TIMEOUT}    ${10000}
+
+    Set White Wait Based On Hourglass    True
+    ${WHITE_WAIT_BASED_ON_HOURGLASS}    Get White Wait Based On Hourglass
+    Should Be Equal    ${WHITE_WAIT_BASED_ON_HOURGLASS}    ${True}
+
+    Set White Uiautomation Zero Window Bug Timeout    10000
+    ${WHITE_UIAUTOMATION_ZERO_WINDOW_BUG_TIMEOUT}    Get White Uiautomation Zero Window Bug Timeout
+    Should Be Equal    ${WHITE_UIAUTOMATION_ZERO_WINDOW_BUG_TIMEOUT}	${10000}
+
+    Set White Popup Timeout    10000
+    ${WHITE_POPUP_TIMEOUT}    Get White Popup Timeout
+    Should Be Equal    ${WHITE_POPUP_TIMEOUT}	${10000}
+
+    Set White Tooltip Wait Time    10000
+    ${WHITE_TOOLTIP_WAIT_TIME}    Get White Tooltip Wait Time
+    Should Be Equal    ${WHITE_TOOLTIP_WAIT_TIME}	${10000}
+
+    Set White Suggestion List Timeout    10000
+    ${WHITE_SUGGESTION_LIST_TIMEOUT}    Get White Suggestion List Timeout
+    Should Be Equal    ${WHITE_SUGGESTION_LIST_TIMEOUT}    ${10000}
+
+    Set White Default Date Format    MonthDayYear
+    ${WHITE_DEFAULT_DATE_FORMAT}    Get White Default Date Format
+    Should Be Equal    ${WHITE_DEFAULT_DATE_FORMAT}    MonthDayYear
+
+    Set White Default Date Format    DayMonthYear
+    ${WHITE_DEFAULT_DATE_FORMAT}    Get White Default Date Format
+    Should Be Equal    ${WHITE_DEFAULT_DATE_FORMAT}    DayMonthYear
+
 Verify Labels
     Verify Label    lblA    Value 1
     Verify Label    lblB    Value 2
@@ -258,7 +296,6 @@ Handle ListView
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Handle Delayed Actions
-    [Tags]    under_test
     [Setup]    Setup for Tab 2 Tests
     ${BUSY_TIMEOUT}    Set White Busy Timeout    10000
     Should Be Equal    ${BUSY_TIMEOUT}	10000
