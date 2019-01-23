@@ -2,8 +2,9 @@
 pushd %~dp0
 REM install White dlls
 nuget restore src\WhiteLibrary\packages.config -PackagesDirectory packages
+nuget restore UIAutomatioTest\packages.config -PackagesDirectory packages
 
-REM copy all dll packages into same location 
+REM copy all dll packages into same location
 mkdir src\WhiteLibrary\bin\
 
 copy packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll src\WhiteLibrary\bin\
