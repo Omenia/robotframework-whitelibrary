@@ -23,66 +23,9 @@ Configuration Parameters
     ${WHITE FIND WINDOW_TIMEOUT}    Get White Find Window Timeout
     Should Be Equal    ${WHITE FIND WINDOW_TIMEOUT}    ${10000}
 
-    Set White Wait Based On Hourglass    ${False}
-    ${WHITE_WAIT_BASED_ON_HOURGLASS}    Get White Wait Based On Hourglass
-    Should Be Equal    ${WHITE_WAIT_BASED_ON_HOURGLASS}    ${False}
-
-    Set White Uiautomation Zero Window Bug Timeout    10000
-    ${WHITE_UIAUTOMATION_ZERO_WINDOW_BUG_TIMEOUT}    Get White Uiautomation Zero Window Bug Timeout
-    Should Be Equal    ${WHITE_UIAUTOMATION_ZERO_WINDOW_BUG_TIMEOUT}	${10000}
-
-    Set White Popup Timeout    10000
-    ${WHITE_POPUP_TIMEOUT}    Get White Popup Timeout
-    Should Be Equal    ${WHITE_POPUP_TIMEOUT}	${10000}
-
-    Set White Tooltip Wait Time    10000
-    ${WHITE_TOOLTIP_WAIT_TIME}    Get White Tooltip Wait Time
-    Should Be Equal    ${WHITE_TOOLTIP_WAIT_TIME}	${10000}
-
-    Set White Suggestion List Timeout    10000
-    ${WHITE_SUGGESTION_LIST_TIMEOUT}    Get White Suggestion List Timeout
-    Should Be Equal    ${WHITE_SUGGESTION_LIST_TIMEOUT}    ${10000}
-
-    Set White Highlight Timeout    10000
-    ${WHITE_HIGHLIGHT_TIMEOUT}    Get White Highlight Timeout
-    Should Be Equal    ${WHITE_HIGHLIGHT_TIMEOUT}    ${10000}
-
-    #Store local default for restore later.
-    ${WHITE_DEFAULT_DATE_FORMAT_ORIGINAL}    Get White Default Date Format
-    Set White Default Date Format    MonthDayYear
-    ${WHITE_DEFAULT_DATE_FORMAT}    Get White Default Date Format
-    Should Be Equal    ${WHITE_DEFAULT_DATE_FORMAT}    MonthDayYear
-    Set White Default Date Format    DayMonthYear
-    ${WHITE_DEFAULT_DATE_FORMAT}    Get White Default Date Format
-    Should Be Equal    ${WHITE_DEFAULT_DATE_FORMAT}    DayMonthYear
-
-    Set White Drag Step Count    3
-    ${WHITE_DRAG_STEP_COUNT}    Get White Drag Step Count
-    Should Be Equal    ${WHITE_DRAG_STEP_COUNT}    ${3}
-
-    Set White In Proc    True
-    ${WHITE_IN_PROC}    Get White In Proc
-    Should Be Equal    ${WHITE_IN_PROC}    ${True}
-
-    Set White Combobox Items Populated Without Dropdown Open    ${False}
-    ${WHITE_COMBOBOX_ITEMS_POPULATED_WITHOUT_DROPDOWN_OPEN}    Get White Combobox Items Populated Without Dropdown Open
-    Should Be Equal    ${WHITE_COMBOBOX_ITEMS_POPULATED_WITHOUT_DROPDOWN_OPEN}    ${False}
-
-    Set White Raw Element Based Search    ${True}
-    ${WHITE_RAW_ELEMENT_BASED_SEARCH}    Get White Raw Element Based Search
-    Should Be Equal    ${WHITE_RAW_ELEMENT_BASED_SEARCH}    ${True}
-
-    Set White Max Element Search Depth    3
-    ${WHITE_MAX_ELEMENT_SEARCH_DEPTH}    Get White Max Element Search Depth
-    Should Be Equal    ${WHITE_MAX_ELEMENT_SEARCH_DEPTH}    ${3}
-
     Set White Double Click Interval    50
     ${WHITE_DOUBLE_CLICK_INTERVAL}    Get White Double Click Interval
     Should Be Equal    ${WHITE_DOUBLE_CLICK_INTERVAL}    ${50}
-
-    Set White Move Mouse To Get Status Of Hourglass    ${False}
-    ${WHITE_MOVE_MOUSE_TO_GET_STATUS_OF_HOURGLASS}    Get White Move Mouse To Get Status Of Hourglass
-    Should Be Equal    ${WHITE_MOVE_MOUSE_TO_GET_STATUS_OF_HOURGLASS}    ${False}
 
 
 Verify Labels
@@ -450,18 +393,4 @@ White Configuration Parameters Restore
     #These defaults are defined in White Stack source code.
     Set White Busy Timeout    5000
     Set White Find Window Timeout    30000
-    Set White Wait Based On Hourglass    ${True}
-    Set White Uiautomation Zero Window Bug Timeout    5000
-    Set White Popup Timeout    5000
-    Set White Tooltip Wait Time    3000
-    Set White Suggestion List Timeout    3000
-    Set White Highlight Timeout    1000
-    Set White Default Date Format    DayMonthYear
-    Set White Drag Step Count    1
-    Set White In Proc    ${False}
-    Set White Combobox Items Populated Without Dropdown Open    ${True}
-    Set White Raw Element Based Search    ${False}
-    Set White Max Element Search Depth    10
     Set White Double Click Interval    0
-    Set White Move Mouse To Get Status Of Hour Glass    ${True}
-
