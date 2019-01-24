@@ -2,7 +2,7 @@
 pushd %~dp0
 REM install White dlls
 nuget restore src\WhiteLibrary\packages.config -PackagesDirectory packages
-nuget restore UIAutomatioTest\packages.config -PackagesDirectory packages
+nuget restore UIAutomationTest\packages.config -PackagesDirectory UIAutomationTest\packages
 
 REM copy all dll packages into same location
 mkdir src\WhiteLibrary\bin\
