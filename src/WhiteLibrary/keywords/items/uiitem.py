@@ -38,3 +38,11 @@ class UiItemKeywords(LibraryComponent):
         ``locator`` is the locator of the item.
         """
         return self.state._get_multiple_items_by_locator(locator)
+
+    @keyword
+    def get_item(self, locator):
+        """Returns first item of the list of items that match the given locator.
+
+        ``locator`` is the locator of the item.
+        """
+        return self.state._get_item_by_locator(locator)
