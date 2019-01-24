@@ -1,3 +1,9 @@
+trigger:
+  batch: true
+  paths:
+    exclude:
+    - docs/keyword.html
+
 variables:
   deployment: deploy
   nuget: packages
@@ -16,7 +22,6 @@ steps:
       mkdir UIAutomationTest\packages
       nuget restore UIAutomationTest\packages.config -PackagesDirectory $(SUT_nuget)
   displayName: Download NuGet packages for SUT
-  
 
 - script: |
       pip install -r requirements.txt
