@@ -9,6 +9,7 @@ steps:
 
 - script: |
       nuget restore src\WhiteLibrary\packages.config -PackagesDirectory $(nuget)
+      nuget restore UIAutomatioTest\packages.config -PackagesDirectory packages
   displayName: Download NuGet packages
 
 - script: |
