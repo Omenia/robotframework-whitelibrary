@@ -3,7 +3,7 @@ from TestStack.White.UIItems import DateFormat
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from robot.api import logger
-from robot.utils import robottime
+from robot.utils import timestr_to_secs
 
 
 class WhiteConfigurationKeywords(LibraryComponent):
@@ -61,7 +61,7 @@ class WhiteConfigurationKeywords(LibraryComponent):
         return self._get_milliseconds_as_timestr(CoreAppXmlConfiguration.Instance.DoubleClickInterval)
 
     def _get_timestr_in_milliseconds(self, time_string):
-        return robottime.timestr_to_secs(time_string) * 1000
+        return timestr_to_secs(time_string) * 1000
 
     def _get_milliseconds_as_timestr(self, milliseconds):
         return "{} milliseconds".format(milliseconds)
