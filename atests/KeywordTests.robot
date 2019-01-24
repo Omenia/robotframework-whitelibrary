@@ -313,6 +313,11 @@ List UI Items
     ${count}    Get Length    ${items}
     Should Be True    ${count} > 1
 
+Get Single UI Item
+    ${item}    Get Item    control_type=Button
+    ${item_type}    Evaluate    type($item).__name__
+    Should Be Equal    ${item_type}    ButtonProxy
+
 *** Keywords ***
 Launch App
     Set Log Level    Info
