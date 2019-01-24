@@ -1,5 +1,5 @@
 import unittest
-from src.WhiteLibrary import WhiteLibrary
+from WhiteLibrary import WhiteLibrary
 
 
 class TestLocatorParsing(unittest.TestCase):
