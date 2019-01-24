@@ -15,17 +15,17 @@ Test Teardown    Clean App
 Configuration Parameters
     [Setup]    NONE
     [Teardown]    White Configuration Parameters Restore
-    Set White Busy Timeout    10000
+    Set White Busy Timeout    10
     ${BUSY_TIMEOUT}    Get White Busy Timeout
-    Should Be Equal   ${BUSY_TIMEOUT}	${10000}
+    Should Be Equal   ${BUSY_TIMEOUT}    10000 milliseconds
 
-    Set White Find Window Timeout    10000
+    Set White Find Window Timeout    10 s
     ${WHITE FIND WINDOW_TIMEOUT}    Get White Find Window Timeout
-    Should Be Equal    ${WHITE FIND WINDOW_TIMEOUT}    ${10000}
+    Should Be Equal    ${WHITE FIND WINDOW_TIMEOUT}    10000 milliseconds
 
-    Set White Double Click Interval    50
+    Set White Double Click Interval    0.05 seconds
     ${WHITE_DOUBLE_CLICK_INTERVAL}    Get White Double Click Interval
-    Should Be Equal    ${WHITE_DOUBLE_CLICK_INTERVAL}    ${50}
+    Should Be Equal    ${WHITE_DOUBLE_CLICK_INTERVAL}    50 milliseconds
 
 
 Verify Labels
@@ -396,6 +396,6 @@ ${node label} Should Be ${status}
 
 White Configuration Parameters Restore
     #These defaults are defined in White Stack source code.
-    Set White Busy Timeout    5000
-    Set White Find Window Timeout    30000
-    Set White Double Click Interval    0
+    Set White Busy Timeout    5000 ms
+    Set White Find Window Timeout    30000 ms
+    Set White Double Click Interval    0 ms
