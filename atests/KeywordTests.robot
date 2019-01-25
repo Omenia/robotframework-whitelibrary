@@ -189,6 +189,13 @@ Calculate Using Index Locators
     Click Button    btnCalc
     Verify Text In Textbox    index=3    3
 
+Calculate Using ':' As Locator Delimiter
+    Input Text To Textbox    text:Calc1    1
+    Select Combobox Value    index:0    +
+    Input Text To Textbox    index:2    2
+    Click Button    id:btnCalc
+    Verify Text In Textbox    index:3    3
+
 Calculate Using Native Property Locators
     Input Text To Textbox    help_text=First addend    12
     Select Combobox Value    index=0    +

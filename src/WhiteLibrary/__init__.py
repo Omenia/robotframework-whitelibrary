@@ -60,6 +60,10 @@ class WhiteLibrary(DynamicCore):
     Keywords that access UI items (e.g. `Click Button`) use a ``locator`` argument.
     The locator consists of a locator prefix that specifies the search criteria, and the locator value.
 
+    Locator syntax is ``prefix:value``.
+    Old locator syntax ``prefix=value`` is also valid but it is recommended to use the ``prefix:value`` syntax since the
+    old syntax may be deprecated in the future.
+
     The following locator prefixes are available:
 
     | = Prefix =        | = Description =                    |
@@ -73,9 +77,9 @@ class WhiteLibrary(DynamicCore):
     Examples:
 
     | `Click Button` | myButton         | # clicks button by its AutomationID |
-    | `Click Button` | id=myButton      | # clicks button by its AutomationID |
-    | `Click Button` | text=Click here! | # clicks button by the button text  |
-    | `Click Button` | index=2          | # clicks button whose index is 2    |
+    | `Click Button` | id:myButton      | # clicks button by its AutomationID |
+    | `Click Button` | text:Click here! | # clicks button by the button text  |
+    | `Click Button` | index:2          | # clicks button whose index is 2    |
     """
     ROBOT_LIBRARY_VERSION = version.VERSION
     ROBOT_LIBRARY_SCOPE = "Global"
@@ -117,10 +121,7 @@ class WhiteLibrary(DynamicCore):
         return self.window.GetMultiple(search_criteria)
 
     def _get_search_criteria(self, locator):
-        if "=" not in locator:
-            locator = "id=" + locator
-
-        search_strategy, locator_value = locator.split("=", 1)
+        search_strategy, locator_value = self._parse_locator(locator)
         if search_strategy == "index":
             locator_value = int(locator_value)
 
@@ -140,6 +141,19 @@ class WhiteLibrary(DynamicCore):
 
         method = getattr(SearchCriteria, search_method)
         return method(*search_params)
+
+    def _parse_locator(self, locator):
+        if "=" not in locator and ":" not in locator:
+            locator = "id:" + locator
+        idx = self._get_locator_delimiter_index(locator)
+        return locator[:idx], locator[idx+1:]
+
+    def _get_locator_delimiter_index(self, locator):
+        if "=" not in locator:
+            return locator.index(":")
+        if ":" not in locator:
+            return locator.index("=")
+        return min(locator.index(":"), locator.index("="))
 
     def _end_keyword(self, name, attrs):
         if attrs['status'] == 'FAIL':
