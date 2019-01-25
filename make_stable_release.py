@@ -10,7 +10,7 @@ def change_stable(from_stable, to_stable):
     with open(VERSION_FILE, 'r') as file :
         filedata = file.read()
 
-    filedata = filedata.replace('STABLE = ' + from_stable, 'STABLE = ' + to_stable)
+    filedata = filedata.replace('STABLE = {0}'.format(from_stable), 'STABLE = {0}'.format(to_stable)
 
     with open(VERSION_FILE, 'w') as file:
         file.write(filedata)
@@ -33,11 +33,11 @@ libdoc("./src/WhiteLibrary", "./docs/keywords.html", version=VERSION)
 
 repo.git.add(VERSION_FILE)
 repo.git.add('./docs/keywords.html')
-repo.git.commit( m='Making Stable release' )
+repo.git.commit( m='Making stable release: {0}'.format(VERSION) )
 repo.git.push()
 
 change_stable("True", "False")
 
 repo.git.add(VERSION_FILE)
-repo.git.commit( m='Making Unstable release' )
+repo.git.commit( m='Back to unstable release' )
 repo.git.push()
