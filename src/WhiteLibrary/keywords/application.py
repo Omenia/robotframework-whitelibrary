@@ -1,12 +1,17 @@
+from System.Diagnostics import ProcessStartInfo
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from TestStack.White import Application
 
-
 class ApplicationKeywords(LibraryComponent):
     @keyword
-    def launch_application(self, sut_path):
-        self.state.app = Application.Launch(sut_path)
+    def launch_application(self, sut_path, args=None):
+        if args is not None:
+            processStartInfo = ProcessStartInfo(sut_path)
+            processStartInfo.Arguments = args
+            self.state.app = Application.Launch(processStartInfo)
+        else:
+            self.state.app = Application.Launch(sut_path)
 
     @keyword
     def attach_application_by_name(self, sut_name):

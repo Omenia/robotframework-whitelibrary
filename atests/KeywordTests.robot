@@ -1,11 +1,12 @@
 *** Variables ***
 ${TEST APPLICATION}      ${EXECDIR}${/}UIAutomationTest${/}bin${/}Debug${/}UIAutomationTest.exe
+${ARGUMENTS}    "generic_argument"
 
 *** Settings ***
 Library    OperatingSystem
 Library    String
 Library    WhiteLibrary
-Suite Setup    Launch App
+Suite Setup    Launch App    ${ARGUMENTS}
 Suite Teardown    Close App
 Test Setup    Attach Main Window
 Test Teardown    Clean App
@@ -44,6 +45,7 @@ Write to Textbox
     Input Text To Textbox    passwordBox    viisi
 
 Verify Text
+    [Tags]    under_test
     Input Text To Textbox     txtA    Antti
     Verify Text In Textbox    txtA    Antti
 
@@ -327,8 +329,11 @@ Get Single UI Item
 
 *** Keywords ***
 Launch App
+    [Arguments]    @{args}
     Set Log Level    Info
-    Launch Application    ${TEST APPLICATION}
+    Log    Launch App Arguments were
+    Log    @{args}
+    Launch Application    ${TEST APPLICATION}    @{args}
     Attach Window    UI Automation Test Window
 
 Close App
