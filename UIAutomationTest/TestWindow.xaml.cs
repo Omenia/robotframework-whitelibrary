@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace UIAutomationTest
 {
     /// <summary>
@@ -22,9 +23,13 @@ namespace UIAutomationTest
     {
         private int doubleClickCounter = 0;
         private int initialProgress = 4;
+        private String[] args = App.Args;
+
         public TestWindow()
         {
             InitializeComponent();
+            String allArguments = String.Join(";", args);
+            command_line_arguments_value.Text = allArguments;
         }
 
         private void calculate_click(object sender, RoutedEventArgs e)
@@ -95,6 +100,8 @@ namespace UIAutomationTest
             MessageBoxButton button = MessageBoxButton.OK;
             MessageBox.Show(text, title, button);
         }
+
+        
 
         private void treeNodeSelect(object sender, RoutedEventArgs e)
         {
