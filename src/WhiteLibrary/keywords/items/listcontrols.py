@@ -116,3 +116,4 @@ class ListKeywords(LibraryComponent):
         """
         listview = self.state._get_typed_item_by_locator(ListView, locator)
         listview.Select(int(row_index))
+

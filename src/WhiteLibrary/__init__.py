@@ -6,7 +6,7 @@ clr.AddReference('System')
 clr.AddReference(dll_path)
 from System.Windows.Automation import AutomationElement, ControlType    # noqa: E402
 from TestStack.White.UIItems.Finders import SearchCriteria    # noqa: E402
-from WhiteLibrary.keywords import ApplicationKeywords, KeyboardKeywords, WindowKeywords, ScreenshotKeywords    # noqa: E402
+from WhiteLibrary.keywords import ApplicationKeywords, KeyboardKeywords, WindowKeywords, ScreenshotKeywords, WhiteConfigurationKeywords    # noqa: E402
 from WhiteLibrary.keywords.items import (ButtonKeywords,
                             LabelKeywords,
                             ListKeywords,
@@ -96,6 +96,7 @@ class WhiteLibrary(DynamicCore):
                           ProgressbarKeywords(self),
                           SliderKeywords(self),
                           TabKeywords(self),
+                          WhiteConfigurationKeywords(self),
                           TextBoxKeywords(self),
                           TreeKeywords(self),
                           UiItemKeywords(self),

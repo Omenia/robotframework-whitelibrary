@@ -1,6 +1,7 @@
 variables:
   deployment: deploy
   nuget: packages
+  SUT_nuget: UIAutomationTest\packages
 
 steps:
 - task: NuGetToolInstaller@0
@@ -10,6 +11,12 @@ steps:
 - script: |
       nuget restore src\WhiteLibrary\packages.config -PackagesDirectory $(nuget)
   displayName: Download NuGet packages
+
+- script: |
+      mkdir UIAutomationTest\packages
+      nuget restore UIAutomationTest\packages.config -PackagesDirectory $(SUT_nuget)
+  displayName: Download NuGet packages for SUT
+  
 
 - script: |
       pip install -r requirements.txt
