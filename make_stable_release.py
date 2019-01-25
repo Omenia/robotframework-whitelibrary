@@ -31,10 +31,12 @@ print(str(sys.argv))
 change_version_number(sys.argv[1])
 libdoc("./src/WhiteLibrary", "./docs/keywords.html", version=VERSION)
 
+ver = "v".format(VERSION)
 repo.git.add(VERSION_FILE)
 repo.git.add('./docs/keywords.html')
-repo.git.commit( m='Making stable release: {0}'.format(VERSION) )
-repo.git.push()
+repo.git.commit( m='Making stable release: {0}'.format(ver) )
+tag = repo.git.create_tag(ver, message='New stable version: "{0}"'.format(ver))
+repo.git.push(tag)
 
 change_stable("True", "False")
 
