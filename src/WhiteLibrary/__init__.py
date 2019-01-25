@@ -60,6 +60,10 @@ class WhiteLibrary(DynamicCore):
     Keywords that access UI items (e.g. `Click Button`) use a ``locator`` argument.
     The locator consists of a locator prefix that specifies the search criteria, and the locator value.
 
+    Locator syntax is ``prefix:value``.
+    Old locator syntax ``prefix=value`` is also valid but it is recommended to use the ``prefix:value`` syntax since the
+    old syntax may be deprecated in the future.
+
     The following locator prefixes are available:
 
     | = Prefix =        | = Description =                    |
@@ -73,9 +77,9 @@ class WhiteLibrary(DynamicCore):
     Examples:
 
     | `Click Button` | myButton         | # clicks button by its AutomationID |
-    | `Click Button` | id=myButton      | # clicks button by its AutomationID |
-    | `Click Button` | text=Click here! | # clicks button by the button text  |
-    | `Click Button` | index=2          | # clicks button whose index is 2    |
+    | `Click Button` | id:myButton      | # clicks button by its AutomationID |
+    | `Click Button` | text:Click here! | # clicks button by the button text  |
+    | `Click Button` | index:2          | # clicks button whose index is 2    |
     """
     ROBOT_LIBRARY_VERSION = version.VERSION
     ROBOT_LIBRARY_SCOPE = "Global"
