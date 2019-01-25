@@ -28,7 +28,6 @@ Configuration Parameters
     ${WHITE_DOUBLE_CLICK_INTERVAL}    Get White Double Click Interval
     Should Be Equal    ${WHITE_DOUBLE_CLICK_INTERVAL}    50 milliseconds
 
-
 Verify Labels
     Verify Label    lblA    Value 1
     Verify Label    lblB    Value 2
@@ -45,7 +44,6 @@ Write to Textbox
     Input Text To Textbox    passwordBox    viisi
 
 Verify Text
-    [Tags]    under_test
     Input Text To Textbox     txtA    Antti
     Verify Text In Textbox    txtA    Antti
 
@@ -237,6 +235,9 @@ Disable and enable screenshots on failure
     Run Keyword And Expect Error    *    Should Be True    ${FALSE}
     New Screenshot Should Be Created
 
+Verify Commandline Arguments
+    Ver
+
 Switch Tab
     Select Tab Page    tabControl    Tab2
     Verify Label    selectionIndicatorLabel    nothing selected
@@ -331,8 +332,6 @@ Get Single UI Item
 Launch App
     [Arguments]    @{args}
     Set Log Level    Info
-    Log    Launch App Arguments were
-    Log    @{args}
     Launch Application    ${TEST APPLICATION}    @{args}
     Attach Window    UI Automation Test Window
 
