@@ -63,7 +63,7 @@ Launch Application With File Paths
 Launch Application With File Paths2
     Launch App    test${/}test2.txt test\\test2.exe
     Command Line Arguments Should Be    test\\test2.txt;test\\test2.exe
-    Close Applicatio
+    Close Application
 
 Launch Application With Special Characters2
     Launch App    \# ? \\ / - _ \$
