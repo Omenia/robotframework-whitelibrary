@@ -20,6 +20,7 @@ class ScreenshotKeywords(LibraryComponent):
     def take_desktop_screenshot(self):
         """
         Takes a screenshot of the whole desktop and inserts screenshot link to log file.
+        
         Returns path to the screenshot file.
         """
         filepath = self._get_screenshot_path("whitelib_screenshot_{index}.png")
