@@ -228,9 +228,6 @@ Disable and enable screenshots on failure
     Run Keyword And Expect Error    *    Should Be True    ${FALSE}
     New Screenshot Should Be Created
 
-Verify Commandline Arguments
-    Ver
-
 Switch Tab
     Select Tab Page    tabControl    Tab2
     Verify Label    selectionIndicatorLabel    nothing selected
