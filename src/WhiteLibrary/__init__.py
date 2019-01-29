@@ -80,6 +80,23 @@ class WhiteLibrary(DynamicCore):
     | `Click Button` | id:myButton      | # clicks button by its AutomationID |
     | `Click Button` | text:Click here! | # clicks button by the button text  |
     | `Click Button` | index:2          | # clicks button whose index is 2    |
+
+    = Workflow example =
+    This test script opens application. Locates element my_button that has text "press this button". Then clicks the button and finally closes the application.
+    | *** Variables ***
+    | ${TEST APPLICATION}      ${EXECDIR}${/}path${/}to${/}my_application.exe
+    |
+    | *** Settings ***
+    | Library    WhiteLibrary
+    |
+    | *** Test Cases ***
+    | Small Example
+    |   Launch Application    ${TEST APPLICATION}
+    |   Attach Window    window_title
+    |   Button Text Should Be    my_button    press this button
+    |   Click Button    my_button
+    |   Close Application
+
     """
     ROBOT_LIBRARY_VERSION = version.VERSION
     ROBOT_LIBRARY_SCOPE = "Global"
