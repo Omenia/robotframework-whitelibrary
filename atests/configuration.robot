@@ -24,6 +24,10 @@ Set White Double Click Timeout
     ${WHITE_DOUBLE_CLICK_INTERVAL}    Get White Double Click Interval
     Should Be Equal    ${WHITE_DOUBLE_CLICK_INTERVAL}    50 milliseconds
 
+Set White Drag Step Count    3
+    ${WHITE_DRAG_STEP_COUNT}    Get White Drag Step Count
+    Should Be Equal    ${WHITE_DRAG_STEP_COUNT}    ${3}
+
 
 *** Keywords ***
 White Configuration Parameters Restore
