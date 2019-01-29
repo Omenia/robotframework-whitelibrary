@@ -31,7 +31,8 @@ STRATEGIES = dict(id={"method": "ByAutomationId"},
 
 class WhiteLibrary(DynamicCore):
     """WhiteLibrary is a Robot Framework library for automating Windows GUI.
-    It is a wrapper for [https://github.com/TestStack/White | TestStack.White].
+    It is a wrapper for [https://github.com/TestStack/White | TestStack.White] automation framework, which is based on
+    [https://docs.microsoft.com/en-us/windows/desktop/WinAuto/entry-uiauto-win32 | Microsoft UI Automation API] (UIA).
 
     = Applications and windows =
     To interact with UI items, the correct application and window must be attached to WhiteLibrary.
@@ -52,18 +53,17 @@ class WhiteLibrary(DynamicCore):
     | `Attach Window`              | Calculator |
 
     = UI items =
-    Keywords in WhiteLibrary use the same names for control types that are used in White.
+    WhiteLibrary uses the same names for UI items (=controls) as White.
     See [https://teststackwhite.readthedocs.io/en/latest/UIItems | White's documentation] for details about mapping
-    UIA Control Types to classes in White.
+    UIA control types to White's UI item classes.
+
+    For example, the UIA control type ``Text`` maps to the ``Label`` class in White (e.g. in WhiteLibrary's keyword `Verify Label`).
 
     == Item locators ==
     Keywords that access UI items (e.g. `Click Button`) use a ``locator`` argument.
     The locator consists of a locator prefix that specifies the search criteria, and the locator value.
 
     Locator syntax is ``prefix:value``.
-    Old locator syntax ``prefix=value`` is also valid but it is recommended to use the ``prefix:value`` syntax since the
-    old syntax may be deprecated in the future.
-
     The following locator prefixes are available:
 
     | = Prefix =        | = Description =                    |
@@ -81,22 +81,23 @@ class WhiteLibrary(DynamicCore):
     | `Click Button` | text:Click here! | # clicks button by the button text  |
     | `Click Button` | index:2          | # clicks button whose index is 2    |
 
-    = Workflow example =
-    This test script opens application. Locates element my_button that has text "press this button". Then clicks the button and finally closes the application.
-    | *** Variables ***
-    | ${TEST APPLICATION}      ${EXECDIR}${/}path${/}to${/}my_application.exe
-    |
-    | *** Settings ***
-    | Library    WhiteLibrary
-    |
-    | *** Test Cases ***
-    | Small Example
-    |   Launch Application    ${TEST APPLICATION}
-    |   Attach Window    window_title
-    |   Button Text Should Be    my_button    press this button
-    |   Click Button    my_button
-    |   Close Application
+    *Note:* Old locator syntax ``prefix=value`` is also valid but it is recommended to use the ``prefix:value`` syntax
+    since the old syntax may be *deprecated* in the future.
 
+    = Workflow example =
+    | ***** Variables *****   | | | |
+    | ${TEST APPLICATION}     | C:/path/to/my_application.exe | | |
+    | | | | |
+    | ***** Settings *****    | | | |
+    | Library | WhiteLibrary  | | |
+    | | | | |
+    | ***** Test Cases *****  | | | |
+    | Small Example           | | | |
+    | | Launch Application    | ${TEST APPLICATION} | |
+    | | Attach Window         | Window Title        | |
+    | | Button Text Should Be | my_button           | press this button |
+    | | Click Button          | my_button | |
+    | | Close Application     | | |
     """
     ROBOT_LIBRARY_VERSION = version.VERSION
     ROBOT_LIBRARY_SCOPE = "Global"
