@@ -4,6 +4,7 @@ from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from robot.api import logger
 
+
 class ListKeywords(LibraryComponent):
     @keyword
     def select_listbox_value(self, locator, value):
@@ -29,8 +30,7 @@ class ListKeywords(LibraryComponent):
 
     @keyword
     def listbox_selection_should_be(self, locator, expected):
-        """
-        Checks the listbox selection.
+        """Checks the listbox selection.
 
         Fails if the selection was not as expected.
 
@@ -45,8 +45,7 @@ class ListKeywords(LibraryComponent):
 
     @keyword
     def select_combobox_value(self, locator, value):
-        """
-        Selects a value from a combobox.
+        """Selects a value from a combobox.
 
         ``locator`` is the locator of the combobox.
 
@@ -69,8 +68,7 @@ class ListKeywords(LibraryComponent):
 
     @keyword
     def verify_combobox_item(self, locator, expected):
-        """
-        *DEPRECATED* Please use Verify Combobox Selection instead
+        """*DEPRECATED* Please use Verify Combobox Selection instead
         Verifies the selected value of a combobox.
 
         ``locator`` is the locator of the combobox.
@@ -81,8 +79,7 @@ class ListKeywords(LibraryComponent):
 
     @keyword
     def verify_combobox_selection(self, locator, expected):
-        """
-        Verifies the selected value of a combobox.
+        """Verifies that the combobox value is selected.
 
         ``locator`` is the locator of the combobox.
 
@@ -93,14 +90,16 @@ class ListKeywords(LibraryComponent):
 
     @keyword
     def right_click_listview_cell(self, locator, column_name, row_index):
-        """
-        Selects a value from a listview.
+        """Right clicks a listview cell using its column name and row index.
 
         ``locator`` is the locator of the listview.
 
         ``column_name`` is the name of the column.
 
         ``row_index`` is the index of the row.
+
+        Example:
+        | Right Click Listview Cell | id:userList | Name | 0 |
         """
         listview = self.state._get_typed_item_by_locator(ListView, locator)
         cell = listview.Cell(column_name, int(row_index))
@@ -116,4 +115,3 @@ class ListKeywords(LibraryComponent):
         """
         listview = self.state._get_typed_item_by_locator(ListView, locator)
         listview.Select(int(row_index))
-
