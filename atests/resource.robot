@@ -5,8 +5,9 @@ ${TEST APPLICATION NAME}    UIAutomationTest
 *** Keywords ***
 
 Launch Application For Test
+    [Arguments]    ${args}=${EMPTY}
     Set Log Level    Info
-    Launch Application    ${TEST APPLICATION}
+    Launch Application    ${TEST APPLICATION}    ${args}
     Attach Window    UI Automation Test Window
 
 Attach Main Window
