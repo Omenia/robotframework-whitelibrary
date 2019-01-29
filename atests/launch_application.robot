@@ -9,68 +9,30 @@ Library    OperatingSystem
 Library    String
 Resource    resource.robot
 
-*** Test Cases ***
-Launch Application With No Arguments
-    Launch Application For Test
-    Command Line Arguments Should Be    No command line args provided
-    Close Application
+Test Template     Launch Application With Arguments
 
-Launch Application With Empty Argument
-    Launch Application For Test    ""
-    Command Line Arguments Should Be    ${EMPTY}
-    Close Application
+*** Test Cases ***              Arguments            Expected result
+No Arguments                    ${EMPTY}             No command line args provided
+Empty Strung	                ""                   ${EMPTY}
+Space                           ${EMPTY_STRING}      ${EMPTY_STRING2}
+Single Argument                 -single_argument     -single_argument
+Single Argument With Space      "-single argument"   -single argument
+Two Arguments                   -argument1 -argument2    -argument1;-argument2
+Two Arguments With Space        "-argument 1" "-argument 2"    -argument 1;-argument 2
+Three Arguments                 -argument1 -argument2 -argument3    -argument1;-argument2;-argument3
+Three Arguments With Space      "-argument 1" "-argument 2" "-argument 3"    -argument 1;-argument 2;-argument 3
+File Paths                      test/test2.txt test\\test2.exe    test/test2.txt;test\\test2.exe
+File Paths2                     test${/}test2.txt test\\test2.exe    test\\test2.txt;test\\test2.exe
+Special Characters              \# ? \\ / - _ \$    \#;?;\\;/;-;_;\$
 
-Launch Application With Space Argument
-    Launch Application For Test    ${EMPTY_STRING}
-    Command Line Arguments Should Be    ${EMPTY_STRING2}
-    Close Application
-
-Launch Application With Single Argument
-    Launch Application For Test    -single_argument
-    Command Line Arguments Should Be    -single_argument
-    Close Application
-
-Launch Application With Single Argument With Space
-    Launch Application For Test    "-single argument"
-    Command Line Arguments Should Be    -single argument
-    Close Application
-
-Launch Application With Two Arguments
-    Launch Application For Test    -argument1 -argument2
-    Command Line Arguments Should Be    -argument1;-argument2
-    Close Application
-
-Launch Application With Two Arguments With Space
-    Launch Application For Test    "-argument 1" "-argument 2"
-    Command Line Arguments Should Be    -argument 1;-argument 2
-    Close Application
-
-Launch Application With Three Arguments
-    Launch Application For Test    -argument1 -argument2 -argument3
-    Command Line Arguments Should Be    -argument1;-argument2;-argument3
-    Close Application
-
-Launch Application With Three Arguments With Space
-    Launch Application For Test    "-argument 1" "-argument 2" "-argument 3"
-    Command Line Arguments Should Be    -argument 1;-argument 2;-argument 3
-    Close Application
-
-Launch Application With File Paths
-    Launch Application For Test    test/test2.txt test\\test2.exe
-    Command Line Arguments Should Be    test/test2.txt;test\\test2.exe
-    Close Application
-
-Launch Application With File Paths2
-    Launch Application For Test    test${/}test2.txt test\\test2.exe
-    Command Line Arguments Should Be    test\\test2.txt;test\\test2.exe
-    Close Application
-
-Launch Application With Special Characters2
-    Launch Application For Test    \# ? \\ / - _ \$
-    Command Line Arguments Should Be    \#;?;\\;/;-;_;\$
-    Close Application
 
 *** Keywords ***
+Launch Application With Arguments
+    [Arguments]    ${arguments}    ${result}
+    Launch Application For Test    ${arguments}
+    Command Line Arguments Should Be    ${result}
+    Close Application
+
 Command Line Arguments Should Be
     [Arguments]    ${value}
     Verify Text In Textbox    command_line_arguments_value    ${value}
