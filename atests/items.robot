@@ -6,28 +6,13 @@ ${ARGUMENTS}    "generic_argument"
 Library    OperatingSystem
 Library    String
 Library    WhiteLibrary
-Suite Setup    Launch App    ${ARGUMENTS}
-Suite Teardown    Close App
+Suite Setup    Launch Application For Test
+Suite Teardown    Close Application
 Test Setup    Attach Main Window
-Test Teardown    Clean App
-
+Test Teardown    Clean Application
+Resource          resource.robot
 
 *** Test Cases ***
-Configuration Parameters
-    [Setup]    NONE
-    [Teardown]    White Configuration Parameters Restore
-    Set White Busy Timeout    10
-    ${BUSY_TIMEOUT}    Get White Busy Timeout
-    Should Be Equal   ${BUSY_TIMEOUT}    10000 milliseconds
-
-    Set White Find Window Timeout    10 s
-    ${WHITE FIND WINDOW_TIMEOUT}    Get White Find Window Timeout
-    Should Be Equal    ${WHITE FIND WINDOW_TIMEOUT}    10000 milliseconds
-
-    Set White Double Click Interval    0.05 seconds
-    ${WHITE_DOUBLE_CLICK_INTERVAL}    Get White Double Click Interval
-    Should Be Equal    ${WHITE_DOUBLE_CLICK_INTERVAL}    50 milliseconds
-
 Verify Labels
     Verify Label    lblA    Value 1
     Verify Label    lblB    Value 2
@@ -55,20 +40,20 @@ Verify Get Text
 
 Verify Operation Selections
     Select Combobox Value    op    +
-    Verify + In Operators
+    Verify Combobox Selection    op    +
     Select Combobox Value    op    -
-    Verify - In Operators
+    Verify Combobox Selection    op    -
     Select Combobox Value    op    *
-    Verify * In Operators
+    Verify Combobox Selection    op    *
     Select Combobox Value    op    /
-    Verify / In Operators
+    Verify Combobox Selection    op    /
     Select Combobox Value    op    %
-    Verify % In Operators
+    Verify Combobox Selection    op    %
     Select Combobox Index    index=0    1    #multiplication
-    Verify * In Operators
+    Verify Combobox Selection    op    *
 
 Verify Button
-    Verify Button    btnCalc    Calculate (=)
+    Button Text Should Contain    btnCalc    Calculate (=)
 
 Verify Button Text Should Be
     Button Text Should Be   btnCalc    Calculate (=)
@@ -92,37 +77,14 @@ Open About And Verify Text
     Attach Window    UI Automation Test Window
 
 Multiplication Calculation
-    Calculate 5 * 2 Equals 10
-
-Quotient Calculation
-    [Tags]    no_ci
-    Calculate 7 % 3 Equals 1
-
-Plus Calculation
-    [Tags]    no_ci
-    Calculate 1 + 4 Equals 5
-
-Minus Calculation
-    [Tags]    no_ci
-    Calculate 5 - 1 Equals 4
-
-Division Calculation
-    [Tags]   no_ci
-    Calculate 6 / 2 Equals 3
+    Calculate 2 * 5 Equals 10
 
 Calculate When First Number is Missing
-    Calculate 5 + ${EMPTY} Equals ${EMPTY}
-
-Calculate When Second Number is Missing
-    [Tags]    no_ci
     Calculate ${EMPTY} + 5 Equals ${EMPTY}
 
 Calculate When First Number Is Alphabet
     Calculate a + 5 Equals ${EMPTY}
 
-Calculate When Second Number Is Alphabet
-    [Tags]    no_ci
-    Calculate 1 + a Equals ${EMPTY}
 
 Verify Radio Buttons
     Verify Radio Button    rb_peke    ${TRUE}
@@ -182,59 +144,6 @@ Click An Item
     Click Item    rb_ismo
     Verify Radio Button    rb_ismo    ${TRUE}
 
-Calculate Using Index Locators
-    Input Text To Textbox    index=0    1
-    Select Combobox Value    index=0    +
-    Input Text To Textbox    index=2    2
-    Click Button    btnCalc
-    Verify Text In Textbox    index=3    3
-
-Calculate Using ':' As Locator Delimiter
-    Input Text To Textbox    text:Calc1    1
-    Select Combobox Value    index:0    +
-    Input Text To Textbox    index:2    2
-    Click Button    id:btnCalc
-    Verify Text In Textbox    index:3    3
-
-Calculate Using Native Property Locators
-    Input Text To Textbox    help_text=First addend    12
-    Select Combobox Value    index=0    +
-    Input Text To Textbox    help_text=Second addend    21
-    Click Button    btnCalc
-    Verify Text In Textbox    help_text=Sum    33
-
-Click Button With = In Locator Value
-    Input Text To Textbox    txtA    1
-    Select Combobox Value    op    +
-    Input Text To Textbox    txtB    2
-    Click Button    text=Calculate (=)
-    Verify Text In Textbox    tbResult    3
-
-Unexisting Locator
-    ${error}    Run Keyword And Expect Error    *    Click Item    unexisting-locator=whatever
-    Should Contain    ${error}    'unexisting-locator' is not a valid locator prefix
-
-Take screenshots
-    [Setup]    Screenshot Setup
-    Take Desktop Screenshot
-    New Screenshot Should Be Created
-    Take Desktop Screenshot
-    New Screenshot Should Be Created
-
-Take screenshot on failure
-    [Setup]    Screenshot Setup
-    Run Keyword And Expect Error    *    Should Be True    ${FALSE}
-    New Screenshot Should Be Created
-
-Disable and enable screenshots on failure
-    [Setup]    Screenshot Setup
-    Take Screenshots On Failure    false
-    Run Keyword And Expect Error    *    Should Be True    ${FALSE}
-    New Screenshot Should Not Be Created
-    Take Screenshots On Failure    ${True}
-    Run Keyword And Expect Error    *    Should Be True    ${FALSE}
-    New Screenshot Should Be Created
-
 Switch Tab
     Select Tab Page    tabControl    Tab2
     Verify Label    selectionIndicatorLabel    nothing selected
@@ -246,6 +155,37 @@ Open Menu By Holding Keys
     Leave Special Key    ALT
     Verify Menu    text=About    About
 
+Right Click An Item
+    Right Click Item    text=Teppo
+    Click Menu Button    text=Change Name
+    Verify Label    65535    Not implemented yet.\nWhat's wrong with Teppo anyway?
+    Click Button    text=OK
+
+Double Click An Item
+    Double Click Item    eventIndicatorLabel
+    Verify Label    eventIndicatorLabel    Double-clicked 1 times
+
+Click Button By Pressing Special Keys
+    Input Text To Textbox    txtA    1
+    Input Text To Textbox    txtB    2
+    # Use combobox last to leave focus at the right place
+    Select Combobox Value    op    +
+    # Using keys to execute calculation
+    Press Special Key    TAB
+    Press Special Key    RETURN
+    Verify Text In Textbox    tbResult    3
+
+Write To Textbox By Pressing Keys
+    Input Text To Textbox    txtA    ${EMPTY}
+    Press Keys    Text and (123}!
+    Verify Text In Textbox    txtA    Text and (123}!
+
+Try To Press Unsupported Special Key
+    Take Screenshots On Failure    false
+    Run Keyword And Expect Error    AttributeError: Allowed special keys are*    Press Special Key    PANIC
+    Take Screenshots On Failure    true
+
+# Tab-2 tests #########################
 Handle Tree Nodes
     [Setup]    Setup for Tab 2 Tests
     Select Tree Node    tree    @{Tree node 1}
@@ -274,7 +214,6 @@ Handle ListView
     Bible Should Be Selected
     Select ListView Row By Index    list_view    2
     The Art of Computer Programming Should Be Selected
-
     Repeat Keyword    2    Right Click Listview Cell    list_view2    Title    1
     Bible Should Be Right Clicked
     Repeat Keyword    2    Right Click Listview Cell    list_view2    Author    0
@@ -290,104 +229,15 @@ Handle Delayed Actions
     Wait Until Keyword Succeeds    5 sec    5 sec   Fast alert Should Be Occurred
     [Teardown]    Select Tab Page    tabControl    Tab1
 
-Right Click An Item
-    Right Click Item    text=Teppo
-    Click Menu Button    text=Change Name
-    Verify Label    65535    Not implemented yet.\nWhat's wrong with Teppo anyway?
-    Click Button    text=OK
 
-Double Click An Item
-    Double Click Item    eventIndicatorLabel
-    Verify Label    eventIndicatorLabel    Double-clicked 1 times
-
-Click Button By Pressing Special Keys
-    Input 1 + 2 To Calculator
-    Use Special Keys To Press Calculate Button
-    Calculation Result Should Be    3
-
-Try To Press Unsupported Special Key
-    [Setup]    Run Keywords    Attach Main Window    AND    Take Screenshots On Failure    false
-    Run Keyword And Expect Error    AttributeError: Allowed special keys are*    Press Special Key    PANIC
-    [Teardown]    Run Keywords    Take Screenshots On Failure    true    AND    Clean App
-
-Write To Textbox By Pressing Keys
-    Activate Textbox    txtA
-    Press Keys    Text and (123}!
-    Verify Text In Textbox    txtA    Text and (123}!
-
-List UI Items
-    ${items}    Get Items    control_type=Button
-    ${count}    Get Length    ${items}
-    Should Be True    ${count} > 1
-
-Get Single UI Item
-    ${item}    Get Item    control_type=Button
-    ${item_type}    Evaluate    type($item).__name__
-    Should Be Equal    ${item_type}    ButtonProxy
 
 *** Keywords ***
-Launch App
-    [Arguments]    @{args}
-    Set Log Level    Info
-    Launch Application    ${TEST APPLICATION}    @{args}
-    Attach Window    UI Automation Test Window
-
-Close App
-    Close Application
-
-Attach Main Window
-    Attach Window    UI Automation Test Window
-
-Clean App
-    Input Text To Textbox    txtA    ${EMPTY}
-    Input Text To Textbox    txtB    ${EMPTY}
-    Select Combobox Index    op    0
-    Input Text To Textbox    tbResult    ${EMPTY}
-    Click Button    progressResetBtn
-    Select Radio Button    rb_peke
-
-Verify ${operator} In Operators
-    Verify Combobox Item    op    ${operator}
-
 Calculate ${num1} ${operator} ${num2} Equals ${result}
     Input Text To Textbox    txtA    ${num1}
     Select Combobox Value    op    ${operator}
     Input Text To Textbox    txtB    ${num2}
     Click Button    btnCalc
     Verify Text In Textbox    tbResult    ${result}
-
-Activate Textbox
-    [Documentation]    Note that this empties the textbox
-    [Arguments]    ${locator}
-    Input Text To Textbox    ${locator}    ${EMPTY}
-
-Input ${num1} ${operator} ${num2} To Calculator
-    Input Text To Textbox    txtA    ${num1}
-    Input Text To Textbox    txtB    ${num2}
-    # Use combobox last to leave focus at the right place
-    Select Combobox Value    op    ${operator}
-
-Use Special Keys To Press Calculate Button
-    Press Special Key    TAB
-    Press Special Key    RETURN
-
-Calculation Result Should Be
-    [Arguments]    ${result}
-    Verify Text In Textbox    tbResult    ${result}
-
-Screenshot Setup
-    Attach Main Window
-    ${COUNT}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
-    Set Test Variable    ${COUNT}
-
-New Screenshot Should Be Created
-    ${new_count}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
-    Should Be Equal    ${new_count}    ${COUNT+1}
-    Set Test Variable    ${COUNT}    ${new_count}
-
-New Screenshot Should Not Be Created
-    ${new_count}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
-    Should Be Equal    ${new_count}    ${COUNT}
 
 Setup For Tab 2 Tests
     Attach Main Window
@@ -401,9 +251,3 @@ ${node label} Should Be ${status}
     [Documentation]    Note that node label is case sensitive
     ${status}=    Convert To Lowercase    ${status}
     Verify Label    selectionIndicatorLabel    ${node label} ${status}
-
-White Configuration Parameters Restore
-    #These defaults are defined in White Stack source code.
-    Set White Busy Timeout    5000 ms
-    Set White Find Window Timeout    30000 ms
-    Set White Double Click Interval    0 ms
