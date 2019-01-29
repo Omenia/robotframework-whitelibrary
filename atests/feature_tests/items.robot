@@ -6,11 +6,9 @@ ${ARGUMENTS}    "generic_argument"
 Library    OperatingSystem
 Library    String
 Library    WhiteLibrary
-Suite Setup    Launch Application For Test
-Suite Teardown    Close Application
 Test Setup    Attach Main Window
 Test Teardown    Clean Application
-Resource          resource.robot
+Resource          ..${/}resource.robot
 
 *** Test Cases ***
 Verify Labels
