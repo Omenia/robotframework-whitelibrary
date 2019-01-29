@@ -60,6 +60,25 @@ class WhiteConfigurationKeywords(LibraryComponent):
         """Returns DoubleClickInterval value of White."""
         return self._get_milliseconds_as_timestr(CoreAppXmlConfiguration.Instance.DoubleClickInterval)
 
+    @keyword
+    def set_white_drag_step_count(self, value):
+        """Sets DragStepCount for White Teststack
+
+        ``value`` is integer. DragStepCount defines how many steps White Teststack uses to move dragged object to the destination.
+        With default value 1 the dragged object is moved instantly in a single step from start to destination.
+
+        """
+
+        CoreAppXmlConfiguration.Instance.DragStepCount = int(value)
+        logger.info("White DragStepCount set to" + str(CoreAppXmlConfiguration.Instance.DragStepCount))
+        return CoreAppXmlConfiguration.Instance.DragStepCount
+    @keyword
+    def get_white_drag_step_count(self):
+        """Gets DragStepCount for White Teststack
+
+        """
+        return CoreAppXmlConfiguration.Instance.DragStepCount
+
     def _get_timestr_in_milliseconds(self, time_string):
         return timestr_to_secs(time_string) * 1000
 
