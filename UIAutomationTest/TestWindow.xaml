@@ -31,8 +31,8 @@
                 <EventSetter Event="Expanded" Handler="treeNodeExpanded"/>
             </Style>
             <Style TargetType="{x:Type DataGridCell}">
-                <EventSetter Event="MouseRightButtonDown"  Handler="dataGridCellRightClick"/>
-                <EventSetter Event="Selected"  Handler="dataGridCellSelect"/>
+                <EventSetter Event="MouseRightButtonDown" Handler="dataGridCellRightClick"/>
+                <EventSetter Event="Selected" Handler="dataGridCellSelect"/>
             </Style>
         </Grid.Resources>
         <ScrollViewer>
@@ -150,20 +150,31 @@
                         <Grid DataContext="{Binding Source={StaticResource MockList}}" >
                             <DataGrid AutomationProperties.AutomationId="list_view" 
                                       ItemsSource="{Binding Mode=Default, XPath=/MockObjects/MockObject}"
-                                      AutoGenerateColumns="False" >
+                                      AutoGenerateColumns="False"
+                                      IsReadOnly="True">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header = "Title"  Binding="{Binding XPath=@Title}" Width="*" />
+                                    <DataGridTextColumn Header="Title" Binding="{Binding XPath=@Title}" Width="*" />
                                 </DataGrid.Columns>
+                                <DataGrid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Delete" Click="popupItemClick"/>
+                                        <MenuItem Header="Have you read it?">
+                                            <MenuItem Header="Yes" Click="popupSubClick"></MenuItem>
+                                            <MenuItem Header="No" Click="popupSubClick"></MenuItem>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </DataGrid.ContextMenu>
                             </DataGrid>
                         </Grid>
                         <Grid DataContext="{Binding Source={StaticResource MockList2}}" >
                             <DataGrid AutomationProperties.AutomationId="list_view2" 
                                       ItemsSource="{Binding Mode=Default, XPath=/MockObjects/MockObject}"
-                                      AutoGenerateColumns="False" >
+                                      AutoGenerateColumns="False"
+                                      IsReadOnly="True">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header = "Author"  Binding="{Binding XPath=@Author}" Width="Auto" />
-                                    <DataGridTextColumn Header = "Title"  Binding="{Binding XPath=@Title}" Width="Auto" />
-                                    <DataGridTextColumn Header = "Category"  Binding="{Binding XPath=@Category}" Width="Auto" />
+                                    <DataGridTextColumn Header="Author" Binding="{Binding XPath=@Author}" Width="Auto" />
+                                    <DataGridTextColumn Header="Title" Binding="{Binding XPath=@Title}" Width="Auto" />
+                                    <DataGridTextColumn Header="Category" Binding="{Binding XPath=@Category}" Width="Auto" />
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -181,9 +192,9 @@
                                 <ColumnDefinition Width="100"></ColumnDefinition>
                                 <ColumnDefinition Width="100*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Button  Content="Fast alert" Name="alert1" HorizontalAlignment="Left" Margin="10,5,0,5" Width="75" Click="alertFast" Grid.Column="0">
+                            <Button Content="Fast alert" Name="alert1" HorizontalAlignment="Left" Margin="10,5,0,5" Width="75" Click="alertFast" Grid.Column="0">
                             </Button>
-                            <Button  Content="Slow alert" Name="alert2" HorizontalAlignment="Left" Margin="0,5,0,5" Width="75" Click="alertSlow" Grid.Column="1">
+                            <Button Content="Slow alert" Name="alert2" HorizontalAlignment="Left" Margin="0,5,0,5" Width="75" Click="alertSlow" Grid.Column="1">
                             </Button>
                         </Grid>
                     </StackPanel>
