@@ -1,5 +1,5 @@
 VERSION = "v1.2.0"
-STABLE = True
+STABLE = False
 
 if __name__ == '__main__':
     print(str(STABLE))
