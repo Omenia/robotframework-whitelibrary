@@ -23,3 +23,19 @@ class WindowKeywords(LibraryComponent):
         ``window_title`` is the title of the window.
         """
         self.state.window = self.state.window.ModalWindow(window_title)
+
+    @keyword
+    def close_window(self, window_title=None):
+        """Close window with window title.
+
+        If title is not given already attached window is closed.
+        See `Attach Application By Id`, `Attach Application By Name` or
+        `Launch application` for more details.
+
+        ``window_title`` is the title of the window.
+        """
+        if window_title is not None:
+            self.state.window = self.state.app.GetWindow(window_title)
+
+        self.state.window.Close()
+
