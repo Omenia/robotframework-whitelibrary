@@ -227,7 +227,16 @@ Handle Delayed Actions
     Wait Until Keyword Succeeds    5 sec    5 sec   Fast alert Should Be Occurred
     [Teardown]    Select Tab Page    tabControl    Tab1
 
+ListView Row Right Click Menu
+    [Setup]    Setup for Tab 2 Tests
+    Right Click ListView Row By Index    list_view    2
+    Click Item In Popup Menu    Delete
+    Click Button    text=OK
 
+    Right Click ListView Row By Index    list_view    2
+    Click Item In Popup Menu    Have you read it?    Yes
+    Click Button    text=OK
+    [Teardown]    Select Tab Page    tabControl    Tab1
 
 *** Keywords ***
 Calculate ${num1} ${operator} ${num2} Equals ${result}
