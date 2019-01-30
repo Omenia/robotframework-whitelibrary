@@ -8,6 +8,7 @@ from System.Windows.Automation import AutomationElement, ControlType    # noqa: 
 from TestStack.White.UIItems.Finders import SearchCriteria    # noqa: E402
 from WhiteLibrary.keywords import ApplicationKeywords, KeyboardKeywords, WindowKeywords, ScreenshotKeywords, WhiteConfigurationKeywords    # noqa: E402
 from WhiteLibrary.keywords.items import (ButtonKeywords,
+                            DragDropKeywords,
                             LabelKeywords,
                             ListKeywords,
                             MenuKeywords,
@@ -111,6 +112,7 @@ class WhiteLibrary(DynamicCore):
         self.screenshots_enabled = True
         self.libraries = [ApplicationKeywords(self),
                           ButtonKeywords(self),
+                          DragDropKeywords(self),
                           KeyboardKeywords(self),
                           LabelKeywords(self),
                           ListKeywords(self),
