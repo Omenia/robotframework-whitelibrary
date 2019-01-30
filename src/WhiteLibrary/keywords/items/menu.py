@@ -25,7 +25,7 @@ class MenuKeywords(LibraryComponent):
         menu_button.Click()
 
     @keyword
-    def click_popup_menu_item(self, *text_path):
+    def click_item_in_popup_menu(self, *text_path):
         """Clicks an item in the currently open popup/context menu.
 
         ``text_path`` is the path to the item to click.
