@@ -105,6 +105,17 @@ Verify Get Slider Value
     ${slider_value}=  Get Slider Value    sladdu
     Should Be Equal     ${slider_value}   ${4.2}
 
+Move Slider Horizontally
+    [Tags]    under_test
+    Set Slider Value       sladdu    4.2
+    Set White Drag Step Count    50
+    Sleep    5
+    Drag Horizontally    Thumb    200
+    Sleep    5
+    Drag Horizontally    Thumb    100
+    Sleep    5
+    Should Be Equal     ${slider_value}   ${4.2}
+
 Verify Progressbar
     Verify Progressbar Value    proggis    4
     Click Button    progressBtn
@@ -248,16 +259,3 @@ Calculate ${num1} ${operator} ${num2} Equals ${result}
     Input Text To Textbox    txtB    ${num2}
     Click Button    btnCalc
     Verify Text In Textbox    tbResult    ${result}
-
-Setup For Tab 2 Tests
-    Attach Main Window
-    Select Tab Page    tabControl    Tab2
-    @{Tree node 1}=    Create List    Tree node 1
-    @{Tree node 1.1}=    Create List    Tree node 1    Tree node 1.1
-    Set Test Variable    @{Tree node 1}
-    Set Test Variable    @{Tree node 1.1}
-
-${node label} Should Be ${status}
-    [Documentation]    Note that node label is case sensitive
-    ${status}=    Convert To Lowercase    ${status}
-    Verify Label    selectionIndicatorLabel    ${node label} ${status}

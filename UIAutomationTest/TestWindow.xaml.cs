@@ -191,5 +191,58 @@ namespace UIAutomationTest
         }
 
 
+        private void eventLabelRightDown(object sender, RoutedEventArgs e)
+        {
+            labelEvent(sender, e, "right button down");
+        }
+        private void eventLabelLeftDown(object sender, RoutedEventArgs e)
+        {
+            labelEvent(sender, e, "left button down");
+        }
+        private void eventLabelRightUp(object sender, RoutedEventArgs e)
+        {
+            labelEvent(sender, e, "right button up");
+        }
+        private void eventLabelLeftUp(object sender, RoutedEventArgs e)
+        {
+            labelEvent(sender, e, "left button up");
+        }
+        private void eventLabelMouseEnter(object sender, RoutedEventArgs e)
+        {
+            labelEvent(sender, e, "mouse entered event label");
+        }
+        private void eventLabelMouseLeave(object sender, RoutedEventArgs e)
+        {
+            labelEvent(sender, e, "mouse left event label");
+        }
+        private void labelEvent(object sender, RoutedEventArgs e, string message)
+        {
+            selectionIndicatorLabel.Content = message;
+        }
+
+
+        private void eventTestButtonRightClick(object sender, RoutedEventArgs e)
+        {
+            testButtonEvent(sender, e, "right clicked");
+        }
+        private void eventTestButtonLeftClick(object sender, RoutedEventArgs e)
+        {
+            testButtonEvent(sender, e, "left clicked");
+        }
+        private void eventTestButtonDoubleClick(object sender, RoutedEventArgs e)
+        {
+            testButtonEvent(sender, e, "double clicked");
+        }
+        private void testButtonEvent(object sender, RoutedEventArgs e, string message)
+        {
+            selectionIndicatorLabel.Content = message;
+        }
+
+        private void cursorPositionShow(object sender, MouseEventArgs e)
+        {
+            Point pnt = e.GetPosition(this);
+            cursorPosition.Content = pnt.ToString();
+        }
+
     }
 }
