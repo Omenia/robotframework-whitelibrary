@@ -92,7 +92,14 @@ class ListKeywords(LibraryComponent):
     def select_listview_row(self, locator, column_name, cell_text):
         """Selects a listview row that has given text in given column.
 
-        See `Right Click Listview Row` for details about the arguments.
+        ``locator`` is the locator of the listview.
+
+        ``column_name`` is the name of the column.
+
+        ``cell_text`` is the text that should be in the cell defined by the given column.
+
+        Example:
+        | Select Listview Row | id:addressList | City | Helsinki | # select row that has value "Helsinki" in the column "City" |
         """
         listview = self.state._get_typed_item_by_locator(ListView, locator)
         listview.Select(column_name, cell_text)
@@ -103,7 +110,7 @@ class ListKeywords(LibraryComponent):
 
         ``locator`` is the locator of the listview.
 
-        ``row_index`` is the index to select.
+        ``row_index`` is the zero-based index to select.
         """
         listview = self.state._get_typed_item_by_locator(ListView, locator)
         listview.Select(int(row_index))
@@ -116,10 +123,9 @@ class ListKeywords(LibraryComponent):
 
         ``column_name`` is the name of the column.
 
-        ``cell_text`` is the text that should be in the defined column.
+        ``cell_text`` is the text that should be in the cell defined by the given column.
 
-        Example:
-        | Right Click Listview Row | id:addressList | City | Helsinki |
+        See example in `Select Listview Row` on how to use the arguments.
         """
         listview = self.state._get_typed_item_by_locator(ListView, locator)
         row = listview.Rows.Get(column_name, cell_text)
@@ -127,6 +133,12 @@ class ListKeywords(LibraryComponent):
 
     @keyword
     def right_click_listview_row_by_index(self, locator, row_index):
+        """Right clicks a listview row by its index.
+
+        ``locator`` is the locator of the listview.
+
+        ``row_index`` is the zero-based row index.
+        """
         listview = self.state._get_typed_item_by_locator(ListView, locator)
         row = listview.Rows.Get(int(row_index))
         row.RightClick()
@@ -139,7 +151,7 @@ class ListKeywords(LibraryComponent):
 
         ``column_name`` is the name of the column.
 
-        ``row_index`` is the index of the row.
+        ``row_index`` is the zero-based row index.
 
         Example:
         | Right Click Listview Cell | id:userList | Name | 0 |
