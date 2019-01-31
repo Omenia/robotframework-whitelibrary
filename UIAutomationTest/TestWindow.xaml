@@ -142,6 +142,8 @@
                 <TabItem Header="Tab2">
                     <StackPanel Orientation="Vertical">
                         <Label Name="selectionIndicatorLabel">nothing selected</Label>
+                        <Label Name="cursorPosition"
+                               MouseMove="cursorPositionShow"></Label>
                         <ToolBar AutomationProperties.AutomationId="tools">
                             <Button Click="toolStripButtonClick">Toolstrip button 1</Button>
                             <Button Click="toolStripButtonClick">Toolstrip button 2</Button>
@@ -190,11 +192,26 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"></ColumnDefinition>
                                 <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
                                 <ColumnDefinition Width="100*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Button Content="Fast alert" Name="alert1" HorizontalAlignment="Left" Margin="10,5,0,5" Width="75" Click="alertFast" Grid.Column="0">
                             </Button>
                             <Button Content="Slow alert" Name="alert2" HorizontalAlignment="Left" Margin="0,5,0,5" Width="75" Click="alertSlow" Grid.Column="1">
+                            </Button>
+                            <Label  Content="Event Label" Name="event_label" HorizontalAlignment="Left" Margin="0,5,0,5" Width="75" Grid.Column="2" 
+                                    MouseLeftButtonDown="eventLabelLeftDown"
+                                    MouseLeftButtonUp="eventLabelLeftUp"
+                                    MouseRightButtonDown="eventLabelRightDown"
+                                    MouseRightButtonUp="eventLabelRightUp"
+                                    MouseEnter="eventLabelMouseEnter"
+                                    MouseLeave="eventLabelMouseLeave">
+                            </Label>
+                            <Button  Content="Test button" Name="test_button" HorizontalAlignment="Left" Margin="0,5,0,5" Width="75" Grid.Column="3"
+                                    Click="eventTestButtonLeftClick"
+                                    MouseDoubleClick="eventTestButtonDoubleClick"
+                                    >
                             </Button>
                         </Grid>
                     </StackPanel>

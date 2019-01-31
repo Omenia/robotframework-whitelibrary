@@ -32,3 +32,16 @@ Clean Application
     Input Text To Textbox    tbResult    ${EMPTY}
     Click Button    progressResetBtn
     Select Radio Button    rb_peke
+
+Setup For Tab 2 Tests
+    Attach Main Window
+    Select Tab Page    tabControl    Tab2
+    @{Tree node 1} =    Create List    Tree node 1
+    @{Tree node 1.1} =    Create List    Tree node 1    Tree node 1.1
+    Set Test Variable    @{Tree node 1}
+    Set Test Variable    @{Tree node 1.1}
+
+${node label} Should Be ${status}
+    [Documentation]    Note that node label is case sensitive
+    ${status}=    Convert To Lowercase    ${status}
+    Verify Label    selectionIndicatorLabel    ${node label} ${status}
