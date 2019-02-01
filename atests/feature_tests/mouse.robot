@@ -2,8 +2,8 @@
 Library    OperatingSystem
 Library    String
 Library    WhiteLibrary
-Test Setup    Setup For Tab 2 Tests
-#Test Teardown    Tab2 Test Teardown
+Suite Setup    Setup For Tab 2 Tests
+Suite Teardown	Select Tab Page    tabControl    Tab1
 Resource          ..${/}resource.robot
 
 *** Test Cases ***
@@ -17,6 +17,13 @@ Verify Mouse Position
     ${MOUSE_X}    ${MOUSE_Y}    Get Mouse Location
     Should Be Equal As Numbers    300    ${MOUSE_X}
     Should Be Equal As Numbers    90    ${MOUSE_Y}
+
+Verify Mouse Move
+    Set Mouse Location    300    90
+    Move Mouse    30    -30
+    ${MOUSE_X}    ${MOUSE_Y}    Get Mouse Location
+    Should Be Equal As Numbers    330    ${MOUSE_X}
+    Should Be Equal As Numbers    60    ${MOUSE_Y}
 
 Verify Mouse Left Button Down
     Click Item    event_label
@@ -58,8 +65,3 @@ Verify Mouse Left Double Click
     Mouse Left Double Click
     Sleep    2
     Verify Label    selectionIndicatorLabel    left button up
-
-
-*** Keywords ***
-Tab2 Test Teardown
-    Select Tab Page    tabControl    Tab

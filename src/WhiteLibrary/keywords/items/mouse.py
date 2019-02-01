@@ -16,8 +16,8 @@ class MouseKeywords(LibraryComponent):
         Mouse.Instance.Location = point
 
     @keyword
-    def move_mouse_location(self, x, y):
-        """ Sets mouse position to (x, y) Position is relative to application window.
+    def move_mouse(self, x, y):
+        """ Add (x,y) to current mouse location.
 
         """
         current_location = Mouse.Instance.Location
@@ -40,6 +40,7 @@ class MouseKeywords(LibraryComponent):
         If no coordinates are given it uses current mouse position.
 
         """
+        self.check_valid_x_y(x, y)
         if (x is None) and (y is None):
             Mouse.Instance.LeftDown()
         else:
@@ -54,6 +55,7 @@ class MouseKeywords(LibraryComponent):
         If no coordinates are given it uses current mouse position.
 
         """
+        self.check_valid_x_y(x, y)
         if (x is None) and (y is None):
             Mouse.Instance.LeftUp()
         else:
@@ -68,6 +70,7 @@ class MouseKeywords(LibraryComponent):
         If no coordinates are given it uses current mouse position.
 
         """
+        self.check_valid_x_y(x, y)
         if (x is None) and (y is None):
             Mouse.Instance.RightClick()
         else:
@@ -83,6 +86,7 @@ class MouseKeywords(LibraryComponent):
 
         """
 
+        self.check_valid_x_y(x, y)
         if (x is None) and (y is None):
             Mouse.Instance.Click(Mouse.Instance.Location)
         else:
@@ -96,16 +100,14 @@ class MouseKeywords(LibraryComponent):
         If no coordinates are given it uses current mouse position.
 
         """
-
-        if (x is None) and (y is None):
-            Mouse.Instance.RightClick()
-            Mouse.Instance.RightClick()
-        else:
+        self.check_valid_x_y(x, y)
+        if (x is not None) and (y is not None):
             window_location = self.state.window.Bounds.TopLeft
             point = Point(int(x) + window_location.X, int(y) + window_location.Y)
             Mouse.Instance.Location = point
-            Mouse.Instance.RightClick()
-            Mouse.Instance.RightClick()
+        Mouse.Instance.RightClick()
+        Mouse.Instance.RightClick()
+
 
     @keyword
     def mouse_left_double_click(self, x=None, y=None):
@@ -114,6 +116,7 @@ class MouseKeywords(LibraryComponent):
 
         """
 
+        self.check_valid_x_y(x, y)
         if (x is None) and (y is None):
             Mouse.Instance.DoubleClick(Mouse.Instance.Location)
         else:
@@ -133,13 +136,10 @@ class MouseKeywords(LibraryComponent):
         target_object = self.state._get_item_by_locator(locator2)
         Mouse.Instance.DragAndDrop(draggable_object, target_object)
 
-    @keyword
-    def drag_horizontally(self, locator, distance):
-        """ Drags item under locator1 to distance amounts.
 
-        ``locator`` is the locator of the draggable object (TODO: check if needs to be draggable).
-        ``distance`` is ingered amount of distance to be dragged. Positive value rightwards, negative value leftwards. (TODO: verify)
-        """
-
-        draggable_object = self.state._get_item_by_locator(locator)
-        Mouse.Instance.DragHorizontally(draggable_object, int(distance))
+    def check_valid_x_y(self, x, y):
+        if (x is not None and y is None) or (x is None and y is not None):
+            #TODO: Exception
+            return
+        else:
+            return

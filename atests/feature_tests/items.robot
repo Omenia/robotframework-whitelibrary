@@ -1,6 +1,9 @@
 *** Variables ***
 ${TEST APPLICATION}      ${EXECDIR}${/}UIAutomationTest${/}bin${/}Debug${/}UIAutomationTest.exe
 ${ARGUMENTS}    "generic_argument"
+@{Tree node 1}    Tree node 1
+@{Tree node 1.1}    Tree node 1    Tree node 1.1
+
 
 *** Settings ***
 Library    OperatingSystem
@@ -103,17 +106,6 @@ Verify Slider
 Verify Get Slider Value
     Set Slider Value       sladdu    4.2
     ${slider_value}=  Get Slider Value    sladdu
-    Should Be Equal     ${slider_value}   ${4.2}
-
-Move Slider Horizontally
-    [Tags]    under_test
-    Set Slider Value       sladdu    4.2
-    Set White Drag Step Count    50
-    Sleep    5
-    Drag Horizontally    Thumb    200
-    Sleep    5
-    Drag Horizontally    Thumb    100
-    Sleep    5
     Should Be Equal     ${slider_value}   ${4.2}
 
 Verify Progressbar
