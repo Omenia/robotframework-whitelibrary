@@ -1,8 +1,8 @@
 from .buttons import ButtonKeywords   # noqa: F401
-from .dragdrop import DragDropKeywords  # noqa: F401
 from .label import LabelKeywords   # noqa: F401
 from .listcontrols import ListKeywords   # noqa: F401
 from .menu import MenuKeywords   # noqa: F401
+from .mouse import MouseKeywords  # noqa: F401
 from .progressbar import ProgressbarKeywords   # noqa: F401
 from .slider import SliderKeywords   # noqa: F401
 from .tab import TabKeywords   # noqa: F401
