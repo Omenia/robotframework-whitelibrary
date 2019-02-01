@@ -2,7 +2,7 @@
 ${TEST APPLICATION}      ${EXECDIR}${/}UIAutomationTest${/}bin${/}Debug${/}UIAutomationTest.exe
 ${TEST APPLICATION NAME}    UIAutomationTest
 
-${TEST WHITE APPLICATION}      ${EXECDIR}${/}WhiteStackTestApp${/}WpfTestApplication.exe
+${TEST WHITE APPLICATION}      ${EXECDIR}${/}WhiteTestApp${/}WpfTestApplication.exe
 ${TEST WHITE APPLICATION NAME}    MainWindow
 
 *** Keywords ***
@@ -36,10 +36,6 @@ Clean Application
 Setup For Tab 2 Tests
     Attach Main Window
     Select Tab Page    tabControl    Tab2
-    @{Tree node 1} =    Create List    Tree node 1
-    @{Tree node 1.1} =    Create List    Tree node 1    Tree node 1.1
-    Set Test Variable    @{Tree node 1}
-    Set Test Variable    @{Tree node 1.1}
 
 ${node label} Should Be ${status}
     [Documentation]    Note that node label is case sensitive
