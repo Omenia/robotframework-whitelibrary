@@ -12,8 +12,15 @@ class MouseKeywords(LibraryComponent):
 
         """
         window_location = self.state.window.Bounds.TopLeft
-        point = Point(int(x) + window_location.X, int(y) + window_location.Y)
+        x_target = int(x)+ window_location.X
+        y_target = int(y)+ window_location.Y
+        point = Point(x_target, y_target)
         Mouse.Instance.Location = point
+
+        if int(x_target) != int(Mouse.Instance.Location.X):
+            logger.warn("Mouse X position tried to be set outside of the screen. Wanted: " + str(int(x_target)) + " result:" + str(Mouse.Instance.Location.X), True)
+        if int(y_target) != int(Mouse.Instance.Location.Y):
+            logger.warn("Mouse Y position tried to be set outside of the screen. Wanted: " + str(y_target) + " result:" + str(Mouse.Instance.Location.Y), True)
 
     @keyword
     def move_mouse(self, x, y):

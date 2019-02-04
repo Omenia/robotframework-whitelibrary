@@ -9,14 +9,17 @@ Resource          ..${/}resource.robot
 *** Test Cases ***
 
 Verify Mouse Position
-    Set Mouse Location    0    0
-    ${WINDOW_LEFT}    ${WINDOW_TOP}    Get Mouse Location
-    Should Be Equal As Numbers    0    ${WINDOW_LEFT}
-    Should Be Equal As Numbers    0    ${WINDOW_TOP}
     Set Mouse Location    300    90
     ${MOUSE_X}    ${MOUSE_Y}    Get Mouse Location
     Should Be Equal As Numbers    300    ${MOUSE_X}
     Should Be Equal As Numbers    90    ${MOUSE_Y}
+
+Verify Mouse Position Warning
+    Set Mouse Location    -5000    -5000
+    ${MOUSE_X}    ${MOUSE_Y}    Get Mouse Location
+    Should Not Be Equal As Numbers    -5000    ${MOUSE_X}
+    Should Not Be Equal As Numbers    -5000    ${MOUSE_Y}
+
 
 Verify Mouse Move
     Set Mouse Location    300    90
