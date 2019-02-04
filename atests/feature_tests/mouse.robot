@@ -20,7 +20,6 @@ Verify Mouse Position Warning
     Should Not Be Equal As Numbers    -5000    ${MOUSE_X}
     Should Not Be Equal As Numbers    -5000    ${MOUSE_Y}
 
-
 Verify Mouse Move
     Set Mouse Location    300    90
     Move Mouse    30    -30
@@ -68,3 +67,8 @@ Verify Mouse Left Double Click
     Mouse Left Double Click
     Sleep    2
     Verify Label    selectionIndicatorLabel    left button up
+
+Verify Incomplete Mouse Position Exception
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Mouse Left Click    300
+    ${MOUSE_X}    ${MOUSE_Y}    Get Mouse Location
+    Should Contain    ${error_msg}    Either x or y value missin
