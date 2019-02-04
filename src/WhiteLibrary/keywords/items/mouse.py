@@ -138,10 +138,7 @@ class MouseKeywords(LibraryComponent):
 
     def check_valid_x_y(self, x, y):
         if (x is not None and y is None) or (x is None and y is not None):
-            #TODO: Exception
-            return
-        else:
-            return
+            raise Exception("MouseKeywords::check_valide_x_y: Either x or y value missing x=" + str(x) + " y=" + str(y))
 
     def set_mouse_point(self, x, y, window_location):
         window_location = self.state.window.Bounds.TopLeft
