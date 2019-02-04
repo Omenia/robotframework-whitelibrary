@@ -51,9 +51,7 @@ class MouseKeywords(LibraryComponent):
         if (x is None) and (y is None):
             Mouse.Instance.LeftDown()
         else:
-            window_location = self.state.window.Bounds.TopLeft
-            point = Point(int(x) + window_location.X, int(y) + window_location.Y)
-            Mouse.Instance.Location = point
+            self.set_mouse_point(x, y, self.state.window.Bounds.TopLeft)
             Mouse.Instance.LeftDown()
 
     @keyword
@@ -66,9 +64,7 @@ class MouseKeywords(LibraryComponent):
         if (x is None) and (y is None):
             Mouse.Instance.LeftUp()
         else:
-            window_location = self.state.window.Bounds.TopLeft
-            point = Point(int(x) + window_location.X, int(y) + window_location.Y)
-            Mouse.Instance.Location = point
+            self.set_mouse_point(x, y, self.state.window.Bounds.TopLeft)
             Mouse.Instance.LeftUp()
 
     @keyword
@@ -81,9 +77,7 @@ class MouseKeywords(LibraryComponent):
         if (x is None) and (y is None):
             Mouse.Instance.RightClick()
         else:
-            window_location = self.state.window.Bounds.TopLeft
-            point = Point(int(x) + window_location.X, int(y) + window_location.Y)
-            Mouse.Instance.Location = point
+            self.set_mouse_point(x, y, self.state.window.Bounds.TopLeft)
             Mouse.Instance.RightClick()
 
     @keyword
@@ -109,9 +103,7 @@ class MouseKeywords(LibraryComponent):
         """
         self.check_valid_x_y(x, y)
         if (x is not None) and (y is not None):
-            window_location = self.state.window.Bounds.TopLeft
-            point = Point(int(x) + window_location.X, int(y) + window_location.Y)
-            Mouse.Instance.Location = point
+            self.set_mouse_point(x, y, self.state.window.Bounds.TopLeft)
         Mouse.Instance.RightClick()
         Mouse.Instance.RightClick()
 
@@ -150,3 +142,8 @@ class MouseKeywords(LibraryComponent):
             return
         else:
             return
+
+    def set_mouse_point(self, x, y, window_location):
+        window_location = self.state.window.Bounds.TopLeft
+        point = Point(int(x) + window_location.X, int(y) + window_location.Y)
+        Mouse.Instance.Location = point
