@@ -1,5 +1,4 @@
 from TestStack.White.UIItems.ListBoxItems import ComboBox, ListBox
-from TestStack.White.UIItems import ListView
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from robot.api import logger
