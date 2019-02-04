@@ -13,7 +13,7 @@ Test Template     Launch Application With Arguments
 
 *** Test Cases ***              Arguments            Expected result
 No Arguments                    ${EMPTY}             No command line args provided
-Empty Strung	                ""                   ${EMPTY}
+Empty String	                ""                   ${EMPTY}
 Space                           ${EMPTY_STRING}      ${EMPTY_STRING2}
 Single Argument                 -single_argument     -single_argument
 Single Argument With Space      "-single argument"   -single argument

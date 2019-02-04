@@ -16,7 +16,7 @@ class WhiteConfigurationKeywords(LibraryComponent):
          Default timeout is 5 seconds.
         """
         CoreAppXmlConfiguration.Instance.BusyTimeout = self._get_timestr_in_milliseconds(timeout)
-        logger.info("White Busy Timeout set to" + str(CoreAppXmlConfiguration.Instance.BusyTimeout))
+        logger.info("White Busy Timeout set to " + str(CoreAppXmlConfiguration.Instance.BusyTimeout))
         return self._get_milliseconds_as_timestr(CoreAppXmlConfiguration.Instance.BusyTimeout)
 
     @keyword
@@ -33,7 +33,7 @@ class WhiteConfigurationKeywords(LibraryComponent):
         Default timeout is 30 seconds.
         """
         CoreAppXmlConfiguration.Instance.FindWindowTimeout = self._get_timestr_in_milliseconds(timeout)
-        logger.info("White FindWindowTimeout set to" + str(CoreAppXmlConfiguration.Instance.FindWindowTimeout))
+        logger.info("White FindWindowTimeout set to " + str(CoreAppXmlConfiguration.Instance.FindWindowTimeout))
         return self._get_milliseconds_as_timestr(CoreAppXmlConfiguration.Instance.FindWindowTimeout)
 
     @keyword
@@ -52,7 +52,7 @@ class WhiteConfigurationKeywords(LibraryComponent):
         Default interval is 0 milliseconds.
         """
         CoreAppXmlConfiguration.Instance.DoubleClickInterval = self._get_timestr_in_milliseconds(interval)
-        logger.info("White DoubleClickInterval set to" + str(CoreAppXmlConfiguration.Instance.DoubleClickInterval))
+        logger.info("White DoubleClickInterval set to " + str(CoreAppXmlConfiguration.Instance.DoubleClickInterval))
         return self._get_milliseconds_as_timestr(CoreAppXmlConfiguration.Instance.DoubleClickInterval)
 
     @keyword

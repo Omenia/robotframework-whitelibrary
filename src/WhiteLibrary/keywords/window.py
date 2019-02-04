@@ -1,3 +1,5 @@
+from System.Windows import Automation
+from TestStack.White.Configuration import CoreAppXmlConfiguration
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from TestStack.White.UIItems.WindowItems import Window   # noqa: F401
@@ -14,7 +16,14 @@ class WindowKeywords(LibraryComponent):
 
         ``window_title`` is the title of the window.
         """
-        self.state.window = self.state.app.GetWindow(window_title)
+        try:
+            self.state.window = self.state.app.GetWindow(window_title)
+        except Exception as error_msg:
+            error_msg = str(error_msg)
+            replaced_text = "after waiting for {0} seconds".format(int(CoreAppXmlConfiguration.Instance.FindWindowTimeout/1000))
+            raise Exception(error_msg.replace("after waiting for 30 seconds", replaced_text))
+
+
 
     @keyword
     def select_modal_window(self, window_title):
