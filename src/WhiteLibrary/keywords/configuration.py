@@ -62,7 +62,7 @@ class WhiteConfigurationKeywords(LibraryComponent):
 
     @keyword
     def set_white_drag_step_count(self, value):
-        """Sets DragStepCount for White Teststack
+        """Sets DragStepCount for White
 
         ``value`` is integer. DragStepCount defines how many steps White Teststack uses to move dragged object to the destination.
         With default value 1 the dragged object is moved instantly in a single step from start to destination.
