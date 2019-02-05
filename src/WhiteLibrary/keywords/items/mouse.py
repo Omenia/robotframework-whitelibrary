@@ -33,7 +33,7 @@ class MouseKeywords(LibraryComponent):
 
     @keyword
     def get_mouse_location(self):
-        """ Gets mouse position. Position is relative to application window.
+        """ Gets mouse position. Position is relative to application window top left.
         If mouse is outside the application window the return values is either negative or bigger than window dimensions.
 
         """
@@ -43,7 +43,7 @@ class MouseKeywords(LibraryComponent):
 
     @keyword
     def mouse_left_button_down(self, x=None, y=None):
-        """ Presses left mouse position down. Position is relative to screen.
+        """ Presses left mouse position down. Position is relative to application window top left.
         If no coordinates are given it uses current mouse position.
 
         """
@@ -51,12 +51,12 @@ class MouseKeywords(LibraryComponent):
         if (x is None) and (y is None):
             Mouse.Instance.LeftDown()
         else:
-            self.set_mouse_point(x, y, self.state.window.Bounds.TopLeft)
+            self.set_mouse_point(x, y)
             Mouse.Instance.LeftDown()
 
     @keyword
     def mouse_left_button_up(self, x=None, y=None):
-        """ Releases left mouse position up. Position is relative to screen.
+        """ Releases left mouse position up. Position is relative to application window top left.
         If no coordinates are given it uses current mouse position.
 
         """
@@ -64,12 +64,12 @@ class MouseKeywords(LibraryComponent):
         if (x is None) and (y is None):
             Mouse.Instance.LeftUp()
         else:
-            self.set_mouse_point(x, y, self.state.window.Bounds.TopLeft)
+            self.set_mouse_point(x, y)
             Mouse.Instance.LeftUp()
 
     @keyword
     def mouse_right_click(self, x=None, y=None):
-        """ Right clicks mouse position. Position is relative to screen.
+        """ Right clicks mouse position. Position is relative to application window top left.
         If no coordinates are given it uses current mouse position.
 
         """
@@ -77,12 +77,12 @@ class MouseKeywords(LibraryComponent):
         if (x is None) and (y is None):
             Mouse.Instance.RightClick()
         else:
-            self.set_mouse_point(x, y, self.state.window.Bounds.TopLeft)
+            self.set_mouse_point(x, y)
             Mouse.Instance.RightClick()
 
     @keyword
     def mouse_left_click(self, x=None, y=None):
-        """ Left clicks mouse position. Position is relative to screen.
+        """ Left clicks mouse position. Position is relative to application window top left.
         If no coordinates are given it uses current mouse position.
 
         """
@@ -97,20 +97,20 @@ class MouseKeywords(LibraryComponent):
 
     @keyword
     def mouse_right_double_click(self, x=None, y=None):
-        """ Right double clicks mouse position. Position is relative to screen.
+        """ Right double clicks mouse position. Position is relative to application window top left.
         If no coordinates are given it uses current mouse position.
 
         """
         self.check_valid_x_y(x, y)
         if (x is not None) and (y is not None):
-            self.set_mouse_point(x, y, self.state.window.Bounds.TopLeft)
+            self.set_mouse_point(x, y)
         Mouse.Instance.RightClick()
         Mouse.Instance.RightClick()
 
 
     @keyword
     def mouse_left_double_click(self, x=None, y=None):
-        """ Left double clicks mouse position. Position is relative to screen.
+        """ Left double clicks mouse position. Position is relative to application window top left.
         If no coordinates are given it uses current mouse position.
 
         """
@@ -138,9 +138,9 @@ class MouseKeywords(LibraryComponent):
 
     def check_valid_x_y(self, x, y):
         if (x is not None and y is None) or (x is None and y is not None):
-            raise Exception("MouseKeywords::check_valide_x_y: Either x or y value missing x=" + str(x) + " y=" + str(y))
+            raise ValueError("MouseKeywords::check_valide_x_y: Either x or y value missing x=" + str(x) + " y=" + str(y))
 
-    def set_mouse_point(self, x, y, window_location):
+    def set_mouse_point(self, x, y):
         window_location = self.state.window.Bounds.TopLeft
         point = Point(int(x) + window_location.X, int(y) + window_location.Y)
         Mouse.Instance.Location = point
