@@ -12,4 +12,3 @@ DragDrop Scenarios
     Attach Window    DragAndDropTestWindow
     Drag And Drop    TextBox    Button
     Verify Label    DragDropResults    TextBoxDraggedOntoButton
-    Sleep    5
