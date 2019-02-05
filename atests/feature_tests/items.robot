@@ -212,10 +212,24 @@ Handle ListView
     Bible Should Be Selected
     Select ListView Row By Index    list_view    2
     The Art of Computer Programming Should Be Selected
+    Select ListView Row    list_view    Title    Robinson Crusoe
+    Robinson Crusoe Should Be Selected
+
     Repeat Keyword    2    Right Click Listview Cell    list_view2    Title    1
     Bible Should Be Right Clicked
     Repeat Keyword    2    Right Click Listview Cell    list_view2    Author    0
     Daniel Defoe Should Be Right Clicked
+    [Teardown]    Select Tab Page    tabControl    Tab1
+
+ListView Row Right Click Menu
+    [Setup]    Setup for Tab 2 Tests
+    Right Click ListView Row By Index    list_view    2
+    Click Item In Popup Menu    Delete
+    Click Button    text=OK
+
+    Right Click ListView Row    list_view    Title    Robinson Crusoe
+    Click Item In Popup Menu    Have you read it?    Yes
+    Click Button    text=OK
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Handle Delayed Actions
@@ -226,8 +240,6 @@ Handle Delayed Actions
     Click Button    text=Slow alert
     Wait Until Keyword Succeeds    5 sec    5 sec   Fast alert Should Be Occurred
     [Teardown]    Select Tab Page    tabControl    Tab1
-
-
 
 *** Keywords ***
 Calculate ${num1} ${operator} ${num2} Equals ${result}
@@ -240,8 +252,8 @@ Calculate ${num1} ${operator} ${num2} Equals ${result}
 Setup For Tab 2 Tests
     Attach Main Window
     Select Tab Page    tabControl    Tab2
-    @{Tree node 1} =    Create List    Tree node 1
-    @{Tree node 1.1} =    Create List    Tree node 1    Tree node 1.1
+    @{Tree node 1}=    Create List    Tree node 1
+    @{Tree node 1.1}=    Create List    Tree node 1    Tree node 1.1
     Set Test Variable    @{Tree node 1}
     Set Test Variable    @{Tree node 1.1}
 
