@@ -1,5 +1,6 @@
 from System.Windows import Automation
 from TestStack.White.Configuration import CoreAppXmlConfiguration
+from TestStack.White import AutomationException
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from TestStack.White.UIItems.WindowItems import Window   # noqa: F401
@@ -18,12 +19,15 @@ class WindowKeywords(LibraryComponent):
         """
         try:
             self.state.window = self.state.app.GetWindow(window_title)
-        except Exception as error_msg:
+        except AutomationException as error_msg:
             error_msg = str(error_msg)
             replaced_text = "after waiting for {0} seconds".format(int(CoreAppXmlConfiguration.Instance.FindWindowTimeout/1000))
             raise Exception(error_msg.replace("after waiting for 30 seconds", replaced_text))
-
-
+        except AttributeError as error_msg:
+            error_msg = str(error_msg)
+            if "NoneType" in error_msg:
+                error_msg = "No application attached."
+            raise AttributeError(error_msg)
 
     @keyword
     def select_modal_window(self, window_title):
@@ -44,7 +48,5 @@ class WindowKeywords(LibraryComponent):
         `Launch application` for more details.
         """
         if window_title is not None:
-            self.state.window = self.state.app.GetWindow(window_title)
-
+            self.attach_window(window_title)
         self.state.window.Close()
-
