@@ -82,7 +82,8 @@ class ListViewKeywords(LibraryComponent):
 
         ``locator`` is the locator of the listview."""
         listview = self.state._get_typed_item_by_locator(ListView, locator)
-        return listview.Rows.Get(column_name, cell_text).Text
+        row = listview.Rows.Get(column_name, cell_text)
+        return [cell.Text for cell in row.Cells]
 
     @keyword
     def get_listview_row_text_by_index(self, locator, row_index):
@@ -90,7 +91,8 @@ class ListViewKeywords(LibraryComponent):
 
         ``locator`` is the locator of the listview."""
         listview = self.state._get_typed_item_by_locator(ListView, locator)
-        return listview.Rows.Get(int(row_index)).Text
+        row = listview.Rows.Get(int(row_index))
+        return [cell.Text for cell in row.Cells]
 
     @keyword
     def get_listview_cell_text(self, locator, column_name, row_index):
@@ -98,7 +100,7 @@ class ListViewKeywords(LibraryComponent):
 
         ``locator`` is the locator of the listview."""
         listview = self.state._get_typed_item_by_locator(ListView, locator)
-        return listview.Cell(column_name, row_index).Text
+        return listview.Cell(column_name, int(row_index)).Text
 
     @keyword
     def get_listview_cell_text_by_index(self, locator, row_index, column_index):
@@ -106,7 +108,7 @@ class ListViewKeywords(LibraryComponent):
 
         ``locator`` is the locator of the listview."""
         listview = self.state._get_typed_item_by_locator(ListView, locator)
-        return listview.Cell(row_index, column_index).Text
+        return listview.Cell(int(row_index), int(column_index)).Text
 
     @keyword
     def listview_row_should_contain(self, locator, column_name, cell_text, expected):
@@ -134,106 +136,106 @@ class ListViewKeywords(LibraryComponent):
                                      .format(column_name, cell_text, expected))
 
     @keyword
-    def listview_row_in_index_should_contain(self, locator, row_index, expected):
+    def listview_row_in_index_should_contain(self, locator, row_index, value):
         """Verifies that text is present in listview row.
 
         ``locator`` is the locator of the listview."""
         listview = self.state._get_typed_item_by_locator(ListView, locator)
         row = listview.Rows.Get(int(row_index))
         for cell in row.Cells:
-            if expected in cell.Text:
+            if value in cell.Text:
                 return
         raise AssertionError("Row defined by cell '{}'='{}' did not contain expected value '{}'"
-                             .format(column_name, cell_text, expected))
+                             .format(column_name, cell_text, value))
 
     @keyword
-    def listview_row_in_index_should_not_contain(self, locator, row_index, expected):
+    def listview_row_in_index_should_not_contain(self, locator, row_index, value):
         """Verifies that text is present in listview row.
 
         ``locator`` is the locator of the listview."""
         listview = self.state._get_typed_item_by_locator(ListView, locator)
         row = listview.Rows.Get(int(row_index))
         for cell in row.Cells:
-            if expected in cell.Text:
+            if value in cell.Text:
                 raise AssertionError("Row defined by cell '{}'='{}' did not contain expected value '{}'"
-                                     .format(column_name, cell_text, expected))
+                                     .format(column_name, cell_text, value))
 
     @keyword
-    def listview_cell_text_should_be(self, column_name, row_index, expected):
+    def listview_cell_text_should_be(self, locator, column_name, row_index, value):
         """Verifies text in listview cell.
 
         ``locator`` is the locator of the listview."""
         listview = self.state._get_typed_item_by_locator(ListView, locator)
-        cell = listview.Cell(column_name, row_index)
-        if cell.Text != expected:
-            raise AssertionError("Cell text should have been {} but was {}".format(expected, cell.Text))
+        cell = listview.Cell(column_name, int(row_index))
+        if cell.Text != value:
+            raise AssertionError("Cell text should have been {} but was {}".format(value, cell.Text))
 
     @keyword
-    def listview_cell_text_should_not_be(self, column_name, row_index, expected):
+    def listview_cell_text_should_not_be(self, locator, column_name, row_index, value):
         """Verifies text in listview cell.
 
         ``locator`` is the locator of the listview."""
         listview = self.state._get_typed_item_by_locator(ListView, locator)
-        cell = listview.Cell(column_name, row_index)
-        if cell.Text == expected:
-            raise AssertionError("Cell text should not have been {}".format(expected))
+        cell = listview.Cell(column_name, int(row_index))
+        if cell.Text == value:
+            raise AssertionError("Cell text should not have been {}".format(value))
 
     @keyword
-    def listview_cell_text_in_index_should_be(self, row_index, column_index, expected):
+    def listview_cell_text_in_index_should_be(self, locator, row_index, column_index, value):
         """Verifies text in listview cell.
 
         ``locator`` is the locator of the listview."""
-        listview = self.state._get_typed_item_by_locator(ListView, locator)
-        cell = listview.Cell(row_index, column_index)
-        if cell.Text != expected:
-            raise AssertionError("Cell text should have been {} but was {}".format(expected, cell.Text))
+        cell = self._get_cell_by_index(locator, row_index, column_index)
+        if cell.Text != value:
+            raise AssertionError("Cell text should have been {} but was {}".format(value, cell.Text))
 
     @keyword
-    def listview_cell_text_in_index_should_not_be(self, row_index, column_index, expected):
+    def listview_cell_text_in_index_should_not_be(self, locator, row_index, column_index, value):
         """Verifies text in listview cell.
 
         ``locator`` is the locator of the listview."""
-        listview = self.state._get_typed_item_by_locator(ListView, locator)
-        cell = listview.Cell(row_index, column_index)
-        if cell.Text == expected:
-            raise AssertionError("Cell text should not have been {}".format(expected))
+        cell = self._get_cell_by_index(locator, row_index, column_index)
+        if cell.Text == value:
+            raise AssertionError("Cell text should not have been {}".format(value))
 
     @keyword
-    def listview_cell_should_contain(self, column_name, row_index, expected):
+    def listview_cell_should_contain(self, locator, column_name, row_index, value):
         """Verifies that text is present in listview cell.
 
         ``locator`` is the locator of the listview."""
         listview = self.state._get_typed_item_by_locator(ListView, locator)
-        cell = listview.Cell(column_name, row_index)
-        if expected not in cell.Text:
-            raise AssertionError("Cell text should have contained '{}' but did not".format(expected))
+        cell = listview.Cell(column_name, int(row_index))
+        if value not in cell.Text:
+            raise AssertionError("Cell text should have contained '{}' but did not".format(value))
 
     @keyword
-    def listview_cell_should_not_contain(self, column_name, row_index, expected):
+    def listview_cell_should_not_contain(self, locator, column_name, row_index, value):
         """Verifies that text is present in listview cell.
 
         ``locator`` is the locator of the listview."""
         listview = self.state._get_typed_item_by_locator(ListView, locator)
-        cell = listview.Cell(column_name, row_index)
-        if expected in cell.Text:
-            raise AssertionError("Cell text should not have contained '{}' but did".format(expected))
+        cell = listview.Cell(column_name, int(row_index))
+        if value in cell.Text:
+            raise AssertionError("Cell text should not have contained '{}' but did".format(value))
 
     @keyword
-    def listview_cell_in_index_should_contain(self, row_index, column_index):
+    def listview_cell_in_index_should_contain(self, locator, row_index, column_index, value):
         """Verifies that text is present in listview cell.
 
         ``locator`` is the locator of the listview."""
-        listview = self.state._get_typed_item_by_locator(ListView, locator)
-        cell = listview.Cell(row_index, column_index)
-        if expected not in cell.Text:
-            raise AssertionError("Cell text should have contained '{}' but did not".format(expected))
+        cell = self._get_cell_by_index(locator, row_index, column_index)
+        if value not in cell.Text:
+            raise AssertionError("Cell text should have contained '{}' but did not".format(value))
 
     @keyword
-    def listview_cell_in_index_should_not_contain(self, row_index, column_index):
+    def listview_cell_in_index_should_not_contain(self, locator, row_index, column_index, value):
         """Verifies that text is present in listview cell.
 
         ``locator`` is the locator of the listview."""
+        cell = self._get_cell_by_index(locator, row_index, column_index)
+        if value in cell.Text:
+            raise AssertionError("Cell text should not have contained '{}' but did".format(value))
+
+    def _get_cell_by_index(self, locator, row, column):
         listview = self.state._get_typed_item_by_locator(ListView, locator)
-        cell = listview.Cell(row_index, column_index)
-        if expected in cell.Text:
-            raise AssertionError("Cell text should not have contained '{}' but did".format(expected))
+        return listview.Rows.Get(int(row)).Cells[int(column)]
