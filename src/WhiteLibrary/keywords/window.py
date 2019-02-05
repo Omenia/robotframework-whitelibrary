@@ -22,7 +22,7 @@ class WindowKeywords(LibraryComponent):
         except AutomationException as error_msg:
             error_msg = str(error_msg)
             replaced_text = "after waiting for {0} seconds".format(int(CoreAppXmlConfiguration.Instance.FindWindowTimeout/1000))
-            raise Exception(error_msg.replace("after waiting for 30 seconds", replaced_text))
+            raise AutomationException(error_msg.replace("after waiting for 30 seconds", replaced_text), "")
         except AttributeError as error_msg:
             error_msg = str(error_msg)
             if "NoneType" in error_msg:
