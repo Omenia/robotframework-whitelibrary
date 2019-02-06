@@ -69,7 +69,7 @@ class ListViewKeywords(LibraryComponent):
     def listview_cell_in_index_should_contain(self, locator, row_index, column_index, expected):
         """Verifies that the given listview cell contains text ``expected``.
 
-        See `Get Listview Text By Index` for details about arguments ``locator`, ``row_index``, and ``column_index``.
+        See `Get Listview Cell Text By Index` for details about arguments ``locator``, ``row_index``, and ``column_index``.
         """
         cell = self._get_cell_by_index(locator, row_index, column_index)
         if expected not in cell.Text:
@@ -80,7 +80,7 @@ class ListViewKeywords(LibraryComponent):
     def listview_cell_in_index_should_not_contain(self, locator, row_index, column_index, expected):
         """Verifies that the given listview cell does not contain text ``expected``.
 
-        See `Get Listview Text By Index` for details about arguments ``locator`, ``row_index``, and ``column_index``.
+        See `Get Listview Cell Text By Index` for details about arguments ``locator``, ``row_index``, and ``column_index``.
         """
         cell = self._get_cell_by_index(locator, row_index, column_index)
         if expected in cell.Text:
@@ -91,7 +91,7 @@ class ListViewKeywords(LibraryComponent):
     def listview_cell_should_contain(self, locator, column_name, row_index, expected):
         """Verifies that the given listview cell contains text ``expected``.
 
-        See `Get Listview Cell Text` for details about arguments ``locator`, ``column_name``, and ``row_index``.
+        See `Get Listview Cell Text` for details about arguments ``locator``, ``column_name``, and ``row_index``.
         """
         cell = self._get_cell(locator, column_name, row_index)
         if expected not in cell.Text:
@@ -102,7 +102,7 @@ class ListViewKeywords(LibraryComponent):
     def listview_cell_should_not_contain(self, locator, column_name, row_index, expected):
         """Verifies that the given listview cell does not contain text ``expected``.
 
-        See `Get Listview Cell Text` for details about arguments ``locator`, ``column_name``, and ``row_index``.
+        See `Get Listview Cell Text` for details about arguments ``locator``, ``column_name``, and ``row_index``.
         """
         cell = self._get_cell(locator, column_name, row_index)
         if expected in cell.Text:
@@ -113,7 +113,7 @@ class ListViewKeywords(LibraryComponent):
     def listview_cell_text_in_index_should_be(self, locator, row_index, column_index, expected):
         """Verifies that listview cell text is ``expected``.
 
-        See `Get Listview Text By Index` for details about arguments ``locator`, ``row_index``, and ``column_index``.
+        See `Get Listview Cell Text By Index` for details about arguments ``locator``, ``row_index``, and ``column_index``.
         """
         cell = self._get_cell_by_index(locator, row_index, column_index)
         if cell.Text != expected:
@@ -124,7 +124,7 @@ class ListViewKeywords(LibraryComponent):
     def listview_cell_text_in_index_should_not_be(self, locator, row_index, column_index, expected):
         """Verifies that listview cell text is not ``expected``.
 
-        See `Get Listview Text By Index` for details about arguments ``locator`, ``row_index``, and ``column_index``.
+        See `Get Listview Cell Text By Index` for details about arguments ``locator``, ``row_index``, and ``column_index``.
         """
         cell = self._get_cell_by_index(locator, row_index, column_index)
         if cell.Text == expected:
@@ -135,7 +135,7 @@ class ListViewKeywords(LibraryComponent):
     def listview_cell_text_should_be(self, locator, column_name, row_index, expected):
         """Verifies that listview cell text is ``expected``.
 
-        See `Get Listview Cell Text` for details about arguments ``locator`, ``column_name``, and ``row_index``.
+        See `Get Listview Cell Text` for details about arguments ``locator``, ``column_name``, and ``row_index``.
         """
         cell = self._get_cell(locator, column_name, row_index)
         if cell.Text != expected:
@@ -145,7 +145,7 @@ class ListViewKeywords(LibraryComponent):
     def listview_cell_text_should_not_be(self, locator, column_name, row_index, expected):
         """Verifies that listview cell text is not ``expected``.
 
-        See `Get Listview Cell Text` for details about arguments ``locator`, ``column_name``, and ``row_index``.
+        See `Get Listview Cell Text` for details about arguments ``locator``, ``column_name``, and ``row_index``.
         """
         cell = self._get_cell(locator, column_name, row_index)
         if cell.Text == expected:
@@ -207,7 +207,7 @@ class ListViewKeywords(LibraryComponent):
     def right_click_listview_cell(self, locator, column_name, row_index):
         """Right clicks a listview cell using its column name and row index.
 
-        See `Get Listview Cell Text` for details about arguments ``locator`, ``column_name``, and ``row_index``.
+        See `Get Listview Cell Text` for details about arguments ``locator``, ``column_name``, and ``row_index``.
         """
         cell = self._get_cell(locator, column_name, row_index)
         cell.RightClick()
@@ -216,7 +216,7 @@ class ListViewKeywords(LibraryComponent):
     def right_click_listview_row(self, locator, column_name, cell_text):
         """Right clicks a listview row that has given text in given column.
 
-        See `Get Listview Row Text` for details about the arguments.
+        See `Get Listview Row Text` for details about the arguments ``locator``, ``column_name``, and ``cell_text``.
         """
         row = self._get_row(locator, column_name, cell_text)
         row.RightClick()
@@ -234,7 +234,7 @@ class ListViewKeywords(LibraryComponent):
     def select_listview_row(self, locator, column_name, cell_text):
         """Selects a listview row.
 
-        See `Get Listview Row Text` for details about the arguments.
+        See `Get Listview Row Text` for details about the arguments ``locator``, ``column_name``, and ``cell_text``.
         """
         listview = self.state._get_typed_item_by_locator(ListView, locator)
         listview.Select(column_name, cell_text)
