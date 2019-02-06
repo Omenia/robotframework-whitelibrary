@@ -229,9 +229,8 @@
                                     MouseEnter="eventLabelMouseEnter"
                                     MouseLeave="eventLabelMouseLeave">
                             </Label>
-                            <Button  Content="Test button" Name="test_button" HorizontalAlignment="Left" Margin="0,5,0,5" Width="75" Grid.Column="3"
-                                    Click="eventTestButtonLeftClick"
-                                    MouseDoubleClick="eventTestButtonDoubleClick"
+                            <Button  Content="New window" Name="window_button" HorizontalAlignment="Left" Margin="0,5,0,5" Width="75" Grid.Column="3"
+                                    Click="eventWindowButtonLeftClick"
                                     >
                             </Button>
                         </Grid>
