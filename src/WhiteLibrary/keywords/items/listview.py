@@ -166,7 +166,7 @@ class ListViewKeywords(LibraryComponent):
                              .format(row_index, expected))
 
     @keyword
-    def listview_row_in_index_should_not_contain(self, locator, row_index, value):
+    def listview_row_in_index_should_not_contain(self, locator, row_index, expected):
         """Verifies that any cell in the given listview row does not contain text ``expected``.
 
         See `Get Listview Row Text By Index` for details about arguments ``locator`` and ``row_index``.
@@ -174,9 +174,9 @@ class ListViewKeywords(LibraryComponent):
         listview = self.state._get_typed_item_by_locator(ListView, locator)
         row = listview.Rows.Get(int(row_index))
         for cell in row.Cells:
-            if value in cell.Text:
+            if expected in cell.Text:
                 raise AssertionError("Row {} should not have contained text '{}'"
-                                     .format(row_index, value))
+                                     .format(row_index, expected))
 
     @keyword
     def listview_row_should_contain(self, locator, column_name, cell_text, expected):
