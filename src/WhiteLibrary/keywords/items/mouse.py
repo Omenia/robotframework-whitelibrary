@@ -88,7 +88,7 @@ class MouseKeywords(LibraryComponent):
 
     @keyword
     def mouse_click(self, x=None, y=None):
-        """Left clicks mouse at given position.
+        """Clicks mouse at given position.
 
         Position (``x``, ``y``) is relative to application window top left.
         If no coordinates are given it uses current mouse position.
@@ -116,7 +116,7 @@ class MouseKeywords(LibraryComponent):
 
     @keyword
     def mouse_double_click(self, x=None, y=None):
-        """Left double clicks mouse at given position.
+        """Double clicks mouse at given position.
 
         Position (``x``, ``y``) is relative to application window top left.
         If no coordinates are given it uses current mouse position.
