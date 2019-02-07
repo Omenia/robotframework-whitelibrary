@@ -5,6 +5,24 @@ from WhiteLibrary.keywords.robotlibcore import keyword
 
 class ListViewKeywords(LibraryComponent):
     @keyword
+    def double_click_listview_row(self, locator, column_name, cell_text):
+        """Double clicks a listview row.
+
+        See `Get Listview Row Text` for details about the arguments ``locator``, ``column_name``, and ``cell_text``.
+        """
+        row = self._get_row(locator, column_name, cell_text)
+        row.DoubleClick()
+
+    @keyword
+    def double_click_listview_row_by_index(self, locator, row_index):
+        """Double clicks a listview row at index.
+
+        See `Get Listview Row Text By Index` for details about arguments ``locator`` and ``row_index``.
+        """
+        row = self._get_row_by_index(locator, row_index)
+        row.DoubleClick()
+
+    @keyword
     def get_listview_cell_text(self, locator, column_name, row_index):
         """Returns text of a listview cell.
 

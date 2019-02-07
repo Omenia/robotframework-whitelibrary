@@ -140,6 +140,12 @@ namespace UIAutomationTest
 
         }
 
+        private void datagridRowDoubleClick(object sender, RoutedEventArgs e)
+        {
+            DataGridRow row = sender as DataGridRow;
+            MessageBox.Show("Double clicked row " + row.GetIndex().ToString());
+        }
+
         private void popupItemClick(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Delete not allowed");

@@ -72,7 +72,7 @@ Get Text From ListView
     ${actual}    Get Listview Cell Text By Index    list_view2    2    2
     Should Be Equal    ${actual}    Science
 
-ListView Select
+Select Listview Row
     Select ListView Row By Index    list_view    1
     Bible Should Be Selected
     Select ListView Row By Index    list_view    2
@@ -80,8 +80,17 @@ ListView Select
     Select ListView Row    list_view    Title    Robinson Crusoe
     Robinson Crusoe Should Be Selected
 
-ListView Right Click
+Right Click Listview Cell
     Repeat Keyword    2    Right Click Listview Cell    list_view2    Title    1
     Bible Should Be Right Clicked
     Repeat Keyword    2    Right Click Listview Cell    list_view2    Author    0
     Daniel Defoe Should Be Right Clicked
+
+Double Click Listview Row
+    Double Click ListView Row    list_view2    Author    Donald Knuth
+    Verify Label    65535    Double clicked row 2
+    Click Button    text=OK
+
+    Double Click ListView Row By Index    list_view2    1
+    Verify Label    65535    Double clicked row 1
+    [Teardown]    Click Button    text=OK
