@@ -8,6 +8,14 @@ from robot.api import logger    # noqa: F401
 
 
 class WindowKeywords(LibraryComponent):
+
+    @keyword
+    def get_title(self):
+        """Returns title of the currently attached window. Does not use parameters.
+        Assumes some window is already attached.
+        """
+        return self.state.window.Title
+
     @keyword
     def attach_window(self, window_title):
         """Attach WhiteLibrary to a window of already attached application.
@@ -19,8 +27,6 @@ class WindowKeywords(LibraryComponent):
         """
 
         self.state.window = self._get_window(window_title)
-
-
 
     @keyword
     def list_application_windows(self):
