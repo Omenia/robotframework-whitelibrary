@@ -49,4 +49,6 @@ class WindowKeywords(LibraryComponent):
         """
         if window_title is not None:
             self.attach_window(window_title)
-        self.state.window.Close()
+            self.state.window.Close()
+        else:
+            self.state.window.Close()
