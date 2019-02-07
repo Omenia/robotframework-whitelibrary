@@ -1,9 +1,8 @@
 *** Variables ***
-${TEST APPLICATION}      ${EXECDIR}${/}UIAutomationTest${/}bin${/}Debug${/}UIAutomationTest.exe
+${TEST APPLICATION}      ${EXECDIR}/UIAutomationTest/bin/Debug/UIAutomationTest.exe
 ${ARGUMENTS}    "generic_argument"
 @{Tree node 1}    Tree node 1
 @{Tree node 1.1}    Tree node 1    Tree node 1.1
-
 
 *** Settings ***
 Library    OperatingSystem
@@ -11,7 +10,7 @@ Library    String
 Library    WhiteLibrary
 Test Setup    Attach Main Window
 Test Teardown    Clean Application
-Resource          ..${/}resource.robot
+Resource    ../resource.robot
 
 *** Test Cases ***
 Verify Labels
@@ -86,17 +85,16 @@ Calculate When First Number is Missing
 Calculate When First Number Is Alphabet
     Calculate a + 5 Equals ${EMPTY}
 
-
 Verify Radio Buttons
     Verify Radio Button    rb_peke    ${TRUE}
     Select Radio Button    rb_ismo
     Verify Radio Button    rb_ismo    ${TRUE}
 
 Verify Get Radio Button State
-    ${old_button_state}=    Get Radio Button State   rb_ismo
+    ${old_button_state}=    Get Radio Button State    rb_ismo
     Select Radio Button     rb_ismo
-    ${new_button_state}=    Get Radio Button State   rb_ismo
-    Should Not Be Equal     ${old_button_state}   ${new_button_state}
+    ${new_button_state}=    Get Radio Button State    rb_ismo
+    Should Not Be Equal     ${old_button_state}    ${new_button_state}
 
 Verify Slider
     Verify Slider Value    sladdu    0
@@ -209,22 +207,7 @@ Handle ToolStripButtons
     Toolstrip button 3 Should Be Clicked
     [Teardown]    Select Tab Page    tabControl    Tab1
 
-Handle ListView
-    [Setup]    Setup for Tab 2 Tests
-    Select ListView Row By Index    list_view    1
-    Bible Should Be Selected
-    Select ListView Row By Index    list_view    2
-    The Art of Computer Programming Should Be Selected
-    Select ListView Row    list_view    Title    Robinson Crusoe
-    Robinson Crusoe Should Be Selected
-
-    Repeat Keyword    2    Right Click Listview Cell    list_view2    Title    1
-    Bible Should Be Right Clicked
-    Repeat Keyword    2    Right Click Listview Cell    list_view2    Author    0
-    Daniel Defoe Should Be Right Clicked
-    [Teardown]    Select Tab Page    tabControl    Tab1
-
-ListView Row Right Click Menu
+Popup menu with subitems
     [Setup]    Setup for Tab 2 Tests
     Right Click ListView Row By Index    list_view    2
     Click Item In Popup Menu    Delete
