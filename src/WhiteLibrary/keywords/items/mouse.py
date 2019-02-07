@@ -87,7 +87,7 @@ class MouseKeywords(LibraryComponent):
             Mouse.Instance.RightClick()
 
     @keyword
-    def mouse_left_click(self, x=None, y=None):
+    def mouse_click(self, x=None, y=None):
         """Left clicks mouse at given position.
 
         Position (``x``, ``y``) is relative to application window top left.
@@ -115,7 +115,7 @@ class MouseKeywords(LibraryComponent):
         Mouse.Instance.RightClick()
 
     @keyword
-    def mouse_left_double_click(self, x=None, y=None):
+    def mouse_double_click(self, x=None, y=None):
         """Left double clicks mouse at given position.
 
         Position (``x``, ``y``) is relative to application window top left.

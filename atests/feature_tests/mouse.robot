@@ -47,10 +47,10 @@ Verify Mouse Right Click
     Sleep    2
     Verify Label    selectionIndicatorLabel    right button up
 
-Verify Mouse Left Click
+Verify Mouse Click
     Click Item    event_label
     Sleep    2
-    Mouse Left Click
+    Mouse Click
     Sleep    2
     Verify Label    selectionIndicatorLabel    left button up
 
@@ -61,14 +61,14 @@ Verify Mouse Right Double Click
     Sleep    2
     Verify Label    selectionIndicatorLabel    right button up
 
-Verify Mouse Left Double Click
+Verify Mouse Double Click
     Click Item    event_label
     Sleep    2
-    Mouse Left Double Click
+    Mouse Double Click
     Sleep    2
     Verify Label    selectionIndicatorLabel    left button up
 
 Verify Incomplete Mouse Position Exception
-    ${status}    ${error_msg}    Run Keyword And Ignore Error    Mouse Left Click    300
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Mouse Click    300
     ${MOUSE_X}    ${MOUSE_Y}    Get Mouse Location
-    Should Contain    ${error_msg}    Either x or y value missin
+    Should Contain    ${error_msg}    Either x or y value missing
