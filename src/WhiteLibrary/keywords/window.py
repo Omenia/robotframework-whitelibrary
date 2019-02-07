@@ -17,17 +17,8 @@ class WindowKeywords(LibraryComponent):
 
         ``window_title`` is the title of the window.
         """
-        try:
-            self.state.window = self.state.app.GetWindow(window_title)
-        except AutomationException as error_msg:
-            error_msg = str(error_msg)
-            replaced_text = "after waiting for {0} seconds".format(int(CoreAppXmlConfiguration.Instance.FindWindowTimeout/1000))
-            raise AutomationException(error_msg.replace("after waiting for 30 seconds", replaced_text), "")
-        except AttributeError as error_msg:
-            error_msg = str(error_msg)
-            if "NoneType" in error_msg:
-                error_msg = "No application attached."
-            raise AttributeError(error_msg)
+
+        self.state.window = self._get_window(window_title)
 
     @keyword
     def select_modal_window(self, window_title):
@@ -48,17 +39,21 @@ class WindowKeywords(LibraryComponent):
         `Launch application` for more details.
         """
         if window_title is not None:
-            try:
-                window = self.state.app.GetWindow(window_title)
-            except AutomationException as error_msg:
-                error_msg = str(error_msg)
-                replaced_text = "after waiting for {0} seconds".format(int(CoreAppXmlConfiguration.Instance.FindWindowTimeout/1000))
-                raise AutomationException(error_msg.replace("after waiting for 30 seconds", replaced_text), "")
-            except AttributeError as error_msg:
-                error_msg = str(error_msg)
-                if "NoneType" in error_msg:
-                    error_msg = "No application attached."
-                raise AttributeError(error_msg)
+            window = self._get_window(window_title)
             window.Close()
         else:
             self.state.window.Close()
+
+    def _get_window(self, window_title):
+        try:
+            return self.state.app.GetWindow(window_title)
+        except AutomationException as error_msg:
+            error_msg = str(error_msg)
+            replaced_text = "after waiting for {0} seconds".format(int(CoreAppXmlConfiguration.Instance.FindWindowTimeout/1000))
+            raise AutomationException(error_msg.replace("after waiting for 30 seconds", replaced_text), "")
+        except AttributeError as error_msg:
+            error_msg = str(error_msg)
+            if "NoneType" in error_msg:
+                error_msg = "No application attached."
+            raise AttributeError(error_msg)
+
