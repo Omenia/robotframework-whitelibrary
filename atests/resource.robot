@@ -1,3 +1,7 @@
+*** Settings ***
+Library    String
+Library    WhiteLibrary
+
 *** Variables ***
 ${TEST APPLICATION}      ${EXECDIR}${/}UIAutomationTest${/}bin${/}Debug${/}UIAutomationTest.exe
 ${TEST APPLICATION NAME}    UIAutomationTest
@@ -23,7 +27,6 @@ Launch White Application For Test
 
 Attach White Main Window
     Attach Window    ${TEST WHITE APPLICATION NAME}
-
 
 Clean Application
     Input Text To Textbox    txtA    ${EMPTY}

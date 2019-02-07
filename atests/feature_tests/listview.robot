@@ -17,7 +17,7 @@ Cell Verification
     Listview Cell Text In Index Should Be   list_view2    2    1    The Art of Computer Programming
     Listview Cell Text In Index Should Not Be    list_view2    2    1    Robinson Crusoe
 
-    Listview Cell Should Contain    list_view2    Title    2    omputer
+    Listview Cell Should Contain    list_view2    Title    2    omputer P
     Listview Cell Should Not Contain    list_view2    Title    2    obinson
     Listview Cell In Index Should Contain    list_view2    2    1    omputer
     Listview Cell In Index Should Not Contain    list_view2    2    1    obinson
@@ -72,7 +72,16 @@ Get Text From ListView
     ${actual}    Get Listview Cell Text By Index    list_view2    2    2
     Should Be Equal    ${actual}    Science
 
-*** Keywords ***
-Setup For Tab 2 Tests
-    Attach Main Window
-    Select Tab Page    tabControl    Tab2
+ListView Select
+    Select ListView Row By Index    list_view    1
+    Bible Should Be Selected
+    Select ListView Row By Index    list_view    2
+    The Art of Computer Programming Should Be Selected
+    Select ListView Row    list_view    Title    Robinson Crusoe
+    Robinson Crusoe Should Be Selected
+
+ListView Right Click
+    Repeat Keyword    2    Right Click Listview Cell    list_view2    Title    1
+    Bible Should Be Right Clicked
+    Repeat Keyword    2    Right Click Listview Cell    list_view2    Author    0
+    Daniel Defoe Should Be Right Clicked
