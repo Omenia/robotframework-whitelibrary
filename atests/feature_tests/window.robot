@@ -38,12 +38,17 @@ Get All Application Windows By Index
 
 Attach Application Window By List Object
     @{several_windows}=    List Application Windows
-    Attach Window    ${several_windows[2]}
+    ${temp}=    Set Variable    ${several_windows[2].Name}
+    ${title_type}=    Evaluate    type($temp).__name__
+    Log    ${temp} type is ${title_type}
+    Attach Window    ${several_windows[2].Name}
     ${title}=    Get Title
     Should Be Equal As Strings    ${title}    Test title - 3
-    Attach Window    ${several_windows[0]}
+    Log    ${several_windows[0]}
+    #TODO: Why several_windows ordering changes. Document the behavior correctly.
+    Attach Window    ${several_windows[0].Name}
     ${title}=    Get Title
-    Should Be Equal As Strings    ${title}    Test title - 4
+    Should Be Equal As Strings    ${title}    UI Automation Test Window
 
 Attach Desktop Window By Name
     Attach Desktop Window By Name    Test title - 1

@@ -1,9 +1,13 @@
+from System.Windows import Automation
+from System.Windows.Automation import AutomationElement
 from TestStack.White.Configuration import CoreAppXmlConfiguration
 from TestStack.White import AutomationException
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from TestStack.White.UIItems.WindowItems import Window   # noqa: F401
 from TestStack.White import Desktop
+from TestStack.White.UIItems.Finders import SearchCriteria    # noqa: E402
+from TestStack.White.Factory import InitializeOption  # noqa: E402
 from robot.api import logger    # noqa: F401
 
 
@@ -17,7 +21,7 @@ class WindowKeywords(LibraryComponent):
         return self.state.window.Title
 
     @keyword
-    def attach_window(self, window_title):
+    def attach_window(self, locator):
         """Attach WhiteLibrary to a window of already attached application.
 
         See `Attach Application By Id`, `Attach Application By Name` or
@@ -26,7 +30,7 @@ class WindowKeywords(LibraryComponent):
         ``window_title`` is the title of the window.
         """
 
-        self.state.window = self._get_window(window_title)
+        self.state.window = self._get_window_by_locator(locator)
 
     @keyword
     def list_application_windows(self):
@@ -82,7 +86,7 @@ class WindowKeywords(LibraryComponent):
         self.state.window = self.state.window.ModalWindow(window_title)
 
     @keyword
-    def close_window(self, window_title=None):
+    def close_window(self, locator=None):
         """Closes a window.
 
         ``window_title`` is the title of the window (optional).
@@ -90,15 +94,18 @@ class WindowKeywords(LibraryComponent):
         If title is not given, the currently attached window is closed.
         See `Attach Window` for more details.
         """
-        if window_title is not None:
-            window = self._get_window(window_title)
+        if locator is not None:
+            window = self._get_window_by_locator(locator)
             window.Close()
         else:
             self.state.window.Close()
 
-    def _get_window(self, window_title):
+    def _get_window_by_locator(self, locator):
+
+        search_criteria = self._get_window_search_criteria(locator)
+
         try:
-            return self.state.app.GetWindow(window_title)
+            return self.state.app.GetWindow(search_criteria, InitializeOption.NoCache)
         except AutomationException as error_msg:
             error_msg = str(error_msg)
             replaced_text = "after waiting for {0} seconds".format(int(CoreAppXmlConfiguration.Instance.FindWindowTimeout / 1000))
@@ -108,3 +115,38 @@ class WindowKeywords(LibraryComponent):
             if "NoneType" in error_msg:
                 error_msg = "No application attached."
             raise AttributeError(error_msg)
+
+    def _get_window_search_criteria(self, locator):
+        search_strategy, locator_value = self._parse_window_locator(locator)
+        logger.info("search strategy: " + search_strategy + " locator value: " + locator_value, True, True)
+        if search_strategy == "index":
+            locator_value = int(locator_value)
+
+        try:
+            search_method = self.WINDOW_STRATEGIES[search_strategy]["method"]
+        except KeyError:
+            raise ValueError("'{}' is not a valid window locator prefix".format(search_strategy))
+
+        search_params = (locator_value,)
+        logger.info("search_params: " + str(search_params) + " search_method: " + str(search_method), True, True)
+        method = getattr(SearchCriteria, search_method)
+        logger.info(" return value: " + str(method(*search_params)), True, True)
+        return method(*search_params)
+
+    def _parse_window_locator(self, locator):
+        if "=" not in locator and ":" not in locator:
+            locator = "name:" + locator
+        idx = self._get_window_locator_delimiter_index(locator)
+        return locator[:idx], locator[idx+1:]
+
+    def _get_window_locator_delimiter_index(self, locator):
+        if "=" not in locator:
+            return locator.index(":")
+        if ":" not in locator:
+            return locator.index("=")
+        return min(locator.index(":"), locator.index("="))
+
+    WINDOW_STRATEGIES = dict(id={"method": "ByAutomationId"},
+                  name={"method": "ByText"},
+                  index={"method": "Indexed"})
+
