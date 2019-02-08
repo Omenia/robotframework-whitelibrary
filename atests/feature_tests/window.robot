@@ -3,16 +3,12 @@ Library    WhiteLibrary
 Library    Process
 Test Setup    Window Test Setup
 Test Teardown    Window Test Teardown
+Suite Setup    Window Test Suite Setup
+Suite Teardown    Window Test Suite Teardown
 Resource    ..${/}resource.robot
 
 *** Test Cases ***
 Get All Application Windows
-    @{single_window}=    List Application Windows
-    Length Should Be    ${single_window}    1
-    Click Button    window_button
-    Click Button    window_button
-    Click Button    window_button
-    Click Button    window_button
     @{several_windows}=    List Application Windows
     Length Should Be    ${several_windows}    5
     Log    ${several_windows[0]}
@@ -38,28 +34,47 @@ Get All Application Windows By Index
 
 Attach Application Window By List Object
     @{several_windows}=    List Application Windows
-    ${temp}=    Set Variable    ${several_windows[2].Name}
-    ${title_type}=    Evaluate    type($temp).__name__
-    Log    ${temp} type is ${title_type}
     Attach Window    ${several_windows[2].Name}
     ${title}=    Get Title
     Should Be Equal As Strings    ${title}    Test title - 3
     Log    ${several_windows[0]}
-    #TODO: Why several_windows ordering changes. Document the behavior correctly.
     Attach Window    ${several_windows[0].Name}
     ${title}=    Get Title
-    Should Be Equal As Strings    ${title}    UI Automation Test Window
+    Should Be Equal As Strings    ${title}    Test title - 4
 
 Attach Desktop Window By Name
-    Attach Desktop Window By Name    Test title - 1
+    Attach Window    name:Test title - 1
+    ${title}=    Get Title
+    Should Be Equal As Strings    ${title}    Test title - 1
+    Attach Window    name:Test title - 2
+    ${title}=    Get Title
+    Should Be Equal As Strings    ${title}    Test title - 2
+
+Attach Desktop Window By Index
+    Attach Window    index:1
+    ${title}=    Get Title
+    Should Be Equal As Strings    ${title}    Test title - 4
+    Attach Window    index:4
     ${title}=    Get Title
     Should Be Equal As Strings    ${title}    Test title - 1
 
 *** Keywords ***
-Window Test Setup
+Window Test Suite Setup
     Attach Main Window
     Setup For Tab 2 Tests
+    Click Button    window_button
+    Click Button    window_button
+    Click Button    window_button
+    Click Button    window_button
+
+Window Test Suite Teardown
+    Close Window    Test title - 4
+    Close Window    Test title - 3
+    Close Window    Test title - 2
+    Close Window    Test title - 1
+
+Window Test Setup
+    No Operation
 
 Window Test Teardown
-    Attach Main Window
-    Select Tab Page    tabControl    Tab1
+    No Operation
