@@ -5,6 +5,18 @@ from WhiteLibrary.keywords.robotlibcore import keyword
 
 class ListViewKeywords(LibraryComponent):
     @keyword
+    def double_click_listview_cell(self, locator, column_name, row_index):
+        """Double clicks a listview cell."""
+        cell = self._get_cell(locator, column_name, row_index)
+        cell.DoubleClick()
+
+    @keyword
+    def double_click_listview_cell_by_index(self, locator, row_index, column_index):
+        """Double clicks a listview cell at index."""
+        cell = self._get_cell_by_index(locator, row_index, column_index)
+        cell.DoubleClick()
+
+    @keyword
     def double_click_listview_row(self, locator, column_name, cell_text):
         """Double clicks a listview row.
 
