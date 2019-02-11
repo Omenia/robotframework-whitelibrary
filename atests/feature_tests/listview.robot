@@ -8,19 +8,19 @@ Suite Teardown    Select Tab Page    tabControl    Tab1
 Row Verification
     Listview Row Should Contain    list_view2    Title    Bible    ligious
     Listview Row Should Not Contain    list_view2    Title    Robinson Crusoe    Scienc
-    Listview Row In Index Should Contain    list_view2    2    Programming
-    Listview Row In Index Should Not Contain    list_view2    1    Donald
+    Listview Row At Index Should Contain    list_view2    2    Programming
+    Listview Row At Index Should Not Contain    list_view2    1    Donald
 
 Cell Verification
     Listview Cell Text Should Be    list_view2    Title    2    The Art of Computer Programming
     Listview Cell Text Should Not Be    list_view2    Title    2    Robinson Crusoe
-    Listview Cell Text In Index Should Be   list_view2    2    1    The Art of Computer Programming
-    Listview Cell Text In Index Should Not Be    list_view2    2    1    Robinson Crusoe
+    Listview Cell Text At Index Should Be   list_view2    2    1    The Art of Computer Programming
+    Listview Cell Text At Index Should Not Be    list_view2    2    1    Robinson Crusoe
 
     Listview Cell Should Contain    list_view2    Title    2    omputer P
     Listview Cell Should Not Contain    list_view2    Title    2    obinson
-    Listview Cell In Index Should Contain    list_view2    2    1    omputer
-    Listview Cell In Index Should Not Contain    list_view2    2    1    obinson
+    Listview Cell At Index Should Contain    list_view2    2    1    omputer
+    Listview Cell At Index Should Not Contain    list_view2    2    1    obinson
 
 Unsuccessful Row Verification
     Run Keyword And Expect Error    Row defined by cell 'Title'='Bible' did not contain text 'abcd'
@@ -28,9 +28,9 @@ Unsuccessful Row Verification
     Run Keyword And Expect Error    Row defined by cell 'Title'='Robinson Crusoe' should not have contained text 'Fiction'
     ...                             Listview Row Should Not Contain    list_view2    Title    Robinson Crusoe    Fiction
     Run Keyword And Expect Error    Row 2 did not contain text 'abcd'
-    ...                             Listview Row In Index Should Contain    list_view2    2    abcd
+    ...                             Listview Row At Index Should Contain    list_view2    2    abcd
     Run Keyword And Expect Error    Row 1 should not have contained text 'igious'
-    ...                             Listview Row In Index Should Not Contain    list_view2    1    igious
+    ...                             Listview Row At Index Should Not Contain    list_view2    1    igious
 
 Unsuccessful Cell Verification
     Run Keyword And Expect Error    Cell text should have been 'Hello', found 'The Art of Computer Programming'
@@ -40,10 +40,10 @@ Unsuccessful Cell Verification
     ...                             Listview Cell Text Should Not Be    list_view2    Title    2    The Art of Computer Programming
 
     Run Keyword And Expect Error    Cell (2, 1) text should have been 'Hello', found 'The Art of Computer Programming'
-    ...                             Listview Cell Text In Index Should Be   list_view2    2    1    Hello
+    ...                             Listview Cell Text At Index Should Be   list_view2    2    1    Hello
 
     Run Keyword And Expect Error    Cell (2, 1) text should not have been 'The Art of Computer Programming'
-    ...                             Listview Cell Text In Index Should Not Be    list_view2    2    1    The Art of Computer Programming
+    ...                             Listview Cell Text At Index Should Not Be    list_view2    2    1    The Art of Computer Programming
 
     Run Keyword And Expect Error    Cell did not contain text 'obinson'
     ...                             Listview Cell Should Contain    list_view2    Title    2    obinson
@@ -52,10 +52,10 @@ Unsuccessful Cell Verification
     ...                             Listview Cell Should Not Contain    list_view2    Title    2    omputer
 
     Run Keyword And Expect Error    Cell (2, 1) did not contain text 'obinson'
-    ...                             Listview Cell In Index Should Contain    list_view2    2    1    obinson
+    ...                             Listview Cell At Index Should Contain    list_view2    2    1    obinson
 
     Run Keyword And Expect Error    Cell (2, 1) should not have contained text 'omputer'
-    ...                             Listview Cell In Index Should Not Contain    list_view2    2    1    omputer
+    ...                             Listview Cell At Index Should Not Contain    list_view2    2    1    omputer
 
 Get Text From ListView
     ${expected}    Create List    Donald Knuth    The Art of Computer Programming    Science
@@ -72,16 +72,41 @@ Get Text From ListView
     ${actual}    Get Listview Cell Text By Index    list_view2    2    2
     Should Be Equal    ${actual}    Science
 
-ListView Select
-    Select ListView Row By Index    list_view    1
-    Bible Should Be Selected
+Select Listview Row
+    Select ListView Row By Index    birds    1
+    Row 1 Should Be Selected
     Select ListView Row By Index    list_view    2
-    The Art of Computer Programming Should Be Selected
+    Row 2 Should Be Selected
     Select ListView Row    list_view    Title    Robinson Crusoe
-    Robinson Crusoe Should Be Selected
+    Row 0 Should Be Selected
 
-ListView Right Click
+Select Listview Cell
+    Select Listview Cell    list_view2    Author    1
+    Various Artists Should Be Selected
+    Select Listview Cell By Index    list_view2    2    2
+    Science Should Be Selected
+
+Right Click Listview Row
+    # click twice because first click selects the row
+    Repeat Keyword    2    Right Click Listview Row    birds    Bird    Dodo
+    Row 2 Should Be Right Clicked
+    Repeat Keyword    2    Right Click Listview Row By Index    birds    0
+    Row 0 Should Be Right Clicked
+
+Right Click Listview Cell
     Repeat Keyword    2    Right Click Listview Cell    list_view2    Title    1
     Bible Should Be Right Clicked
-    Repeat Keyword    2    Right Click Listview Cell    list_view2    Author    0
+    Repeat Keyword    2    Right Click Listview Cell By Index    list_view2    0    0
     Daniel Defoe Should Be Right Clicked
+
+Double Click Listview Row
+    Double Click ListView Row    birds    Bird    Dodo
+    Row 2 Should Be Double Clicked
+    Double Click ListView Row By Index    birds    1
+    Row 1 Should Be Double Clicked
+
+Double Click Listview Cell
+    Double Click Listview Cell    list_view2    Author    2
+    Donald Knuth Should Be Double Clicked
+    Double Click Listview Cell By Index    list_view2    0    2
+    Fiction Should Be Double Clicked

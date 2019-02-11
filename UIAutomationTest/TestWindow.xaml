@@ -3,8 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="UI Automation Test Window" Height="750" WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <XmlDataProvider x:Key="MockList"   XPath="/MockObjects/*" >
-            <x:XData >
+        <XmlDataProvider x:Key="MockList" XPath="/MockObjects/*" >
+            <x:XData>
                 <MockObjects xmlns="">
                     <MockObject Title="Robinson Crusoe" />
                     <MockObject Title="Bible" />
@@ -12,8 +12,8 @@
                 </MockObjects>
             </x:XData>
         </XmlDataProvider>
-        <XmlDataProvider x:Key="MockList2"   XPath="/MockObjects/*" >
-            <x:XData >
+        <XmlDataProvider x:Key="MockList2" XPath="/MockObjects/*" >
+            <x:XData>
                 <MockObjects xmlns="">
                     <MockObject Author="Daniel Defoe" Title="Robinson Crusoe" Category="Fiction"/>
                     <MockObject Author="Various Artists" Title="Bible" Category="Religious" />
@@ -21,8 +21,17 @@
                 </MockObjects>
             </x:XData>
         </XmlDataProvider>
+        <XmlDataProvider x:Key="BirdList" XPath="/MockObjects/*" >
+            <x:XData>
+                <MockObjects xmlns="">
+                    <MockObject Name="Budgerigar" Scientific="Melopsittacus undulatus"/>
+                    <MockObject Name="Common raven" Scientific="Corvus corax"/>
+                    <MockObject Name="Dodo" Scientific="Raphus cucullatus"/>
+                </MockObjects>
+            </x:XData>
+        </XmlDataProvider>
     </Window.Resources>
-    <Grid Margin="0,0,-5,0">
+    <Grid>
         <Grid.Resources>
             <Style TargetType="{x:Type TreeViewItem}">
                 <EventSetter Event="Selected" Handler="treeNodeSelect"/>
@@ -30,13 +39,10 @@
                 <EventSetter Event="MouseRightButtonDown" Handler="treeNodeRightClick"/>
                 <EventSetter Event="Expanded" Handler="treeNodeExpanded"/>
             </Style>
-            <Style TargetType="{x:Type DataGridCell}">
-                <EventSetter Event="MouseRightButtonDown" Handler="dataGridCellRightClick"/>
-                <EventSetter Event="Selected" Handler="dataGridCellSelect"/>
-            </Style>
         </Grid.Resources>
+        
         <ScrollViewer>
-            <TabControl AutomationProperties.AutomationId="tabControl" Grid.ColumnSpan="2" Margin="0,0,0,0.2">
+            <TabControl AutomationProperties.AutomationId="tabControl" Grid.ColumnSpan="2">
                 <TabItem Header="Tab1">
                     <StackPanel>
                         <Grid>
@@ -140,10 +146,10 @@
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Tab2">
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel>
                         <Label Name="selectionIndicatorLabel">nothing selected</Label>
                         <Label Name="cursorPosition"
-                               MouseMove="cursorPositionShow"></Label>
+                               MouseMove="cursorPositionShow">move mouse</Label>
                         <ToolBar AutomationProperties.AutomationId="tools">
                             <Button Click="toolStripButtonClick">Toolstrip button 1</Button>
                             <Button Click="toolStripButtonClick">Toolstrip button 2</Button>
@@ -154,6 +160,13 @@
                                       ItemsSource="{Binding Mode=Default, XPath=/MockObjects/MockObject}"
                                       AutoGenerateColumns="False"
                                       IsReadOnly="True">
+                                <DataGrid.Resources>
+                                    <Style TargetType="DataGridRow">
+                                        <EventSetter Event="MouseDoubleClick" Handler="datagridRowDoubleClick"/>
+                                        <EventSetter Event="MouseRightButtonUp" Handler="dataGridRowRightClick"/>
+                                        <EventSetter Event="Selected" Handler="dataGridRowSelect"/>
+                                    </Style>
+                                </DataGrid.Resources>
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Title" Binding="{Binding XPath=@Title}" Width="*" />
                                 </DataGrid.Columns>
@@ -172,15 +185,23 @@
                             <DataGrid AutomationProperties.AutomationId="list_view2" 
                                       ItemsSource="{Binding Mode=Default, XPath=/MockObjects/MockObject}"
                                       AutoGenerateColumns="False"
-                                      IsReadOnly="True">
+                                      IsReadOnly="True"
+                                      SelectionUnit="Cell">
+                                <DataGrid.Resources>
+                                    <Style TargetType="{x:Type DataGridCell}">
+                                        <EventSetter Event="MouseRightButtonUp" Handler="dataGridCellRightClick"/>
+                                        <EventSetter Event="MouseDoubleClick" Handler="dataGridCellDoubleClick"/>
+                                        <EventSetter Event="Selected" Handler="dataGridCellSelect"/>
+                                    </Style>
+                                </DataGrid.Resources>
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Author" Binding="{Binding XPath=@Author}" Width="Auto" />
-                                    <DataGridTextColumn Header="Title" Binding="{Binding XPath=@Title}" Width="Auto" />
-                                    <DataGridTextColumn Header="Category" Binding="{Binding XPath=@Category}" Width="Auto" />
+                                    <DataGridTextColumn Header="Author" Binding="{Binding XPath=@Author}" Width="*" />
+                                    <DataGridTextColumn Header="Title" Binding="{Binding XPath=@Title}" Width="*" />
+                                    <DataGridTextColumn Header="Category" Binding="{Binding XPath=@Category}" Width="*" />
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
-                        <TreeView AutomationProperties.AutomationId="tree" Margin="0,0,0,0" Height="Auto">
+                        <TreeView AutomationProperties.AutomationId="tree">
                             <TreeViewItem Header="Tree node 1">
                                 <TreeViewItem Header="Tree node 1.1" />
                                 <TreeViewItem Header="Tree node 1.2">
@@ -188,7 +209,7 @@
                                 </TreeViewItem>
                             </TreeViewItem>
                         </TreeView>
-                        <Grid Height="Auto" Margin="0,10,0,10">
+                        <Grid Height="Auto">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"></ColumnDefinition>
                                 <ColumnDefinition Width="100"></ColumnDefinition>
@@ -214,6 +235,25 @@
                                     >
                             </Button>
                         </Grid>
+                        <DockPanel>
+                            <DataGrid DataContext="{Binding Source={StaticResource BirdList}}"
+                                      AutomationProperties.AutomationId="birds" 
+                                      ItemsSource="{Binding Mode=Default, XPath=/MockObjects/MockObject}"
+                                      AutoGenerateColumns="False"
+                                      IsReadOnly="True">
+                                <DataGrid.Resources>
+                                    <Style TargetType="DataGridRow">
+                                        <EventSetter Event="MouseDoubleClick" Handler="datagridRowDoubleClick"/>
+                                        <EventSetter Event="MouseRightButtonUp" Handler="dataGridRowRightClick"/>
+                                        <EventSetter Event="Selected" Handler="dataGridRowSelect"/>
+                                    </Style>
+                                </DataGrid.Resources>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Bird" Binding="{Binding XPath=@Name}" Width="100" />
+                                    <DataGridTextColumn Header="Scientific name" Binding="{Binding XPath=@Scientific}" Width="*" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DockPanel>
                     </StackPanel>
                 </TabItem>
             </TabControl>

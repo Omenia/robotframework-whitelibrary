@@ -64,19 +64,18 @@ class WhiteConfigurationKeywords(LibraryComponent):
     def set_white_drag_step_count(self, value):
         """Sets DragStepCount for White
 
-        ``value`` is integer. DragStepCount defines how many steps White Teststack uses to move dragged object to the destination.
+        ``value`` is the DragStepCount value as integer.
+
+        DragStepCount defines how many steps White uses to move dragged object to the destination.
         With default value 1 the dragged object is moved instantly in a single step from start to destination.
-
         """
-
         CoreAppXmlConfiguration.Instance.DragStepCount = int(value)
         logger.info("White DragStepCount set to" + str(CoreAppXmlConfiguration.Instance.DragStepCount))
         return CoreAppXmlConfiguration.Instance.DragStepCount
+
     @keyword
     def get_white_drag_step_count(self):
-        """Gets DragStepCount for White Teststack
-
-        """
+        """Returns DragStepCount value of White."""
         return CoreAppXmlConfiguration.Instance.DragStepCount
 
     def _get_timestr_in_milliseconds(self, time_string):
