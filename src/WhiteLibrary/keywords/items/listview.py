@@ -52,7 +52,7 @@ class ListViewKeywords(LibraryComponent):
 
     @keyword
     def get_listview_cell_text_by_index(self, locator, row_index, column_index):
-        """Returns text of a listview cell.
+        """Returns text of a listview cell at index.
 
         ``locator`` is the locator of the listview.
 
@@ -243,6 +243,12 @@ class ListViewKeywords(LibraryComponent):
         cell.RightClick()
 
     @keyword
+    def right_click_listview_cell_by_index(self, locator, row_index, column_index):
+        """Right clicks a listview cell at index."""
+        cell = self._get_cell_by_index(locator, row_index, column_index)
+        cell.RightClick()
+
+    @keyword
     def right_click_listview_row(self, locator, column_name, cell_text):
         """Right clicks a listview row that has given text in given column.
 
@@ -253,12 +259,24 @@ class ListViewKeywords(LibraryComponent):
 
     @keyword
     def right_click_listview_row_by_index(self, locator, row_index):
-        """Right clicks a listview row by its index.
+        """Right clicks a listview row at index.
 
         See `Get Listview Row Text By Index` for details about arguments ``locator`` and ``row_index``.
         """
         row = self._get_row_by_index(locator, row_index)
         row.RightClick()
+
+    @keyword
+    def select_listview_cell(self, locator, column_name, row_index):
+        """Selects a listview cell."""
+        cell = self._get_cell(locator, column_name, row_index)
+        cell.Click()
+
+    @keyword
+    def select_listview_cell_by_index(self, locator, row_index, column_index):
+        """Selects a listview cell at index."""
+        cell = self._get_cell_by_index(locator, row_index, column_index)
+        cell.Click()
 
     @keyword
     def select_listview_row(self, locator, column_name, cell_text):
@@ -271,7 +289,7 @@ class ListViewKeywords(LibraryComponent):
 
     @keyword
     def select_listview_row_by_index(self, locator, row_index):
-        """Selects a row from a listview.
+        """Selects a listview row at index.
 
         See `Get Listview Row Text By Index` for details about arguments ``locator`` and ``row_index``.
         """
