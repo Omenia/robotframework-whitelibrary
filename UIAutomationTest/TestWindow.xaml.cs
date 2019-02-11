@@ -91,8 +91,6 @@ namespace UIAutomationTest
             MessageBox.Show(text, title, button);
         }
 
-        
-
         private void treeNodeSelect(object sender, RoutedEventArgs e)
         {
             treeNodeEvent(sender, e, "selected");
@@ -142,8 +140,23 @@ namespace UIAutomationTest
 
         private void datagridRowDoubleClick(object sender, RoutedEventArgs e)
         {
+            dataGridRowEvent(sender, "double clicked");
+        }
+
+        private void dataGridRowSelect(object sender, RoutedEventArgs e)
+        {
+            dataGridRowEvent(sender, "selected");
+        }
+
+        private void dataGridRowRightClick(object sender, RoutedEventArgs e)
+        {
+            dataGridRowEvent(sender, "right clicked");
+        }
+
+        private void dataGridRowEvent(object sender, string message)
+        {
             DataGridRow row = sender as DataGridRow;
-            MessageBox.Show("Double clicked row " + row.GetIndex().ToString());
+            selectionIndicatorLabel.Content = "Row " + row.GetIndex().ToString() + " " + message;
         }
 
         private void popupItemClick(object sender, RoutedEventArgs e)
@@ -178,7 +191,7 @@ namespace UIAutomationTest
             TextBlock cellText = node.Content as TextBlock;
             if (node != null)
             {
-                selectionIndicatorLabel.Content = cellText.Text + " " + message;
+              selectionIndicatorLabel.Content = cellText.Text + " " + message;
             }
             e.Handled = true;
 
@@ -195,8 +208,7 @@ namespace UIAutomationTest
             await TaskEx.Delay(5000);
             selectionIndicatorLabel.Content = "Slow alert occurred";
         }
-
-
+        
         private void eventLabelRightDown(object sender, RoutedEventArgs e)
         {
             labelEvent(sender, e, "right button down");
@@ -225,8 +237,7 @@ namespace UIAutomationTest
         {
             selectionIndicatorLabel.Content = message;
         }
-
-
+        
         private void eventTestButtonRightClick(object sender, RoutedEventArgs e)
         {
             testButtonEvent(sender, e, "right clicked");
@@ -249,6 +260,5 @@ namespace UIAutomationTest
             Point pnt = e.GetPosition(this);
             cursorPosition.Content = pnt.ToString();
         }
-
     }
 }
