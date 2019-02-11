@@ -96,7 +96,7 @@ Right Click Listview Row
 Right Click Listview Cell
     Repeat Keyword    2    Right Click Listview Cell    list_view2    Title    1
     Bible Should Be Right Clicked
-    Repeat Keyword    2    Right Click Listview Cell    list_view2    Author    0
+    Repeat Keyword    2    Right Click Listview Cell By Index    list_view2    0    0
     Daniel Defoe Should Be Right Clicked
 
 Double Click Listview Row
