@@ -8,19 +8,19 @@ Suite Teardown    Select Tab Page    tabControl    Tab1
 Row Verification
     Listview Row Should Contain    list_view2    Title    Bible    ligious
     Listview Row Should Not Contain    list_view2    Title    Robinson Crusoe    Scienc
-    Listview Row In Index Should Contain    list_view2    2    Programming
-    Listview Row In Index Should Not Contain    list_view2    1    Donald
+    Listview Row At Index Should Contain    list_view2    2    Programming
+    Listview Row At Index Should Not Contain    list_view2    1    Donald
 
 Cell Verification
     Listview Cell Text Should Be    list_view2    Title    2    The Art of Computer Programming
     Listview Cell Text Should Not Be    list_view2    Title    2    Robinson Crusoe
-    Listview Cell Text In Index Should Be   list_view2    2    1    The Art of Computer Programming
-    Listview Cell Text In Index Should Not Be    list_view2    2    1    Robinson Crusoe
+    Listview Cell Text At Index Should Be   list_view2    2    1    The Art of Computer Programming
+    Listview Cell Text At Index Should Not Be    list_view2    2    1    Robinson Crusoe
 
     Listview Cell Should Contain    list_view2    Title    2    omputer P
     Listview Cell Should Not Contain    list_view2    Title    2    obinson
-    Listview Cell In Index Should Contain    list_view2    2    1    omputer
-    Listview Cell In Index Should Not Contain    list_view2    2    1    obinson
+    Listview Cell At Index Should Contain    list_view2    2    1    omputer
+    Listview Cell At Index Should Not Contain    list_view2    2    1    obinson
 
 Unsuccessful Row Verification
     Run Keyword And Expect Error    Row defined by cell 'Title'='Bible' did not contain text 'abcd'
@@ -28,9 +28,9 @@ Unsuccessful Row Verification
     Run Keyword And Expect Error    Row defined by cell 'Title'='Robinson Crusoe' should not have contained text 'Fiction'
     ...                             Listview Row Should Not Contain    list_view2    Title    Robinson Crusoe    Fiction
     Run Keyword And Expect Error    Row 2 did not contain text 'abcd'
-    ...                             Listview Row In Index Should Contain    list_view2    2    abcd
+    ...                             Listview Row At Index Should Contain    list_view2    2    abcd
     Run Keyword And Expect Error    Row 1 should not have contained text 'igious'
-    ...                             Listview Row In Index Should Not Contain    list_view2    1    igious
+    ...                             Listview Row At Index Should Not Contain    list_view2    1    igious
 
 Unsuccessful Cell Verification
     Run Keyword And Expect Error    Cell text should have been 'Hello', found 'The Art of Computer Programming'
@@ -40,10 +40,10 @@ Unsuccessful Cell Verification
     ...                             Listview Cell Text Should Not Be    list_view2    Title    2    The Art of Computer Programming
 
     Run Keyword And Expect Error    Cell (2, 1) text should have been 'Hello', found 'The Art of Computer Programming'
-    ...                             Listview Cell Text In Index Should Be   list_view2    2    1    Hello
+    ...                             Listview Cell Text At Index Should Be   list_view2    2    1    Hello
 
     Run Keyword And Expect Error    Cell (2, 1) text should not have been 'The Art of Computer Programming'
-    ...                             Listview Cell Text In Index Should Not Be    list_view2    2    1    The Art of Computer Programming
+    ...                             Listview Cell Text At Index Should Not Be    list_view2    2    1    The Art of Computer Programming
 
     Run Keyword And Expect Error    Cell did not contain text 'obinson'
     ...                             Listview Cell Should Contain    list_view2    Title    2    obinson
@@ -52,10 +52,10 @@ Unsuccessful Cell Verification
     ...                             Listview Cell Should Not Contain    list_view2    Title    2    omputer
 
     Run Keyword And Expect Error    Cell (2, 1) did not contain text 'obinson'
-    ...                             Listview Cell In Index Should Contain    list_view2    2    1    obinson
+    ...                             Listview Cell At Index Should Contain    list_view2    2    1    obinson
 
     Run Keyword And Expect Error    Cell (2, 1) should not have contained text 'omputer'
-    ...                             Listview Cell In Index Should Not Contain    list_view2    2    1    omputer
+    ...                             Listview Cell At Index Should Not Contain    list_view2    2    1    omputer
 
 Get Text From ListView
     ${expected}    Create List    Donald Knuth    The Art of Computer Programming    Science
