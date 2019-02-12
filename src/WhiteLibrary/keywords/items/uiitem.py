@@ -6,36 +6,39 @@ from WhiteLibrary.keywords.robotlibcore import keyword
 class UiItemKeywords(LibraryComponent):
     @keyword
     def click_item(self, locator):
-        """Click an item.
+        """Clicks an item.
 
         ``locator`` is the locator of the item.
+        Locator syntax is explained in `Item locators`.
         """
         item = self.state._get_item_by_locator(locator)
         item.Click()
 
     @keyword
     def right_click_item(self, locator):
-        """Right click an item.
+        """Right clicks an item.
 
         ``locator`` is the locator of the item.
+        Locator syntax is explained in `Item locators`.
         """
         item = self.state._get_item_by_locator(locator)
         item.RightClick()
 
     @keyword
     def double_click_item(self, locator):
-        """Double click an item.
+        """Double clicks an item.
 
         ``locator`` is the locator of the item.
+        Locator syntax is explained in `Item locators`.
         """
         item = self.state._get_item_by_locator(locator)
         item.DoubleClick()
 
     @keyword
     def get_items(self, locator):
-        """Return a list of items that match the given locator.
+        """Returns a list of items that match the given `locator`.
 
-        ``locator`` is the locator of the item.
+        Locator syntax is explained in `Item locators`.
         """
         return self.state._get_multiple_items_by_locator(locator)
 
@@ -44,5 +47,6 @@ class UiItemKeywords(LibraryComponent):
         """Returns the first item that matches the given locator.
 
         ``locator`` is the locator of the item.
+        Locator syntax is explained in `Item locators`.
         """
         return self.state._get_item_by_locator(locator)

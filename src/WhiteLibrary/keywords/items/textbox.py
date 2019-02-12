@@ -9,6 +9,7 @@ class TextBoxKeywords(LibraryComponent):
         """Writes text to a textbox.
 
         ``locator`` is the locator of the text box.
+        Locator syntax is explained in `Item locators`.
 
         ``input_value`` is the text to write.
         """
@@ -20,6 +21,7 @@ class TextBoxKeywords(LibraryComponent):
         """Verifies text in a text box.
 
         ``locator`` is the locator of the text box.
+        Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected text of the text box.
         """
@@ -31,6 +33,7 @@ class TextBoxKeywords(LibraryComponent):
         """Returns the text of a text box.
 
         ``locator`` is the locator of the text box.
+        Locator syntax is explained in `Item locators`.
         """
         textbox = self.state._get_typed_item_by_locator(TextBox, locator)
         return textbox.Text

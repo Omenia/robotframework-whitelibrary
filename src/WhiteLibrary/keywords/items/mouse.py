@@ -136,6 +136,8 @@ class MouseKeywords(LibraryComponent):
         ``locator1`` is the locator of the draggable object.
 
         ``locator2`` is the locator of the target for the draggable object.
+
+        Locator syntax is explained in `Item locators`.
         """
         draggable_object = self.state._get_item_by_locator(locator1)
         target_object = self.state._get_item_by_locator(locator2)

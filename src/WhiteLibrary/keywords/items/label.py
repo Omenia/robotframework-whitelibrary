@@ -9,6 +9,7 @@ class LabelKeywords(LibraryComponent):
         """Verifies text of a label.
 
         ``locator`` is the locator of the label.
+        Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected text.
         """
@@ -20,6 +21,7 @@ class LabelKeywords(LibraryComponent):
         """Returns the text of a label.
 
         ``locator`` is the locator of the label.
+        Locator syntax is explained in `Item locators`.
         """
         label = self.state._get_typed_item_by_locator(Label, locator)
         return label.Text

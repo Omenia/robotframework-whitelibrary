@@ -6,10 +6,10 @@ from WhiteLibrary.keywords.robotlibcore import keyword
 class TreeKeywords(LibraryComponent):
     @keyword
     def select_tree_node(self, locator, *node_path):
-        """
-        Selects a tree node.
+        """Selects a tree node.
 
         ``locator`` is the locator of the tree.
+        Locator syntax is explained in `Item locators`.
 
         ``node_path`` is the path the to node to select.
 
@@ -32,10 +32,10 @@ class TreeKeywords(LibraryComponent):
 
     @keyword
     def expand_tree_node(self, locator, *node_path):
-        """
-        Expands a tree node.
+        """Expands a tree node.
 
         ``locator`` is the locator of the tree.
+        Locator syntax is explained in `Item locators`.
 
         ``node_path`` is the path the to node to expand.
 
@@ -46,10 +46,10 @@ class TreeKeywords(LibraryComponent):
 
     @keyword
     def double_click_tree_node(self, locator, *node_path):
-        """
-        Double-clicks a tree node.
+        """Double-clicks a tree node.
 
         ``locator`` is the locator of the tree.
+        Locator syntax is explained in `Item locators`.
 
         ``node_path`` is the path the to node to double-click.
 
@@ -60,10 +60,10 @@ class TreeKeywords(LibraryComponent):
 
     @keyword
     def right_click_tree_node(self, locator, *node_path):
-        """
-        Right-clicks a tree node.
+        """Right-clicks a tree node.
 
         ``locator`` is the locator of the tree.
+        Locator syntax is explained in `Item locators`.
 
         ``node_path`` is the path the to node to right-click.
 

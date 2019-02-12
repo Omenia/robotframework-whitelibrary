@@ -9,6 +9,7 @@ class ButtonKeywords(LibraryComponent):
         """Clicks a button.
 
         ``locator`` is the locator of the button.
+        Locator syntax is explained in `Item locators`.
         """
         button = self.state._get_typed_item_by_locator(Button, locator)
         button.Click()
@@ -18,6 +19,7 @@ class ButtonKeywords(LibraryComponent):
         """Verifies exact text in a button.
 
         ``locator`` is the locator of the button.
+        Locator syntax is explained in `Item locators`.
 
         ``expected_text`` is the expected button text.
 
@@ -31,6 +33,7 @@ class ButtonKeywords(LibraryComponent):
         """Verifies expected text is found in a button.
 
         ``locator`` is the locator of the button.
+        Locator syntax is explained in `Item locators`.
 
         ``expected_text`` is the expected button text.
 
@@ -57,6 +60,7 @@ class ButtonKeywords(LibraryComponent):
         """Selects a radio button.
 
         ``locator`` is the locator of the radio button.
+        Locator syntax is explained in `Item locators`.
         """
         radiobutton = self.state._get_typed_item_by_locator(RadioButton, locator)
         radiobutton.Select()
@@ -66,6 +70,7 @@ class ButtonKeywords(LibraryComponent):
         """Verifies state of a radio button.
 
         ``locator`` is the locator of the radio button.
+        Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected state (True/False).
         """
@@ -79,6 +84,7 @@ class ButtonKeywords(LibraryComponent):
         Returns `True` if the radio button is selected, `False` if not.
 
         ``locator`` is the locator of the radio button.
+        Locator syntax is explained in `Item locators`.
         """
         radiobutton = self.state._get_typed_item_by_locator(RadioButton, locator)
         return radiobutton.IsSelected
@@ -88,6 +94,7 @@ class ButtonKeywords(LibraryComponent):
         """Toggles a check box.
 
         ``locator`` is the locator of the check box.
+        Locator syntax is explained in `Item locators`.
         """
         checkbox = self.state._get_typed_item_by_locator(CheckBox, locator)
         checkbox.Toggle()
@@ -97,6 +104,7 @@ class ButtonKeywords(LibraryComponent):
         """Verifies state of a check box.
 
         ``locator`` is the locator of the check box.
+        Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected state (True/False).
         """
@@ -110,6 +118,7 @@ class ButtonKeywords(LibraryComponent):
         Returns `True` if the check box is selected, `False` if not.
 
         ``locator`` is the locator of the check box.
+        Locator syntax is explained in `Item locators`.
         """
         checkbox = self.state._get_typed_item_by_locator(CheckBox, locator)
         return checkbox.IsSelected

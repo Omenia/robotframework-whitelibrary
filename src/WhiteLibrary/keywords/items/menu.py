@@ -9,6 +9,7 @@ class MenuKeywords(LibraryComponent):
         """Verifies the text of a menu item.
 
         ``locator`` is the locator of the menu item.
+        Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected text of the menu item.
         """
@@ -20,6 +21,7 @@ class MenuKeywords(LibraryComponent):
         """Clicks a menu button.
 
         ``locator`` is the locator of the menu button.
+        Locator syntax is explained in `Item locators`.
         """
         menu_button = self.state._get_typed_item_by_locator(Menu, locator)
         menu_button.Click()
