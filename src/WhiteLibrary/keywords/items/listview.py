@@ -9,6 +9,7 @@ class ListViewKeywords(LibraryComponent):
         """Double clicks a listview cell.
 
         ``locator`` is the locator of the listview.
+        Locator syntax is explained in `Item locators`.
 
         ``column_name`` is the name of the column.
 
@@ -25,6 +26,7 @@ class ListViewKeywords(LibraryComponent):
         """Double clicks a listview cell at index.
 
         ``locator`` is the locator of the listview.
+        Locator syntax is explained in `Item locators`.
 
         ``row_index`` is the zero-based row index.
 
@@ -41,6 +43,7 @@ class ListViewKeywords(LibraryComponent):
         """Double clicks a listview row.
 
         ``locator`` is the locator of the listview.
+        Locator syntax is explained in `Item locators`.
 
         ``column_name`` and ``cell_text`` define the row. Row is the first matching row where text in column
         ``column_name`` is ``cell_text``.
@@ -56,6 +59,7 @@ class ListViewKeywords(LibraryComponent):
         """Double clicks a listview row at index.
 
         ``locator`` is the locator of the listview.
+        Locator syntax is explained in `Item locators`.
 
         ``row_index`` is the zero-based row index.
 

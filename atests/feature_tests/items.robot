@@ -218,15 +218,6 @@ Popup menu with subitems
     Click Button    text=OK
     [Teardown]    Select Tab Page    tabControl    Tab1
 
-Handle Delayed Actions
-    [Timeout]    10
-    [Setup]    Setup for Tab 2 Tests
-    Click Button    text=Fast alert
-    Wait Until Keyword Succeeds    5 sec    5 sec   Fast alert Should Be Occurred
-    Click Button    text=Slow alert
-    Wait Until Keyword Succeeds    5 sec    5 sec   Fast alert Should Be Occurred
-    [Teardown]    Select Tab Page    tabControl    Tab1
-
 *** Keywords ***
 Calculate ${num1} ${operator} ${num2} Equals ${result}
     Input Text To Textbox    txtA    ${num1}

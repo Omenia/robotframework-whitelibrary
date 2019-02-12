@@ -16,8 +16,7 @@ SPECIAL_KEYS = ["SHIFT", "CONTROL", "ALT", "LEFT_ALT", "RIGHT_ALT", "RETURN",
 class KeyboardKeywords(LibraryComponent):
     @keyword
     def press_special_key(self, key):
-        """
-        Press a special key (Ctrl, tab, alt for example).
+        """Press a special key (Ctrl, tab, alt for example).
 
         ``key`` must be one of the following:
         SHIFT, CONTROL, ALT, LEFT_ALT, RIGHT_ALT, RETURN ,RIGHT, BACKSPACE,
@@ -33,8 +32,7 @@ class KeyboardKeywords(LibraryComponent):
 
     @keyword
     def hold_special_key(self, key):
-        """
-        Hold down a special key.
+        """Hold down a special key.
 
         ``key`` must be one of the accepted special keys, see documentation of
         `Press Special Key`
@@ -46,8 +44,7 @@ class KeyboardKeywords(LibraryComponent):
 
     @keyword
     def leave_special_key(self, key):
-        """
-        Leave a special key that was previously held down.
+        """Leave a special key that was previously held down.
 
         ``key`` must be one of the accepted special keys, see documentation of
         `Press Special Key`
@@ -59,8 +56,7 @@ class KeyboardKeywords(LibraryComponent):
 
     @keyword
     def press_keys(self, keys):
-        """
-        Press a key or keys.
+        """Press a key or keys.
 
         ``keys`` is the key or keys to press.
 

@@ -10,6 +10,7 @@ class ListKeywords(LibraryComponent):
         """Selects a value from a listbox.
 
         ``locator`` is the locator of the listbox.
+        Locator syntax is explained in `Item locators`.
 
         ``value`` is the value to be selected.
         """
@@ -21,6 +22,7 @@ class ListKeywords(LibraryComponent):
         """Selects an item by its index from a listbox.
 
         ``locator`` is the locator of the listbox.
+        Locator syntax is explained in `Item locators`.
 
         ``item_index`` is the index of the item to select.
         """
@@ -34,6 +36,7 @@ class ListKeywords(LibraryComponent):
         Fails if the selection was not as expected.
 
         ``locator`` is the locator of the listbox.
+        Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected selection value.
         """
@@ -47,6 +50,7 @@ class ListKeywords(LibraryComponent):
         """Selects a value from a combobox.
 
         ``locator`` is the locator of the combobox.
+        Locator syntax is explained in `Item locators`.
 
         ``value`` is the value to be selected.
         """
@@ -59,6 +63,7 @@ class ListKeywords(LibraryComponent):
         Selects a value from combobox by using its index.
 
         ``locator`` is the locator of the combobox.
+        Locator syntax is explained in `Item locators`.
 
         ``item_index`` is the index to be selected.
         """
@@ -71,6 +76,7 @@ class ListKeywords(LibraryComponent):
         Verifies the selected value of a combobox.
 
         ``locator`` is the locator of the combobox.
+        Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected selection value.
         """
@@ -81,6 +87,7 @@ class ListKeywords(LibraryComponent):
         """Verifies that the combobox value is selected.
 
         ``locator`` is the locator of the combobox.
+        Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected selection value.
         """

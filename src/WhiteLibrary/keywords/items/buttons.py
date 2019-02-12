@@ -6,9 +6,10 @@ from WhiteLibrary.keywords.robotlibcore import keyword
 class ButtonKeywords(LibraryComponent):
     @keyword
     def click_button(self, locator):
-        """ Clicks button.
+        """Clicks a button.
 
         ``locator`` is the locator of the button.
+        Locator syntax is explained in `Item locators`.
         """
         button = self.state._get_typed_item_by_locator(Button, locator)
         button.Click()
@@ -18,6 +19,7 @@ class ButtonKeywords(LibraryComponent):
         """Verifies exact text in a button.
 
         ``locator`` is the locator of the button.
+        Locator syntax is explained in `Item locators`.
 
         ``expected_text`` is the expected button text.
 
@@ -31,6 +33,7 @@ class ButtonKeywords(LibraryComponent):
         """Verifies expected text is found in a button.
 
         ``locator`` is the locator of the button.
+        Locator syntax is explained in `Item locators`.
 
         ``expected_text`` is the expected button text.
 
@@ -54,20 +57,20 @@ class ButtonKeywords(LibraryComponent):
 
     @keyword
     def select_radio_button(self, locator):
-        """
-        Selects a radio button.
+        """Selects a radio button.
 
         ``locator`` is the locator of the radio button.
+        Locator syntax is explained in `Item locators`.
         """
         radiobutton = self.state._get_typed_item_by_locator(RadioButton, locator)
         radiobutton.Select()
 
     @keyword
     def verify_radio_button(self, locator, expected):
-        """
-        Verifies state of a radio button.
+        """Verifies state of a radio button.
 
         ``locator`` is the locator of the radio button.
+        Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected state (True/False).
         """
@@ -76,31 +79,32 @@ class ButtonKeywords(LibraryComponent):
 
     @keyword
     def get_radio_button_state(self, locator):
-        """
-        Gets the state of a radio button.
+        """Returns the state of a radio button.
+
+        Returns `True` if the radio button is selected, `False` if not.
 
         ``locator`` is the locator of the radio button.
-
+        Locator syntax is explained in `Item locators`.
         """
         radiobutton = self.state._get_typed_item_by_locator(RadioButton, locator)
         return radiobutton.IsSelected
 
     @keyword
     def toggle_check_box(self, locator):
-        """
-        Toggles a check box.
+        """Toggles a check box.
 
         ``locator`` is the locator of the check box.
+        Locator syntax is explained in `Item locators`.
         """
         checkbox = self.state._get_typed_item_by_locator(CheckBox, locator)
         checkbox.Toggle()
 
     @keyword
     def verify_check_box(self, locator, expected):
-        """
-        Verifies state of a check box.
+        """Verifies state of a check box.
 
         ``locator`` is the locator of the check box.
+        Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected state (True/False).
         """
@@ -109,11 +113,12 @@ class ButtonKeywords(LibraryComponent):
 
     @keyword
     def get_check_box_state(self, locator):
-        """
-        Gets the state of a check box.
+        """Returns the state of a check box.
+
+        Returns `True` if the check box is selected, `False` if not.
 
         ``locator`` is the locator of the check box.
-
+        Locator syntax is explained in `Item locators`.
         """
         checkbox = self.state._get_typed_item_by_locator(CheckBox, locator)
         return checkbox.IsSelected
