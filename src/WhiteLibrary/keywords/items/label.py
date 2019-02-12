@@ -6,8 +6,7 @@ from WhiteLibrary.keywords.robotlibcore import keyword
 class LabelKeywords(LibraryComponent):
     @keyword
     def verify_label(self, locator, expected):
-        """
-        Verifies text of a label.
+        """Verifies text of a label.
 
         ``locator`` is the locator of the label.
 
@@ -18,11 +17,9 @@ class LabelKeywords(LibraryComponent):
 
     @keyword
     def get_text_from_label(self, locator):
-        """
-        Gets text from a label.
+        """Returns the text of a label.
 
         ``locator`` is the locator of the label.
-
         """
         label = self.state._get_typed_item_by_locator(Label, locator)
         return label.Text

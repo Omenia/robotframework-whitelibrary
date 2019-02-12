@@ -35,8 +35,7 @@ class WindowKeywords(LibraryComponent):
         ``window_title`` is the title of the window (optional).
 
         If title is not given, the currently attached window is closed.
-        See `Attach Application By Id`, `Attach Application By Name` or
-        `Launch application` for more details.
+        See `Attach Window` for more details.
         """
         if window_title is not None:
             window = self._get_window(window_title)

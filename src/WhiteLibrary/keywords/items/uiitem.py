@@ -41,7 +41,7 @@ class UiItemKeywords(LibraryComponent):
 
     @keyword
     def get_item(self, locator):
-        """Returns first item of the list of items that match the given locator.
+        """Returns the first item that matches the given locator.
 
         ``locator`` is the locator of the item.
         """

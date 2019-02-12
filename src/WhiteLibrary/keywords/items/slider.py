@@ -6,8 +6,7 @@ from WhiteLibrary.keywords.robotlibcore import keyword
 class SliderKeywords(LibraryComponent):
     @keyword
     def set_slider_value(self, locator, value):
-        """
-        Sets a slider to the specified value.
+        """Sets a slider to the specified value.
 
         ``locator`` is the locator of the slider.
 
@@ -18,8 +17,7 @@ class SliderKeywords(LibraryComponent):
 
     @keyword
     def verify_slider_value(self, locator, expected):
-        """
-        Verifies a slider value.
+        """Verifies a slider value.
 
         ``locator`` is the locator of the slider.
 
@@ -30,11 +28,9 @@ class SliderKeywords(LibraryComponent):
 
     @keyword
     def get_slider_value(self, locator):
-        """
-        Gets a slider value.
+        """Returns the value of a slider.
 
         ``locator`` is the locator of the slider.
-
         """
         slider = self.state._get_typed_item_by_locator(Slider, locator)
         return slider.Value

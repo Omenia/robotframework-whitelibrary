@@ -6,8 +6,7 @@ from WhiteLibrary.keywords.robotlibcore import keyword
 class ProgressbarKeywords(LibraryComponent):
     @keyword
     def verify_progressbar_value(self, locator, expected):
-        """
-        Verifies the value of a progress bar.
+        """Verifies the value of a progress bar.
 
         ``locator`` is the locator of the progress bar.
 
@@ -18,11 +17,9 @@ class ProgressbarKeywords(LibraryComponent):
 
     @keyword
     def get_progressbar_value(self, locator):
-        """
-        Gets the value of a progress bar.
+        """Returns the value of a progress bar.
 
         ``locator`` is the locator of the progress bar.
-
         """
         progressbar = self.state._get_typed_item_by_locator(ProgressBar, locator)
         return progressbar.Value

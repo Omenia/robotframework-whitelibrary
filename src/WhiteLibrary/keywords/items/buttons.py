@@ -6,7 +6,7 @@ from WhiteLibrary.keywords.robotlibcore import keyword
 class ButtonKeywords(LibraryComponent):
     @keyword
     def click_button(self, locator):
-        """ Clicks button.
+        """Clicks a button.
 
         ``locator`` is the locator of the button.
         """
@@ -54,8 +54,7 @@ class ButtonKeywords(LibraryComponent):
 
     @keyword
     def select_radio_button(self, locator):
-        """
-        Selects a radio button.
+        """Selects a radio button.
 
         ``locator`` is the locator of the radio button.
         """
@@ -64,8 +63,7 @@ class ButtonKeywords(LibraryComponent):
 
     @keyword
     def verify_radio_button(self, locator, expected):
-        """
-        Verifies state of a radio button.
+        """Verifies state of a radio button.
 
         ``locator`` is the locator of the radio button.
 
@@ -76,19 +74,18 @@ class ButtonKeywords(LibraryComponent):
 
     @keyword
     def get_radio_button_state(self, locator):
-        """
-        Gets the state of a radio button.
+        """Returns the state of a radio button.
+
+        Returns `True` if the radio button is selected, `False` if not.
 
         ``locator`` is the locator of the radio button.
-
         """
         radiobutton = self.state._get_typed_item_by_locator(RadioButton, locator)
         return radiobutton.IsSelected
 
     @keyword
     def toggle_check_box(self, locator):
-        """
-        Toggles a check box.
+        """Toggles a check box.
 
         ``locator`` is the locator of the check box.
         """
@@ -97,8 +94,7 @@ class ButtonKeywords(LibraryComponent):
 
     @keyword
     def verify_check_box(self, locator, expected):
-        """
-        Verifies state of a check box.
+        """Verifies state of a check box.
 
         ``locator`` is the locator of the check box.
 
@@ -109,11 +105,11 @@ class ButtonKeywords(LibraryComponent):
 
     @keyword
     def get_check_box_state(self, locator):
-        """
-        Gets the state of a check box.
+        """Returns the state of a check box.
+
+        Returns `True` if the check box is selected, `False` if not.
 
         ``locator`` is the locator of the check box.
-
         """
         checkbox = self.state._get_typed_item_by_locator(CheckBox, locator)
         return checkbox.IsSelected

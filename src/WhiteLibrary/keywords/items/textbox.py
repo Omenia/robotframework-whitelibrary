@@ -6,8 +6,7 @@ from WhiteLibrary.keywords.robotlibcore import keyword
 class TextBoxKeywords(LibraryComponent):
     @keyword
     def input_text_to_textbox(self, locator, input_value):
-        """
-        Writes text to a textbox.
+        """Writes text to a textbox.
 
         ``locator`` is the locator of the text box.
 
@@ -18,8 +17,7 @@ class TextBoxKeywords(LibraryComponent):
 
     @keyword
     def verify_text_in_textbox(self, locator, expected):
-        """
-        Verifies text in a text box.
+        """Verifies text in a text box.
 
         ``locator`` is the locator of the text box.
 
@@ -30,11 +28,9 @@ class TextBoxKeywords(LibraryComponent):
 
     @keyword
     def get_text_from_textbox(self, locator):
-        """
-        Gets text from text box.
+        """Returns the text of a text box.
 
         ``locator`` is the locator of the text box.
-
         """
         textbox = self.state._get_typed_item_by_locator(TextBox, locator)
         return textbox.Text
