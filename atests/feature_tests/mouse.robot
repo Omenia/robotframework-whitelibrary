@@ -72,10 +72,21 @@ Verify Mouse Right Click With Negative Offset
     Right Click Item    event_label    -10    -10
     Verify Label    selectionIndicatorLabel    right button up
 
-Verify Mouse Click With Out Of Bounds Offset
-    ${status}    ${error_msg}    Run Keyword And Ignore Error    Click Item    event_label    -100    -100
+Verify Mouse Right Click With Out Of Bounds Offset
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Right Click Item    event_label    -100    -100
     Should Contain    ${error_msg}    click location out of bounds
 
+Verify Mouse Double Click With Offset
+    Double Click Item    event_label     3    3
+    Verify Label    selectionIndicatorLabel    left button up
+
+Verify Mouse Double Click With Negative Offset
+    Double Click Item    event_label    -10    -10
+    Verify Label    selectionIndicatorLabel    left button up
+
+Verify Mouse Double Click With Out Of Bounds Offset
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Double Click Item    event_label    -100    -100
+    Should Contain    ${error_msg}    click location out of bounds
 
 Verify Mouse Right Double Click
     Click Item    event_label
