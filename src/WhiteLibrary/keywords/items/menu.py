@@ -1,7 +1,7 @@
 from TestStack.White.UIItems.MenuItems import Menu
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
-
+from WhiteLibrary.keywords.items.uiitem import UiItemKeywords
 
 class MenuKeywords(LibraryComponent):
     @keyword
@@ -17,14 +17,14 @@ class MenuKeywords(LibraryComponent):
         self.state._verify_value(expected, menu.Name)
 
     @keyword
-    def click_menu_button(self, locator):
+    def click_menu_button(self, locator, x_offset, y_offset):
         """Clicks a menu button.
 
         ``locator`` is the locator of the menu button.
         Locator syntax is explained in `Item locators`.
         """
         menu_button = self.state._get_typed_item_by_locator(Menu, locator)
-        menu_button.Click()
+        UiItemKeywords.click(menu_button, x_offset, y_offset)
 
     @keyword
     def click_item_in_popup_menu(self, *text_path):

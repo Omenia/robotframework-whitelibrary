@@ -1,7 +1,7 @@
 from TestStack.White.UIItems import ListView
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
-
+from WhiteLibrary.keywords.items.uiitem import UiItemKeywords
 
 class ListViewKeywords(LibraryComponent):
     @keyword
@@ -244,40 +244,40 @@ class ListViewKeywords(LibraryComponent):
                                      .format(column_name, cell_text, expected))
 
     @keyword
-    def right_click_listview_cell(self, locator, column_name, row_index):
+    def right_click_listview_cell(self, locator, column_name, row_index, x_offset=0, y_offset=0):
         """Right clicks a listview cell using its column name and row index.
 
         See `Double Click Listview Cell` for details about arguments ``locator``, ``column_name``, and ``row_index``.
         """
         cell = self._get_cell(locator, column_name, row_index)
-        cell.RightClick()
+        UiItemKeywords.right_click(cell, x_offset, y_offset)
 
     @keyword
-    def right_click_listview_cell_by_index(self, locator, row_index, column_index):
+    def right_click_listview_cell_by_index(self, locator, row_index, column_index, x_offset=0, y_offset=0):
         """Right clicks a listview cell at index.
 
         See `Double Click Listview Cell By Index` for details about arguments ``locator``, ``row_index``, and ``column_index``.
         """
         cell = self._get_cell_by_index(locator, row_index, column_index)
-        cell.RightClick()
+        UiItemKeywords.right_click(cell, x_offset, y_offset)
 
     @keyword
-    def right_click_listview_row(self, locator, column_name, cell_text):
+    def right_click_listview_row(self, locator, column_name, cell_text, x_offset=0, y_offset=0):
         """Right clicks a listview row that has given text in given column.
 
         See `Double Click Listview Row` for details about the arguments ``locator``, ``column_name``, and ``cell_text``.
         """
         row = self._get_row(locator, column_name, cell_text)
-        row.RightClick()
+        UiItemKeywords.right_click(row, x_offset, y_offset)
 
     @keyword
-    def right_click_listview_row_by_index(self, locator, row_index):
+    def right_click_listview_row_by_index(self, locator, row_index, x_offset=0, y_offset=0):
         """Right clicks a listview row at index.
 
         See `Double Click Listview Row By Index` for details about arguments ``locator`` and ``row_index``.
         """
         row = self._get_row_by_index(locator, row_index)
-        row.RightClick()
+        UiItemKeywords.right_click(row, x_offset, y_offset)
 
     @keyword
     def select_listview_cell(self, locator, column_name, row_index):
