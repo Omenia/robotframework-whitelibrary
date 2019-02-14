@@ -17,11 +17,14 @@ class MenuKeywords(LibraryComponent):
         self.state._verify_value(expected, menu.Name)
 
     @keyword
-    def click_menu_button(self, locator, x_offset, y_offset):
+    def click_menu_button(self, locator, x_offset=0, y_offset=0):
         """Clicks a menu button.
 
         ``locator`` is the locator of the menu button.
         Locator syntax is explained in `Item locators`.
+
+        Optional arguments ``x_offset`` and ``y_offset`` can be used to fine tune
+        mouse position relative to the center of the item. Their default is 0.
         """
         menu_button = self.state._get_typed_item_by_locator(Menu, locator)
         UiItemKeywords.click(menu_button, x_offset, y_offset)
