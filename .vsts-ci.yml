@@ -16,10 +16,9 @@ steps:
       mkdir UIAutomationTest\packages
       nuget restore UIAutomationTest\packages.config -PackagesDirectory $(SUT_nuget)
   displayName: Download NuGet packages for SUT
-  
 
 - script: |
-      pip install -r requirements.txt
+      pip install -r requirements-dev.txt
   displayName: Install needed components from PyPi
 
 - task: VSBuild@1
@@ -56,6 +55,34 @@ steps:
   inputs:
     testRunner: JUnit
     testResultsFiles: output/xunit.xml
+
+- script: |
+    echo on
+    flake8 --exit-zero --output flake8.txt
+    flake8_junit flake8.txt flake8.xml
+    pylint src --exit-zero --output-format=pylint2junit.JunitReporter > pylint.xml
+  displayName: 'Running Static Analysis'
+  continueOnError: true
+
+- task: PublishTestResults@2
+  condition: always()
+  continueOnError: true
+  inputs:
+    testRunner: JUnit
+    testResultsFiles: flake8.xml
+    testResultsTitle: Static Analysis Results from Flake8
+    testRunTitle: flake8-results
+    failTaskOnFailedTests: true
+
+- task: PublishTestResults@2
+  condition: always()
+  continueOnError: true
+  inputs:
+    testRunner: JUnit
+    testResultsFiles: pylint.xml
+    testResultsTitle: Static Analysis Results from Pylint
+    testRunTitle: pylint-results
+    failTaskOnFailedTests: true
 
 - task: PublishBuildArtifacts@1
   condition: always()
