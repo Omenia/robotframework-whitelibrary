@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace UIAutomationTest
 {
@@ -245,11 +246,11 @@ namespace UIAutomationTest
         }
         private void eventWindowButtonLeftClick(object sender, RoutedEventArgs e)
         {
-            testButtonEvent(sender, e, "left clicked");
-
-            this.testWindowCounter++;
-            var myWindow = new Window();
-            myWindow.Title = "Test title - " + this.testWindowCounter;
+            testWindowCounter++;
+            var myWindow = new NavigationWindow
+            {
+                Title = "Test title - " + testWindowCounter
+            };
             myWindow.Show();
         }
         private void eventTestButtonDoubleClick(object sender, RoutedEventArgs e)
