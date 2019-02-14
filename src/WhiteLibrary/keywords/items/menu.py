@@ -24,7 +24,7 @@ class MenuKeywords(LibraryComponent):
         Locator syntax is explained in `Item locators`.
 
         Optional arguments ``x_offset`` and ``y_offset`` can be used to fine tune
-        mouse position relative to the center of the item. Their default is 0.
+        mouse position relative to the center of the item.
         """
         menu_button = self.state._get_typed_item_by_locator(Menu, locator)
         UiItemKeywords.click(menu_button, x_offset, y_offset)
