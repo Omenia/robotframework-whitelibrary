@@ -44,46 +44,49 @@ Verify Mouse Right Click
     Click Item    event_label
     Sleep    2
     Mouse Right Click
-    Sleep    2
     Verify Label    selectionIndicatorLabel    right button up
 
 Verify Mouse Click
     Click Item    event_label
     Sleep    2
     Mouse Click
-    Sleep    2
     Verify Label    selectionIndicatorLabel    left button up
 
 Verify Mouse Click With Offset
-    [Tags]    under_test
-    Click Button    test_button    3    3
-    Sleep    2
-    Verify Label    selectionIndicatorLabel    left clicked
+    Click Item    event_label    3    3
+    Verify Label    selectionIndicatorLabel    left button up
 
 Verify Mouse Click With Negative Offset
-    [Tags]    under_test
-    Click Button    test_button    -13    -13
-    Sleep    2
-    Verify Label    selectionIndicatorLabel    left clicked
+    Click Item    event_label    -10    -10
+    Verify Label    selectionIndicatorLabel    left button up
 
 Verify Mouse Click With Out Of Bounds Offset
-    [Tags]    under_test
-    ${status}    ${error_msg}    Run Keyword And Ignore Error    Click Button    test_button    -100    -100
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Click Item    event_label    -100    -100
+    Should Contain    ${error_msg}    click location out of bounds
+
+Verify Mouse Right Click With Offset
+    Right Click Item    event_label     3    3
+    Verify Label    selectionIndicatorLabel    right button up
+
+Verify Mouse Right Click With Negative Offset
+    Right Click Item    event_label    -10    -10
+    Verify Label    selectionIndicatorLabel    right button up
+
+Verify Mouse Click With Out Of Bounds Offset
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Click Item    event_label    -100    -100
     Should Contain    ${error_msg}    click location out of bounds
 
 
 Verify Mouse Right Double Click
     Click Item    event_label
-    Sleep    2
+    Sleep    1
     Mouse Right Double Click
-    Sleep    2
     Verify Label    selectionIndicatorLabel    right button up
 
 Verify Mouse Double Click
     Click Item    event_label
-    Sleep    2
+    Sleep    1
     Mouse Double Click
-    Sleep    2
     Verify Label    selectionIndicatorLabel    left button up
 
 Verify Incomplete Mouse Position Exception
