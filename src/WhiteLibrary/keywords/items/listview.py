@@ -5,7 +5,7 @@ from WhiteLibrary.keywords.items.uiitem import UiItemKeywords
 
 class ListViewKeywords(LibraryComponent):
     @keyword
-    def double_click_listview_cell(self, locator, column_name, row_index):
+    def double_click_listview_cell(self, locator, column_name, row_index, x_offset=0, y_offset=0):
         """Double clicks a listview cell.
 
         ``locator`` is the locator of the listview.
@@ -19,10 +19,10 @@ class ListViewKeywords(LibraryComponent):
         | Double Click Listview Cell | id:addressList | Street | 0 | # double click cell in the column "Street" of the first row |
         """
         cell = self._get_cell(locator, column_name, row_index)
-        cell.DoubleClick()
+        UiItemKeywords.double_click(cell, x_offset, y_offset)
 
     @keyword
-    def double_click_listview_cell_by_index(self, locator, row_index, column_index):
+    def double_click_listview_cell_by_index(self, locator, row_index, column_index, x_offset=0, y_offset=0):
         """Double clicks a listview cell at index.
 
         ``locator`` is the locator of the listview.
@@ -36,10 +36,10 @@ class ListViewKeywords(LibraryComponent):
         | Double Click Listview Cell By Index | id:addressList | 0 | 0 |
         """
         cell = self._get_cell_by_index(locator, row_index, column_index)
-        cell.DoubleClick()
+        UiItemKeywords.double_click(cell, x_offset, y_offset)
 
     @keyword
-    def double_click_listview_row(self, locator, column_name, cell_text):
+    def double_click_listview_row(self, locator, column_name, cell_text, x_offset=0, y_offset=0):
         """Double clicks a listview row.
 
         ``locator`` is the locator of the listview.
@@ -52,10 +52,10 @@ class ListViewKeywords(LibraryComponent):
         | Double Click Listview Row | id:addressList | City | Helsinki | # double click row that has the text "Helsinki" in the column "City" |
         """
         row = self._get_row(locator, column_name, cell_text)
-        row.DoubleClick()
+        UiItemKeywords.double_click(row, x_offset, y_offset)
 
     @keyword
-    def double_click_listview_row_by_index(self, locator, row_index):
+    def double_click_listview_row_by_index(self, locator, row_index, x_offset=0, y_offset=0):
         """Double clicks a listview row at index.
 
         ``locator`` is the locator of the listview.
@@ -67,7 +67,7 @@ class ListViewKeywords(LibraryComponent):
         | Double Click Listview Row By Index | id:addressList | 4 |
         """
         row = self._get_row_by_index(locator, row_index)
-        row.DoubleClick()
+        UiItemKeywords.double_click(row, x_offset, y_offset)
 
     @keyword
     def get_listview_cell_text(self, locator, column_name, row_index):

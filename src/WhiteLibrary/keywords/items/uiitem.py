@@ -28,14 +28,14 @@ class UiItemKeywords(LibraryComponent):
         UiItemKeywords.right_click(item, x_offset, y_offset)
 
     @keyword
-    def double_click_item(self, locator):
+    def double_click_item(self, locator, x_offset=0, y_offset=0):
         """Double clicks an item.
 
         ``locator`` is the locator of the item.
         Locator syntax is explained in `Item locators`.
         """
         item = self.state._get_item_by_locator(locator)
-        item.DoubleClick()
+        UiItemKeywords.double_click(item, x_offset, y_offset)
 
     @keyword
     def get_items(self, locator):
@@ -66,6 +66,12 @@ class UiItemKeywords(LibraryComponent):
         offset_position = UiItemKeywords._get_offset_point(item, x_offset, y_offset)
         Mouse.Instance.Location = offset_position
         Mouse.Instance.RightClick()
+
+    #Low level helper function to handle offset right click.
+    @staticmethod
+    def double_click(item, x_offset=0, y_offset=0):
+        offset_position = UiItemKeywords._get_offset_point(item, x_offset, y_offset)
+        Mouse.Instance.DoubleClick(offset_position)
 
     #Helper function to translate item center to offset point
     @staticmethod
