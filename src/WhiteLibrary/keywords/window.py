@@ -1,10 +1,8 @@
-from System.Windows import Automation
+from robot.api import logger    # noqa: F401 #pylint: disable=unused-import
 from TestStack.White.Configuration import CoreAppXmlConfiguration
 from TestStack.White import AutomationException
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
-from TestStack.White.UIItems.WindowItems import Window   # noqa: F401
-from robot.api import logger    # noqa: F401
 
 
 class WindowKeywords(LibraryComponent):
@@ -48,11 +46,10 @@ class WindowKeywords(LibraryComponent):
             return self.state.app.GetWindow(window_title)
         except AutomationException as error_msg:
             error_msg = str(error_msg)
-            replaced_text = "after waiting for {0} seconds".format(int(CoreAppXmlConfiguration.Instance.FindWindowTimeout/1000))
+            replaced_text = "after waiting for {0} seconds".format(int(CoreAppXmlConfiguration.Instance.FindWindowTimeout / 1000))
             raise AutomationException(error_msg.replace("after waiting for 30 seconds", replaced_text), "")
         except AttributeError as error_msg:
             error_msg = str(error_msg)
             if "NoneType" in error_msg:
                 error_msg = "No application attached."
             raise AttributeError(error_msg)
-

@@ -1,9 +1,8 @@
-from TestStack.White.Configuration import CoreAppXmlConfiguration
-from TestStack.White.UIItems import DateFormat
-from WhiteLibrary.keywords.librarycomponent import LibraryComponent
-from WhiteLibrary.keywords.robotlibcore import keyword
 from robot.api import logger
 from robot.utils import timestr_to_secs
+from WhiteLibrary.keywords.librarycomponent import LibraryComponent
+from WhiteLibrary.keywords.robotlibcore import keyword
+from TestStack.White.Configuration import CoreAppXmlConfiguration
 
 
 class WhiteConfigurationKeywords(LibraryComponent):
@@ -61,7 +60,7 @@ class WhiteConfigurationKeywords(LibraryComponent):
         return self._get_milliseconds_as_timestr(CoreAppXmlConfiguration.Instance.DoubleClickInterval)
 
     @keyword
-    def set_white_drag_step_count(self, value):
+    def set_white_drag_step_count(self, value):  # pylint: disable=no-self-use
         """Sets DragStepCount for White
 
         ``value`` is the DragStepCount value as integer.
@@ -74,12 +73,12 @@ class WhiteConfigurationKeywords(LibraryComponent):
         return CoreAppXmlConfiguration.Instance.DragStepCount
 
     @keyword
-    def get_white_drag_step_count(self):
+    def get_white_drag_step_count(self):  # pylint: disable=no-self-use
         """Returns DragStepCount value of White."""
         return CoreAppXmlConfiguration.Instance.DragStepCount
 
-    def _get_timestr_in_milliseconds(self, time_string):
+    def _get_timestr_in_milliseconds(self, time_string):  # pylint: disable=no-self-use
         return timestr_to_secs(time_string) * 1000
 
-    def _get_milliseconds_as_timestr(self, milliseconds):
+    def _get_milliseconds_as_timestr(self, milliseconds):  # pylint: disable=no-self-use
         return "{} milliseconds".format(milliseconds)

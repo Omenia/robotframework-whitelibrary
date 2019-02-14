@@ -1,6 +1,6 @@
 [MASTER]
-extension-pkg-whitelist=
-ignore=.git, __pycache__, docs, .github, packages, venv, build, *.egg-info, dist, WhiteTestApp, UIAutomationTest, deploy
+extension-pkg-whitelist=clr
+ignore=.git, __pycache__, docs, .github, packages, venv, build, *.egg-info, dist, WhiteTestApp, UIAutomationTest, deploy, robotlibcore.py
 persistent=no
 unsafe-load-any-extension=no
 
@@ -9,6 +9,12 @@ confidence=
 
 disable=missing-docstring,
         line-too-long,
+        too-few-public-methods,
+        protected-access,
+        import-error,
+        too-many-public-methods,
+        useless-object-inheritance,
+        wrong-import-position,
         print-statement,
         parameter-unpacking,
         unpacking-in-except,

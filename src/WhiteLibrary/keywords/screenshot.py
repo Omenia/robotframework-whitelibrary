@@ -1,11 +1,11 @@
 import os
-from WhiteLibrary.keywords.librarycomponent import LibraryComponent
-from WhiteLibrary.keywords.robotlibcore import keyword, PY2
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
 from robot.utils import get_link_path
+from WhiteLibrary.keywords.librarycomponent import LibraryComponent
+from WhiteLibrary.keywords.robotlibcore import keyword, PY2
 
-from System.Drawing import Bitmap   # noqa: F401
+from System.Drawing import Bitmap   # noqa: F401 #pylint: disable=unused-import
 from System.Drawing.Imaging import ImageFormat
 from TestStack.White import Desktop
 
@@ -19,7 +19,7 @@ class ScreenshotKeywords(LibraryComponent):
     @keyword
     def take_desktop_screenshot(self):
         """Takes a screenshot of the whole desktop and inserts screenshot link to log file.
-        
+
         Returns path to the screenshot file.
         """
         filepath = self._get_screenshot_path("whitelib_screenshot_{index}.png")
@@ -50,7 +50,7 @@ class ScreenshotKeywords(LibraryComponent):
                 return BuiltIn().get_variable_value('${OUTPUTDIR}')
             return os.path.dirname(logfile)
         except RobotNotRunningError:
-            return os.getcwdu() if PY2 else os.getcwd()
+            return os.getcwdu() if PY2 else os.getcwd()  # pylint: disable=no-member
 
     def _get_screenshot_path(self, filename):
         directory = self._log_directory

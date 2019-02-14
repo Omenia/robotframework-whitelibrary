@@ -1,5 +1,5 @@
 flake8
 flake8-junit-report
-pylint
-pylint2junit
+pylint; python_version >= '3.4'
+git+https://github.com/rasjani/pylint2junit.git@master; python_version >= '3.4'
 -r requirements.txt

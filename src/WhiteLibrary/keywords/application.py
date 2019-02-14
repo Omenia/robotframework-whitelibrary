@@ -1,8 +1,8 @@
+from robot.api import logger  # noqa: F401 #pylint: disable=unused-import
 from System.Diagnostics import ProcessStartInfo
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from TestStack.White import Application
-from robot.api import logger
 
 
 class ApplicationKeywords(LibraryComponent):

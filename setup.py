@@ -7,7 +7,7 @@ with open(os.path.join("src", "WhiteLibrary", "version.py")) as f:
 
 requirements = []
 with open("requirements.txt", "r") as f:
-    requirements = list(filter(lambda s: s!="", f.read().split("\n")))
+    requirements = list(filter(lambda s: s != "", f.read().split("\n")))
 
 
 def __path(filename):

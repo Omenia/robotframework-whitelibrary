@@ -212,3 +212,9 @@ files.txt
 
 # virtualenv
 venv/
+
+# sa files
+flake8.txt
+flake8.xml
+pylint.txt
+pylint.xml
