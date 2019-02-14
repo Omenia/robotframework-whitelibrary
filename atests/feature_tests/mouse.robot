@@ -54,6 +54,24 @@ Verify Mouse Click
     Sleep    2
     Verify Label    selectionIndicatorLabel    left button up
 
+Verify Mouse Click With Offset
+    [Tags]    under_test
+    Click Button    test_button    3    3
+    Sleep    2
+    Verify Label    selectionIndicatorLabel    left clicked
+
+Verify Mouse Click With Negative Offset
+    [Tags]    under_test
+    Click Button    test_button    -13    -13
+    Sleep    2
+    Verify Label    selectionIndicatorLabel    left clicked
+
+Verify Mouse Click With Out Of Bounds Offset
+    [Tags]    under_test
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Click Button    test_button    -100    -100
+    Should Contain    ${error_msg}    click location out of bounds
+
+
 Verify Mouse Right Double Click
     Click Item    event_label
     Sleep    2
@@ -70,5 +88,4 @@ Verify Mouse Double Click
 
 Verify Incomplete Mouse Position Exception
     ${status}    ${error_msg}    Run Keyword And Ignore Error    Mouse Click    300
-    ${MOUSE_X}    ${MOUSE_Y}    Get Mouse Location
     Should Contain    ${error_msg}    Either x or y value missing

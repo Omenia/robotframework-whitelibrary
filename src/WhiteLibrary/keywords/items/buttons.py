@@ -1,18 +1,21 @@
 from TestStack.White.UIItems import Button, CheckBox, RadioButton
+from TestStack.White.InputDevices import Mouse
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
-
+from System.Windows import Point, Rect
+from TestStack.White.UIA import RectX
+from robot.api import logger
 
 class ButtonKeywords(LibraryComponent):
     @keyword
-    def click_button(self, locator):
+    def click_button(self, locator, x_offset=0, y_offset=0):
         """Clicks a button.
 
         ``locator`` is the locator of the button.
         Locator syntax is explained in `Item locators`.
         """
         button = self.state._get_typed_item_by_locator(Button, locator)
-        button.Click()
+        self.click(button, x_offset, y_offset)
 
     @keyword
     def button_text_should_be(self, locator, expected_text, case_sensitive=True):
@@ -122,3 +125,17 @@ class ButtonKeywords(LibraryComponent):
         """
         checkbox = self.state._get_typed_item_by_locator(CheckBox, locator)
         return checkbox.IsSelected
+
+    #Low level helper function to handle offset related details.
+    def click(self, item, x_offset, y_offset):
+        item_bounds = item.Bounds
+        item_center = RectX.Center(item_bounds)
+        offset_position = Point(int(item_center.X) + int(x_offset),
+                                int(item_center.Y) + int(y_offset))
+        if not item_bounds.Contains(offset_position):
+            raise AssertionError("click location out of bounds")
+
+        logger.info("item center:" + str(item_center), True, True)
+        logger.info("item bounds:" + str(item_bounds), True, True)
+        logger.info("click location:" + str(offset_position), True, True)
+        Mouse.Instance.Click(offset_position)
