@@ -205,6 +205,10 @@ PythonWhiteLibrary/MANIFEST
 PythonWhiteLibrary/dist/
 MANIFEST
 dist/
+*.egg-info
 
 # WhiteLibrary temporary installed files list
 files.txt
+
+# virtualenv
+venv/

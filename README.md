@@ -37,6 +37,12 @@ This section contains instructions for developing WhiteLibrary.
 ```
 pip install robotframework pythonnet
 ```
+or alternatively you could use the provided requirements files (requirements.txt or requirements-dev.txt):
+```
+pip install -r requirements-dev.txt
+```
+
+
 * To make modifications to and build the test application (UIAutomationTest.exe), install [Visual Studio](https://visualstudio.microsoft.com/). The test application is a WPF application developed with C#.
 * If you want to edit Python with Visual Studio, Python Tools are required. They're part of Visual Studio 2017 installer, see details about what to select during installation: https://github.com/Microsoft/PTVS
 ### WhiteLibrary installation
@@ -59,3 +65,18 @@ robot --outputdir output --exclude no_ci --loglevel DEBUG:INFO atests
 robot --outputdir output --exclude no_ci --loglevel DEBUG:INFO -t "Example Test Case" atests
 ```
 * The test suite tagged with `no_ci` will run tests against the old (Win32) version of Windows calculator, and is typically excluded from test runs.
+
+### Running Static Analysis
+Project relies on flake8 and pylint for static analysis. In order to run those locally, one has to install them  (automatically installed if dependencies are installed via requirements-dev.txt):
+
+```
+pip install flake8 pylint
+```
+
+to run either one, go into to root of the project run execute analyzer, like this:
+
+```
+flake8
+pylint src/
+```
+
