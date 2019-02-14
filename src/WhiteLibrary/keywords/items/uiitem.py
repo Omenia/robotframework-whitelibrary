@@ -15,7 +15,7 @@ class UiItemKeywords(LibraryComponent):
         Locator syntax is explained in `Item locators`.
 
         Optional arguments ``x_offset`` and ``y_offset`` can be used to fine tune
-        mouse position relative to the center of the item. Their default is 0.
+        mouse position relative to the center of the item.
         """
         item = self.state._get_item_by_locator(locator)
         UiItemKeywords.click(item, x_offset, y_offset)
@@ -28,7 +28,7 @@ class UiItemKeywords(LibraryComponent):
         Locator syntax is explained in `Item locators`.
 
         Optional arguments ``x_offset`` and ``y_offset`` can be used to fine tune
-        mouse position relative to the center of the item. Their default is 0.
+        mouse position relative to the center of the item.
         """
         item = self.state._get_item_by_locator(locator)
         UiItemKeywords.right_click(item, x_offset, y_offset)
@@ -41,7 +41,7 @@ class UiItemKeywords(LibraryComponent):
         Locator syntax is explained in `Item locators`.
 
         Optional arguments ``x_offset`` and ``y_offset`` can be used to fine tune
-        mouse position relative to the center of the item. Their default is 0.
+        mouse position relative to the center of the item.
         """
         item = self.state._get_item_by_locator(locator)
         UiItemKeywords.double_click(item, x_offset, y_offset)
