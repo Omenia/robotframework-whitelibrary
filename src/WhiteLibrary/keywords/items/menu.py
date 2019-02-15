@@ -1,7 +1,7 @@
 from TestStack.White.UIItems.MenuItems import Menu
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
-from WhiteLibrary.keywords.items.uiitem import UiItemKeywords
+from WhiteLibrary.utils.click import Clicks
 
 class MenuKeywords(LibraryComponent):
     @keyword
@@ -27,7 +27,7 @@ class MenuKeywords(LibraryComponent):
         mouse position relative to the center of the item.
         """
         menu_button = self.state._get_typed_item_by_locator(Menu, locator)
-        UiItemKeywords.click(menu_button, x_offset, y_offset)
+        Clicks.click(menu_button, x_offset, y_offset)
 
     @keyword
     def click_item_in_popup_menu(self, *text_path):
