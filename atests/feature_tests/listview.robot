@@ -73,7 +73,6 @@ Get Text From ListView
     Should Be Equal    ${actual}    Science
 
 Select Listview Row
-    [Tags]    do_not_run
     Select ListView Row By Index    birds    1
     Row 1 Should Be Selected
     Select ListView Row By Index    list_view    2

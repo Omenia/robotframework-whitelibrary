@@ -22,10 +22,7 @@ class ListViewKeywords(LibraryComponent):
         | Double Click Listview Cell | id:addressList | Street | 0 | # double click cell in the column "Street" of the first row |
         """
         cell = self._get_cell(locator, column_name, row_index)
-        if x_offset == 0 and y_offset == 0:
-            cell.DoubleClick()
-        else:
-            Clicks.double_click(cell, x_offset, y_offset)
+        Clicks.double_click(cell, x_offset, y_offset)
 
     @keyword
     def double_click_listview_cell_by_index(self, locator, row_index, column_index, x_offset=0, y_offset=0):
@@ -45,10 +42,7 @@ class ListViewKeywords(LibraryComponent):
         | Double Click Listview Cell By Index | id:addressList | 0 | 0 |
         """
         cell = self._get_cell_by_index(locator, row_index, column_index)
-        if x_offset == 0 and y_offset == 0:
-            cell.DoubleClick()
-        else:
-            Clicks.double_click(cell, x_offset, y_offset)
+        Clicks.double_click(cell, x_offset, y_offset)
 
     @keyword
     def double_click_listview_row(self, locator, column_name, cell_text, x_offset=0, y_offset=0):
@@ -67,10 +61,7 @@ class ListViewKeywords(LibraryComponent):
         | Double Click Listview Row | id:addressList | City | Helsinki | # double click row that has the text "Helsinki" in the column "City" |
         """
         row = self._get_row(locator, column_name, cell_text)
-        if x_offset == 0 and y_offset == 0:
-            row.DoubleClick()
-        else:
-            Clicks.double_click(row, x_offset, y_offset)
+        Clicks.double_click(row, x_offset, y_offset)
 
     @keyword
     def double_click_listview_row_by_index(self, locator, row_index, x_offset=0, y_offset=0):
@@ -88,10 +79,7 @@ class ListViewKeywords(LibraryComponent):
         | Double Click Listview Row By Index | id:addressList | 4 |
         """
         row = self._get_row_by_index(locator, row_index)
-        if x_offset == 0 and y_offset == 0:
-            row.DoubleClick()
-        else:
-            Clicks.double_click(row, x_offset, y_offset)
+        Clicks.double_click(row, x_offset, y_offset)
 
     @keyword
     def get_listview_cell_text(self, locator, column_name, row_index):
@@ -274,10 +262,7 @@ class ListViewKeywords(LibraryComponent):
         See `Double Click Listview Cell` for details about arguments ``locator``, ``column_name``, and ``row_index``.
         """
         cell = self._get_cell(locator, column_name, row_index)
-        if x_offset == 0 and y_offset == 0:
-            cell.RightClick()
-        else:
-            Clicks.right_click(cell, x_offset, y_offset)
+        Clicks.right_click(cell, x_offset, y_offset)
 
     @keyword
     def right_click_listview_cell_by_index(self, locator, row_index, column_index, x_offset=0, y_offset=0):
@@ -286,10 +271,7 @@ class ListViewKeywords(LibraryComponent):
         See `Double Click Listview Cell By Index` for details about arguments ``locator``, ``row_index``, and ``column_index``.
         """
         cell = self._get_cell_by_index(locator, row_index, column_index)
-        if x_offset == 0 and y_offset == 0:
-            cell.RightClick()
-        else:
-            Clicks.right_click(cell, x_offset, y_offset)
+        Clicks.right_click(cell, x_offset, y_offset)
 
     @keyword
     def right_click_listview_row(self, locator, column_name, cell_text, x_offset=0, y_offset=0):
@@ -298,10 +280,7 @@ class ListViewKeywords(LibraryComponent):
         See `Double Click Listview Row` for details about the arguments ``locator``, ``column_name``, and ``cell_text``.
         """
         row = self._get_row(locator, column_name, cell_text)
-        if x_offset == 0 and y_offset == 0:
-            row.RightClick()
-        else:
-            Clicks.right_click(row, x_offset, y_offset)
+        Clicks.right_click(row, x_offset, y_offset)
 
 
     @keyword
@@ -311,10 +290,7 @@ class ListViewKeywords(LibraryComponent):
         See `Double Click Listview Row By Index` for details about arguments ``locator`` and ``row_index``.
         """
         row = self._get_row_by_index(locator, row_index)
-        if x_offset == 0 and y_offset == 0:
-            row.RightClick()
-        else:
-            Clicks.right_click(row, x_offset, y_offset)
+        Clicks.right_click(row, x_offset, y_offset)
 
     @keyword
     def select_listview_cell(self, locator, column_name, row_index):

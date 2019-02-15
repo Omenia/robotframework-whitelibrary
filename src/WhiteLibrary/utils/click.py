@@ -6,21 +6,30 @@ class Clicks():
     #Low level function to handle offset click.
     @staticmethod
     def click(item, x_offset, y_offset):
-        offset_position = Clicks._get_offset_point(item, x_offset, y_offset)
-        Mouse.Instance.Click(offset_position)
+        if x_offset == 0 and y_offset == 0:
+            item.Click()
+        else:
+            offset_position = Clicks._get_offset_point(item, x_offset, y_offset)
+            Mouse.Instance.Click(offset_position)
 
     #Low level helper function to handle offset right click.
     @staticmethod
     def right_click(item, x_offset, y_offset):
-        offset_position = Clicks._get_offset_point(item, x_offset, y_offset)
-        Mouse.Instance.Location = offset_position
-        Mouse.Instance.RightClick()
+        if x_offset == 0 and y_offset == 0:
+            item.RightClick()
+        else:
+            offset_position = Clicks._get_offset_point(item, x_offset, y_offset)
+            Mouse.Instance.Location = offset_position
+            Mouse.Instance.RightClick()
 
     #Low level helper function to handle offset double click.
     @staticmethod
     def double_click(item, x_offset, y_offset):
-        offset_position = Clicks._get_offset_point(item, x_offset, y_offset)
-        Mouse.Instance.DoubleClick(offset_position)
+        if x_offset == 0 and y_offset == 0:
+            item.DoubleClick()
+        else:
+            offset_position = Clicks._get_offset_point(item, x_offset, y_offset)
+            Mouse.Instance.DoubleClick(offset_position)
 
     #Helper function to translate item center to offset point
     @staticmethod
