@@ -18,7 +18,11 @@ class UiItemKeywords(LibraryComponent):
         mouse position relative to the center of the item.
         """
         item = self.state._get_item_by_locator(locator)
-        Clicks.click(item, x_offset, y_offset)
+        if x_offset == 0 and y_offset == 0:
+            item.Click()
+        else:
+            Clicks.click(item, x_offset, y_offset)
+
 
     @keyword
     def right_click_item(self, locator, x_offset=0, y_offset=0):
@@ -31,7 +35,11 @@ class UiItemKeywords(LibraryComponent):
         mouse position relative to the center of the item.
         """
         item = self.state._get_item_by_locator(locator)
-        Clicks.right_click(item, x_offset, y_offset)
+        if x_offset == 0 and y_offset == 0:
+            item.RightClick()
+        else:
+            Clicks.right_click(item, x_offset, y_offset)
+
 
     @keyword
     def double_click_item(self, locator, x_offset=0, y_offset=0):
@@ -44,7 +52,11 @@ class UiItemKeywords(LibraryComponent):
         mouse position relative to the center of the item.
         """
         item = self.state._get_item_by_locator(locator)
-        Clicks.double_click(item, x_offset, y_offset)
+        if x_offset == 0 and y_offset == 0:
+            item.DoubleClick()
+        else:
+            Clicks.double_click(item, x_offset, y_offset)
+
 
     @keyword
     def get_items(self, locator):
