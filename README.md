@@ -27,6 +27,12 @@ pip install --upgrade --pre robotframework-whitelibrary
 # Documentation
 * [Keyword documentation](http://omenia.github.io/robotframework-whitelibrary/keywords.html) 
 
+# Support
+* [Robot Framework Slack](http://robotframework.slack.com) channels 
+    * ``#whitelibrary``
+    * ``#whitelibrary-dev`` (development related discussion)
+* Bug reports and feature requests to [issue tracker](https://github.com/Omenia/robotframework-whitelibrary/issues)
+
 # Development environment
 This section contains instructions for developing WhiteLibrary.
 
