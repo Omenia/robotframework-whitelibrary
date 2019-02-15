@@ -1,7 +1,7 @@
 from TestStack.White.UIItems import Button, CheckBox, RadioButton
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
-from WhiteLibrary.keywords.items.uiitem import UiItemKeywords
+from WhiteLibrary.utils.click import Clicks
 
 class ButtonKeywords(LibraryComponent):
     @keyword
@@ -16,7 +16,7 @@ class ButtonKeywords(LibraryComponent):
         mouse position relative to the center of the item.
         """
         button = self.state._get_typed_item_by_locator(Button, locator)
-        UiItemKeywords.click(button, x_offset, y_offset)
+        Clicks.click(button, x_offset, y_offset)
 
     @keyword
     def button_text_should_be(self, locator, expected_text, case_sensitive=True):
