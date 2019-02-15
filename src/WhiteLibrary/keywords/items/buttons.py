@@ -16,7 +16,10 @@ class ButtonKeywords(LibraryComponent):
         mouse position relative to the center of the item.
         """
         button = self.state._get_typed_item_by_locator(Button, locator)
-        Clicks.click(button, x_offset, y_offset)
+        if x_offset == 0 and y_offset == 0:
+            button.Click()
+        else:
+            Clicks.click(button, x_offset, y_offset)
 
     @keyword
     def button_text_should_be(self, locator, expected_text, case_sensitive=True):

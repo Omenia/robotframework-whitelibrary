@@ -26,8 +26,12 @@ class MenuKeywords(LibraryComponent):
         Optional arguments ``x_offset`` and ``y_offset`` can be used to fine tune
         mouse position relative to the center of the item.
         """
+
         menu_button = self.state._get_typed_item_by_locator(Menu, locator)
-        Clicks.click(menu_button, x_offset, y_offset)
+        if x_offset == 0 and y_offset == 0:
+            menu_button.Click()
+        else:
+            Clicks.click(menu_button, x_offset, y_offset)
 
     @keyword
     def click_item_in_popup_menu(self, *text_path):
