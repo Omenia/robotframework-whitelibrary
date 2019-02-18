@@ -190,7 +190,7 @@ Handle Tree Nodes
     Select Tree Node    tree    @{Tree node 1}
     Selction Indicator Should Be     Tree node 1     Selected
     Expand Tree Node    tree    @{Tree node 1}
-    Selction Indicator Should Be    Tree node 1     Be Expanded
+    Selction Indicator Should Be    Tree node 1     Expanded
     Double Click Tree Node    tree    @{Tree node 1}
     Selction Indicator Should Be    Tree node 1    Double-clicked
     Right Click Tree Node    tree    @{Tree node 1.1}
