@@ -170,6 +170,13 @@ Right Click An Item
     Verify Label    65535    Not implemented yet.\nWhat's wrong with Teppo anyway?
     Click Button    text=OK
 
+Verify Message Box Title
+    [Tags]    under_test
+    Right Click Item    text=Teppo
+    Click Menu Button    text=Change Name
+    Message Box Title Should Be    Message Title
+    Click Button    text=OK
+
 Double Click An Item
     Double Click Item    eventIndicatorLabel
     Verify Label    eventIndicatorLabel    Double-clicked 1 times

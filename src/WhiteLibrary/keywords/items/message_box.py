@@ -3,15 +3,17 @@ from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 
 
-class MenuKeywords(LibraryComponent):
+class MessageBoxKeywords(LibraryComponent):
     @keyword
-    def message_box_title_should_be(self, locator, expected):
-        """Verifies the text of a menu item.
+    def message_box_title_should_be(self, expected, window_title=None):
+        """Verifies the title of a message box in a window.
 
-        ``locator`` is the locator of the menu item.
-        Locator syntax is explained in `Item locators`.
+        ``expected`` is the expected title of the message box.
 
-        ``expected`` is the expected text of the menu item.
+        ``window_title`` is the locator of the window. If no window title is given, currently attached window is used.
         """
-        message_box = self.state._get_typed_item_by_locator(Window, locator)
-        self.state._verify_value(expected, menu.Name)
+        if window_title is not None:
+            window = self._get_window(window_title)
+        else:
+            window = self.state.window
+        window.MessageBox(expected)

@@ -76,7 +76,8 @@ namespace UIAutomationTest
             ContextMenu cm = mi.CommandParameter as ContextMenu;
             ListBox lb = cm.PlacementTarget as ListBox;
             ListBoxItem item = lb.SelectedItem as ListBoxItem;
-            MessageBox.Show("Not implemented yet.\nWhat's wrong with " + item.Content.ToString() +" anyway?");
+            MessageBox.Show("Not implemented yet.\nWhat's wrong with " + item.Content.ToString() +" anyway?", 
+                            "Message Title");
         }
 
         private void doubleClickLabel(object sender, RoutedEventArgs e)

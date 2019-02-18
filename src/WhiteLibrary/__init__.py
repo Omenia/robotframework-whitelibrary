@@ -11,17 +11,18 @@ from TestStack.White.UIItems.Finders import SearchCriteria    # noqa: E402
 from TestStack.White.UIItems import UIItem    # noqa: E402
 from WhiteLibrary.keywords import ApplicationKeywords, KeyboardKeywords, WindowKeywords, ScreenshotKeywords, WhiteConfigurationKeywords    # noqa: E402
 from WhiteLibrary.keywords.items import (ButtonKeywords,
-                                         LabelKeywords,
-                                         ListKeywords,
-                                         ListViewKeywords,
-                                         MenuKeywords,
-                                         MouseKeywords,
-                                         ProgressbarKeywords,
-                                         SliderKeywords,
-                                         TabKeywords,
-                                         TreeKeywords,
-                                         TextBoxKeywords,
-                                         UiItemKeywords)   # noqa: E402
+                            LabelKeywords,
+                            ListKeywords,
+                            ListViewKeywords,
+                            MenuKeywords,
+                            MessageBoxKeywords,
+                            MouseKeywords,
+                            ProgressbarKeywords,
+                            SliderKeywords,
+                            TabKeywords,
+                            TreeKeywords,
+                            TextBoxKeywords,
+                            UiItemKeywords)   # noqa: E402
 from WhiteLibrary.keywords.robotlibcore import DynamicCore   # noqa: E402
 from WhiteLibrary import version   # noqa: E402
 
@@ -132,6 +133,7 @@ class WhiteLibrary(DynamicCore):
                           ListKeywords(self),
                           ListViewKeywords(self),
                           MenuKeywords(self),
+                          MessageBoxKeywords(self),
                           MouseKeywords(self),
                           ProgressbarKeywords(self),
                           SliderKeywords(self),
