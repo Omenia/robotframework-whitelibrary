@@ -74,39 +74,39 @@ Get Text From ListView
 
 Select Listview Row
     Select ListView Row By Index    birds    1
-    Row 1 Should Be Selected
+    Selction Indicator Should Be     Row 1    Selected
     Select ListView Row By Index    list_view    2
-    Row 2 Should Be Selected
+    Selction Indicator Should Be    Row 2     Selected
     Select ListView Row    list_view    Title    Robinson Crusoe
-    Row 0 Should Be Selected
+    Selction Indicator Should Be    Row 0     Selected
 
 Select Listview Cell
     Select Listview Cell    list_view2    Author    1
-    Various Artists Should Be Selected
+    Selction Indicator Should Be    Various Artists     Selected
     Select Listview Cell By Index    list_view2    2    2
-    Science Should Be Selected
+    Selction Indicator Should Be    Science    Selected
 
 Right Click Listview Row
     # click twice because first click selects the row
     Repeat Keyword    2    Right Click Listview Row    birds    Bird    Dodo
-    Row 2 Should Be Right Clicked
+    Selction Indicator Should Be     Row 2     Right Clicked
     Repeat Keyword    2    Right Click Listview Row By Index    birds    0
-    Row 0 Should Be Right Clicked
+    Selction Indicator Should Be    Row 0     Right Clicked
 
 Right Click Listview Cell
     Repeat Keyword    2    Right Click Listview Cell    list_view2    Title    1
-    Bible Should Be Right Clicked
+    Selction Indicator Should Be    Bible     Right Clicked
     Repeat Keyword    2    Right Click Listview Cell By Index    list_view2    0    0
-    Daniel Defoe Should Be Right Clicked
+    Selction Indicator Should Be    Daniel Defoe     Right Clicked
 
 Double Click Listview Row
     Double Click ListView Row    birds    Bird    Dodo
-    Row 2 Should Be Double Clicked
+    Selction Indicator Should Be    Row 2     Double Clicked
     Double Click ListView Row By Index    birds    1
-    Row 1 Should Be Double Clicked
+    Selction Indicator Should Be    Row 1     Double Clicked
 
 Double Click Listview Cell
     Double Click Listview Cell    list_view2    Author    2
-    Donald Knuth Should Be Double Clicked
+    Selction Indicator Should Be    Donald Knuth    Double Clicked
     Double Click Listview Cell By Index    list_view2    0    2
-    Fiction Should Be Double Clicked
+    Selction Indicator Should Be    Fiction    Double Clicked
