@@ -1,8 +1,8 @@
-from robot.api import logger    # noqa: F401
 from TestStack.White.Configuration import CoreAppXmlConfiguration
 from TestStack.White import AutomationException
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
+from TestStack.White.UIItems.WindowItems import DisplayState   # noqa: F401
 
 
 class WindowKeywords(LibraryComponent):
@@ -40,6 +40,99 @@ class WindowKeywords(LibraryComponent):
             window.Close()
         else:
             self.state.window.Close()
+
+    @keyword
+    def maximize_window(self, window_title=None):
+        """Maximizes a window.
+
+        ``window_title`` is the title of the window (optional).
+
+        If title is not given, the currently attached window is maximized.
+        See `Attach Window` for more details.
+        """
+        if window_title is not None:
+            window = self._get_window(window_title)
+        else:
+            window = self.state.window
+        window.DisplayState = DisplayState.Maximized
+
+    @keyword
+    def window_should_be_maximized(self, window_title=None):
+        """Verifies that window is minimized
+
+        ``window_title`` is the title of the window (optional).
+
+        If title is not given, currently attached window status is queried.
+        See `Attach Window` for more details.
+        """
+        if window_title is not None:
+            window = self._get_window(window_title)
+        else:
+            window = self.state.window
+        if window.DisplayState != DisplayState.Maximized:
+            raise AssertionError("Expected window state to be maximized, but found {}".format(str(window.DisplayState)))
+
+    @keyword
+    def minimize_window(self, window_title=None):
+        """Minimizes a window.
+
+        ``window_title`` is the title of the window (optional).
+
+        If title is not given, the currently attached window is minimized.
+        See `Attach Window` for more details.
+        """
+        if window_title is not None:
+            window = self._get_window(window_title)
+        else:
+            window = self.state.window
+        window.DisplayState = DisplayState.Minimized
+
+    @keyword
+    def window_should_be_minimized(self, window_title=None):
+        """Verifies that window is minimized
+
+        ``window_title`` is the title of the window (optional).
+
+        If title is not given, currently attached window status is queried.
+        See `Attach Window` for more details.
+        """
+        if window_title is not None:
+            window = self._get_window(window_title)
+        else:
+            window = self.state.window
+        if window.DisplayState != DisplayState.Minimized:
+            raise AssertionError("Expected window state to be minimized, but found {}".format(str(window.DisplayState)))
+
+    @keyword
+    def restore_window(self, window_title=None):
+        """Restores a window.
+
+        ``window_title`` is the title of the window (optional).
+
+        If title is not given, the currently attached window is minimized.
+        See `Attach Window` for more details.
+        """
+        if window_title is not None:
+            window = self._get_window(window_title)
+        else:
+            window = self.state.window
+        window.DisplayState = DisplayState.Restored
+
+    @keyword
+    def window_should_be_restored(self, window_title=None):
+        """Verifies that window is restored
+
+        ``window_title`` is the title of the window (optional).
+
+        If title is not given, currently attached window status is queried.
+        See `Attach Window` for more details.
+        """
+        if window_title is not None:
+            window = self._get_window(window_title)
+        else:
+            window = self.state.window
+        if window.DisplayState != DisplayState.Restored:
+            raise AssertionError("Expected window state to be restored, but found {}".format(str(window.DisplayState)))
 
     def _get_window(self, window_title):
         try:

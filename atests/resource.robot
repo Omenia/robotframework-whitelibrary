@@ -5,9 +5,11 @@ Library    WhiteLibrary
 *** Variables ***
 ${TEST APPLICATION}      ${EXECDIR}${/}UIAutomationTest${/}bin${/}Debug${/}UIAutomationTest.exe
 ${TEST APPLICATION NAME}    UIAutomationTest
+${TEST APPLICATION WINDOW TITLE}    UI Automation Test Window
 
 ${TEST WHITE APPLICATION}      ${EXECDIR}${/}WhiteTestApp${/}WpfTestApplication.exe
 ${TEST WHITE APPLICATION NAME}    MainWindow
+
 
 *** Keywords ***
 
@@ -15,10 +17,10 @@ Launch Application For Test
     [Arguments]    ${args}=${EMPTY}
     Set Log Level    Info
     Launch Application    ${TEST APPLICATION}    ${args}
-    Attach Window    UI Automation Test Window
+    Attach Window    ${TEST APPLICATION WINDOW TITLE}
 
 Attach Main Window
-    Attach Window    UI Automation Test Window
+    Attach Window    ${TEST APPLICATION WINDOW TITLE}
 
 Launch White Application For Test
     Set Log Level    Info
@@ -40,7 +42,8 @@ Setup For Tab 2 Tests
     Attach Main Window
     Select Tab Page    tabControl    Tab2
 
-${node label} Should Be ${status}
+Selction Indicator Should Be
+    [Arguments]    ${node label}    ${status}
     [Documentation]    Note that node label is case sensitive
     ${status}=    Convert To Lowercase    ${status}
     Verify Label    selectionIndicatorLabel    ${node label} ${status}
