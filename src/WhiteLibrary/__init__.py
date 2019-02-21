@@ -2,6 +2,12 @@ import os
 from robot.api import logger    # noqa: F401
 import clr
 DLL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin', 'TestStack.White.dll')
+
+# testiä
+
+
+
+
 clr.AddReference('System')
 clr.AddReference(DLL_PATH)
 from System.Windows.Automation import AutomationElement, ControlType    # noqa: E402
