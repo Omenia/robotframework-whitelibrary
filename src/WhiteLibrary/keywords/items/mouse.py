@@ -1,8 +1,8 @@
+from robot.api import logger
 from TestStack.White.InputDevices import Mouse
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from System.Windows import Point
-from robot.api import logger
 
 
 class MouseKeywords(LibraryComponent):

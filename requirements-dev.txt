@@ -1,5 +1,3 @@
 flake8
 flake8-junit-report
-pylint
-pylint2junit
 -r requirements.txt

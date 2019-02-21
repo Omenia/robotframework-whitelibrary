@@ -1,29 +1,29 @@
-import clr
 import os
 from robot.api import logger    # noqa: F401
-dll_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin', 'TestStack.White.dll')
+import clr
+DLL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin', 'TestStack.White.dll')
 clr.AddReference('System')
-clr.AddReference(dll_path)
+clr.AddReference(DLL_PATH)
 from System.Windows.Automation import AutomationElement, ControlType    # noqa: E402
 from TestStack.White.UIItems.Finders import SearchCriteria    # noqa: E402
 from WhiteLibrary.keywords import ApplicationKeywords, KeyboardKeywords, WindowKeywords, ScreenshotKeywords, WhiteConfigurationKeywords    # noqa: E402
 from WhiteLibrary.keywords.items import (ButtonKeywords,
-                            LabelKeywords,
-                            ListKeywords,
-                            ListViewKeywords,
-                            MenuKeywords,
-                            MouseKeywords,
-                            ProgressbarKeywords,
-                            SliderKeywords,
-                            TabKeywords,
-                            TreeKeywords,
-                            TextBoxKeywords,
-                            UiItemKeywords)   # noqa: E402
+                                         LabelKeywords,
+                                         ListKeywords,
+                                         ListViewKeywords,
+                                         MenuKeywords,
+                                         MouseKeywords,
+                                         ProgressbarKeywords,
+                                         SliderKeywords,
+                                         TabKeywords,
+                                         TreeKeywords,
+                                         TextBoxKeywords,
+                                         UiItemKeywords)   # noqa: E402
 from WhiteLibrary.keywords.robotlibcore import DynamicCore   # noqa: E402
 from WhiteLibrary import version   # noqa: E402
 
 
-STRATEGIES = dict(id={"method": "ByAutomationId"},
+STRATEGIES = dict(id={"method": "ByAutomationId"},  # noqa: C408
                   text={"method": "ByText"},
                   index={"method": "Indexed"},
                   help_text={"method": "ByNativeProperty", "property": "HelpTextProperty"},
@@ -169,7 +169,7 @@ class WhiteLibrary(DynamicCore):
         if "=" not in locator and ":" not in locator:
             locator = "id:" + locator
         idx = self._get_locator_delimiter_index(locator)
-        return locator[:idx], locator[idx+1:]
+        return locator[:idx], locator[idx + 1:]
 
     def _get_locator_delimiter_index(self, locator):
         if "=" not in locator:

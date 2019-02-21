@@ -57,11 +57,9 @@ steps:
     testResultsFiles: output/xunit.xml
 
 - script: |
-    echo on
     flake8 --exit-zero --output flake8.txt
     flake8_junit flake8.txt flake8.xml
-    pylint src --exit-zero --output-format=pylint2junit.JunitReporter > pylint.xml
-  displayName: 'Running Static Analysis'
+  displayName: 'Running Flake8 Static Analysis'
   continueOnError: true
 
 - task: PublishTestResults@2
@@ -72,16 +70,7 @@ steps:
     testResultsFiles: flake8.xml
     testResultsTitle: Static Analysis Results from Flake8
     testRunTitle: flake8-results
-    failTaskOnFailedTests: true
-
-- task: PublishTestResults@2
-  condition: always()
-  continueOnError: true
-  inputs:
-    testRunner: JUnit
-    testResultsFiles: pylint.xml
-    testResultsTitle: Static Analysis Results from Pylint
-    testRunTitle: pylint-results
+    publishRunAttachments: true
     failTaskOnFailedTests: true
 
 - task: PublishBuildArtifacts@1

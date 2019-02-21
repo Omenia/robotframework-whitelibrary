@@ -1,9 +1,8 @@
-from TestStack.White.Configuration import CoreAppXmlConfiguration
-from TestStack.White.UIItems import DateFormat
-from WhiteLibrary.keywords.librarycomponent import LibraryComponent
-from WhiteLibrary.keywords.robotlibcore import keyword
 from robot.api import logger
 from robot.utils import timestr_to_secs
+from WhiteLibrary.keywords.librarycomponent import LibraryComponent
+from WhiteLibrary.keywords.robotlibcore import keyword
+from TestStack.White.Configuration import CoreAppXmlConfiguration
 
 
 class WhiteConfigurationKeywords(LibraryComponent):

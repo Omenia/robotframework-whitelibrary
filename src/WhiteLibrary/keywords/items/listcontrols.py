@@ -1,7 +1,7 @@
+from robot.api import logger  # noqa:  F401
 from TestStack.White.UIItems.ListBoxItems import ComboBox, ListBox
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
-from robot.api import logger
 
 
 class ListKeywords(LibraryComponent):

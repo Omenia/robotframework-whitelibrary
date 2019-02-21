@@ -7,18 +7,18 @@ with open(os.path.join("src", "WhiteLibrary", "version.py")) as f:
 
 requirements = []
 with open("requirements.txt", "r") as f:
-    requirements = list(filter(lambda s: s!="", f.read().split("\n")))
+    requirements = list(filter(lambda s: s != "", f.read().split("\n")))
 
 
-def __path(filename):
+def getpath(filename):
     return os.path.join(os.path.dirname(__file__),
                         filename)
 
 
 build = 0
 
-if os.path.exists(__path("build.info")):
-    build = open(__path("build.info")).read().strip()
+if os.path.exists(getpath("build.info")):
+    build = open(getpath("build.info")).read().strip()
 
 if version_data["STABLE"]:
     version = "{}".format(version_data["VERSION"])
