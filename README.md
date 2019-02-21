@@ -73,16 +73,15 @@ robot --outputdir output --exclude no_ci --loglevel DEBUG:INFO -t "Example Test 
 * The test suite tagged with `no_ci` will run tests against the old (Win32) version of Windows calculator, and is typically excluded from test runs.
 
 ### Running Static Analysis
-Project relies on flake8 and pylint for static analysis. In order to run those locally, one has to install them  (automatically installed if dependencies are installed via requirements-dev.txt):
+Project relies on flake8 for static analysis. In order to run those locally, one has to install them  (automatically installed if dependencies are installed via requirements-dev.txt):
 
 ```
-pip install flake8 pylint
+pip install flake8
 ```
 
-to run either one, go into to root of the project run execute analyzer, like this:
+to run it, go into to root of the project to execute the analyzer, like this:
 
 ```
 flake8
-pylint src/
 ```
 

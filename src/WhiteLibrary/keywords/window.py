@@ -1,4 +1,4 @@
-from robot.api import logger    # noqa: F401 #pylint: disable=unused-import
+from robot.api import logger    # noqa: F401
 from TestStack.White.Configuration import CoreAppXmlConfiguration
 from TestStack.White import AutomationException
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
