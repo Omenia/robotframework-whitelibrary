@@ -58,7 +58,7 @@ class WindowKeywords(LibraryComponent):
 
     @keyword
     def window_should_be_maximized(self, window_title=None):
-        """Verifies that window is minimized
+        """Verifies that window is maximized
 
         ``window_title`` is the title of the window (optional).
 
@@ -109,7 +109,7 @@ class WindowKeywords(LibraryComponent):
 
         ``window_title`` is the title of the window (optional).
 
-        If title is not given, the currently attached window is minimized.
+        If title is not given, the currently attached window is restored.
         See `Attach Window` for more details.
         """
         if window_title is not None:
