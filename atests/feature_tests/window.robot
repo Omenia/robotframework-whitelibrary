@@ -15,10 +15,10 @@ Get All Application Windows
     Should Be Equal As Strings     ${several_windows[3]}    Test title - 2
     Should Be Equal As Strings     ${several_windows[4]}    Test title - 1
 
-#Get All Desktop Windows
-#    @{windows}=    List Desktop Windows
-#    ${windows_len}=    Get Length    ${windows}
-#    Log    There are ${windows_len} windows in desktop
+Get All Desktop Windows
+    @{windows}=    List Desktop Windows
+    ${windows_len}=    Get Length    ${windows}
+    Should Be True    ${windows_len} >= 5
 
 Attach Application Window By Id
     Attach Window    Test title - 3
