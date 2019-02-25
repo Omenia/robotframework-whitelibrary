@@ -2,9 +2,8 @@ from TestStack.White.UIItems import UIItem   # noqa: F401
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from WhiteLibrary.utils.click import Clicks
-
-from TestStack.White.InputDevices import Mouse
 from robot.api import logger
+
 
 class UiItemKeywords(LibraryComponent):
     @keyword

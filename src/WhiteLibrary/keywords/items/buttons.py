@@ -3,6 +3,7 @@ from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from WhiteLibrary.utils.click import Clicks
 
+
 class ButtonKeywords(LibraryComponent):
     @keyword
     def click_button(self, locator, x_offset=0, y_offset=0):
