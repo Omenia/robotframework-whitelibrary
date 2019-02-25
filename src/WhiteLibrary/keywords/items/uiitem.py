@@ -2,7 +2,6 @@ from TestStack.White.UIItems import UIItem   # noqa: F401
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from WhiteLibrary.utils.click import Clicks
-from robot.api import logger
 
 
 class UiItemKeywords(LibraryComponent):
@@ -19,7 +18,6 @@ class UiItemKeywords(LibraryComponent):
         item = self.state._get_item_by_locator(locator)
         Clicks.click(item, x_offset, y_offset)
 
-
     @keyword
     def right_click_item(self, locator, x_offset=0, y_offset=0):
         """Right clicks an item.
@@ -33,7 +31,6 @@ class UiItemKeywords(LibraryComponent):
         item = self.state._get_item_by_locator(locator)
         Clicks.right_click(item, x_offset, y_offset)
 
-
     @keyword
     def double_click_item(self, locator, x_offset=0, y_offset=0):
         """Double clicks an item.
@@ -46,7 +43,6 @@ class UiItemKeywords(LibraryComponent):
         """
         item = self.state._get_item_by_locator(locator)
         Clicks.double_click(item, x_offset, y_offset)
-
 
     @keyword
     def get_items(self, locator):
@@ -64,4 +60,3 @@ class UiItemKeywords(LibraryComponent):
         Locator syntax is explained in `Item locators`.
         """
         return self.state._get_item_by_locator(locator)
-

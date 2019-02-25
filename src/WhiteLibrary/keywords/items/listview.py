@@ -283,7 +283,6 @@ class ListViewKeywords(LibraryComponent):
         row = self._get_row(locator, column_name, cell_text)
         Clicks.right_click(row, x_offset, y_offset)
 
-
     @keyword
     def right_click_listview_row_by_index(self, locator, row_index, x_offset=0, y_offset=0):
         """Right clicks a listview row at index.
