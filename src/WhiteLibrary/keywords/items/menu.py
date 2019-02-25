@@ -3,6 +3,7 @@ from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from WhiteLibrary.utils.click import Clicks
 
+
 class MenuKeywords(LibraryComponent):
     @keyword
     def verify_menu(self, locator, expected):

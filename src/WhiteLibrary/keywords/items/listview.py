@@ -3,6 +3,7 @@ from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from WhiteLibrary.utils.click import Clicks
 
+
 class ListViewKeywords(LibraryComponent):
     @keyword
     def double_click_listview_cell(self, locator, column_name, row_index, x_offset=0, y_offset=0):

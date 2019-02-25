@@ -1,4 +1,4 @@
-from System.Windows import Point, Rect
+from System.Windows import Point
 from TestStack.White.UIA import RectX
 from TestStack.White.InputDevices import Mouse
 
