@@ -1,4 +1,3 @@
-from TestStack.White.UIItems.WindowItems import Window
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 
