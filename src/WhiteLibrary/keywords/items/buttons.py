@@ -127,5 +127,3 @@ class ButtonKeywords(LibraryComponent):
         """
         checkbox = self.state._get_typed_item_by_locator(CheckBox, locator)
         return checkbox.IsSelected
-
-
