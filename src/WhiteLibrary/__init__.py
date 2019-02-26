@@ -7,7 +7,7 @@ clr.AddReference('System')
 clr.AddReference(DLL_PATH)
 from System.Windows.Automation import AutomationElement, ControlType    # noqa: E402
 from TestStack.White.UIItems.Finders import SearchCriteria    # noqa: E402
-from TestStack.White.UIItems import UIItem
+from TestStack.White.UIItems import UIItem    # noqa: E402
 from WhiteLibrary.keywords import ApplicationKeywords, KeyboardKeywords, WindowKeywords, ScreenshotKeywords, WhiteConfigurationKeywords    # noqa: E402
 from WhiteLibrary.keywords.items import (ButtonKeywords,
                                          LabelKeywords,
@@ -141,7 +141,7 @@ class WhiteLibrary(DynamicCore):
         DynamicCore.__init__(self, self.libraries)
 
     def _get_typed_item_by_locator(self, item_type, locator):
-        #Test if locator is already an UIItem
+        # Test if locator is already an UIItem
         if isinstance(locator, UIItem):
             if isinstance(locator, item_type):
                 return locator
@@ -152,7 +152,7 @@ class WhiteLibrary(DynamicCore):
             return self.window.Get[item_type](search_criteria)
 
     def _get_item_by_locator(self, locator):
-        #Test if locator is already an UIItem
+        # Test if locator is already an UIItem
         if isinstance(locator, UIItem):
             return locator
         else:
