@@ -8,7 +8,7 @@ class LabelKeywords(LibraryComponent):
     def verify_label(self, locator, expected):
         """Verifies text of a label.
 
-        ``locator`` is the locator of the label.
+        ``locator`` is the locator of the label or item with type Label.
         Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected text.
@@ -20,7 +20,7 @@ class LabelKeywords(LibraryComponent):
     def get_text_from_label(self, locator):
         """Returns the text of a label.
 
-        ``locator`` is the locator of the label.
+        ``locator`` is the locator of the label or item with type Label.
         Locator syntax is explained in `Item locators`.
         """
         label = self.state._get_typed_item_by_locator(Label, locator)

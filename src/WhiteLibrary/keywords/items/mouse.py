@@ -133,9 +133,9 @@ class MouseKeywords(LibraryComponent):
     def drag_and_drop(self, locator1, locator2):
         """ Drags item with locator ``locator1`` to item with locator ``locator2``.
 
-        ``locator1`` is the locator of the draggable object.
+        ``locator1`` is the locator of the draggable object or draggable item.
 
-        ``locator2`` is the locator of the target for the draggable object.
+        ``locator2`` is the locator of the target for the draggable object or target item itself.
 
         Locator syntax is explained in `Item locators`.
         """

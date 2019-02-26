@@ -8,7 +8,7 @@ class SliderKeywords(LibraryComponent):
     def set_slider_value(self, locator, value):
         """Sets a slider to the specified value.
 
-        ``locator`` is the locator of the slider.
+        ``locator`` is the locator of the slider or item with type Slider.
         Locator syntax is explained in `Item locators`.
 
         ``value`` is the value to set.
@@ -20,7 +20,7 @@ class SliderKeywords(LibraryComponent):
     def verify_slider_value(self, locator, expected):
         """Verifies a slider value.
 
-        ``locator`` is the locator of the slider.
+        ``locator`` is the locator of the slider or item with type Slider.
         Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected value of the slider.
@@ -32,7 +32,7 @@ class SliderKeywords(LibraryComponent):
     def get_slider_value(self, locator):
         """Returns the value of a slider.
 
-        ``locator`` is the locator of the slider.
+        ``locator`` is the locator of the slider or item with type Slider.
         Locator syntax is explained in `Item locators`.
         """
         slider = self.state._get_typed_item_by_locator(Slider, locator)

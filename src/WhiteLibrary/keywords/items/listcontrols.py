@@ -9,7 +9,7 @@ class ListKeywords(LibraryComponent):
     def select_listbox_value(self, locator, value):
         """Selects a value from a listbox.
 
-        ``locator`` is the locator of the listbox.
+        ``locator`` is the locator of the listbox or item with type ListBox.
         Locator syntax is explained in `Item locators`.
 
         ``value`` is the value to be selected.
@@ -21,7 +21,7 @@ class ListKeywords(LibraryComponent):
     def select_listbox_index(self, locator, item_index):
         """Selects an item by its index from a listbox.
 
-        ``locator`` is the locator of the listbox.
+        ``locator`` is the locator of the listbox or item with type ListBox.
         Locator syntax is explained in `Item locators`.
 
         ``item_index`` is the index of the item to select.
@@ -35,7 +35,7 @@ class ListKeywords(LibraryComponent):
 
         Fails if the selection was not as expected.
 
-        ``locator`` is the locator of the listbox.
+        ``locator`` is the locator of the listbox or item with type ListBox.
         Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected selection value.
@@ -49,7 +49,7 @@ class ListKeywords(LibraryComponent):
     def select_combobox_value(self, locator, value):
         """Selects a value from a combobox.
 
-        ``locator`` is the locator of the combobox.
+        ``locator`` is the locator of the combobox or item with type ComboBox.
         Locator syntax is explained in `Item locators`.
 
         ``value`` is the value to be selected.
@@ -62,7 +62,7 @@ class ListKeywords(LibraryComponent):
         """
         Selects a value from combobox by using its index.
 
-        ``locator`` is the locator of the combobox.
+        ``locator`` is the locator of the combobox or item with type ComboBox.
         Locator syntax is explained in `Item locators`.
 
         ``item_index`` is the index to be selected.
@@ -75,7 +75,7 @@ class ListKeywords(LibraryComponent):
         """*DEPRECATED* Please use Verify Combobox Selection instead
         Verifies the selected value of a combobox.
 
-        ``locator`` is the locator of the combobox.
+        ``locator`` is the locator of the combobox or item with type ComboBox.
         Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected selection value.
@@ -86,7 +86,7 @@ class ListKeywords(LibraryComponent):
     def verify_combobox_selection(self, locator, expected):
         """Verifies that the combobox value is selected.
 
-        ``locator`` is the locator of the combobox.
+        ``locator`` is the locator of the combobox or item with type ComboBox.
         Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected selection value.

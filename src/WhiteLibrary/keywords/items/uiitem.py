@@ -9,7 +9,7 @@ class UiItemKeywords(LibraryComponent):
     def click_item(self, locator, x_offset=0, y_offset=0):
         """Clicks an item.
 
-        ``locator`` is the locator of the item.
+        ``locator`` is the locator of the item or object of an item.
         Locator syntax is explained in `Item locators`.
 
         Optional arguments ``x_offset`` and ``y_offset`` can be used to fine tune
@@ -22,7 +22,7 @@ class UiItemKeywords(LibraryComponent):
     def right_click_item(self, locator, x_offset=0, y_offset=0):
         """Right clicks an item.
 
-        ``locator`` is the locator of the item.
+        ``locator`` is the locator of the item or object of an item.
         Locator syntax is explained in `Item locators`.
 
         Optional arguments ``x_offset`` and ``y_offset`` can be used to fine tune
@@ -35,7 +35,7 @@ class UiItemKeywords(LibraryComponent):
     def double_click_item(self, locator, x_offset=0, y_offset=0):
         """Double clicks an item.
 
-        ``locator`` is the locator of the item.
+        ``locator`` is the locator of the item or object of an item.
         Locator syntax is explained in `Item locators`.
 
         Optional arguments ``x_offset`` and ``y_offset`` can be used to fine tune
