@@ -30,6 +30,12 @@ Attach Application Window By ClassName
     Attach Window    class_name:NavigationWindow
     Window Title Should Contain    Test Title -
 
+Attach Window Object
+    Attach Window    UI Automation Test Window
+    @{windows}=    List Application Windows
+    Attach Window    ${windows[3]}
+    Window Title Should Be    Test title - 2
+
 *** Keywords ***
 Window Test Suite Setup
     Attach Main Window

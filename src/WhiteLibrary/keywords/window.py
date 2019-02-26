@@ -19,7 +19,10 @@ class WindowKeywords(LibraryComponent):
 
         ``locator`` is the locator of the window. TODO: Documentation for window locators.
         """
-        self.state.window = self._get_window(locator)
+        if isinstance(locator, Window):
+            self.state.window = locator
+        else:
+            self.state.window = self._get_window(locator)
 
     @keyword
     def list_application_windows(self):
