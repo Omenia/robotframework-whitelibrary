@@ -66,6 +66,8 @@ class WhiteLibrary(DynamicCore):
     == Item locators ==
     Keywords that access UI items (e.g. `Click Button`) use a ``locator`` argument.
     The locator consists of a locator prefix that specifies the search criteria, and the locator value.
+    In most cases alongside locators you can use item reference. That is you can first save your item in a variable and then use that
+    item in place of a locator.
 
     Locator syntax is ``prefix:value``.
     The following locator prefixes are available:
@@ -84,6 +86,11 @@ class WhiteLibrary(DynamicCore):
     | `Click Button` | id:myButton      | # clicks button by its AutomationID |
     | `Click Button` | text:Click here! | # clicks button by the button text  |
     | `Click Button` | index:2          | # clicks button whose index is 2    |
+
+    Example using item reference:
+
+    | ${item}= | `Get Item`         | myButton |
+    | `Click Button` | ${item}      | # clicks button by item reference |
 
     *Note:* Old locator syntax ``prefix=value`` is also valid but it is recommended to use the ``prefix:value`` syntax
     since the old syntax may be *deprecated* in the future.
