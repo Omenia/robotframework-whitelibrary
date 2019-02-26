@@ -66,8 +66,6 @@ class WhiteLibrary(DynamicCore):
     == Item locators ==
     Keywords that access UI items (e.g. `Click Button`) use a ``locator`` argument.
     The locator consists of a locator prefix that specifies the search criteria, and the locator value.
-    In most cases alongside locators you can use item reference. That is you can first save your item in a variable and then use that
-    item in place of a locator.
 
     Locator syntax is ``prefix:value``.
     The following locator prefixes are available:
@@ -87,13 +85,18 @@ class WhiteLibrary(DynamicCore):
     | `Click Button` | text:Click here! | # clicks button by the button text  |
     | `Click Button` | index:2          | # clicks button whose index is 2    |
 
-    Example using item reference:
-
-    | ${item}= | `Get Item`         | myButton |
-    | `Click Button` | ${item}      | # clicks button by item reference |
-
     *Note:* Old locator syntax ``prefix=value`` is also valid but it is recommended to use the ``prefix:value`` syntax
     since the old syntax may be *deprecated* in the future.
+
+    === Item reference as a locator ===
+    Some times you may like to save your item to a variable and refer to the item using that variable. It is indeed possible, however there
+    are some details that need to be taken into account. You can use item reference to an item that is not in currently attached window or even
+    in currently attached application. The item reference completes the action in the other window but this does not attach that window. Thus
+    after referring to an item in another window you can normally continue using the attached window.
+
+    Example using item reference:
+    | ${item}= | `Get Item`         | myButton |
+    | `Click Button` | ${item}      | # clicks button by item reference |
 
     = Workflow example =
     | ***** Variables *****   | | | |
