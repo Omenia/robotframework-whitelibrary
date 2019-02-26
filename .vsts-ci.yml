@@ -4,6 +4,13 @@ variables:
   SUT_nuget: UIAutomationTest\packages
 
 steps:
+- task: UsePythonVersion@0
+  displayName: 'Setup Python'
+  inputs:
+    versionSpec: '3.6'
+    addToPath: true
+    architecture: 'x64'
+
 - task: NuGetToolInstaller@0
   inputs:
     versionSpec: '4.3.0'
