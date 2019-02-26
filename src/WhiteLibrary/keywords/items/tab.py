@@ -9,7 +9,7 @@ class TabKeywords(LibraryComponent):
         """
         Selects a tab page.
 
-        ``locator`` is the locator of the tab control item.
+        ``locator`` is the locator of the tab control item or item with type Tab.
         Locator syntax is explained in `Item locators`.
 
         ``title`` is the title of the tab page.
