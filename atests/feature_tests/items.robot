@@ -90,6 +90,14 @@ Verify Radio Buttons
     Select Radio Button    rb_ismo
     Verify Radio Button    rb_ismo    ${TRUE}
 
+Verify Radio Buttons By Item Reference
+    ${item}=    Get Item    rb_peke
+    Select Radio Button    ${item}
+    Verify Radio Button    rb_peke    ${TRUE}
+    ${item}=    Get Item    rb_ismo
+    Select Radio Button    ${item}
+    Verify Radio Button    rb_ismo    ${TRUE}
+
 Verify Get Radio Button State
     ${old_button_state}=    Get Radio Button State    rb_ismo
     Select Radio Button     rb_ismo
@@ -163,6 +171,16 @@ Right Click An Item
 Double Click An Item
     Double Click Item    eventIndicatorLabel
     Verify Label    eventIndicatorLabel    Double-clicked 1 times
+
+Double Click An Item With Item Reference
+    ${item}=    Get Item    eventIndicatorLabel
+    Double Click Item    ${item}
+    Verify Label    eventIndicatorLabel    Double-clicked 2 times
+
+Click An Item With Incorrect Item Reference
+    ${item}=    Get Item    eventIndicatorLabel
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Click Button    ${item}
+    Should Contain    ${error_msg}    Assumed that locator item is of type item_type
 
 Click Button By Pressing Special Keys
     Input Text To Textbox    txtA    1
