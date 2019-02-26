@@ -9,29 +9,66 @@ from TestStack.White.Factory import InitializeOption    # noqa: E402
 from robot.api import logger    # noqa: F401
 
 
+WINDOW_STRATEGIES = {"id": "ByAutomationId",
+                     "class_name": "ByClassName"}
+
+
 class WindowKeywords(LibraryComponent):
     @keyword
     def attach_window(self, locator):
-        """Attach WhiteLibrary to a window of already attached application.
+        """Attaches WhiteLibrary to a window.
 
+        ``locator`` is the locator of the window or a window object.
+
+        === Window locator syntax ===
+        Syntax for a window locator is ``prefix:value``.
+
+        When the locator syntax is used, the window is searched from the currently attached application.
         See `Attach Application By Id`, `Attach Application By Name` or
-        `Launch application` for more details.
+        `Launch application` for more details about attaching an application.
 
-        ``locator`` is the locator of the window. TODO: Documentation for window locators.
+        The following window locators are available:
+        | = Prefix =           | = Description =         |
+        | title (or no prefix) | Search by the exact window title. If no prefix is given, the window is searched by title by default. |
+        | id                   | Search by AutomationID. |
+        | class_name           | Search by class name.   |
+
+        === Window objects ===
+        A window can also be attached by directly passing the window object as the ``locator`` parameter value.
+
+        Example:
+        | @{windows} | `Get Application Windows` | |
+        | Attach Window | ${windows[1]} | # attach window at index 1 in window list |
         """
-        if isinstance(locator, Window):
-            self.state.window = locator
-        else:
-            self.state.window = self._get_window(locator)
+        self.state.window = self._get_window(locator)
 
     @keyword
-    def list_application_windows(self):
-        """Returns a list of all main windows in belonging to an application. Does not return modal windows."""
+    def close_window(self, locator=None):
+        """Closes a window.
+
+        ``locator`` is the locator of the window or a window object (optional).
+
+        If no ``locator`` value is given, the currently attached window is closed.
+        See `Attach Window` for details about window locators and attaching a window.
+        """
+        if locator is not None:
+            window = self._get_window(locator)
+            window.Close()
+        else:
+            self.state.window.Close()
+
+    @keyword
+    def get_application_windows(self):
+        """Returns a list of windows belonging to the currently attached application.
+
+        Assumes that an application is attached.
+        See `Attach Application By Name` and `Attach Application By Id` for details.
+        """
         return list(self.state.app.GetWindows())
 
     @keyword
-    def list_desktop_windows(self):
-        """Returns a list of all main windows on the desktop. Does not return modal windows."""
+    def get_desktop_windows(self):
+        """Returns a list of windows on the desktop."""
         return list(Desktop.Instance.Windows())
 
     @keyword
@@ -43,59 +80,50 @@ class WindowKeywords(LibraryComponent):
         self.state.window = self.state.window.ModalWindow(window_title)
 
     @keyword
-    def close_window(self, window_title=None):
-        """Closes a window.
+    def get_window_title(self):
+        """Returns title of the currently attached window.
 
-        ``window_title`` is the title of the window (optional).
-
-        If title is not given, the currently attached window is closed.
-        See `Attach Window` for more details.
+        Assumes that a window is attached. See `Attach Window` for details.
         """
-        if window_title is not None:
-            window = self._get_window(window_title)
-            window.Close()
-        else:
-            self.state.window.Close()
+        return self.state.window.Title
 
     @keyword
     def window_title_should_be(self, expected):
-        """"""
+        """Verifies that the title of the currently attached window is ``expected``.
+
+        Assumes that a window is attached. See `Attach Window` for details."""
         self.state._verify_string_value(expected, self.state.window.Title)
 
     @keyword
     def window_title_should_contain(self, expected):
-        """"""
+        """Verifies that the title of the currently attached window contains text ``expected``.
+
+        Assumes that a window is attached. See `Attach Window` for details."""
         self.state._contains_string_value(expected, self.state.window.Title)
 
-    @keyword
-    def get_window_title(self):
-        """Returns title of the currently attached window.
-
-        Assumes that a window is attached.
-        """
-        return self.state.window.Title
-
     def _get_window(self, locator):
+        if isinstance(locator, Window):
+            return locator
+        return self._get_window_by_locator(locator)
+
+    def _get_window_by_locator(self, locator):
         search_strategy, locator_value = self._parse_window_locator(locator)
         try:
             if search_strategy == "title":
                 return self.state.app.GetWindow(locator_value)
-            if search_strategy == "id":
-                search_criteria = getattr(SearchCriteria, "ByAutomationId")(locator_value)
-                return self.state.app.GetWindow(search_criteria, InitializeOption.NoCache)
-            if search_strategy == "class_name":
-                search_criteria = getattr(SearchCriteria, "ByClassName")(locator_value)
-                return self.state.app.GetWindow(search_criteria, InitializeOption.NoCache)
-            raise ValueError("'{}' is not a valid window locator prefix".format(search_strategy))
-        except AutomationException as error_msg:
-            error_msg = str(error_msg)
-            replaced_text = "after waiting for {0} seconds".format(CoreAppXmlConfiguration.Instance.FindWindowTimeout/1000)
-            raise AutomationException(error_msg.replace("after waiting for 30 seconds", replaced_text), "")
+            search_criteria = getattr(SearchCriteria, WINDOW_STRATEGIES[search_strategy])(locator_value)
+            return self.state.app.GetWindow(search_criteria, InitializeOption.NoCache)
+        except KeyError:
+            raise ValueError("'{}' is not a valid locator prefix for a window".format(search_strategy))
         except AttributeError as error_msg:
             error_msg = str(error_msg)
             if "NoneType" in error_msg:
                 error_msg = "No application attached."
             raise AttributeError(error_msg)
+        except AutomationException as error_msg:
+            error_msg = str(error_msg)
+            replaced_text = "after waiting for {0} seconds".format(CoreAppXmlConfiguration.Instance.FindWindowTimeout/1000)
+            raise AutomationException(error_msg.replace("after waiting for 30 seconds", replaced_text), "")
 
     def _parse_window_locator(self, locator):
         if ":" not in locator:
