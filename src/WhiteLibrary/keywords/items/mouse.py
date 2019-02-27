@@ -24,7 +24,7 @@ class MouseKeywords(LibraryComponent):
             logger.warn("Mouse Y position tried to be set outside of the screen. Wanted: " + str(y_target) + " result:" + str(Mouse.Instance.Location.Y), True)
 
     @keyword
-    def move_mouse(self, x, y):
+    def move_mouse(self, x, y):  # pylint: disable=no-self-use
         """Add (``x``, ``y``) to current mouse location."""
         current_location = Mouse.Instance.Location
         point = Point(int(x) + current_location.X, int(y) + current_location.Y)
@@ -143,7 +143,7 @@ class MouseKeywords(LibraryComponent):
         target_object = self.state._get_item_by_locator(locator2)
         Mouse.Instance.DragAndDrop(draggable_object, target_object)
 
-    def check_valid_x_y(self, x, y):
+    def check_valid_x_y(self, x, y):  # pylint: disable=no-self-use
         if (x is not None and y is None) or (x is None and y is not None):
             raise ValueError("MouseKeywords::check_valid_x_y: Either x or y value missing x=" + str(x) + " y=" + str(y))
 

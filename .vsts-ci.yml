@@ -79,6 +79,22 @@ steps:
     publishRunAttachments: true
     failTaskOnFailedTests: true
 
+- script: |
+    pylint src --exit-zero --output-format=pylint2junit.JunitReporter > pylint.xml
+  displayName: 'Running Pylint Static Analysis'
+  continueOnError: true
+
+- task: PublishTestResults@2
+  condition: always()
+  continueOnError: true
+  inputs:
+    testRunner: JUnit
+    testResultsFiles: pylint.xml
+    testResultsTitle: Static Analysis Results from Pylint
+    testRunTitle: pylint-results
+    publishRunAttachments: true
+    failTaskOnFailedTests: true
+
 - task: PublishBuildArtifacts@1
   condition: always()
   displayName: Publish Robot Framework logs and results
