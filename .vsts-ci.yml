@@ -64,8 +64,7 @@ steps:
     testResultsFiles: output/xunit.xml
 
 - script: |
-    flake8 --exit-zero --output flake8.txt
-    flake8_junit flake8.txt flake8.xml
+    flake8 --exit-zero --output flake8.xml --format=junit-xml
   displayName: 'Running Flake8 Static Analysis'
   continueOnError: true
 

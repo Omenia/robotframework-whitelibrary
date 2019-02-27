@@ -1,3 +1,3 @@
 flake8
-flake8-junit-report
+flake8-formatter-junit-xml
 -r requirements.txt
