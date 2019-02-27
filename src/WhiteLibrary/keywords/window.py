@@ -1,13 +1,11 @@
-from System.Windows import Automation
-from TestStack.White.Configuration import CoreAppXmlConfiguration
 from TestStack.White import AutomationException, Desktop
+from TestStack.White.Configuration import CoreAppXmlConfiguration
+from TestStack.White.Factory import InitializeOption  # noqa: E402
+from TestStack.White.UIItems.Finders import SearchCriteria  # noqa: E402
+from TestStack.White.UIItems.WindowItems import Window  # noqa: F401
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
-from TestStack.White.UIItems.WindowItems import Window   # noqa: F401
-from TestStack.White.UIItems.Finders import SearchCriteria    # noqa: E402
-from TestStack.White.Factory import InitializeOption    # noqa: E402
-from robot.api import logger    # noqa: F401
-
+from robot.api import logger  # noqa: F401
 
 WINDOW_STRATEGIES = {"id": "ByAutomationId",
                      "class_name": "ByClassName"}
@@ -122,11 +120,12 @@ class WindowKeywords(LibraryComponent):
             raise AttributeError(error_msg)
         except AutomationException as error_msg:
             error_msg = str(error_msg)
-            replaced_text = "after waiting for {0} seconds".format(CoreAppXmlConfiguration.Instance.FindWindowTimeout/1000)
+            replaced_text = "after waiting for {0} seconds".format(
+                CoreAppXmlConfiguration.Instance.FindWindowTimeout / 1000)
             raise AutomationException(error_msg.replace("after waiting for 30 seconds", replaced_text), "")
 
     def _parse_window_locator(self, locator):
         if ":" not in locator:
             locator = "title:" + locator
         idx = locator.index(":")
-        return locator[:idx], locator[idx+1:]
+        return locator[:idx], locator[(idx + 1):]
