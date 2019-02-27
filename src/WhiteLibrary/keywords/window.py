@@ -1,8 +1,9 @@
+from robot.api import logger    # noqa: F401 #pylint: disable=unused-import
 from TestStack.White.Configuration import CoreAppXmlConfiguration
 from TestStack.White import AutomationException
+from TestStack.White.UIItems.WindowItems import DisplayState   # noqa: F401
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
-from TestStack.White.UIItems.WindowItems import DisplayState   # noqa: F401
 
 
 class WindowKeywords(LibraryComponent):

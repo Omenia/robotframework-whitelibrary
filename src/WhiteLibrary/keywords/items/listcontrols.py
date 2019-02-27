@@ -1,4 +1,4 @@
-from robot.api import logger  # noqa:  F401
+from robot.api import logger  # noqa:  F401 #pylint: disable=unused-import
 from TestStack.White.UIItems.ListBoxItems import ComboBox, ListBox
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
