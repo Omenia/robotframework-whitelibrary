@@ -64,7 +64,8 @@ steps:
     testResultsFiles: output/xunit.xml
 
 - script: |
-    flake8 --exit-zero --output flake8.xml --format=junit-xml
+    mkdir sareports
+    flake8 --exit-zero --output sareports/flake8.xml --format=junit-xml
   displayName: 'Running Flake8 Static Analysis'
   continueOnError: true
 
@@ -73,14 +74,14 @@ steps:
   continueOnError: true
   inputs:
     testRunner: JUnit
-    testResultsFiles: flake8.xml
+    testResultsFiles: sareports/flake8.xml
     testResultsTitle: Static Analysis Results from Flake8
     testRunTitle: flake8-results
     publishRunAttachments: true
     failTaskOnFailedTests: true
 
 - script: |
-    pylint src --exit-zero --output-format=pylint2junit.JunitReporter > pylint.xml
+    pylint src --exit-zero --output-format=pylint2junit.JunitReporter > sareports/pylint.xml
   displayName: 'Running Pylint Static Analysis'
   continueOnError: true
 
@@ -89,7 +90,7 @@ steps:
   continueOnError: true
   inputs:
     testRunner: JUnit
-    testResultsFiles: pylint.xml
+    testResultsFiles: sareports/pylint.xml
     testResultsTitle: Static Analysis Results from Pylint
     testRunTitle: pylint-results
     publishRunAttachments: true
@@ -111,3 +112,11 @@ steps:
     ArtifactType: container
     TargetPath: ""
     ArtifactName: WhiteLibrary
+
+- task: PublishBuildArtifacts@1
+  displayName: Archive Static Analysis Reports
+  inputs:
+    PathToPublish: sareports
+    ArtifactType: container
+    TargetPath: ""
+    ArtifactName: StaticAnalysis
