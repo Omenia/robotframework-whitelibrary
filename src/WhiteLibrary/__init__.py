@@ -89,14 +89,14 @@ class WhiteLibrary(DynamicCore):
     since the old syntax may be *deprecated* in the future.
 
     === Item reference as a locator ===
-    Some times you may like to save your item to a variable and refer to the item using that variable. It is indeed possible, however there
-    are some details that need to be taken into account. You can use item reference to an item that is not in currently attached window or even
-    in currently attached application. The item reference completes the action in the other window but this does not attach that window. Thus
-    after referring to an item in another window you can normally continue using the attached window.
+    It is also possible to refer items with object reference. That is, you can save your item to a variable and refer to the item using that variable.
+    The need to do this can raise for instance when you search multiple items using a generic locator and pick one of the items for further action.
+    Item reference can complete the action in any window i.e. window the item is located does not need to be attached. However, this does not change
+    the attached window and the operation continues in the attached window after action on the referred item is complete.
 
     Example using item reference:
-    | ${item}= | `Get Item`         | myButton |
-    | `Click Button` | ${item}      | # clicks button by item reference |
+    | @{my_buttons}= | `Get Items`         | class_name: button |
+    | `Click Button` | ${my_buttons[2]}    | # clicks button by item reference |
 
     = Workflow example =
     | ***** Variables *****   | | | |
@@ -144,18 +144,15 @@ class WhiteLibrary(DynamicCore):
         DynamicCore.__init__(self, self.libraries)
 
     def _get_typed_item_by_locator(self, item_type, locator):
-        # Test if locator is already an UIItem
         if isinstance(locator, UIItem):
-            if isinstance(locator, item_type):
-                return locator
-            else:
+            if not isinstance(locator, item_type):
                 raise TypeError('Assumed that locator item is of type item_type')
+            return locator
         else:
             search_criteria = self._get_search_criteria(locator)
             return self.window.Get[item_type](search_criteria)
 
     def _get_item_by_locator(self, locator):
-        # Test if locator is already an UIItem
         if isinstance(locator, UIItem):
             return locator
         else:

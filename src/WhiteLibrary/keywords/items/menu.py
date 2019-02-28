@@ -9,7 +9,7 @@ class MenuKeywords(LibraryComponent):
     def verify_menu(self, locator, expected):
         """Verifies the text of a menu item.
 
-        ``locator`` is the locator of the menu item or item with type Menu.
+        ``locator`` is the locator of the menu item or Menu item object.
         Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected text of the menu item.
@@ -21,7 +21,7 @@ class MenuKeywords(LibraryComponent):
     def click_menu_button(self, locator, x_offset=0, y_offset=0):
         """Clicks a menu button.
 
-        ``locator`` is the locator of the menu button or item with type Menu.
+        ``locator`` is the locator of the menu button or Menu item object.
         Locator syntax is explained in `Item locators`.
 
         Optional arguments ``x_offset`` and ``y_offset`` can be used to fine tune
