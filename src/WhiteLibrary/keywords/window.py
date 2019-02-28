@@ -33,6 +33,12 @@ class WindowKeywords(LibraryComponent):
 
         === Window objects ===
         A window can also be attached by directly passing the window object as the ``locator`` parameter value.
+        This may be useful if the correct window cannot be found by using the window locator syntax.
+
+        When using a window object as the``locator`` parameter value, the window is attached even if it does not
+        belong to the currently attached application.
+        Note that when attaching a window that belongs to a different application than the currently attached one,
+        attaching the window does not affect what application is attached to the library.
 
         Example:
         | @{windows} | `Get Application Windows` | |
@@ -65,17 +71,9 @@ class WindowKeywords(LibraryComponent):
         return list(self.state.app.GetWindows())
 
     @keyword
-    def get_desktop_windows(self):
+    def get_desktop_windows(self):  # pylint: disable=no-self-use
         """Returns a list of windows on the desktop."""
         return list(Desktop.Instance.Windows())
-
-    @keyword
-    def select_modal_window(self, window_title):
-        """Select modal window.
-
-        ``window_title`` is the title of the window.
-        """
-        self.state.window = self.state.window.ModalWindow(window_title)
 
     @keyword
     def get_window_title(self):
@@ -86,76 +84,86 @@ class WindowKeywords(LibraryComponent):
         return self.state.window.Title
 
     @keyword
+    def select_modal_window(self, window_title):
+        """Attaches a modal window.
+
+        ``window_title`` is the title of the window.
+        """
+        self.state.window = self.state.window.ModalWindow(window_title)
+
+    @keyword
     def window_title_should_be(self, expected):
         """Verifies that the title of the currently attached window is ``expected``.
 
-        Assumes that a window is attached. See `Attach Window` for details."""
+        Assumes that a window is attached. See `Attach Window` for details.
+        """
         self.state._verify_string_value(expected, self.state.window.Title)
 
     @keyword
     def window_title_should_contain(self, expected):
         """Verifies that the title of the currently attached window contains text ``expected``.
 
-        Assumes that a window is attached. See `Attach Window` for details."""
+        Assumes that a window is attached. See `Attach Window` for details.
+        """
         self.state._contains_string_value(expected, self.state.window.Title)
 
     @keyword
-    def maximize_window(self, window_title=None):
+    def maximize_window(self, locator=None):
         """Maximizes a window.
 
-        ``window_title`` is the title of the window (optional).
+        ``locator`` is the locator of the window or a window object (optional).
 
-        If title is not given, the currently attached window is maximized.
-        See `Attach Window` for more details.
+        If no ``locator`` value is given, the currently attached window is maximized.
+        See `Attach Window` for details about attaching a window and window locator syntax.
         """
-        if window_title is not None:
-            window = self._get_window(window_title)
+        if locator is not None:
+            window = self._get_window(locator)
         else:
             window = self.state.window
         window.DisplayState = DisplayState.Maximized
 
     @keyword
-    def window_should_be_maximized(self, window_title=None):
-        """Verifies that window is maximized
+    def window_should_be_maximized(self, locator=None):
+        """Verifies that a window is maximized.
 
-        ``window_title`` is the title of the window (optional).
+        ``locator`` is the locator of the window or a window object (optional).
 
-        If title is not given, currently attached window status is queried.
-        See `Attach Window` for more details.
+        If no ``locator`` value is given, the status of the currently attached window is verified.
+        See `Attach Window` for details about attaching a window and window locator syntax.
         """
-        if window_title is not None:
-            window = self._get_window(window_title)
+        if locator is not None:
+            window = self._get_window(locator)
         else:
             window = self.state.window
         if window.DisplayState != DisplayState.Maximized:
             raise AssertionError("Expected window state to be maximized, but found {}".format(str(window.DisplayState)))
 
     @keyword
-    def minimize_window(self, window_title=None):
+    def minimize_window(self, locator=None):
         """Minimizes a window.
 
-        ``window_title`` is the title of the window (optional).
+        ``locator`` is the locator of the window or a window object (optional).
 
-        If title is not given, the currently attached window is minimized.
-        See `Attach Window` for more details.
+        If no ``locator`` value is given, the currently attached window is minimized.
+        See `Attach Window` for details about attaching a window and window locator syntax.
         """
-        if window_title is not None:
-            window = self._get_window(window_title)
+        if locator is not None:
+            window = self._get_window(locator)
         else:
             window = self.state.window
         window.DisplayState = DisplayState.Minimized
 
     @keyword
-    def window_should_be_minimized(self, window_title=None):
-        """Verifies that window is minimized
+    def window_should_be_minimized(self, locator=None):
+        """Verifies that a window is minimized.
 
-        ``window_title`` is the title of the window (optional).
+        ``locator`` is the locator of the window or a window object (optional).
 
-        If title is not given, currently attached window status is queried.
-        See `Attach Window` for more details.
+        If no ``locator`` value is given, the status of the currently attached window is verified.
+        See `Attach Window` for details about attaching a window and window locator syntax.
         """
-        if window_title is not None:
-            window = self._get_window(window_title)
+        if locator is not None:
+            window = self._get_window(locator)
         else:
             window = self.state.window
         if window.DisplayState != DisplayState.Minimized:
@@ -165,10 +173,10 @@ class WindowKeywords(LibraryComponent):
     def restore_window(self, window_title=None):
         """Restores a window.
 
-        ``window_title`` is the title of the window (optional).
+        ``locator`` is the locator of the window or a window object (optional).
 
-        If title is not given, the currently attached window is restored.
-        See `Attach Window` for more details.
+        If no ``locator`` value is given, the currently attached window is restored.
+        See `Attach Window` for details about attaching a window and window locator syntax.
         """
         if window_title is not None:
             window = self._get_window(window_title)
@@ -178,9 +186,9 @@ class WindowKeywords(LibraryComponent):
 
     @keyword
     def window_should_be_restored(self, window_title=None):
-        """Verifies that window is restored
+        """Verifies that a window is restored.
 
-        ``window_title`` is the title of the window (optional).
+        ``locator`` is the locator of the window or a window object (optional).
 
         If title is not given, currently attached window status is queried.
         See `Attach Window` for more details.
@@ -217,7 +225,7 @@ class WindowKeywords(LibraryComponent):
                 CoreAppXmlConfiguration.Instance.FindWindowTimeout / 1000)
             raise AutomationException(error_msg.replace("after waiting for 30 seconds", replaced_text), "")
 
-    def _parse_window_locator(self, locator):
+    def _parse_window_locator(self, locator):  # pylint: disable=no-self-use
         if ":" not in locator:
             locator = "title:" + locator
         idx = locator.index(":")
