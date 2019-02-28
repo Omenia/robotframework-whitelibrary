@@ -9,7 +9,7 @@ class ButtonKeywords(LibraryComponent):
     def click_button(self, locator, x_offset=0, y_offset=0):
         """Clicks a button.
 
-        ``locator`` is the locator of the button or item with type Button.
+        ``locator`` is the locator of the button or Button item object.
 
         Locator syntax is explained in `Item locators`.
 
@@ -23,7 +23,7 @@ class ButtonKeywords(LibraryComponent):
     def button_text_should_be(self, locator, expected_text, case_sensitive=True):
         """Verifies exact text in a button.
 
-        ``locator`` is the locator of the button or item with type Button.
+        ``locator`` is the locator of the button or Button item object.
         Locator syntax is explained in `Item locators`.
 
         ``expected_text`` is the expected button text.
@@ -37,7 +37,7 @@ class ButtonKeywords(LibraryComponent):
     def button_text_should_contain(self, locator, expected_text, case_sensitive=True):
         """Verifies expected text is found in a button.
 
-        ``locator`` is the locator of the button or item with type Button.
+        ``locator`` is the locator of the button or Button item object.
         Locator syntax is explained in `Item locators`.
 
         ``expected_text`` is the expected button text.
@@ -53,7 +53,7 @@ class ButtonKeywords(LibraryComponent):
 
         Verifies text in a button.
 
-        ``locator`` is the locator of the button or item with type Button.
+        ``locator`` is the locator of the button or Button item object.
 
         ``expected`` is the expected button text.
         """
@@ -64,7 +64,7 @@ class ButtonKeywords(LibraryComponent):
     def select_radio_button(self, locator):
         """Selects a radio button.
 
-        ``locator`` is the locator of the radio button or item with type RadioButton.
+        ``locator`` is the locator of the radio button or RadioButton item object.
         Locator syntax is explained in `Item locators`.
         """
         radiobutton = self.state._get_typed_item_by_locator(RadioButton, locator)
@@ -74,7 +74,7 @@ class ButtonKeywords(LibraryComponent):
     def verify_radio_button(self, locator, expected):
         """Verifies state of a radio button.
 
-        ``locator`` is the locator of the radio button or item with type RadioButton.
+        ``locator`` is the locator of the radio button or RadioButton item object.
         Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected state (True/False).
@@ -88,7 +88,7 @@ class ButtonKeywords(LibraryComponent):
 
         Returns `True` if the radio button is selected, `False` if not.
 
-        ``locator`` is the locator of the radio button or item with type RadioButton.
+        ``locator`` is the locator of the radio button or RadioButton item object.
         Locator syntax is explained in `Item locators`.
         """
         radiobutton = self.state._get_typed_item_by_locator(RadioButton, locator)
@@ -98,7 +98,7 @@ class ButtonKeywords(LibraryComponent):
     def toggle_check_box(self, locator):
         """Toggles a check box.
 
-        ``locator`` is the locator of the check box or item with type CheckBox.
+        ``locator`` is the locator of the check box or CheckBox item object.
         Locator syntax is explained in `Item locators`.
         """
         checkbox = self.state._get_typed_item_by_locator(CheckBox, locator)
@@ -108,7 +108,7 @@ class ButtonKeywords(LibraryComponent):
     def verify_check_box(self, locator, expected):
         """Verifies state of a check box.
 
-        ``locator`` is the locator of the check box or item with type CheckBox.
+        ``locator`` is the locator of the check box or CheckBox item object.
         Locator syntax is explained in `Item locators`.
 
         ``expected`` is the expected state (True/False).
@@ -122,7 +122,7 @@ class ButtonKeywords(LibraryComponent):
 
         Returns `True` if the check box is selected, `False` if not.
 
-        ``locator`` is the locator of the check box or item with type CheckBox.
+        ``locator`` is the locator of the check box or CheckBox item object.
         Locator syntax is explained in `Item locators`.
         """
         checkbox = self.state._get_typed_item_by_locator(CheckBox, locator)

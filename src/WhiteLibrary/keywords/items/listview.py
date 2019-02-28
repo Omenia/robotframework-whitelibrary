@@ -9,7 +9,7 @@ class ListViewKeywords(LibraryComponent):
     def double_click_listview_cell(self, locator, column_name, row_index, x_offset=0, y_offset=0):
         """Double clicks a listview cell.
 
-        ``locator`` is the locator of the listview or item with type ListView.
+        ``locator`` is the locator of the listview or ListView item object.
         Locator syntax is explained in `Item locators`.
 
         ``column_name`` is the name of the column.
@@ -29,7 +29,7 @@ class ListViewKeywords(LibraryComponent):
     def double_click_listview_cell_by_index(self, locator, row_index, column_index, x_offset=0, y_offset=0):
         """Double clicks a listview cell at index.
 
-        ``locator`` is the locator of the listview or item with type ListView.
+        ``locator`` is the locator of the listview or ListView item object.
         Locator syntax is explained in `Item locators`.
 
         ``row_index`` is the zero-based row index.
@@ -49,7 +49,7 @@ class ListViewKeywords(LibraryComponent):
     def double_click_listview_row(self, locator, column_name, cell_text, x_offset=0, y_offset=0):
         """Double clicks a listview row.
 
-        ``locator`` is the locator of the listview or item with type ListView.
+        ``locator`` is the locator of the listview or ListView item object.
         Locator syntax is explained in `Item locators`.
 
         ``column_name`` and ``cell_text`` define the row. Row is the first matching row where text in column
@@ -68,7 +68,7 @@ class ListViewKeywords(LibraryComponent):
     def double_click_listview_row_by_index(self, locator, row_index, x_offset=0, y_offset=0):
         """Double clicks a listview row at index.
 
-        ``locator`` is the locator of the listview or item with type ListView.
+        ``locator`` is the locator of the listview or ListView item object.
         Locator syntax is explained in `Item locators`.
 
         ``row_index`` is the zero-based row index.

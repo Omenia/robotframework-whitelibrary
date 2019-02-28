@@ -8,7 +8,7 @@ class TreeKeywords(LibraryComponent):
     def select_tree_node(self, locator, *node_path):
         """Selects a tree node.
 
-        ``locator`` is the locator of the tree or item with type Tree.
+        ``locator`` is the locator of the tree or Tree item object.
         Locator syntax is explained in `Item locators`.
 
         ``node_path`` is the path the to node to select.
@@ -34,7 +34,7 @@ class TreeKeywords(LibraryComponent):
     def expand_tree_node(self, locator, *node_path):
         """Expands a tree node.
 
-        ``locator`` is the locator of the tree or item with type Tree.
+        ``locator`` is the locator of the tree or Tree item object.
         Locator syntax is explained in `Item locators`.
 
         ``node_path`` is the path the to node to expand.
@@ -48,7 +48,7 @@ class TreeKeywords(LibraryComponent):
     def double_click_tree_node(self, locator, *node_path):
         """Double-clicks a tree node.
 
-        ``locator`` is the locator of the tree or item with type Tree.
+        ``locator`` is the locator of the tree or Tree item object.
         Locator syntax is explained in `Item locators`.
 
         ``node_path`` is the path the to node to double-click.
@@ -62,7 +62,7 @@ class TreeKeywords(LibraryComponent):
     def right_click_tree_node(self, locator, *node_path):
         """Right-clicks a tree node.
 
-        ``locator`` is the locator of the tree or item with type Tree.
+        ``locator`` is the locator of the tree or Tree item object.
         Locator syntax is explained in `Item locators`.
 
         ``node_path`` is the path the to node to right-click.
