@@ -33,6 +33,31 @@ Close Nonexisting Window
     Should Contain    ${error_msg}    after waiting for 2.0 seconds
     Set White Find Window Timeout    30 s
 
+Minimize Current Window
+    Attach Application By Id    ${test application id}
+    Attach Main Window
+    Minimize Window
+    Window Should Be Minimized    ${TEST APPLICATION WINDOW TITLE}
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Window Should Be Restored    ${TEST APPLICATION WINDOW TITLE}
+    Should Contain    ${error_msg}    Expected window state to be restored
+
+Maximize Current Window
+    Attach Application By Id    ${test application id}
+    Attach Main Window
+    Maximize Window
+    Window Should Be Maximized
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Window Should Be Minimized
+    Should Contain    ${error_msg}    Expected window state to be minimized
+
+Restore Current Window
+    Attach Application By Id    ${test application id}
+    Attach Main Window
+    Maximize Window
+    Restore Window
+    Window Should Be Restored
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Window Should Be Maximized
+    Should Contain    ${error_msg}    Expected window state to be maximized
+
 *** Keywords ***
 Start Test Application
     ${handle} =    Start Process    ${TEST APPLICATION}
