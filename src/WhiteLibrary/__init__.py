@@ -202,6 +202,7 @@ class WhiteLibrary(DynamicCore):
                 self.screenshooter.take_desktop_screenshot()
 
     def _contains_string_value(self, expected, actual, case_sensitive=True):  # pylint: disable=no-self-use
+        self._check_boolean(case_sensitive)
         expected_value = expected if not case_sensitive else expected.upper()
         actual_value = actual if not case_sensitive else actual.upper()
 
@@ -209,6 +210,7 @@ class WhiteLibrary(DynamicCore):
             raise AssertionError("Expected value {} not found in {}".format(expected, actual))
 
     def _verify_string_value(self, expected, actual, case_sensitive=True):  # pylint: disable=no-self-use
+        self._check_boolean(case_sensitive)
         expected_value = expected if not case_sensitive else expected.upper()
         actual_value = actual if not case_sensitive else actual.upper()
 
@@ -218,3 +220,11 @@ class WhiteLibrary(DynamicCore):
     def _verify_value(self, expected, actual):  # pylint: disable=no-self-use
         if expected != actual:
             raise AssertionError("Expected value {}, but found {}".format(expected, actual))
+
+    def _check_boolean(self, value):  # pylint: disable=no-self-use
+        if value.__class__ == bool:
+            return True
+        elif str(value).lower() in ["true", "false"]:
+            return True
+        else:
+            raise AssertionError("Expected True or False, got: {0}".format(str(value)))

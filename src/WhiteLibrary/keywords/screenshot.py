@@ -37,10 +37,13 @@ class ScreenshotKeywords(LibraryComponent):
 
         ``status`` is the desired state (True/False) of automatic creation.
         """
+
         if str(status).lower() == 'false':
             self.state.screenshots_enabled = False
-        else:
+        elif str(status).lower() == "true":
             self.state.screenshots_enabled = True
+        else:
+            raise AssertionError("Expected True or False, got: " + str(status))
 
     @property
     def _log_directory(self):
