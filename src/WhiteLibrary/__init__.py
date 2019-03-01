@@ -148,16 +148,14 @@ class WhiteLibrary(DynamicCore):
             if not isinstance(locator, item_type):
                 raise TypeError('Assumed that locator item is of type item_type')
             return locator
-        else:
-            search_criteria = self._get_search_criteria(locator)
-            return self.window.Get[item_type](search_criteria)
+        search_criteria = self._get_search_criteria(locator)
+        return self.window.Get[item_type](search_criteria)
 
     def _get_item_by_locator(self, locator):
         if isinstance(locator, UIItem):
             return locator
-        else:
-            search_criteria = self._get_search_criteria(locator)
-            return self.window.Get(search_criteria)
+        search_criteria = self._get_search_criteria(locator)
+        return self.window.Get(search_criteria)
 
     def _get_multiple_items_by_locator(self, locator):
         search_criteria = self._get_search_criteria(locator)
