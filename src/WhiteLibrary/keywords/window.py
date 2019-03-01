@@ -222,7 +222,7 @@ class WindowKeywords(LibraryComponent):
         except AutomationException as error_msg:
             error_msg = str(error_msg)
             replaced_text = "after waiting for {0} seconds".format(
-                CoreAppXmlConfiguration.Instance.FindWindowTimeout / 1000)
+                CoreAppXmlConfiguration.Instance.FindWindowTimeout / 1000.0)
             raise AutomationException(error_msg.replace("after waiting for 30 seconds", replaced_text), "")
 
     def _parse_window_locator(self, locator):  # pylint: disable=no-self-use
