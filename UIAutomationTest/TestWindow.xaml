@@ -1,7 +1,8 @@
 ﻿<Window x:Class="UIAutomationTest.TestWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="UI Automation Test Window" Height="750" WindowStartupLocation="CenterScreen">
+    Title="UI Automation Test Window" Height="750" WindowStartupLocation="CenterScreen"
+    AutomationProperties.AutomationId="mainWindow">
     <Window.Resources>
         <XmlDataProvider x:Key="MockList" XPath="/MockObjects/*" >
             <x:XData>
@@ -229,9 +230,8 @@
                                     MouseEnter="eventLabelMouseEnter"
                                     MouseLeave="eventLabelMouseLeave">
                             </Label>
-                            <Button  Content="Test button" Name="test_button" HorizontalAlignment="Left" Margin="0,5,0,5" Width="75" Grid.Column="3"
-                                    Click="eventTestButtonLeftClick"
-                                    MouseDoubleClick="eventTestButtonDoubleClick"
+                            <Button  Content="New window" Name="window_button" HorizontalAlignment="Left" Margin="0,5,0,5" Width="75" Grid.Column="3"
+                                    Click="eventWindowButtonLeftClick"
                                     >
                             </Button>
                         </Grid>

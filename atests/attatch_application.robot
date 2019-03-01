@@ -22,7 +22,7 @@ Attach Nonexisting Window
     Attach Application By Id    ${test application id}
     Set White Find Window Timeout    2 s
     ${status}    ${error_msg}    Run Keyword And Ignore Error    Attach Window    Bogus Window
-    Should Contain    ${error_msg}    after waiting for 2 seconds
+    Should Contain    ${error_msg}    after waiting for 2.0 seconds
     Set White Find Window Timeout    30 s
 
 Close Nonexisting Window
@@ -30,7 +30,7 @@ Close Nonexisting Window
     Set White Find Window Timeout    2 s
     Attach Main Window
     ${status}    ${error_msg}    Run Keyword And Ignore Error    Close Window    Bogus Window
-    Should Contain    ${error_msg}    after waiting for 2 seconds
+    Should Contain    ${error_msg}    after waiting for 2.0 seconds
     Set White Find Window Timeout    30 s
 
 Minimize Current Window

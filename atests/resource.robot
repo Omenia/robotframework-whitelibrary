@@ -6,7 +6,6 @@ Library    WhiteLibrary
 ${TEST APPLICATION}      ${EXECDIR}${/}UIAutomationTest${/}bin${/}Debug${/}UIAutomationTest.exe
 ${TEST APPLICATION NAME}    UIAutomationTest
 ${TEST APPLICATION WINDOW TITLE}    UI Automation Test Window
-
 ${TEST WHITE APPLICATION}      ${EXECDIR}${/}WhiteTestApp${/}WpfTestApplication.exe
 ${TEST WHITE APPLICATION NAME}    MainWindow
 
@@ -17,7 +16,7 @@ Launch Application For Test
     [Arguments]    ${args}=${EMPTY}
     Set Log Level    Info
     Launch Application    ${TEST APPLICATION}    ${args}
-    Attach Window    ${TEST APPLICATION WINDOW TITLE}
+    Attach Main Window
 
 Attach Main Window
     Attach Window    ${TEST APPLICATION WINDOW TITLE}
