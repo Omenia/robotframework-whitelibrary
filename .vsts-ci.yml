@@ -132,3 +132,11 @@ steps:
     ArtifactType: container
     TargetPath: ""
     ArtifactName: Wheel
+
+- task: TwineAuthenticate@0
+  inputs:
+    externalFeeds: 'TestPypiET'
+
+- script: |
+    twine upload -r TestPypiET --config-file $(PYPIRC_PATH) dist/*
+  displayName: 'Upload packages to PyPI'
