@@ -3,6 +3,7 @@ extension-pkg-whitelist=clr
 ignore=.git, __pycache__, docs, .github, packages, venv, build, *.egg-info, dist, WhiteTestApp, UIAutomationTest, deploy, robotlibcore.py
 persistent=no
 unsafe-load-any-extension=no
+load-plugijs=pylint_junit
 
 [MESSAGES CONTROL]
 confidence=

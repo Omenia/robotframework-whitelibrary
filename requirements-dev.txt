@@ -1,6 +1,5 @@
 flake8
 flake8-formatter-junit-xml
-astroid>=2.2.0; python_version >= '3.4'
 pylint>=2.3.0; python_version >= '3.4'
-git+https://github.com/rasjani/pylint2junit.git@master; python_version >= '3.4'
+git+https://github.com/rasjani/pylint-junit.git@master; python_version >= '3.4'
 -r requirements.txt
