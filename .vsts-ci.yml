@@ -105,13 +105,13 @@ steps:
     TargetPath: ""
     ArtifactName: Robot Test results
 
-- task: PublishBuildArtifacts@1
-  displayName: Publish WhiteLibrary
-  inputs:
-    PathToPublish: $(deployment)
-    ArtifactType: container
-    TargetPath: ""
-    ArtifactName: WhiteLibrary
+#- task: PublishBuildArtifacts@1
+#  displayName: Publish WhiteLibrary
+#  inputs:
+#    PathToPublish: $(deployment)
+#    ArtifactType: container
+#    TargetPath: ""
+#    ArtifactName: WhiteLibrary
 
 - task: PublishBuildArtifacts@1
   displayName: Archive Static Analysis Reports
@@ -120,3 +120,15 @@ steps:
     ArtifactType: container
     TargetPath: ""
     ArtifactName: StaticAnalysis
+
+- script: |
+    python setup.py bdist_wheel
+  displayName: 'Build Python package'
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish package
+  inputs:
+    PathToPublish: dist
+    ArtifactType: container
+    TargetPath: ""
+    ArtifactName: Wheel
