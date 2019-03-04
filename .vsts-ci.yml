@@ -81,7 +81,7 @@ steps:
     failTaskOnFailedTests: true
 
 - script: |
-    pylint src --exit-zero --output-format=pylint2junit.JunitReporter > sareports/pylint.xml
+    pylint src --exit-zero --output-format=junit > sareports/pylint.xml
   displayName: 'Running Pylint Static Analysis'
   continueOnError: true
 
