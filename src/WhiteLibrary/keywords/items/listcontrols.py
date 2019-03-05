@@ -1,5 +1,6 @@
 from robot.api import logger  # noqa:  F401 #pylint: disable=unused-import
 from TestStack.White.UIItems.ListBoxItems import ComboBox, ListBox
+from TestStack.White.UIItems import UIActionException
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 
@@ -44,6 +45,44 @@ class ListKeywords(LibraryComponent):
         if listbox.SelectedItemText != expected:
             raise AssertionError("Expected listbox selection to be " +   # noqa: W504
                                  expected + ", was " + listbox.SelectedItemText)
+
+    @keyword
+    def listbox_should_contain(self, locator, expected):
+        """Checks that listbox contains an element.
+
+        Fails if the listbox does not contain expected element.
+
+        ``locator`` is the locator of the listbox or ListBox item object.
+        Locator syntax is explained in `Item locators`.
+
+        ``expected`` is the expected element text.
+        """
+        listbox = self.state._get_typed_item_by_locator(ListBox, locator)
+        listbox_items = listbox.Items
+        try:
+            listbox_items.Item(str(expected))
+        except UIActionException:
+            raise UIActionException("ListBox did not contain {0}".format(str(expected)))
+        return True
+
+    @keyword
+    def listbox_should_not_contain(self, locator, expected):
+        """Checks that listbox does not contain an element.
+
+        Fails if the listbox does contain expected element.
+
+        ``locator`` is the locator of the listbox or ListBox item object.
+        Locator syntax is explained in `Item locators`.
+
+        ``expected`` is the expected element text.
+        """
+        listbox = self.state._get_typed_item_by_locator(ListBox, locator)
+        listbox_items = listbox.Items
+        try:
+            listbox_items.Item(str(expected))
+        except UIActionException:
+            return True
+        raise UIActionException("ListBox contains {0}".format(str(expected)))
 
     @keyword
     def select_combobox_value(self, locator, value):
@@ -93,3 +132,41 @@ class ListKeywords(LibraryComponent):
         """
         combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
         self.state._verify_value(expected, combobox.EditableText)
+
+    @keyword
+    def combobox_should_contain(self, locator, expected):
+        """Checks that combobox contains an element.
+
+        Fails if the combobox does not contain expected element.
+
+        ``locator`` is the locator of the combobox or ComboBox item object.
+        Locator syntax is explained in `Item locators`.
+
+        ``expected`` is the expected element text.
+        """
+        combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
+        combobox_items = combobox.Items
+        try:
+            combobox_items.Item(str(expected))
+        except UIActionException:
+            raise UIActionException("ComboBox did not contain {0}".format(str(expected)))
+        return True
+
+    @keyword
+    def combobox_should_not_contain(self, locator, expected):
+        """Checks that combobox does not contain an element.
+
+        Fails if the combobox does contain expected element.
+
+        ``locator`` is the locator of the combobox or ComboBox item object.
+        Locator syntax is explained in `Item locators`.
+
+        ``expected`` is the expected element text.
+        """
+        combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
+        combobox_items = combobox.Items
+        try:
+            combobox_items.Item(str(expected))
+        except UIActionException:
+            return True
+        raise UIActionException("ComboBox contains {0}".format(str(expected)))
