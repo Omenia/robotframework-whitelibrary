@@ -1,6 +1,7 @@
 # pylint: disable=invalid-name
 import os
 from robot.api import logger    # noqa: F401 #pylint: disable=unused-import
+from robot.utils import is_truthy
 import clr
 DLL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin', 'TestStack.White.dll')
 clr.AddReference('System')
@@ -162,10 +163,9 @@ class WhiteLibrary(DynamicCore):
         return self.window.GetMultiple(search_criteria)
 
     def _verify_item_is_enabled(self, locator):
-        search_criteria = self._get_search_criteria(locator)
-        if self.window.Get(search_criteria).Enabled:
-            return True
-        raise AssertionError("Expected enabled item but found disabled")
+        item = self._get_item_by_locator(locator)
+        if not item.Enabled:
+            raise AssertionError("Expected enabled item but found disabled in {0}".format(str(item)))
 
     def _verify_item_is_disabled(self, locator):
         search_criteria = self._get_search_criteria(locator)
@@ -214,28 +214,19 @@ class WhiteLibrary(DynamicCore):
                 self.screenshooter.take_desktop_screenshot()
 
     def _contains_string_value(self, expected, actual, case_sensitive=True):  # pylint: disable=no-self-use
-        self._check_boolean(case_sensitive)
-        expected_value = expected if not case_sensitive else expected.upper()
-        actual_value = actual if not case_sensitive else actual.upper()
-
+        case_sensitive = is_truthy(case_sensitive)
+        expected_value = expected if case_sensitive else expected.upper()
+        actual_value = actual if case_sensitive else actual.upper()
         if expected_value not in actual_value:
             raise AssertionError("Expected value {} not found in {}".format(expected, actual))
 
     def _verify_string_value(self, expected, actual, case_sensitive=True):  # pylint: disable=no-self-use
-        self._check_boolean(case_sensitive)
-        expected_value = expected if not case_sensitive else expected.upper()
-        actual_value = actual if not case_sensitive else actual.upper()
-
+        case_sensitive = is_truthy(case_sensitive)
+        expected_value = expected if case_sensitive else expected.upper()
+        actual_value = actual if case_sensitive else actual.upper()
         if expected_value != actual_value:
             raise AssertionError("Expected value {}, but found {}".format(expected, actual))
 
     def _verify_value(self, expected, actual):  # pylint: disable=no-self-use
         if expected != actual:
             raise AssertionError("Expected value {}, but found {}".format(expected, actual))
-
-    def _check_boolean(self, value):  # pylint: disable=no-self-use
-        if value.__class__ == bool:
-            return True
-        if str(value).lower() in ["true", "false"]:
-            return True
-        raise AssertionError("Expected True or False, got: {0}".format(str(value)))

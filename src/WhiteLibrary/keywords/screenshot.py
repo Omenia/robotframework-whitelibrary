@@ -1,7 +1,7 @@
 import os
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
-from robot.utils import get_link_path
+from robot.utils import get_link_path, is_truthy
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword, PY2
 
@@ -38,12 +38,11 @@ class ScreenshotKeywords(LibraryComponent):
         ``status`` is the desired state (True/False) of automatic creation.
         """
 
-        if str(status).lower() == 'false':
-            self.state.screenshots_enabled = False
-        elif str(status).lower() == "true":
+        status = is_truthy(status)
+        if status:
             self.state.screenshots_enabled = True
         else:
-            raise AssertionError("Expected True or False, got: " + str(status))
+            self.state.screenshots_enabled = False
 
     @property
     def _log_directory(self):
