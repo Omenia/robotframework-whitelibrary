@@ -28,7 +28,7 @@ Attach Application Window By Id
 Attach Application Window By ClassName
     Attach Window    UI Automation Test Window
     Attach Window    class_name:NavigationWindow
-    Window Title Should Contain    Test Title -
+    Window Title Should Contain    Test title -
 
 Attach Window Object
     Attach Window    UI Automation Test Window
