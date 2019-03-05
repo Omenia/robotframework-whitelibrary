@@ -135,8 +135,8 @@ steps:
 
 - task: TwineAuthenticate@0
   inputs:
-    externalFeeds: 'TestPypiET'
+    externalFeeds: 'TestPypi'
 
 - script: |
-    twine upload -r TestPypiET --config-file $(PYPIRC_PATH) dist/*
+    twine upload -r TestPypi --config-file $(PYPIRC_PATH) dist/*
   displayName: 'Upload packages to PyPI'
