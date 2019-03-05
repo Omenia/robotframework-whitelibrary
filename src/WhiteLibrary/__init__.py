@@ -236,6 +236,6 @@ class WhiteLibrary(DynamicCore):
     def _check_boolean(self, value):  # pylint: disable=no-self-use
         if value.__class__ == bool:
             return True
-        elif str(value).lower() in ["true", "false"]:
+        if str(value).lower() in ["true", "false"]:
             return True
         raise AssertionError("Expected True or False, got: {0}".format(str(value)))
