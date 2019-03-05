@@ -1,6 +1,5 @@
-# pylint: disable=invalid-name
 import os
-from robot.api import logger    # noqa: F401 #pylint: disable=unused-import
+from robot.api import logger    # noqa: F401
 import clr
 DLL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin', 'TestStack.White.dll')
 clr.AddReference('System')
@@ -121,7 +120,7 @@ class WhiteLibrary(DynamicCore):
         self.app = None
         self.window = None
         self.screenshooter = None
-        self.ROBOT_LIBRARY_LISTENER = self  # pylint: disable=invalid-name
+        self.ROBOT_LIBRARY_LISTENER = self
         self.screenshot_type = 'desktop'
         self.screenshots_enabled = True
         self.libraries = [ApplicationKeywords(self),
@@ -189,32 +188,32 @@ class WhiteLibrary(DynamicCore):
         idx = self._get_locator_delimiter_index(locator)
         return locator[:idx], locator[idx + 1:]
 
-    def _get_locator_delimiter_index(self, locator):  # pylint: disable=no-self-use
+    def _get_locator_delimiter_index(self, locator):
         if "=" not in locator:
             return locator.index(":")
         if ":" not in locator:
             return locator.index("=")
         return min(locator.index(":"), locator.index("="))
 
-    def _end_keyword(self, name, attrs):  # pylint: disable=unused-argument
+    def _end_keyword(self, name, attrs):
         if attrs['status'] == 'FAIL':
             if self.screenshot_type == 'desktop' and self.screenshots_enabled:
                 self.screenshooter.take_desktop_screenshot()
 
-    def _contains_string_value(self, expected, actual, case_sensitive=True):  # pylint: disable=no-self-use
+    def _contains_string_value(self, expected, actual, case_sensitive=True):
         expected_value = expected if not case_sensitive else expected.upper()
         actual_value = actual if not case_sensitive else actual.upper()
 
         if expected_value not in actual_value:
             raise AssertionError("Expected value {} not found in {}".format(expected, actual))
 
-    def _verify_string_value(self, expected, actual, case_sensitive=True):  # pylint: disable=no-self-use
+    def _verify_string_value(self, expected, actual, case_sensitive=True):
         expected_value = expected if not case_sensitive else expected.upper()
         actual_value = actual if not case_sensitive else actual.upper()
 
         if expected_value != actual_value:
             raise AssertionError("Expected value {}, but found {}".format(expected, actual))
 
-    def _verify_value(self, expected, actual):  # pylint: disable=no-self-use
+    def _verify_value(self, expected, actual):
         if expected != actual:
             raise AssertionError("Expected value {}, but found {}".format(expected, actual))
