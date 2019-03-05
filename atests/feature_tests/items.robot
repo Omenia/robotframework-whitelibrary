@@ -236,6 +236,21 @@ Popup menu with subitems
     Click Button    text=OK
     [Teardown]    Select Tab Page    tabControl    Tab1
 
+Button Is Enabled
+    [Tags]    under_test
+    [Setup]    Setup for Tab 2 Tests
+    Item Should Be Enabled    enabled_disabled
+    Run Keyword And Expect Error    Expected disabled item but found enabled    Item Should Be Disabled    enabled_disabled
+    [Teardown]    Select Tab Page    tabControl    Tab1
+
+Button Is Disabled
+    [Tags]    under_test
+    [Setup]    Setup for Tab 2 Tests
+    Click Button    enabled_disabled
+    Item Should Be Disabled    enabled_disabled
+    Run Keyword And Expect Error    Expected enabled item but found disabled    Item Should Be Enabled    enabled_disabled
+    [Teardown]    Select Tab Page    tabControl    Tab1
+
 *** Keywords ***
 Calculate ${num1} ${operator} ${num2} Equals ${result}
     Input Text To Textbox    txtA    ${num1}

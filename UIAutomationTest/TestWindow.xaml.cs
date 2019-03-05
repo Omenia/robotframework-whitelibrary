@@ -210,7 +210,12 @@ namespace UIAutomationTest
             await TaskEx.Delay(5000);
             selectionIndicatorLabel.Content = "Slow alert occurred";
         }
-        
+
+        private void disableButton(object sender, RoutedEventArgs e)
+        {
+            enabled_disabled.IsEnabled = false;
+        }
+
         private void eventLabelRightDown(object sender, RoutedEventArgs e)
         {
             labelEvent(sender, e, "right button down");

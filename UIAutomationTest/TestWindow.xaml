@@ -216,6 +216,7 @@
                                 <ColumnDefinition Width="100"></ColumnDefinition>
                                 <ColumnDefinition Width="100"></ColumnDefinition>
                                 <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
                                 <ColumnDefinition Width="100*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Button Content="Fast alert" Name="alert1" HorizontalAlignment="Left" Margin="10,5,0,5" Width="75" Click="alertFast" Grid.Column="0">
@@ -233,6 +234,8 @@
                             <Button  Content="New window" Name="window_button" HorizontalAlignment="Left" Margin="0,5,0,5" Width="75" Grid.Column="3"
                                     Click="eventWindowButtonLeftClick"
                                     >
+                            </Button>
+                            <Button Content="Disable me" Name="enabled_disabled" HorizontalAlignment="Left" Margin="0,5,0,5" Width="85" Click="disableButton" Grid.Column="4">
                             </Button>
                         </Grid>
                         <DockPanel>
