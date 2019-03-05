@@ -1,2 +1,2 @@
 robotframework
-pythonnet
+pythonnet; sys.platform == 'win32'
