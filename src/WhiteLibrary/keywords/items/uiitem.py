@@ -60,3 +60,21 @@ class UiItemKeywords(LibraryComponent):
         Locator syntax is explained in `Item locators`.
         """
         return self.state._get_item_by_locator(locator)
+
+    @keyword
+    def item_should_be_enabled(self, locator):
+        """Verifies the item is enabled.
+
+        ``locator`` is the locator of the item.
+        Locator syntax is explained in `Item locators`.
+        """
+        return self.state._verify_item_is_enabled(locator)
+
+    @keyword
+    def item_should_be_disabled(self, locator):
+        """Verifies the item is disabled.
+
+        ``locator`` is the locator of the item.
+        Locator syntax is explained in `Item locators`.
+        """
+        return self.state._verify_item_is_disabled(locator)

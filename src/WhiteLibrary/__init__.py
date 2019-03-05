@@ -161,6 +161,18 @@ class WhiteLibrary(DynamicCore):
         search_criteria = self._get_search_criteria(locator)
         return self.window.GetMultiple(search_criteria)
 
+    def _verify_item_is_enabled(self, locator):
+        search_criteria = self._get_search_criteria(locator)
+        if self.window.Get(search_criteria).Enabled:
+            return True
+        raise AssertionError("Expected enabled item but found disabled")
+
+    def _verify_item_is_disabled(self, locator):
+        search_criteria = self._get_search_criteria(locator)
+        if not self.window.Get(search_criteria).Enabled:
+            return True
+        raise AssertionError("Expected disabled item but found enabled")
+
     def _get_search_criteria(self, locator):
         search_strategy, locator_value = self._parse_locator(locator)
         if search_strategy == "index":
@@ -226,5 +238,4 @@ class WhiteLibrary(DynamicCore):
             return True
         elif str(value).lower() in ["true", "false"]:
             return True
-        else:
-            raise AssertionError("Expected True or False, got: {0}".format(str(value)))
+        raise AssertionError("Expected True or False, got: {0}".format(str(value)))
