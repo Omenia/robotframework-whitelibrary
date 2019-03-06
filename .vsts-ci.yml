@@ -130,5 +130,5 @@ steps:
     externalFeeds: 'TestPypiET'
 
 - script: |
-    twine upload -r TestPypiET --config-file $(PYPIRC_PATH) dist/*
+    twine upload -r TestPypiET --config-file $(PYPIRC_PATH) dist/*.whl dist/*.zip
   displayName: 'Upload packages to PyPI'
