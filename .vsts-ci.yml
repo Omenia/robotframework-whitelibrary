@@ -105,14 +105,6 @@ steps:
     TargetPath: ""
     ArtifactName: Robot Test results
 
-#- task: PublishBuildArtifacts@1
-#  displayName: Publish WhiteLibrary
-#  inputs:
-#    PathToPublish: $(deployment)
-#    ArtifactType: container
-#    TargetPath: ""
-#    ArtifactName: WhiteLibrary
-
 - task: PublishBuildArtifacts@1
   displayName: Archive Static Analysis Reports
   inputs:
@@ -122,16 +114,16 @@ steps:
     ArtifactName: StaticAnalysis
 
 - script: |
-    python setup.py bdist_wheel
+    python setup.py sdist --formats=zip bdist_wheel --universal
   displayName: 'Build Python package'
 
 - task: PublishBuildArtifacts@1
-  displayName: Publish package
+  displayName: Publish Python packages
   inputs:
     PathToPublish: dist
     ArtifactType: container
     TargetPath: ""
-    ArtifactName: Wheel
+    ArtifactName: WhiteLibrary packages
 
 - task: TwineAuthenticate@0
   inputs:
