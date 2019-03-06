@@ -126,11 +126,11 @@ steps:
     ArtifactName: WhiteLibrary packages
 
 - task: TwineAuthenticate@0
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/pypi-release-fix'))
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
     externalFeeds: 'TestPypiET'
 
 - script: |
     twine upload -r TestPypiET --config-file $(PYPIRC_PATH) dist/*.whl dist/*.zip
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/pypi-release-fix'))
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   displayName: 'Upload packages to PyPI'
