@@ -14,7 +14,7 @@ Resource    ../resource.robot
 
 *** Test Cases ***
 Verify Labels
-    Verify Label    lblA    Value 1
+    Verify Label    lblA    Value 1a
     Verify Label    lblB    Value 2
     Verify Label    lblResult    Result
 
