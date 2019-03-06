@@ -58,6 +58,8 @@ Verify Button
 Verify Button Text Should Be
     Button Text Should Be   btnCalc    Calculate (=)
     Button Text Should Be   btnCalc    calculate (=)    case_sensitive=False
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Button Text Should Be   btnCalc    calculate (=)
+    Should Contain    ${error_msg}    Expected value calculate (=), but found Calculate (=)
 
 Verify Button Text Should Contain
     Button Text Should Contain   btnCalc    alcu    case_sensitive=True
