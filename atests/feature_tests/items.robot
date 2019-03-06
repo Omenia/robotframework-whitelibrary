@@ -158,6 +158,29 @@ Switch Tab
     Verify Label    selectionIndicatorLabel    nothing selected
     [Teardown]    Select Tab Page    tabControl    Tab1
 
+Switch Tab With Index
+    Select Tab Page With Index    tabControl    1
+    Verify Label    selectionIndicatorLabel    nothing selected
+    Select Tab Page With Index    tabControl    0
+    Verify Label    eventIndicatorLabel    Double click me
+    Select Tab Page With Index    tabControl    0
+    Verify Label    eventIndicatorLabel    Double click me
+    Select Tab Page With Index    tabControl    1
+    Verify Label    selectionIndicatorLabel    nothing selected
+    [Teardown]    Select Tab Page    tabControl    Tab1
+
+Switch Tabs Using Tab List
+    @{tabs}=    Get Tab Pages    tabControl
+    ${tabs_len}=    Get Length    ${tabs}
+    Should Be True    ${tabs_len} == 2
+    FOR    ${tab}    IN    @{tabs}
+        Select Tab Page    tabControl    ${tab.Name}
+    END
+    Verify Label    selectionIndicatorLabel    nothing selected
+    Select Tab Page    tabControl    ${tabs[0].Name}
+    Verify Label    eventIndicatorLabel    Double click me
+    [Teardown]    Select Tab Page    tabControl    Tab1
+
 Open Menu By Holding Keys
     Hold Special Key    ALT
     Press Keys    h
