@@ -53,17 +53,16 @@ Verify Operation Selections
     Verify Combobox Selection    op    *
 
 Combobox Contains
-    [Tags]    under_test
     Combobox Should Contain    op    +
     Combobox Should Contain    op    /
     Combobox Should Contain    op    %
-    Run Keyword And Expect Error    UIActionException: ComboBox did not contain &
+    Run Keyword And Expect Error    ComboBox did not contain &
     ...                             Combobox Should Contain    op    &
-    Run Keyword And Expect Error    UIActionException: ComboBox did not contain plus
+    Run Keyword And Expect Error    ComboBox did not contain plus
     ...                             Combobox Should Contain    op    plus
     Combobox Should Not Contain    op    &
     Combobox Should Not Contain    op    plus
-    Run Keyword And Expect Error    UIActionException: ComboBox contains +
+    Run Keyword And Expect Error    ComboBox contains +
     ...                             Combobox Should Not Contain    op    +
 
 Verify Button
@@ -164,12 +163,11 @@ Verify ListBox
     ...                             Listbox Selection Should Be    list_box    Yamis
 
 ListBox Contains
-    [Tags]    under_test
     Listbox Should Contain    list_box    Toni
-    Run Keyword And Expect Error    UIActionException: ListBox did not contain Donald Trump
+    Run Keyword And Expect Error    ListBox did not contain Donald Trump
     ...                             Listbox Should Contain    list_box    Donald Trump
     Listbox Should Not Contain    list_box    Donald Trump
-    Run Keyword And Expect Error    UIActionException: ListBox contains Toni
+    Run Keyword And Expect Error    ListBox contains Toni
     ...                             Listbox Should Not Contain    list_box    Toni
 
 Click An Item
