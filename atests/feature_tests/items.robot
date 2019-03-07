@@ -159,13 +159,13 @@ Switch Tab
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Switch Tab With Index
-    Select Tab Page With Index    tabControl    1
+    Select Tab Page By Index    tabControl    1
     Verify Label    selectionIndicatorLabel    nothing selected
-    Select Tab Page With Index    tabControl    0
+    Select Tab Page By Index    tabControl    0
     Verify Label    eventIndicatorLabel    Double click me
-    Select Tab Page With Index    tabControl    0
+    Select Tab Page By Index    tabControl    0
     Verify Label    eventIndicatorLabel    Double click me
-    Select Tab Page With Index    tabControl    1
+    Select Tab Page By Index    tabControl    1
     Verify Label    selectionIndicatorLabel    nothing selected
     [Teardown]    Select Tab Page    tabControl    Tab1
 

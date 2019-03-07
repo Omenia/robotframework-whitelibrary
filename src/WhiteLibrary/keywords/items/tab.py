@@ -18,9 +18,9 @@ class TabKeywords(LibraryComponent):
         tab_control.SelectTabPage(title)
 
     @keyword
-    def select_tab_page_with_index(self, locator, index):
+    def select_tab_page_by_index(self, locator, index):
         """
-        Selects a tab page.
+        Selects a tab page by index.
 
         ``locator`` is the locator of the tab control item or Tab item object.
         Locator syntax is explained in `Item locators`.
@@ -34,13 +34,9 @@ class TabKeywords(LibraryComponent):
     def get_tab_pages(self, locator):
         """
         Gets all tab pages and returns them as a list.
-        The resulting list contains TabPage objects. You can select tab using TabPage as follows:
-        @{tabs}=    Get Tab Pages    myTabControl
-        Select Tab Page    tabControl    ${tabs[0].Name}
 
         ``locator`` is the locator of the tab control item or Tab item object.
         Locator syntax is explained in `Item locators`.
-
         """
         tab_control = self.state._get_typed_item_by_locator(Tab, locator)
         return tab_control.Pages
