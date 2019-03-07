@@ -48,41 +48,41 @@ class ListKeywords(LibraryComponent):
 
     @keyword
     def listbox_should_contain(self, locator, expected):
-        """Checks that listbox contains an element.
+        """Checks that listbox contains an item.
 
-        Fails if the listbox does not contain expected element.
+        Fails if the listbox does not contais an item with text `expected`.
 
         ``locator`` is the locator of the listbox or ListBox item object.
         Locator syntax is explained in `Item locators`.
 
-        ``expected`` is the expected element text.
+        ``expected`` is the expected item text.
         """
         listbox = self.state._get_typed_item_by_locator(ListBox, locator)
         listbox_items = listbox.Items
         try:
             listbox_items.Item(str(expected))
         except UIActionException:
-            raise UIActionException("ListBox did not contain {0}".format(str(expected)))
-        return True
+            raise AssertionError("ListBox did not contain {0}".format(str(expected)))
 
     @keyword
     def listbox_should_not_contain(self, locator, expected):
-        """Checks that listbox does not contain an element.
+        """Checks that listbox does not contain an item.
 
-        Fails if the listbox does contain expected element.
+        Fails if the listbox does contais an item with text `expected`.
 
         ``locator`` is the locator of the listbox or ListBox item object.
         Locator syntax is explained in `Item locators`.
 
-        ``expected`` is the expected element text.
+        ``expected`` is the expected item text.
         """
         listbox = self.state._get_typed_item_by_locator(ListBox, locator)
         listbox_items = listbox.Items
         try:
             listbox_items.Item(str(expected))
+            raise AssertionError("ListBox contains {0}".format(str(expected)))
         except UIActionException:
-            return True
-        raise UIActionException("ListBox contains {0}".format(str(expected)))
+            pass
+
 
     @keyword
     def select_combobox_value(self, locator, value):
@@ -135,38 +135,38 @@ class ListKeywords(LibraryComponent):
 
     @keyword
     def combobox_should_contain(self, locator, expected):
-        """Checks that combobox contains an element.
+        """Checks that combobox contains an item.
 
-        Fails if the combobox does not contain expected element.
+        Fails if the combobox does not contais an item with text `expected`.
 
         ``locator`` is the locator of the combobox or ComboBox item object.
         Locator syntax is explained in `Item locators`.
 
-        ``expected`` is the expected element text.
+        ``expected`` is the expected item text.
         """
         combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
         combobox_items = combobox.Items
         try:
             combobox_items.Item(str(expected))
         except UIActionException:
-            raise UIActionException("ComboBox did not contain {0}".format(str(expected)))
-        return True
+            raise AssertionError("ComboBox did not contain {0}".format(str(expected)))
 
     @keyword
     def combobox_should_not_contain(self, locator, expected):
-        """Checks that combobox does not contain an element.
+        """Checks that combobox does not contain an item.
 
-        Fails if the combobox does contain expected element.
+        Fails if the combobox does contains an item with text `expected`.
 
         ``locator`` is the locator of the combobox or ComboBox item object.
         Locator syntax is explained in `Item locators`.
 
-        ``expected`` is the expected element text.
+        ``expected`` is the expected item text.
         """
         combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
         combobox_items = combobox.Items
         try:
             combobox_items.Item(str(expected))
+            raise AssertionError("ComboBox contains {0}".format(str(expected)))
         except UIActionException:
-            return True
-        raise UIActionException("ComboBox contains {0}".format(str(expected)))
+            pass
+
