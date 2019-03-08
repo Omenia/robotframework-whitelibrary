@@ -83,7 +83,6 @@ class ListKeywords(LibraryComponent):
         except UIActionException:
             pass
 
-
     @keyword
     def select_combobox_value(self, locator, value):
         """Selects a value from a combobox.
@@ -169,4 +168,3 @@ class ListKeywords(LibraryComponent):
             raise AssertionError("ComboBox contains {0}".format(str(expected)))
         except UIActionException:
             pass
-
