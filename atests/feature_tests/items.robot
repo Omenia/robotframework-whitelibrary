@@ -176,6 +176,18 @@ Verify Message Box Title
     Click Menu Button    text=Change Name
     Message Box Title Should Be    Message Title
     Click Button    text=OK
+    ${WHITE FIND WINDOW_TIMEOUT}    Get White Find Window Timeout
+    Should Be Equal    ${WHITE FIND WINDOW_TIMEOUT}    30000 milliseconds
+
+Message Box Bogus Title
+    [Tags]    under_test
+    Right Click Item    text=Teppo
+    Click Menu Button    text=Change Name
+    Run Keyword And Expect Error    Did not find message box with title Bogus Title
+    ...                             Message Box Title Should Be    Bogus Title
+    Click Button    text=OK
+    ${WHITE FIND WINDOW_TIMEOUT}    Get White Find Window Timeout
+    Should Be Equal    ${WHITE FIND WINDOW_TIMEOUT}    30000 milliseconds
 
 Double Click An Item
     Double Click Item    eventIndicatorLabel
