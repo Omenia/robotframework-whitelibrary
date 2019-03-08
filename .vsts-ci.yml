@@ -128,9 +128,9 @@ steps:
 - task: TwineAuthenticate@0
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
-    externalFeeds: 'TestPypiET'
+    externalFeeds: 'PyPi'
 
 - script: |
-    twine upload -r TestPypiET --config-file $(PYPIRC_PATH) dist/*.whl dist/*.zip
+    twine upload -r PyPi --config-file $(PYPIRC_PATH) dist/*.whl dist/*.zip
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   displayName: 'Upload packages to PyPI'
