@@ -56,13 +56,13 @@ Combobox Contains
     Combobox Should Contain    op    +
     Combobox Should Contain    op    /
     Combobox Should Contain    op    %
-    Run Keyword And Expect Error    ComboBox did not contain &
+    Run Keyword And Expect Error    ComboBox with locator 'op' did not contain '&'
     ...                             Combobox Should Contain    op    &
-    Run Keyword And Expect Error    ComboBox did not contain plus
+    Run Keyword And Expect Error    ComboBox with locator 'op' did not contain 'plus'
     ...                             Combobox Should Contain    op    plus
     Combobox Should Not Contain    op    &
     Combobox Should Not Contain    op    plus
-    Run Keyword And Expect Error    ComboBox contains +
+    Run Keyword And Expect Error    ComboBox with locator 'op' should not have contained '+'
     ...                             Combobox Should Not Contain    op    +
 
 Verify Button
@@ -162,10 +162,10 @@ Verify ListBox
 
 ListBox Contains
     Listbox Should Contain    list_box    Toni
-    Run Keyword And Expect Error    ListBox did not contain Donald Trump
+    Run Keyword And Expect Error    ListBox with locator 'list_box' did not contain 'Donald Trump'
     ...                             Listbox Should Contain    list_box    Donald Trump
     Listbox Should Not Contain    list_box    Donald Trump
-    Run Keyword And Expect Error    ListBox contains Toni
+    Run Keyword And Expect Error    ListBox with locator 'list_box' should not have contained 'Toni'
     ...                             Listbox Should Not Contain    list_box    Toni
 
 Click An Item

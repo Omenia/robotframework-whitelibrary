@@ -48,9 +48,9 @@ class ListKeywords(LibraryComponent):
 
     @keyword
     def listbox_should_contain(self, locator, expected):
-        """Checks that listbox contains an item.
+        """Checks that listbox contains an item with text ``expected`.
 
-        Fails if the listbox does not contais an item with text `expected`.
+        Fails if the listbox does not contain an item with the given text.
 
         ``locator`` is the locator of the listbox or ListBox item object.
         Locator syntax is explained in `Item locators`.
@@ -58,17 +58,19 @@ class ListKeywords(LibraryComponent):
         ``expected`` is the expected item text.
         """
         listbox = self.state._get_typed_item_by_locator(ListBox, locator)
-        listbox_items = listbox.Items
         try:
-            listbox_items.Item(str(expected))
-        except UIActionException:
-            raise AssertionError("ListBox did not contain {0}".format(str(expected)))
+            listbox.Item(str(expected))
+        except UIActionException as e:
+            # Check error in case we get UIActionException with another message
+            if "Item of text" in str(e):
+                raise AssertionError("ListBox with locator '{}' did not contain '{}'".format(locator, expected))
+            raise e
 
     @keyword
     def listbox_should_not_contain(self, locator, expected):
-        """Checks that listbox does not contain an item.
+        """Verifies that a listbox does not contain an item with text ``expected``.
 
-        Fails if the listbox does contais an item with text `expected`.
+        Fails if the listbox contains an item with the given text.
 
         ``locator`` is the locator of the listbox or ListBox item object.
         Locator syntax is explained in `Item locators`.
@@ -76,12 +78,13 @@ class ListKeywords(LibraryComponent):
         ``expected`` is the expected item text.
         """
         listbox = self.state._get_typed_item_by_locator(ListBox, locator)
-        listbox_items = listbox.Items
         try:
-            listbox_items.Item(str(expected))
-            raise AssertionError("ListBox contains {0}".format(str(expected)))
-        except UIActionException:
-            pass
+            listbox.Item(str(expected))
+            raise AssertionError("ListBox with locator '{}' should not have contained '{}'".format(locator, expected))
+        except UIActionException as e:
+            # Check error in case we get UIActionException with another message
+            if "Item of text" not in str(e):
+                raise e
 
     @keyword
     def select_combobox_value(self, locator, value):
@@ -134,9 +137,9 @@ class ListKeywords(LibraryComponent):
 
     @keyword
     def combobox_should_contain(self, locator, expected):
-        """Checks that combobox contains an item.
+        """Verifies that a combobox contains an item with text ``expected``.
 
-        Fails if the combobox does not contais an item with text `expected`.
+        Fails if the combobox does not contain an item with the given text.
 
         ``locator`` is the locator of the combobox or ComboBox item object.
         Locator syntax is explained in `Item locators`.
@@ -144,17 +147,19 @@ class ListKeywords(LibraryComponent):
         ``expected`` is the expected item text.
         """
         combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
-        combobox_items = combobox.Items
         try:
-            combobox_items.Item(str(expected))
-        except UIActionException:
-            raise AssertionError("ComboBox did not contain {0}".format(str(expected)))
+            combobox.Item(str(expected))
+        except UIActionException as e:
+            # Check error in case we get UIActionException with another message
+            if "Item of text" in str(e):
+                raise AssertionError("ComboBox with locator '{}' did not contain '{}'".format(locator, expected))
+            raise e
 
     @keyword
     def combobox_should_not_contain(self, locator, expected):
-        """Checks that combobox does not contain an item.
+        """Verifies that a combobox does not contain an item with text ``expected``.
 
-        Fails if the combobox does contains an item with text `expected`.
+        Fails if the combobox contains an item with the given text.
 
         ``locator`` is the locator of the combobox or ComboBox item object.
         Locator syntax is explained in `Item locators`.
@@ -162,9 +167,10 @@ class ListKeywords(LibraryComponent):
         ``expected`` is the expected item text.
         """
         combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
-        combobox_items = combobox.Items
         try:
-            combobox_items.Item(str(expected))
-            raise AssertionError("ComboBox contains {0}".format(str(expected)))
-        except UIActionException:
-            pass
+            combobox.Item(str(expected))
+            raise AssertionError("ComboBox with locator '{}' should not have contained '{}'".format(locator, expected))
+        except UIActionException as e:
+            # Check error in case we get UIActionException with another message
+            if "Item of text" not in str(e):
+                raise e
