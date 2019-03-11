@@ -60,11 +60,11 @@ class ListKeywords(LibraryComponent):
         listbox = self.state._get_typed_item_by_locator(ListBox, locator)
         try:
             listbox.Item(str(expected))
-        except UIActionException as e:
+        except UIActionException as error:
             # Check error in case we get UIActionException with another message
-            if "Item of text" in str(e):
+            if "Item of text" in str(error):
                 raise AssertionError("ListBox with locator '{}' did not contain '{}'".format(locator, expected))
-            raise e
+            raise error
 
     @keyword
     def listbox_should_not_contain(self, locator, expected):
@@ -81,10 +81,10 @@ class ListKeywords(LibraryComponent):
         try:
             listbox.Item(str(expected))
             raise AssertionError("ListBox with locator '{}' should not have contained '{}'".format(locator, expected))
-        except UIActionException as e:
+        except UIActionException as error:
             # Check error in case we get UIActionException with another message
-            if "Item of text" not in str(e):
-                raise e
+            if "Item of text" not in str(error):
+                raise error
 
     @keyword
     def select_combobox_value(self, locator, value):
@@ -149,11 +149,11 @@ class ListKeywords(LibraryComponent):
         combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
         try:
             combobox.Item(str(expected))
-        except UIActionException as e:
+        except UIActionException as error:
             # Check error in case we get UIActionException with another message
-            if "Item of text" in str(e):
+            if "Item of text" in str(error):
                 raise AssertionError("ComboBox with locator '{}' did not contain '{}'".format(locator, expected))
-            raise e
+            raise error
 
     @keyword
     def combobox_should_not_contain(self, locator, expected):
@@ -170,7 +170,7 @@ class ListKeywords(LibraryComponent):
         try:
             combobox.Item(str(expected))
             raise AssertionError("ComboBox with locator '{}' should not have contained '{}'".format(locator, expected))
-        except UIActionException as e:
+        except UIActionException as error:
             # Check error in case we get UIActionException with another message
-            if "Item of text" not in str(e):
-                raise e
+            if "Item of text" not in str(error):
+                raise error
