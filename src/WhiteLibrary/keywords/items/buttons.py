@@ -12,8 +12,8 @@ class ButtonKeywords(LibraryComponent):
         ``locator`` is the locator of the button or Button item object.
         Locator syntax is explained in `Item locators`.
 
-        Optional arguments ``x_offset`` and ``y_offset`` can be used to fine tune
-        mouse position relative to the center of the item.
+        Optional arguments ``x_offset`` and ``y_offset`` can be used to define the coordinates to click at,
+        relative to the center of the item.
         """
         button = self.state._get_typed_item_by_locator(Button, locator)
         Clicks.click(button, x_offset, y_offset)
