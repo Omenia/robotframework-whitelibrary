@@ -33,13 +33,15 @@ class ScreenshotKeywords(LibraryComponent):
 
     @keyword
     def take_screenshots_on_failure(self, status):
-        """Disables or enables automatic screenshot creation on failure.
+        """Disables or enables automatic screenshot capturing on failure.
 
-        ``status`` is the desired state (True/False) of automatic creation.
+        ``status`` is the desired state (True/False) of automatic screenshot on failure.
+        Boolean values are evaluated in the same way as the Robot Framework BuiltIn library does, see
+        [http://robotframework.org/robotframework | the documentation of BuiltIn] for details.
+
+        WhiteLibrary automatically takes a screenshot on failure unless it is disabled with this keyword.
         """
-
-        status = is_truthy(status)
-        if status:
+        if is_truthy(status):
             self.state.screenshots_enabled = True
         else:
             self.state.screenshots_enabled = False

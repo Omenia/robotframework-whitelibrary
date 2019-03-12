@@ -10,7 +10,6 @@ class ButtonKeywords(LibraryComponent):
         """Clicks a button.
 
         ``locator`` is the locator of the button or Button item object.
-
         Locator syntax is explained in `Item locators`.
 
         Optional arguments ``x_offset`` and ``y_offset`` can be used to fine tune
@@ -28,7 +27,9 @@ class ButtonKeywords(LibraryComponent):
 
         ``expected_text`` is the expected button text.
 
-        ``case_sensitive`` compare text in case sensitive matter. Defaults to True
+        ``case_sensitive`` defines if the text comparison is case sensitive (True/False). Defaults to ``True``.
+        Boolean values are evaluated in the same way as the Robot Framework BuiltIn library does, see
+        [http://robotframework.org/robotframework | the documentation of BuiltIn] for details.
         """
         button = self.state._get_typed_item_by_locator(Button, locator)
         self.state._verify_string_value(expected_text, button.Text, case_sensitive)
@@ -42,7 +43,9 @@ class ButtonKeywords(LibraryComponent):
 
         ``expected_text`` is the expected button text.
 
-        ``case_sensitive`` compare text in case sensitive matter. Defaults to True
+        ``case_sensitive`` defines if the text comparison is case sensitive (True/False). Defaults to ``True``.
+        Boolean values are evaluated in the same way as the Robot Framework BuiltIn library does, see
+        [http://robotframework.org/robotframework | the documentation of BuiltIn] for details.
         """
         button = self.state._get_typed_item_by_locator(Button, locator)
         self.state._contains_string_value(expected_text, button.Text, case_sensitive)
