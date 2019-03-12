@@ -31,18 +31,23 @@ class WindowKeywords(LibraryComponent):
         | id                   | Search by AutomationID. |
         | class_name           | Search by class name.   |
 
+        Examples:
+        | Attach Window | Main Window                   | # attach window with title         |
+        | Attach Window | id:mainWindow                 | # attach window with Automation ID |
+        | Attach Window | class_name:NavigationWindow   | # attach window with ClassName     |
+
         === Window objects ===
         A window can also be attached by directly passing the window object as the ``locator`` parameter value.
         This may be useful if the correct window cannot be found by using the window locator syntax.
 
-        When using a window object as the``locator`` parameter value, the window is attached even if it does not
-        belong to the currently attached application.
-        Note that when attaching a window that belongs to a different application than the currently attached one,
-        attaching the window does not affect what application is attached to the library.
-
         Example:
         | @{windows} | `Get Application Windows` | |
         | Attach Window | ${windows[1]} | # attach window at index 1 in window list |
+
+        When using a window object as the ``locator`` parameter value, the window is attached even if it does not
+        belong to the currently attached application.
+        Note that when attaching a window that belongs to a different application than the currently attached one,
+        attaching the window does not affect what application is attached to the library.
         """
         self.state.window = self._get_window(locator)
 

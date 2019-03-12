@@ -87,17 +87,22 @@ class WhiteLibrary(DynamicCore):
     | `Click Button` | index:2          | # clicks button whose index is 2    |
 
     *Note:* Old locator syntax ``prefix=value`` is also valid but it is recommended to use the ``prefix:value`` syntax
-    since the old syntax may be *deprecated* in the future.
+    since the old syntax *will be deprecated* in the future.
 
-    === Item reference as a locator ===
-    It is also possible to refer items with object reference. That is, you can save your item to a variable and refer to the item using that variable.
-    The need to do this can raise for instance when you search multiple items using a generic locator and pick one of the items for further action.
-    Item reference can complete the action in any window i.e. window the item is located does not need to be attached. However, this does not change
-    the attached window and the operation continues in the attached window after action on the referred item is complete.
+    == Item object as a locator ==
+    It is also possible to use an item object reference as the ``locator`` value.
+    An item object can be obtained with e.g. `Get Item` or `Get Items` keywords.
 
-    Example using item reference:
-    | @{my_buttons}= | `Get Items`         | class_name: button |
-    | `Click Button` | ${my_buttons[2]}    | # clicks button by item reference |
+    The need to use an item object reference can arise for instance when multiple items match the same locator
+    and one of the items is selected for further action.
+    When using an item object, the action on the item can be executed regardless of the window it is in,
+    i.e. the window where the item is located does not necessarily need to be attached.
+    However, this does not change the attached window and the operation continues in the attached window after action on
+    the referred item is complete.
+
+    Example using item object:
+    | @{my_buttons}= | `Get Items`         | class_name:MyButtonClass |
+    | `Click Button` | ${my_buttons[2]}    | # clicks button object at index 2 of the list |
 
     = Workflow example =
     | ***** Variables *****   | | | |
@@ -147,7 +152,7 @@ class WhiteLibrary(DynamicCore):
     def _get_typed_item_by_locator(self, item_type, locator):
         if isinstance(locator, UIItem):
             if not isinstance(locator, item_type):
-                raise TypeError('Assumed that locator item is of type item_type')
+                raise TypeError("Item object was not of the expected type")
             return locator
         search_criteria = self._get_search_criteria(locator)
         return self.window.Get[item_type](search_criteria)
@@ -161,17 +166,6 @@ class WhiteLibrary(DynamicCore):
     def _get_multiple_items_by_locator(self, locator):
         search_criteria = self._get_search_criteria(locator)
         return self.window.GetMultiple(search_criteria)
-
-    def _verify_item_is_enabled(self, locator):
-        item = self._get_item_by_locator(locator)
-        if not item.Enabled:
-            raise AssertionError("Expected enabled item but found disabled in {0}".format(str(item)))
-
-    def _verify_item_is_disabled(self, locator):
-        search_criteria = self._get_search_criteria(locator)
-        if not self.window.Get(search_criteria).Enabled:
-            return True
-        raise AssertionError("Expected disabled item but found enabled")
 
     def _get_search_criteria(self, locator):
         search_strategy, locator_value = self._parse_locator(locator)

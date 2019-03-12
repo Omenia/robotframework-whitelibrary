@@ -23,7 +23,7 @@ class ScreenshotKeywords(LibraryComponent):
         Returns path to the screenshot file.
         """
         filepath = self._get_screenshot_path("whitelib_screenshot_{index}.png")
-        logger.info(get_link_path(filepath, self._log_directory), also_console=True)
+        logger.info(get_link_path(filepath, self._log_directory))
         logger.info(
             '</td></tr><tr><td colspan="3">''<a href="{src}"><img src="{src}" width="800px"></a>'.format(
                 src=get_link_path(filepath, self._log_directory)), html=True)
@@ -33,13 +33,15 @@ class ScreenshotKeywords(LibraryComponent):
 
     @keyword
     def take_screenshots_on_failure(self, status):
-        """Disables or enables automatic screenshot creation on failure.
+        """Disables or enables automatic screenshot capturing on failure.
 
-        ``status`` is the desired state (True/False) of automatic creation.
+        ``status`` is the desired state (True/False) of automatic screenshot on failure.
+        Boolean values are evaluated in the same way as the Robot Framework BuiltIn library does, see
+        [http://robotframework.org/robotframework | the documentation of BuiltIn] for details.
+
+        WhiteLibrary automatically takes a screenshot on failure unless it is disabled with this keyword.
         """
-
-        status = is_truthy(status)
-        if status:
+        if is_truthy(status):
             self.state.screenshots_enabled = True
         else:
             self.state.screenshots_enabled = False

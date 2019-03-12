@@ -16,8 +16,8 @@ class ListViewKeywords(LibraryComponent):
 
         ``row_index`` is the zero-based row index.
 
-        Optional arguments ``x_offset`` and ``y_offset`` can be used to fine tune
-        mouse position relative to the center of the item.
+        Optional arguments ``x_offset`` and ``y_offset`` can be used to define the coordinates to click at,
+        relative to the center of the item.
 
         Example:
         | Double Click Listview Cell | id:addressList | Street | 0 | # double click cell in the column "Street" of the first row |
@@ -36,8 +36,8 @@ class ListViewKeywords(LibraryComponent):
 
         ``column_index`` is the zero-based column index.
 
-        Optional arguments ``x_offset`` and ``y_offset`` can be used to fine tune
-        mouse position relative to the center of the item.
+        Optional arguments ``x_offset`` and ``y_offset`` can be used to define the coordinates to click at,
+        relative to the center of the item.
 
         Example:
         | Double Click Listview Cell By Index | id:addressList | 0 | 0 |
@@ -55,8 +55,8 @@ class ListViewKeywords(LibraryComponent):
         ``column_name`` and ``cell_text`` define the row. Row is the first matching row where text in column
         ``column_name`` is ``cell_text``.
 
-        Optional arguments ``x_offset`` and ``y_offset`` can be used to fine tune
-        mouse position relative to the center of the item.
+        Optional arguments ``x_offset`` and ``y_offset`` can be used to define the coordinates to click at,
+        relative to the center of the item.
 
         Example:
         | Double Click Listview Row | id:addressList | City | Helsinki | # double click row that has the text "Helsinki" in the column "City" |
@@ -73,8 +73,8 @@ class ListViewKeywords(LibraryComponent):
 
         ``row_index`` is the zero-based row index.
 
-        Optional arguments ``x_offset`` and ``y_offset`` can be used to fine tune
-        mouse position relative to the center of the item.
+        Optional arguments ``x_offset`` and ``y_offset`` can be used to define the coordinates to click at,
+        relative to the center of the item.
 
         Example:
         | Double Click Listview Row By Index | id:addressList | 4 |

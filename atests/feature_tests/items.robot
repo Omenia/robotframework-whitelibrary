@@ -223,10 +223,10 @@ Double Click An Item With Item Reference
     Double Click Item    ${item}
     Verify Label    eventIndicatorLabel    Double-clicked 2 times
 
-Click An Item With Incorrect Item Reference
+Click With Incorrect Item Type
     ${item}=    Get Item    eventIndicatorLabel
     ${status}    ${error_msg}    Run Keyword And Ignore Error    Click Button    ${item}
-    Should Contain    ${error_msg}    Assumed that locator item is of type item_type
+    Should Contain    ${error_msg}    Item object was not of the expected type
 
 Click Button By Pressing Special Keys
     Input Text To Textbox    txtA    1
@@ -285,8 +285,8 @@ Popup menu with subitems
 Button Is Enabled
     [Setup]    Setup for Tab 2 Tests
     Item Should Be Enabled    enabled_disabled
-    ${status}    ${error_msg}    Run Keyword And Ignore Error	Item Should Be Disabled    enabled_disabled
-    Should Contain    ${error_msg}    Expected disabled item but found enabled
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Item Should Be Disabled    enabled_disabled
+    Should Contain    ${error_msg}    Expected item with locator 'enabled_disabled' to be disabled but found enabled
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Button Is Disabled
@@ -294,7 +294,7 @@ Button Is Disabled
     Click Button    enabled_disabled
     Item Should Be Disabled    enabled_disabled
     ${status}    ${error_msg}    Run Keyword And Ignore Error    Item Should Be Enabled    enabled_disabled
-    Should Contain    ${error_msg}    Expected enabled item but found disabled
+    Should Contain    ${error_msg}    Expected item with locator 'enabled_disabled' to be enabled but found disabled
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 *** Keywords ***
