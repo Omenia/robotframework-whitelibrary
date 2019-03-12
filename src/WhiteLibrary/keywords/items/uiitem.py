@@ -68,7 +68,9 @@ class UiItemKeywords(LibraryComponent):
         ``locator`` is the locator of the item.
         Locator syntax is explained in `Item locators`.
         """
-        return self.state._verify_item_is_enabled(locator)
+        item = self.state._get_item_by_locator(locator)
+        if not item.Enabled:
+            raise AssertionError("Expected item with locator '{}' to be enabled but found disabled".format(locator))
 
     @keyword
     def item_should_be_disabled(self, locator):
@@ -77,4 +79,6 @@ class UiItemKeywords(LibraryComponent):
         ``locator`` is the locator of the item.
         Locator syntax is explained in `Item locators`.
         """
-        return self.state._verify_item_is_disabled(locator)
+        item = self.state._get_item_by_locator(locator)
+        if item.Enabled:
+            raise AssertionError("Expected item with locator '{}' to be disabled but found enabled".format(locator))

@@ -152,7 +152,7 @@ class WhiteLibrary(DynamicCore):
     def _get_typed_item_by_locator(self, item_type, locator):
         if isinstance(locator, UIItem):
             if not isinstance(locator, item_type):
-                raise TypeError('Assumed that locator item is of type item_type')
+                raise TypeError("Item object was not of the expected type")
             return locator
         search_criteria = self._get_search_criteria(locator)
         return self.window.Get[item_type](search_criteria)
@@ -166,17 +166,6 @@ class WhiteLibrary(DynamicCore):
     def _get_multiple_items_by_locator(self, locator):
         search_criteria = self._get_search_criteria(locator)
         return self.window.GetMultiple(search_criteria)
-
-    def _verify_item_is_enabled(self, locator):
-        item = self._get_item_by_locator(locator)
-        if not item.Enabled:
-            raise AssertionError("Expected enabled item but found disabled in {0}".format(str(item)))
-
-    def _verify_item_is_disabled(self, locator):
-        search_criteria = self._get_search_criteria(locator)
-        if not self.window.Get(search_criteria).Enabled:
-            return True
-        raise AssertionError("Expected disabled item but found enabled")
 
     def _get_search_criteria(self, locator):
         search_strategy, locator_value = self._parse_locator(locator)

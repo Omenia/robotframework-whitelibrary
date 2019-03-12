@@ -23,7 +23,7 @@ class ScreenshotKeywords(LibraryComponent):
         Returns path to the screenshot file.
         """
         filepath = self._get_screenshot_path("whitelib_screenshot_{index}.png")
-        logger.info(get_link_path(filepath, self._log_directory), also_console=True)
+        logger.info(get_link_path(filepath, self._log_directory))
         logger.info(
             '</td></tr><tr><td colspan="3">''<a href="{src}"><img src="{src}" width="800px"></a>'.format(
                 src=get_link_path(filepath, self._log_directory)), html=True)
