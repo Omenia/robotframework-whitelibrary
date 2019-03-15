@@ -24,8 +24,21 @@ Installing the version containing the latest updates in ``master``:
 ```
 pip install --upgrade --pre robotframework-whitelibrary
 ```
+
 # Documentation
 * [Keyword documentation](http://omenia.github.io/robotframework-whitelibrary/keywords.html) 
+
+# GUI inspection
+Item locators can be found using a GUI inspection tool,
+for example Inspect.exe or UIAVerify that are included in Windows SDK.
+
+Windows 10 SDK: https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk
+
+Select at least the following features in the installer:
+- Windows SDK Signing Tools for Desktop Apps
+- Windows SDK for UWP Managed Apps
+
+Windows 7 SDK: https://www.microsoft.com/en-us/download/details.aspx?id=8279
 
 # Support
 * [Robot Framework Slack](http://robotframework.slack.com) channels 
