@@ -1,3 +1,5 @@
+
+
 # Introduction
 
 WhiteLibrary provides the means to automate Windows GUI technologies with Robot Framework. 
@@ -8,6 +10,8 @@ Supported technologies include:
 * WinForms
 * WPF (Windows Presentation Foundation)
 * SWT (Java) platforms
+
+[![Build Status](https://salabs.visualstudio.com/WhiteLibrary/_apis/build/status/WhiteLibrary/WhiteLibrary%20CI?branchName=master)](https://salabs.visualstudio.com/WhiteLibrary/_build/latest?definitionId=2&branchName=master)
 
 # Installation
 
