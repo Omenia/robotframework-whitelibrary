@@ -49,22 +49,28 @@ jobs:
     displayName: Copy binaries to the library package
 
   - script: |
-        python -m unittest discover -s src
+        python -m xmlrunner discover -s src --output-file unittests_$(python_version).xml
     displayName: Run Python unit tests
+
+  - task: PublishTestResults@2
+    condition: always()
+    inputs:
+      testRunner: JUnit
+      testResultsFiles: unittests_$(python_version).xml
 
   - script: |
         python setup.py install
     displayName: Install WhiteLibrary
 
   - script: |
-      robot --outputdir output --noncritical unstable --xunit xunit_$(python_version).xml $(extra_atest_params) --loglevel DEBUG:INFO atests
+      robot --outputdir output --noncritical unstable --xunit acceptancetests_$(python_version).xml $(extra_atest_params) --loglevel DEBUG:INFO atests
     displayName: Execute Acceptance tests
 
   - task: PublishTestResults@2
     condition: always()
     inputs:
       testRunner: JUnit
-      testResultsFiles: output/xunit_$(python_version).xml
+      testResultsFiles: output/acceptancetests_$(python_version).xml
 
   - script: |
       mkdir sareports
