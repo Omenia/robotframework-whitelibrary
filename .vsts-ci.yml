@@ -1,135 +1,15 @@
-variables:
-  nuget: packages
-  SUT_nuget: UIAutomationTest\packages
+jobs:
+- template: .jobtemplate.yml
+  parameters:
+    name: 'white_py27_build'
+    extra_atest_params: --exclude no_ci
+    python_version:  2.7
+    make_release: false
 
-steps:
-- task: UsePythonVersion@0
-  displayName: 'Setup Python'
-  inputs:
-    versionSpec: '3.6'
-    addToPath: true
-    architecture: 'x64'
+- template: .jobtemplate.yml
+  parameters:
+    name: 'white_py36_build_and_release'
+    extra_atest_params: --exclude no_ci
+    python_version:  3.6
+    make_release: true
 
-- task: NuGetToolInstaller@0
-  inputs:
-    versionSpec: '4.3.0'
-
-- script: |
-      nuget restore src\WhiteLibrary\packages.config -PackagesDirectory $(nuget)
-  displayName: Download NuGet packages
-
-- script: |
-      mkdir UIAutomationTest\packages
-      nuget restore UIAutomationTest\packages.config -PackagesDirectory $(SUT_nuget)
-  displayName: Download NuGet packages for SUT
-
-- script: |
-      pip install -r requirements-dev.txt
-  displayName: Install needed components from PyPi
-
-- task: VSBuild@1
-  inputs:
-    solution: UIAutomationTest\UIAutomationTest.csproj
-
-- task: Bash@3
-  inputs:
-    targetType: inline
-    script: echo $BUILD_BUILDNUMBER >> build.info
-  displayName: Generate build.info
-
-- script: |
-    mkdir src\WhiteLibrary\bin\
-    copy $(nuget)\Castle.Core.3.3.0\lib\net45\Castle.Core.dll src\WhiteLibrary\bin\
-    copy $(nuget)\TestStack.White.0.13.3\lib\net40\TestStack.White.dll src\WhiteLibrary\bin\
-  continueOnError: false
-  displayName: Copy binaries to the library package
-
-- script: |
-      python -m unittest discover -s src
-  displayName: Run Python unit tests
-
-- script: |
-      python setup.py install
-  displayName: Install WhiteLibrary
-
-- script: |
-    run_tests.cmd --exclude no_ci --xunit xunit.xml
-  displayName: Execute Acceptance tests
-
-- task: PublishTestResults@2
-  condition: always()
-  inputs:
-    testRunner: JUnit
-    testResultsFiles: output/xunit.xml
-
-- script: |
-    mkdir sareports
-    flake8 --exit-zero --output sareports/flake8.xml --format=junit-xml
-  displayName: 'Running Flake8 Static Analysis'
-  continueOnError: true
-
-- task: PublishTestResults@2
-  condition: always()
-  continueOnError: true
-  inputs:
-    testRunner: JUnit
-    testResultsFiles: sareports/flake8.xml
-    testResultsTitle: Static Analysis Results from Flake8
-    testRunTitle: flake8-results
-    publishRunAttachments: true
-    failTaskOnFailedTests: true
-
-- script: |
-    pylint src --exit-zero --output-format=junit > sareports/pylint.xml
-  displayName: 'Running Pylint Static Analysis'
-  continueOnError: true
-
-- task: PublishTestResults@2
-  condition: always()
-  continueOnError: true
-  inputs:
-    testRunner: JUnit
-    testResultsFiles: sareports/pylint.xml
-    testResultsTitle: Static Analysis Results from Pylint
-    testRunTitle: pylint-results
-    publishRunAttachments: true
-    failTaskOnFailedTests: true
-
-- task: PublishBuildArtifacts@1
-  condition: always()
-  displayName: Publish Robot Framework logs and results
-  inputs:
-    PathtoPublish: output
-    ArtifactType: container
-    TargetPath: ""
-    ArtifactName: Robot Test results
-
-- task: PublishBuildArtifacts@1
-  displayName: Archive Static Analysis Reports
-  inputs:
-    PathToPublish: sareports
-    ArtifactType: container
-    TargetPath: ""
-    ArtifactName: StaticAnalysis
-
-- script: |
-    python setup.py sdist --formats=zip bdist_wheel --universal
-  displayName: 'Build Python package'
-
-- task: PublishBuildArtifacts@1
-  displayName: Publish Python packages
-  inputs:
-    PathToPublish: dist
-    ArtifactType: container
-    TargetPath: ""
-    ArtifactName: WhiteLibrary packages
-
-- task: TwineAuthenticate@0
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  inputs:
-    externalFeeds: 'PyPi'
-
-- script: |
-    twine upload -r PyPi --config-file $(PYPIRC_PATH) dist/*.whl dist/*.zip
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  displayName: 'Upload packages to PyPI'
