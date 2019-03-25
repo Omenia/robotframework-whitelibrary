@@ -68,7 +68,7 @@ jobs:
 
   - script: |
       mkdir sareports
-      flake8 --exit-zero --output sareports/flake8_$(python_version).xml --format=junit-xml
+      flake8 --output sareports/flake8_$(python_version).xml --format=junit-xml
     displayName: 'Running Flake8 Static Analysis'
     continueOnError: true
 
@@ -84,9 +84,9 @@ jobs:
       failTaskOnFailedTests: true
 
   - script: |
-      pylint src --exit-zero --output-format=junit > sareports/pylint_$(python_version).xml
+      pylint src --output-format=junit > sareports/pylint_$(python_version).xml
     displayName: 'Running Pylint Static Analysis'
-    condition: in(variables['python_version'], '3.4', '3.5', '3.6', '3.7')
+    condition: and(always(), in(variables['python_version'], '3.4', '3.5', '3.6', '3.7'))
     continueOnError: true
 
   - task: PublishTestResults@2
@@ -110,6 +110,7 @@ jobs:
       ArtifactName: Robot Test results
 
   - task: PublishBuildArtifacts@1
+    condition: always()
     displayName: Archive Static Analysis Reports
     inputs:
       PathToPublish: sareports
@@ -119,9 +120,11 @@ jobs:
 
   - script: |
       python setup.py sdist --formats=zip bdist_wheel --universal
+    condition: succeeded()
     displayName: 'Build Python package'
 
   - task: PublishBuildArtifacts@1
+    condition: succeeded()
     displayName: Publish Python packages
     inputs:
       PathToPublish: dist
