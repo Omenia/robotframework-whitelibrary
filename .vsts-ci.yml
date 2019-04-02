@@ -1,15 +1,53 @@
 jobs:
 - template: .jobtemplate.yml
   parameters:
-    name: 'white_py27_build'
+    name: 'white_py27'
     extra_atest_params: --exclude no_ci
     python_version:  2.7
-    make_release: false
 
 - template: .jobtemplate.yml
   parameters:
-    name: 'white_py36_build_and_release'
+    name: 'white_py36'
     extra_atest_params: --exclude no_ci
     python_version:  3.6
-    make_release: true
 
+- job: 'release'
+  dependsOn:
+  - 'white_py36'
+  - 'white_py27'
+  steps:
+    - task: UsePythonVersion@0
+      displayName: 'Setup Python'
+      inputs:
+        versionSpec: 3.6
+        addToPath: true
+        architecture: 'x64'
+
+    - script: |
+        pip install -r requirements-rel.txt
+      condition: succeeded()
+      displayName: 'Install Release Dependencies'
+
+    - script: |
+        python setup.py sdist --formats=zip bdist_wheel --universal
+      condition: succeeded()
+      displayName: 'Build Python package'
+
+    - task: PublishBuildArtifacts@1
+      condition: succeeded()
+      displayName: Publish Python packages
+      inputs:
+        PathToPublish: dist
+        ArtifactType: container
+        TargetPath: ""
+        ArtifactName: WhiteLibrary packages
+
+    - task: TwineAuthenticate@0
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+      inputs:
+        externalFeeds: 'PyPi'
+
+    - script: |
+        twine upload -r PyPi --config-file $(PYPIRC_PATH) dist/*.whl dist/*.zip
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+      displayName: 'Upload packages to PyPI'

@@ -3,6 +3,4 @@ flake8-formatter-junit-xml
 pylint>=2.3.0; python_version >= '3.4'
 pylint_junit; python_version >= '3.4'
 unittest-xml-reporting
-twine
-wheel
 -r requirements.txt
