@@ -123,27 +123,3 @@ jobs:
       ArtifactType: container
       TargetPath: ""
       ArtifactName: StaticAnalysis
-
-  - script: |
-      python setup.py sdist --formats=zip bdist_wheel --universal
-    condition: succeeded()
-    displayName: 'Build Python package'
-
-  - task: PublishBuildArtifacts@1
-    condition: succeeded()
-    displayName: Publish Python packages
-    inputs:
-      PathToPublish: dist
-      ArtifactType: container
-      TargetPath: ""
-      ArtifactName: WhiteLibrary packages
-
-  - task: TwineAuthenticate@0
-    condition: and(and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')), eq(variables['make_release'], 'true'))
-    inputs:
-      externalFeeds: 'PyPi'
-
-  - script: |
-      twine upload -r PyPi --config-file $(PYPIRC_PATH) dist/*.whl dist/*.zip
-    condition: and(and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')), eq(variables['make_release'], 'true'))
-    displayName: 'Upload packages to PyPI'
