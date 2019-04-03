@@ -1,4 +1,25 @@
 jobs:
+- job: 'build_sut'
+  steps:
+    - task: NuGetToolInstaller@0
+      inputs:
+        versionSpec: '4.3.0'
+
+    - script: |
+          mkdir UIAutomationTest\packages
+          nuget restore UIAutomationTest\packages.config -PackagesDirectory UIAutomationTest\packages
+          nuget restore src\WhiteLibrary\packages.config -PackagesDirectory packages
+      displayName: Download All NuGet packages
+
+    - task: VSBuild@1
+      inputs:
+        solution: UIAutomationTest\UIAutomationTest.csproj
+
+    - task: PublishPipelineArtifact@0
+      inputs:
+        artifactName: 'build_artifacts'
+      displayName: 'Publish Build Artifacts'
+
 - template: .jobtemplate.yml
   parameters:
     name: 'white_py27'

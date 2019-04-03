@@ -1,0 +1,3 @@
+**/*
+!UIAutomationTest/bin/
+!packages/
