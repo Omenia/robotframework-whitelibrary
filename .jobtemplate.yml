@@ -1,10 +1,11 @@
 jobs:
 - job: ${{ parameters.name }}
+  dependsOn:
+  - 'build_sut'
   variables:
     nuget: packages
     python_version: ${{ parameters.python_version }}
     extra_atest_params: ${{ parameters.extra_atest_params  }}
-    SUT_nuget: UIAutomationTest\packages
 
   steps:
   - task: UsePythonVersion@0
@@ -14,26 +15,14 @@ jobs:
       addToPath: true
       architecture: 'x64'
 
-  - task: NuGetToolInstaller@0
-    inputs:
-      versionSpec: '4.3.0'
-
-  - script: |
-        nuget restore src\WhiteLibrary\packages.config -PackagesDirectory $(nuget)
-    displayName: Download NuGet packages
-
-  - script: |
-        mkdir UIAutomationTest\packages
-        nuget restore UIAutomationTest\packages.config -PackagesDirectory $(SUT_nuget)
-    displayName: Download NuGet packages for SUT
-
   - script: |
         pip install -r requirements-dev.txt
     displayName: Install needed components from PyPi
 
-  - task: VSBuild@1
+  - task: DownloadPipelineArtifact@0
     inputs:
-      solution: UIAutomationTest\UIAutomationTest.csproj
+      artifactName: 'build_artifacts'
+    displayName: Copying White from pipeline artifacts.
 
   - script: |
       mkdir src\WhiteLibrary\bin\
