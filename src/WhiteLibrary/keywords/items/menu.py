@@ -27,7 +27,6 @@ class MenuKeywords(LibraryComponent):
         Optional arguments ``x_offset`` and ``y_offset`` can be used to define the coordinates to click at,
         relative to the center of the item.
         """
-
         menu_button = self.state._get_typed_item_by_locator(Menu, locator)
         Clicks.click(menu_button, x_offset, y_offset)
 
@@ -40,6 +39,7 @@ class MenuKeywords(LibraryComponent):
         Examples:
         | Click Popup Menu Item | Paste | | # click an item in the root level |
         | Click Popup Menu Item | Refactor | Rename | # click a sub item |
+
         """
         popup_menu = self.state.window.Popup
         popup_menu.Item(list(text_path)).Click()
