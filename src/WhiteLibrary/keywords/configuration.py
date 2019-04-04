@@ -68,8 +68,9 @@ class WhiteConfigurationKeywords(LibraryComponent):
         """
         return self._get_milliseconds_as_timestr(CoreAppXmlConfiguration.Instance.DoubleClickInterval)
 
+    @staticmethod
     @keyword
-    def set_white_drag_step_count(self, value):  # pylint: disable=no-self-use
+    def set_white_drag_step_count(value):
         """Sets DragStepCount for White.
 
         ``value`` is the DragStepCount value as integer.
@@ -81,16 +82,19 @@ class WhiteConfigurationKeywords(LibraryComponent):
         logger.info("White DragStepCount set to" + str(CoreAppXmlConfiguration.Instance.DragStepCount))
         return CoreAppXmlConfiguration.Instance.DragStepCount
 
+    @staticmethod
     @keyword
-    def get_white_drag_step_count(self):  # pylint: disable=no-self-use
+    def get_white_drag_step_count():
         """Returns DragStepCount value of White.
 
         See also `Set White Drag Step Count`.
         """
         return CoreAppXmlConfiguration.Instance.DragStepCount
 
-    def _get_timestr_in_milliseconds(self, time_string):  # pylint: disable=no-self-use
+    @staticmethod
+    def _get_timestr_in_milliseconds(time_string):
         return timestr_to_secs(time_string) * 1000
 
-    def _get_milliseconds_as_timestr(self, milliseconds):  # pylint: disable=no-self-use
+    @staticmethod
+    def _get_milliseconds_as_timestr(milliseconds):
         return "{} milliseconds".format(milliseconds)

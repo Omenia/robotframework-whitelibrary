@@ -196,7 +196,8 @@ class WhiteLibrary(DynamicCore):
         idx = self._get_locator_delimiter_index(locator)
         return locator[:idx], locator[idx + 1:]
 
-    def _get_locator_delimiter_index(self, locator):  # pylint: disable=no-self-use
+    @staticmethod
+    def _get_locator_delimiter_index(locator):
         if "=" not in locator:
             return locator.index(":")
         if ":" not in locator:
@@ -208,20 +209,23 @@ class WhiteLibrary(DynamicCore):
             if self.screenshot_type == 'desktop' and self.screenshots_enabled:
                 self.screenshooter.take_desktop_screenshot()
 
-    def _contains_string_value(self, expected, actual, case_sensitive=True):  # pylint: disable=no-self-use
+    @staticmethod
+    def _contains_string_value(expected, actual, case_sensitive=True):
         case_sensitive = is_truthy(case_sensitive)
         expected_value = expected if case_sensitive else expected.upper()
         actual_value = actual if case_sensitive else actual.upper()
         if expected_value not in actual_value:
             raise AssertionError("Expected value {} not found in {}".format(expected, actual))
 
-    def _verify_string_value(self, expected, actual, case_sensitive=True):  # pylint: disable=no-self-use
+    @staticmethod
+    def _verify_string_value(expected, actual, case_sensitive=True):
         case_sensitive = is_truthy(case_sensitive)
         expected_value = expected if case_sensitive else expected.upper()
         actual_value = actual if case_sensitive else actual.upper()
         if expected_value != actual_value:
             raise AssertionError("Expected value {}, but found {}".format(expected, actual))
 
-    def _verify_value(self, expected, actual):  # pylint: disable=no-self-use
+    @staticmethod
+    def _verify_value(expected, actual):
         if expected != actual:
             raise AssertionError("Expected value {}, but found {}".format(expected, actual))

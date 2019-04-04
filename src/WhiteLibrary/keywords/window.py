@@ -76,8 +76,9 @@ class WindowKeywords(LibraryComponent):
         """
         return list(self.state.app.GetWindows())
 
+    @staticmethod
     @keyword
-    def get_desktop_windows(self):  # pylint: disable=no-self-use
+    def get_desktop_windows():
         """Returns a list of windows on the desktop."""
         return list(Desktop.Instance.Windows())
 
@@ -231,7 +232,8 @@ class WindowKeywords(LibraryComponent):
                 CoreAppXmlConfiguration.Instance.FindWindowTimeout / 1000.0)
             raise AutomationException(error_msg.replace("after waiting for 30 seconds", replaced_text), "")
 
-    def _parse_window_locator(self, locator):  # pylint: disable=no-self-use
+    @staticmethod
+    def _parse_window_locator(locator):
         if ":" not in locator:
             locator = "title:" + locator
         idx = locator.index(":")
