@@ -1,6 +1,6 @@
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
-from TestStack.White.InputDevices import Keyboard   # noqa: F401 #pylint: disable=unused-import
+from TestStack.White.InputDevices import Keyboard  # noqa: F401 #pylint: disable=unused-import
 from TestStack.White.WindowsAPI import KeyboardInput
 
 

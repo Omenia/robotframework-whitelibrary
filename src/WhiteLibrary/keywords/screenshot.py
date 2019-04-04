@@ -5,13 +5,12 @@ from robot.utils import get_link_path, is_truthy
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword, PY2
 
-from System.Drawing import Bitmap   # noqa: F401 #pylint: disable=unused-import
+from System.Drawing import Bitmap  # noqa: F401 #pylint: disable=unused-import
 from System.Drawing.Imaging import ImageFormat
 from TestStack.White import Desktop
 
 
 class ScreenshotKeywords(LibraryComponent):
-
     def __init__(self, state):
         super(ScreenshotKeywords, self).__init__(state)
         self.state.screenshooter = self
@@ -25,8 +24,12 @@ class ScreenshotKeywords(LibraryComponent):
         filepath = self._get_screenshot_path("whitelib_screenshot_{index}.png")
         logger.info(get_link_path(filepath, self._log_directory))
         logger.info(
-            '</td></tr><tr><td colspan="3">''<a href="{src}"><img src="{src}" width="800px"></a>'.format(
-                src=get_link_path(filepath, self._log_directory)), html=True)
+            '</td></tr><tr><td colspan="3">'
+            '<a href="{src}"><img src="{src}" width="800px"></a>'.format(
+                src=get_link_path(filepath, self._log_directory)
+            ),
+            html=True,
+        )
         bmp = Desktop.CaptureScreenshot()
         bmp.Save(filepath, ImageFormat.Png)
         return filepath
@@ -49,16 +52,16 @@ class ScreenshotKeywords(LibraryComponent):
     @property
     def _log_directory(self):
         try:
-            logfile = BuiltIn().get_variable_value('${LOG FILE}')
+            logfile = BuiltIn().get_variable_value("${LOG FILE}")
             if logfile is None:
-                return BuiltIn().get_variable_value('${OUTPUTDIR}')
+                return BuiltIn().get_variable_value("${OUTPUTDIR}")
             return os.path.dirname(logfile)
         except RobotNotRunningError:
             return os.getcwdu() if PY2 else os.getcwd()  # pylint: disable=no-member
 
     def _get_screenshot_path(self, filename):
         directory = self._log_directory
-        filename = filename.replace('/', os.sep)
+        filename = filename.replace("/", os.sep)
         index = 0
         while True:
             index += 1
