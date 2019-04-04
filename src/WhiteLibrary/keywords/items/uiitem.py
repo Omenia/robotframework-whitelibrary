@@ -1,4 +1,4 @@
-from TestStack.White.UIItems import UIItem   # noqa: F401 #pylint: disable=unused-import
+from TestStack.White.UIItems import UIItem  # noqa: F401 #pylint: disable=unused-import
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from WhiteLibrary.utils.click import Clicks

@@ -43,8 +43,9 @@ class ListKeywords(LibraryComponent):
         """
         listbox = self.state._get_typed_item_by_locator(ListBox, locator)
         if listbox.SelectedItemText != expected:
-            raise AssertionError("Expected listbox selection to be " +   # noqa: W504
-                                 expected + ", was " + listbox.SelectedItemText)
+            raise AssertionError(
+                "Expected listbox selection to be {}, was {}".format(expected, listbox.SelectedItemText)
+            )
 
     @keyword
     def listbox_should_contain(self, locator, expected):

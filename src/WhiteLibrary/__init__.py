@@ -1,6 +1,6 @@
 # pylint: disable=invalid-name
 import os
-from robot.api import logger    # noqa: F401 #pylint: disable=unused-import
+from robot.api import logger  # noqa: F401 #pylint: disable=unused-import
 from robot.utils import is_truthy
 import clr
 DLL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin', 'TestStack.White.dll')
@@ -129,7 +129,7 @@ class WhiteLibrary(DynamicCore):
         self.window = None
         self.screenshooter = None
         self.ROBOT_LIBRARY_LISTENER = self  # pylint: disable=invalid-name
-        self.screenshot_type = 'desktop'
+        self.screenshot_type = "desktop"
         self.screenshots_enabled = True
         self.libraries = [ApplicationKeywords(self),
                           ButtonKeywords(self),
@@ -205,8 +205,8 @@ class WhiteLibrary(DynamicCore):
         return min(locator.index(":"), locator.index("="))
 
     def _end_keyword(self, name, attrs):  # pylint: disable=unused-argument
-        if attrs['status'] == 'FAIL':
-            if self.screenshot_type == 'desktop' and self.screenshots_enabled:
+        if attrs["status"] == "FAIL":
+            if self.screenshot_type == "desktop" and self.screenshots_enabled:
                 self.screenshooter.take_desktop_screenshot()
 
     @staticmethod

@@ -19,9 +19,19 @@ class MouseKeywords(LibraryComponent):
         Mouse.Instance.Location = point
 
         if int(x_target) != int(Mouse.Instance.Location.X):
-            logger.warn("Mouse X position tried to be set outside of the screen. Wanted: " + str(int(x_target)) + " result:" + str(Mouse.Instance.Location.X), True)
+            logger.warn(
+                "Mouse X position tried to be set outside of the screen. Wanted: {} result: {}".format(
+                    x_target, Mouse.Instance.Location.X
+                ),
+                True,
+            )
         if int(y_target) != int(Mouse.Instance.Location.Y):
-            logger.warn("Mouse Y position tried to be set outside of the screen. Wanted: " + str(y_target) + " result:" + str(Mouse.Instance.Location.Y), True)
+            logger.warn(
+                "Mouse Y position tried to be set outside of the screen. Wanted: {} result: {}".format(
+                    y_target, Mouse.Instance.Location.Y
+                ),
+                True,
+            )
 
     @staticmethod
     @keyword

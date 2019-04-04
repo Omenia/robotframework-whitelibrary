@@ -3,7 +3,7 @@ from TestStack.White.UIA import RectX
 from TestStack.White.InputDevices import Mouse
 
 
-class Clicks():
+class Clicks:
     # Low level function to handle offset click.
     @staticmethod
     def click(item, x_offset, y_offset):
@@ -37,8 +37,7 @@ class Clicks():
     def _get_offset_point(item, x_offset, y_offset):
         item_bounds = item.Bounds
         item_center = RectX.Center(item_bounds)
-        offset_point = Point(int(item_center.X) + int(x_offset),
-                             int(item_center.Y) + int(y_offset))
+        offset_point = Point(int(item_center.X) + int(x_offset), int(item_center.Y) + int(y_offset))
         if not item_bounds.Contains(offset_point):
             raise AssertionError("click location out of bounds")
         return offset_point
