@@ -22,7 +22,8 @@ class WhiteConfigurationKeywords(LibraryComponent):
     def get_white_busy_timeout(self):
         """Returns BusyTimeout value of White.
 
-        See also `Set White Busy Timeout`."""
+        See also `Set White Busy Timeout`.
+        """
         return self._get_milliseconds_as_timestr(CoreAppXmlConfiguration.Instance.BusyTimeout)
 
     @keyword
@@ -41,7 +42,8 @@ class WhiteConfigurationKeywords(LibraryComponent):
     def get_white_find_window_timeout(self):
         """Returns FindWindowTimeout value of White.
 
-        See also `Set White Find Window Timeout`."""
+        See also `Set White Find Window Timeout`.
+        """
         return self._get_milliseconds_as_timestr(CoreAppXmlConfiguration.Instance.FindWindowTimeout)
 
     @keyword
@@ -62,12 +64,13 @@ class WhiteConfigurationKeywords(LibraryComponent):
     def get_white_double_click_interval(self):
         """Returns DoubleClickInterval value of White.
 
-        See also `Set White Double Click Interval`."""
+        See also `Set White Double Click Interval`.
+        """
         return self._get_milliseconds_as_timestr(CoreAppXmlConfiguration.Instance.DoubleClickInterval)
 
     @keyword
     def set_white_drag_step_count(self, value):  # pylint: disable=no-self-use
-        """Sets DragStepCount for White
+        """Sets DragStepCount for White.
 
         ``value`` is the DragStepCount value as integer.
 
@@ -82,7 +85,8 @@ class WhiteConfigurationKeywords(LibraryComponent):
     def get_white_drag_step_count(self):  # pylint: disable=no-self-use
         """Returns DragStepCount value of White.
 
-        See also `Set White Drag Step Count`."""
+        See also `Set White Drag Step Count`.
+        """
         return CoreAppXmlConfiguration.Instance.DragStepCount
 
     def _get_timestr_in_milliseconds(self, time_string):  # pylint: disable=no-self-use

@@ -48,6 +48,7 @@ class WindowKeywords(LibraryComponent):
         belong to the currently attached application.
         Note that when attaching a window that belongs to a different application than the currently attached one,
         attaching the window does not affect what application is attached to the library.
+
         """
         self.state.window = self._get_window(locator)
 

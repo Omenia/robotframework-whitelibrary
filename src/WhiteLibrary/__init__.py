@@ -36,6 +36,7 @@ STRATEGIES = dict(id={"method": "ByAutomationId"},  # noqa: C408
 
 class WhiteLibrary(DynamicCore):
     """WhiteLibrary is a Robot Framework library for automating Windows GUI.
+
     It is a wrapper for [https://github.com/TestStack/White | TestStack.White] automation framework, which is based on
     [https://docs.microsoft.com/en-us/windows/desktop/WinAuto/entry-uiauto-win32 | Microsoft UI Automation API] (UIA).
 
@@ -48,7 +49,6 @@ class WhiteLibrary(DynamicCore):
     Once the application is attached, the window to interact with is attached with `Attach Window`.
 
     Examples:
-
     | # Launch application, no separate step for attaching application needed | |
     | `Launch Application` | C:/myApplication.exe |
     | `Attach Window`      | Main window |
@@ -80,7 +80,6 @@ class WhiteLibrary(DynamicCore):
     | control_type      | Search by control type.            |
 
     Examples:
-
     | `Click Button` | myButton         | # clicks button by its AutomationID |
     | `Click Button` | id:myButton      | # clicks button by its AutomationID |
     | `Click Button` | text:Click here! | # clicks button by the button text  |
@@ -118,7 +117,9 @@ class WhiteLibrary(DynamicCore):
     | | Button Text Should Be | my_button           | press this button |
     | | Click Button          | my_button | |
     | | Close Application     | | |
+
     """
+
     ROBOT_LIBRARY_VERSION = version.VERSION
     ROBOT_LIBRARY_SCOPE = "Global"
     ROBOT_LISTENER_API_VERSION = 2
