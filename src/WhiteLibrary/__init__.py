@@ -124,12 +124,19 @@ class WhiteLibrary(DynamicCore):
     ROBOT_LIBRARY_SCOPE = "Global"
     ROBOT_LISTENER_API_VERSION = 2
 
-    def __init__(self):
+    def __init__(self, screenshot_dir=None):
+        """WhiteLibrary can be imported with an optional argument ``screenshot_dir``.
+
+        ``screenshot_dir`` is the directory where screenshots taken by WhiteLibrary are saved.
+        If the given directory does not already exist, it will be created when the first screenshot is taken.
+        The directory can also be set at runtime with `Set Screenshot Directory`.
+        If the argument is not given, the default location for screenshots is the output directory of the Robot run,
+        i.e. the directory where output and log files are generated.
+        """
         self.app = None
         self.window = None
         self.screenshooter = None
         self.ROBOT_LIBRARY_LISTENER = self  # pylint: disable=invalid-name
-        self.screenshot_type = "desktop"
         self.screenshots_enabled = True
         self.libraries = [ApplicationKeywords(self),
                           ButtonKeywords(self),
@@ -147,7 +154,7 @@ class WhiteLibrary(DynamicCore):
                           TreeKeywords(self),
                           UiItemKeywords(self),
                           WindowKeywords(self),
-                          ScreenshotKeywords(self)]
+                          ScreenshotKeywords(self, screenshot_dir)]
         DynamicCore.__init__(self, self.libraries)
 
     def _get_typed_item_by_locator(self, item_type, locator):
@@ -205,8 +212,8 @@ class WhiteLibrary(DynamicCore):
         return min(locator.index(":"), locator.index("="))
 
     def _end_keyword(self, name, attrs):  # pylint: disable=unused-argument
-        if attrs["status"] == "FAIL":
-            if self.screenshot_type == "desktop" and self.screenshots_enabled:
+        if attrs['status'] == 'FAIL':
+            if self.screenshots_enabled:
                 self.screenshooter.take_desktop_screenshot()
 
     @staticmethod

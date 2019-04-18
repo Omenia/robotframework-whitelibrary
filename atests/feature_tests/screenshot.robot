@@ -1,14 +1,10 @@
 *** Settings ***
-Documentation     These tests launch application and run some
-...    failed dummy keyword. After this screenshot must be created
-...    in application folder.
-
 Library    OperatingSystem
 Library    String
 Library    WhiteLibrary
 Test Setup    Attach Main Window
 Test Teardown    Clean Application
-Resource          ..${/}resource.robot
+Resource    ../resource.robot
 
 *** Test Cases ***
 Take screenshots
@@ -32,8 +28,19 @@ Disable And Enable Screenshots On Failure
     Run Keyword And Expect Error    *    Should Be True    ${FALSE}
     New Screenshot Should Be Created
 
-*** Keywords ***
+Set Screenshot Directory
+    [Setup]    Run Keywords
+    ...        Set Test Variable    ${dir}    ${OUTPUTDIR}${/}screenshots    AND
+    ...        Remove Directory    ${dir}    recursive=True
+    Set Screenshot Directory    ${dir}
+    Take Desktop Screenshot
+    ${item_count}    Count Items In Directory    ${dir}
+    Should Be True    ${item_count} == 1
+    ${prev}    Set Screenshot Directory    ${NONE}
+    Should Be Equal    ${prev}    ${dir}
+    [Teardown]    Set Screenshot Directory    ${NONE}
 
+*** Keywords ***
 Screenshot Setup
     Attach Main Window
     ${COUNT}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png

@@ -3,7 +3,7 @@ Library    OperatingSystem
 Library    String
 Library    WhiteLibrary
 Suite Setup    Setup For Tab 2 Tests
-Suite Teardown	Select Tab Page    tabControl    Tab1
+Suite Teardown    Select Tab Page    tabControl    Tab1
 Resource          ..${/}resource.robot
 
 *** Test Cases ***

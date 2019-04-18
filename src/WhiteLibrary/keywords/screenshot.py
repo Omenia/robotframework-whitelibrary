@@ -1,19 +1,33 @@
 import os
+import robot
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
 from robot.utils import get_link_path, is_truthy
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword, PY2
-
-from System.Drawing import Bitmap  # noqa: F401 #pylint: disable=unused-import
 from System.Drawing.Imaging import ImageFormat
 from TestStack.White import Desktop
 
 
 class ScreenshotKeywords(LibraryComponent):
-    def __init__(self, state):
+    def __init__(self, state, directory):
         super(ScreenshotKeywords, self).__init__(state)
         self.state.screenshooter = self
+        self._screenshot_directory = directory
+
+    @keyword
+    def set_screenshot_directory(self, path):
+        """Sets the directory where WhiteLibrary stores screenshots and returns the previously set path.
+
+        If the given directory does not exist in the system, it will be created when the first screenshot is taken.
+
+        ``path`` is the directory path.
+
+        The directory can also be set when the library is imported, see `Importing` for details.
+        """
+        old_dir = self._screenshot_directory
+        self._screenshot_directory = None if path is None else robot.utils.abspath(path)
+        return old_dir
 
     @keyword
     def take_desktop_screenshot(self):
@@ -22,6 +36,9 @@ class ScreenshotKeywords(LibraryComponent):
         Returns path to the screenshot file.
         """
         filepath = self._get_screenshot_path("whitelib_screenshot_{index}.png")
+        directory = os.path.dirname(filepath)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
         logger.info(get_link_path(filepath, self._log_directory))
         logger.info(
             '</td></tr><tr><td colspan="3">'
@@ -60,7 +77,10 @@ class ScreenshotKeywords(LibraryComponent):
             return os.getcwdu() if PY2 else os.getcwd()  # pylint: disable=no-member
 
     def _get_screenshot_path(self, filename):
-        directory = self._log_directory
+        if self._screenshot_directory is not None:
+            directory = self._screenshot_directory
+        else:
+            directory = self._log_directory
         filename = filename.replace("/", os.sep)
         index = 0
         while True:
