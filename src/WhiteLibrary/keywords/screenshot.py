@@ -81,7 +81,7 @@ class ScreenshotKeywords(LibraryComponent):
             directory = self._screenshot_directory
         else:
             directory = self._log_directory
-        filename = filename.replace('/', os.sep)
+        filename = filename.replace("/", os.sep)
         index = 0
         while True:
             index += 1
