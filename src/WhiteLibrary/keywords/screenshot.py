@@ -20,7 +20,7 @@ class ScreenshotKeywords(LibraryComponent):
     def set_screenshot_directory(self, path):
         """Sets the directory where WhiteLibrary stores screenshots and returns the previously set path.
 
-        If the given directory does not exist in the system, it will be created.
+        If the given directory does not exist in the system, it will be created when the first screenshot is taken.
 
         ``path`` is the directory path.
 

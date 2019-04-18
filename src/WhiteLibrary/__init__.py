@@ -126,9 +126,10 @@ class WhiteLibrary(DynamicCore):
     def __init__(self, screenshot_dir=None):
         """WhiteLibrary can be imported with an optional argument ``screenshot_dir``,
         which is the directory where screenshots taken by WhiteLibrary are saved.
+        If the given directory does not already exist, it will be created when the first screenshot is taken.
+        The directory can also be set at runtime with `Set Screenshot Directory`.
         If the argument is not given, the default location for screenshots is the output directory of the Robot run,
         i.e. the directory where output and log files are generated.
-        The directory can also be set at runtime with `Set Screenshot Directory`.
         """
         self.app = None
         self.window = None
