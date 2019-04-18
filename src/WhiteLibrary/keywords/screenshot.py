@@ -5,7 +5,6 @@ from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
 from robot.utils import get_link_path, is_truthy
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword, PY2
-from System.Drawing import Bitmap   # noqa: F401 #pylint: disable=unused-import
 from System.Drawing.Imaging import ImageFormat
 from TestStack.White import Desktop
 
@@ -42,8 +41,12 @@ class ScreenshotKeywords(LibraryComponent):
             os.makedirs(directory)
         logger.info(get_link_path(filepath, self._log_directory))
         logger.info(
-            '</td></tr><tr><td colspan="3">''<a href="{src}"><img src="{src}" width="800px"></a>'.format(
-                src=get_link_path(filepath, self._log_directory)), html=True)
+            '</td></tr><tr><td colspan="3">'
+            '<a href="{src}"><img src="{src}" width="800px"></a>'.format(
+                src=get_link_path(filepath, self._log_directory)
+            ),
+            html=True,
+        )
         bmp = Desktop.CaptureScreenshot()
         bmp.Save(filepath, ImageFormat.Png)
         return filepath
@@ -66,9 +69,9 @@ class ScreenshotKeywords(LibraryComponent):
     @property
     def _log_directory(self):
         try:
-            logfile = BuiltIn().get_variable_value('${LOG FILE}')
+            logfile = BuiltIn().get_variable_value("${LOG FILE}")
             if logfile is None:
-                return BuiltIn().get_variable_value('${OUTPUTDIR}')
+                return BuiltIn().get_variable_value("${OUTPUTDIR}")
             return os.path.dirname(logfile)
         except RobotNotRunningError:
             return os.getcwdu() if PY2 else os.getcwd()  # pylint: disable=no-member

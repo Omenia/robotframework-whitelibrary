@@ -1,14 +1,13 @@
-from robot.api import logger    # noqa: F401 #pylint: disable=unused-import
+from robot.api import logger  # noqa: F401 #pylint: disable=unused-import
 from TestStack.White import AutomationException, Desktop
 from TestStack.White.Configuration import CoreAppXmlConfiguration
 from TestStack.White.Factory import InitializeOption  # noqa: E402
 from TestStack.White.UIItems.Finders import SearchCriteria  # noqa: E402
-from TestStack.White.UIItems.WindowItems import DisplayState, Window   # noqa: F401
+from TestStack.White.UIItems.WindowItems import DisplayState, Window  # noqa: F401
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 
-WINDOW_STRATEGIES = {"id": "ByAutomationId",
-                     "class_name": "ByClassName"}
+WINDOW_STRATEGIES = {"id": "ByAutomationId", "class_name": "ByClassName"}
 
 
 class WindowKeywords(LibraryComponent):
@@ -48,6 +47,7 @@ class WindowKeywords(LibraryComponent):
         belong to the currently attached application.
         Note that when attaching a window that belongs to a different application than the currently attached one,
         attaching the window does not affect what application is attached to the library.
+
         """
         self.state.window = self._get_window(locator)
 
@@ -75,8 +75,9 @@ class WindowKeywords(LibraryComponent):
         """
         return list(self.state.app.GetWindows())
 
+    @staticmethod
     @keyword
-    def get_desktop_windows(self):  # pylint: disable=no-self-use
+    def get_desktop_windows():
         """Returns a list of windows on the desktop."""
         return list(Desktop.Instance.Windows())
 
@@ -227,10 +228,12 @@ class WindowKeywords(LibraryComponent):
         except AutomationException as error_msg:
             error_msg = str(error_msg)
             replaced_text = "after waiting for {0} seconds".format(
-                CoreAppXmlConfiguration.Instance.FindWindowTimeout / 1000.0)
+                CoreAppXmlConfiguration.Instance.FindWindowTimeout / 1000.0
+            )
             raise AutomationException(error_msg.replace("after waiting for 30 seconds", replaced_text), "")
 
-    def _parse_window_locator(self, locator):  # pylint: disable=no-self-use
+    @staticmethod
+    def _parse_window_locator(locator):
         if ":" not in locator:
             locator = "title:" + locator
         idx = locator.index(":")

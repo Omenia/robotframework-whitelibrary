@@ -10,7 +10,7 @@ class MouseKeywords(LibraryComponent):
     def set_mouse_location(self, x, y):
         """Sets mouse position to (``x``, ``y``).
 
-         Position is relative to application window top left.
+        Position is relative to application window top left.
         """
         window_location = self.state.window.Bounds.TopLeft
         x_target = int(x) + window_location.X
@@ -19,12 +19,23 @@ class MouseKeywords(LibraryComponent):
         Mouse.Instance.Location = point
 
         if int(x_target) != int(Mouse.Instance.Location.X):
-            logger.warn("Mouse X position tried to be set outside of the screen. Wanted: " + str(int(x_target)) + " result:" + str(Mouse.Instance.Location.X), True)
+            logger.warn(
+                "Mouse X position tried to be set outside of the screen. Wanted: {} result: {}".format(
+                    x_target, Mouse.Instance.Location.X
+                ),
+                True,
+            )
         if int(y_target) != int(Mouse.Instance.Location.Y):
-            logger.warn("Mouse Y position tried to be set outside of the screen. Wanted: " + str(y_target) + " result:" + str(Mouse.Instance.Location.Y), True)
+            logger.warn(
+                "Mouse Y position tried to be set outside of the screen. Wanted: {} result: {}".format(
+                    y_target, Mouse.Instance.Location.Y
+                ),
+                True,
+            )
 
+    @staticmethod
     @keyword
-    def move_mouse(self, x, y):  # pylint: disable=no-self-use
+    def move_mouse(x, y):
         """Add (``x``, ``y``) to current mouse location."""
         current_location = Mouse.Instance.Location
         point = Point(int(x) + current_location.X, int(y) + current_location.Y)
@@ -51,11 +62,11 @@ class MouseKeywords(LibraryComponent):
         Position (``x``, ``y``) is relative to application window top left.
         If no coordinates are given it uses current mouse position.
         """
-        self.check_valid_x_y(x, y)
+        self._check_valid_x_y(x, y)
         if (x is None) and (y is None):
             Mouse.Instance.LeftDown()
         else:
-            self.set_mouse_point(x, y)
+            self._set_mouse_point(x, y)
             Mouse.Instance.LeftDown()
 
     @keyword
@@ -65,11 +76,11 @@ class MouseKeywords(LibraryComponent):
         Position (``x``, ``y``) is relative to application window top left.
         If no coordinates are given it uses current mouse position.
         """
-        self.check_valid_x_y(x, y)
+        self._check_valid_x_y(x, y)
         if (x is None) and (y is None):
             Mouse.Instance.LeftUp()
         else:
-            self.set_mouse_point(x, y)
+            self._set_mouse_point(x, y)
             Mouse.Instance.LeftUp()
 
     @keyword
@@ -79,11 +90,11 @@ class MouseKeywords(LibraryComponent):
         Position (``x``, ``y``) is relative to application window top left.
         If no coordinates are given it uses current mouse position.
         """
-        self.check_valid_x_y(x, y)
+        self._check_valid_x_y(x, y)
         if (x is None) and (y is None):
             Mouse.Instance.RightClick()
         else:
-            self.set_mouse_point(x, y)
+            self._set_mouse_point(x, y)
             Mouse.Instance.RightClick()
 
     @keyword
@@ -93,7 +104,7 @@ class MouseKeywords(LibraryComponent):
         Position (``x``, ``y``) is relative to application window top left.
         If no coordinates are given it uses current mouse position.
         """
-        self.check_valid_x_y(x, y)
+        self._check_valid_x_y(x, y)
         if (x is None) and (y is None):
             Mouse.Instance.Click(Mouse.Instance.Location)
         else:
@@ -108,9 +119,9 @@ class MouseKeywords(LibraryComponent):
         Position (``x``, ``y``) is relative to application window top left.
         If no coordinates are given it uses current mouse position.
         """
-        self.check_valid_x_y(x, y)
+        self._check_valid_x_y(x, y)
         if (x is not None) and (y is not None):
-            self.set_mouse_point(x, y)
+            self._set_mouse_point(x, y)
         Mouse.Instance.RightClick()
         Mouse.Instance.RightClick()
 
@@ -121,7 +132,7 @@ class MouseKeywords(LibraryComponent):
         Position (``x``, ``y``) is relative to application window top left.
         If no coordinates are given it uses current mouse position.
         """
-        self.check_valid_x_y(x, y)
+        self._check_valid_x_y(x, y)
         if (x is None) and (y is None):
             Mouse.Instance.DoubleClick(Mouse.Instance.Location)
         else:
@@ -131,7 +142,7 @@ class MouseKeywords(LibraryComponent):
 
     @keyword
     def drag_and_drop(self, locator1, locator2):
-        """ Drags item with locator ``locator1`` to item with locator ``locator2``.
+        """Drags item with locator ``locator1`` to item with locator ``locator2``.
 
         ``locator1`` is the locator of the draggable object or draggable item.
 
@@ -143,11 +154,12 @@ class MouseKeywords(LibraryComponent):
         target_object = self.state._get_item_by_locator(locator2)
         Mouse.Instance.DragAndDrop(draggable_object, target_object)
 
-    def check_valid_x_y(self, x, y):  # pylint: disable=no-self-use
+    @staticmethod
+    def _check_valid_x_y(x, y):
         if (x is not None and y is None) or (x is None and y is not None):
             raise ValueError("MouseKeywords::check_valid_x_y: Either x or y value missing x=" + str(x) + " y=" + str(y))
 
-    def set_mouse_point(self, x, y):
+    def _set_mouse_point(self, x, y):
         window_location = self.state.window.Bounds.TopLeft
         point = Point(int(x) + window_location.X, int(y) + window_location.Y)
         Mouse.Instance.Location = point

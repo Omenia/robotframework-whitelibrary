@@ -43,12 +43,13 @@ class ListKeywords(LibraryComponent):
         """
         listbox = self.state._get_typed_item_by_locator(ListBox, locator)
         if listbox.SelectedItemText != expected:
-            raise AssertionError("Expected listbox selection to be " +   # noqa: W504
-                                 expected + ", was " + listbox.SelectedItemText)
+            raise AssertionError(
+                "Expected listbox selection to be {}, was {}".format(expected, listbox.SelectedItemText)
+            )
 
     @keyword
     def listbox_should_contain(self, locator, expected):
-        """Checks that listbox contains an item with text ``expected`.
+        """Checks that listbox contains an item with text ``expected``.
 
         Fails if the listbox does not contain an item with the given text.
 
@@ -113,7 +114,8 @@ class ListKeywords(LibraryComponent):
 
     @keyword
     def verify_combobox_item(self, locator, expected):
-        """*DEPRECATED* Please use Verify Combobox Selection instead
+        """*DEPRECATED* Please use Verify Combobox Selection instead.
+
         Verifies the selected value of a combobox.
 
         ``locator`` is the locator of the combobox or ComboBox item object.

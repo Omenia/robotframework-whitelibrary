@@ -17,6 +17,7 @@ class ApplicationKeywords(LibraryComponent):
         Examples:
         | Launch Application | C:/path/to/MyApp.exe | | # Launch without arguments |
         | Launch Application | C:/path/to/MyApp.exe | /o log.txt | # Launch with arguments |
+
         """
         if args is not None:
             process_start_info = ProcessStartInfo(sut_path)

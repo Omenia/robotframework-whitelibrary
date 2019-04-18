@@ -1,6 +1,6 @@
 # pylint: disable=invalid-name
 import os
-from robot.api import logger    # noqa: F401 #pylint: disable=unused-import
+from robot.api import logger  # noqa: F401 #pylint: disable=unused-import
 from robot.utils import is_truthy
 import clr
 DLL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin', 'TestStack.White.dll')
@@ -36,6 +36,7 @@ STRATEGIES = dict(id={"method": "ByAutomationId"},  # noqa: C408
 
 class WhiteLibrary(DynamicCore):
     """WhiteLibrary is a Robot Framework library for automating Windows GUI.
+
     It is a wrapper for [https://github.com/TestStack/White | TestStack.White] automation framework, which is based on
     [https://docs.microsoft.com/en-us/windows/desktop/WinAuto/entry-uiauto-win32 | Microsoft UI Automation API] (UIA).
 
@@ -48,7 +49,6 @@ class WhiteLibrary(DynamicCore):
     Once the application is attached, the window to interact with is attached with `Attach Window`.
 
     Examples:
-
     | # Launch application, no separate step for attaching application needed | |
     | `Launch Application` | C:/myApplication.exe |
     | `Attach Window`      | Main window |
@@ -80,7 +80,6 @@ class WhiteLibrary(DynamicCore):
     | control_type      | Search by control type.            |
 
     Examples:
-
     | `Click Button` | myButton         | # clicks button by its AutomationID |
     | `Click Button` | id:myButton      | # clicks button by its AutomationID |
     | `Click Button` | text:Click here! | # clicks button by the button text  |
@@ -118,7 +117,9 @@ class WhiteLibrary(DynamicCore):
     | | Button Text Should Be | my_button           | press this button |
     | | Click Button          | my_button | |
     | | Close Application     | | |
+
     """
+
     ROBOT_LIBRARY_VERSION = version.VERSION
     ROBOT_LIBRARY_SCOPE = "Global"
     ROBOT_LISTENER_API_VERSION = 2
@@ -201,7 +202,8 @@ class WhiteLibrary(DynamicCore):
         idx = self._get_locator_delimiter_index(locator)
         return locator[:idx], locator[idx + 1:]
 
-    def _get_locator_delimiter_index(self, locator):  # pylint: disable=no-self-use
+    @staticmethod
+    def _get_locator_delimiter_index(locator):
         if "=" not in locator:
             return locator.index(":")
         if ":" not in locator:
@@ -213,20 +215,23 @@ class WhiteLibrary(DynamicCore):
             if self.screenshots_enabled:
                 self.screenshooter.take_desktop_screenshot()
 
-    def _contains_string_value(self, expected, actual, case_sensitive=True):  # pylint: disable=no-self-use
+    @staticmethod
+    def _contains_string_value(expected, actual, case_sensitive=True):
         case_sensitive = is_truthy(case_sensitive)
         expected_value = expected if case_sensitive else expected.upper()
         actual_value = actual if case_sensitive else actual.upper()
         if expected_value not in actual_value:
             raise AssertionError("Expected value {} not found in {}".format(expected, actual))
 
-    def _verify_string_value(self, expected, actual, case_sensitive=True):  # pylint: disable=no-self-use
+    @staticmethod
+    def _verify_string_value(expected, actual, case_sensitive=True):
         case_sensitive = is_truthy(case_sensitive)
         expected_value = expected if case_sensitive else expected.upper()
         actual_value = actual if case_sensitive else actual.upper()
         if expected_value != actual_value:
             raise AssertionError("Expected value {}, but found {}".format(expected, actual))
 
-    def _verify_value(self, expected, actual):  # pylint: disable=no-self-use
+    @staticmethod
+    def _verify_value(expected, actual):
         if expected != actual:
             raise AssertionError("Expected value {}, but found {}".format(expected, actual))

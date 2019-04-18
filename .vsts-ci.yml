@@ -1,135 +1,80 @@
-variables:
-  nuget: packages
-  SUT_nuget: UIAutomationTest\packages
+jobs:
+- job: 'build_sut'
+  steps:
+    - task: NuGetToolInstaller@0
+      inputs:
+        versionSpec: '4.3.0'
 
-steps:
-- task: UsePythonVersion@0
-  displayName: 'Setup Python'
-  inputs:
-    versionSpec: '3.6'
-    addToPath: true
-    architecture: 'x64'
+    - script: |
+          mkdir UIAutomationTest\packages
+          nuget restore UIAutomationTest\packages.config -PackagesDirectory UIAutomationTest\packages
+          nuget restore src\WhiteLibrary\packages.config -PackagesDirectory packages
+      displayName: Download All NuGet packages
 
-- task: NuGetToolInstaller@0
-  inputs:
-    versionSpec: '4.3.0'
+    - task: VSBuild@1
+      inputs:
+        solution: UIAutomationTest\UIAutomationTest.csproj
 
-- script: |
-      nuget restore src\WhiteLibrary\packages.config -PackagesDirectory $(nuget)
-  displayName: Download NuGet packages
+    - task: PublishPipelineArtifact@0
+      inputs:
+        artifactName: 'build_artifacts'
+      displayName: 'Publish Build Artifacts'
 
-- script: |
-      mkdir UIAutomationTest\packages
-      nuget restore UIAutomationTest\packages.config -PackagesDirectory $(SUT_nuget)
-  displayName: Download NuGet packages for SUT
+- template: .jobtemplate.yml
+  parameters:
+    name: 'white_py27'
+    extra_atest_params: --exclude no_ci
+    python_version:  2.7
 
-- script: |
-      pip install -r requirements-dev.txt
-  displayName: Install needed components from PyPi
+- template: .jobtemplate.yml
+  parameters:
+    name: 'white_py36'
+    extra_atest_params: --exclude no_ci
+    python_version:  3.6
 
-- task: VSBuild@1
-  inputs:
-    solution: UIAutomationTest\UIAutomationTest.csproj
+- job: 'release'
+  dependsOn:
+  - 'white_py36'
+  - 'white_py27'
+  steps:
+    - task: UsePythonVersion@0
+      displayName: 'Setup Python'
+      inputs:
+        versionSpec: 3.6
+        addToPath: true
+        architecture: 'x64'
 
-- task: Bash@3
-  inputs:
-    targetType: inline
-    script: echo $BUILD_BUILDNUMBER >> build.info
-  displayName: Generate build.info
+    - script: |
+        pip install -r requirements-rel.txt
+      condition: succeeded()
+      displayName: 'Install Release Dependencies'
 
-- script: |
-    mkdir src\WhiteLibrary\bin\
-    copy $(nuget)\Castle.Core.3.3.0\lib\net45\Castle.Core.dll src\WhiteLibrary\bin\
-    copy $(nuget)\TestStack.White.0.13.3\lib\net40\TestStack.White.dll src\WhiteLibrary\bin\
-  continueOnError: false
-  displayName: Copy binaries to the library package
+    - task: Bash@3
+      inputs:
+        targetType: inline
+        script: echo $BUILD_BUILDNUMBER >> build.info
+      displayName: Generate build.info
 
-- script: |
-      python -m unittest discover -s src
-  displayName: Run Python unit tests
+    - script: |
+        python setup.py sdist --formats=zip bdist_wheel --universal
+      condition: succeeded()
+      displayName: 'Build Python package'
 
-- script: |
-      python setup.py install
-  displayName: Install WhiteLibrary
+    - task: PublishBuildArtifacts@1
+      condition: succeeded()
+      displayName: Publish Python packages
+      inputs:
+        PathToPublish: dist
+        ArtifactType: container
+        TargetPath: ""
+        ArtifactName: WhiteLibrary packages
 
-- script: |
-    run_tests.cmd --exclude no_ci --xunit xunit.xml
-  displayName: Execute Acceptance tests
+    - task: TwineAuthenticate@0
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+      inputs:
+        externalFeeds: 'PyPi'
 
-- task: PublishTestResults@2
-  condition: always()
-  inputs:
-    testRunner: JUnit
-    testResultsFiles: output/xunit.xml
-
-- script: |
-    mkdir sareports
-    flake8 --exit-zero --output sareports/flake8.xml --format=junit-xml
-  displayName: 'Running Flake8 Static Analysis'
-  continueOnError: true
-
-- task: PublishTestResults@2
-  condition: always()
-  continueOnError: true
-  inputs:
-    testRunner: JUnit
-    testResultsFiles: sareports/flake8.xml
-    testResultsTitle: Static Analysis Results from Flake8
-    testRunTitle: flake8-results
-    publishRunAttachments: true
-    failTaskOnFailedTests: true
-
-- script: |
-    pylint src --exit-zero --output-format=junit > sareports/pylint.xml
-  displayName: 'Running Pylint Static Analysis'
-  continueOnError: true
-
-- task: PublishTestResults@2
-  condition: always()
-  continueOnError: true
-  inputs:
-    testRunner: JUnit
-    testResultsFiles: sareports/pylint.xml
-    testResultsTitle: Static Analysis Results from Pylint
-    testRunTitle: pylint-results
-    publishRunAttachments: true
-    failTaskOnFailedTests: true
-
-- task: PublishBuildArtifacts@1
-  condition: always()
-  displayName: Publish Robot Framework logs and results
-  inputs:
-    PathtoPublish: output
-    ArtifactType: container
-    TargetPath: ""
-    ArtifactName: Robot Test results
-
-- task: PublishBuildArtifacts@1
-  displayName: Archive Static Analysis Reports
-  inputs:
-    PathToPublish: sareports
-    ArtifactType: container
-    TargetPath: ""
-    ArtifactName: StaticAnalysis
-
-- script: |
-    python setup.py sdist --formats=zip bdist_wheel --universal
-  displayName: 'Build Python package'
-
-- task: PublishBuildArtifacts@1
-  displayName: Publish Python packages
-  inputs:
-    PathToPublish: dist
-    ArtifactType: container
-    TargetPath: ""
-    ArtifactName: WhiteLibrary packages
-
-- task: TwineAuthenticate@0
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  inputs:
-    externalFeeds: 'PyPi'
-
-- script: |
-    twine upload -r PyPi --config-file $(PYPIRC_PATH) dist/*.whl dist/*.zip
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  displayName: 'Upload packages to PyPI'
+    - script: |
+        twine upload -r PyPi --config-file $(PYPIRC_PATH) dist/*.whl dist/*.zip
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+      displayName: 'Upload packages to PyPI'
