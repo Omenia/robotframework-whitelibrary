@@ -33,6 +33,7 @@ jobs:
     python_version:  3.6
 
 - job: 'release'
+  condition: and(eq(variables['Agent.JobStatus'], 'Succeeded'), ne(variables['Build.Reason'],'PullRequest'))
   dependsOn:
   - 'white_py36'
   - 'white_py27'

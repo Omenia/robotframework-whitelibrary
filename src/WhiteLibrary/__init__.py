@@ -33,7 +33,6 @@ STRATEGIES = dict(id={"method": "ByAutomationId"},  # noqa: C408
                   class_name={"method": "ByClassName"},
                   control_type={"method": "ByControlType"})
 
-
 class WhiteLibrary(DynamicCore):
     """WhiteLibrary is a Robot Framework library for automating Windows GUI.
 
@@ -124,7 +123,7 @@ class WhiteLibrary(DynamicCore):
     ROBOT_LIBRARY_SCOPE = "Global"
     ROBOT_LISTENER_API_VERSION = 2
 
-    def __init__(self, screenshot_dir=None):
+    def __init__(self, screenshot_dir = None):
         """WhiteLibrary can be imported with an optional argument ``screenshot_dir``.
 
         ``screenshot_dir`` is the directory where screenshots taken by WhiteLibrary are saved.

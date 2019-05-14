@@ -3,10 +3,13 @@ jobs:
   dependsOn:
   - 'build_sut'
   variables:
-    nuget: packages
-    python_version: ${{ parameters.python_version }}
-    extra_atest_params: ${{ parameters.extra_atest_params  }}
-
+    - group: LINTLY
+    - name: nuget
+      value: packages
+    - name: python_version
+      value: ${{ parameters.python_version }}
+    - name: extra_atest_params
+      value: ${{ parameters.extra_atest_params  }}
   steps:
   - task: UsePythonVersion@0
     displayName: 'Setup Python'
@@ -59,10 +62,17 @@ jobs:
       mkdir sareports
       flake8 --output sareports/flake8_$(python_version).xml --format=junit-xml
     displayName: 'Running Flake8 Static Analysis'
+    condition: and(always(), ne(variables['Build.Reason'],'PullRequest'))
+    continueOnError: true
+
+  - script: |
+      flake8 --exit-zero | lintly  --format=flake8 --log --post-status --exit-zero
+    displayName: 'Running Flake8 Static Analysis For Pull Request'
+    condition: and(always(), eq(variables['Build.Reason'],'PullRequest'), eq(variables['python_version'], '3.6'))
     continueOnError: true
 
   - task: PublishTestResults@2
-    condition: always()
+    condition: and(always(), ne(variables['Build.Reason'],'PullRequest'))
     continueOnError: true
     inputs:
       testRunner: JUnit
@@ -75,11 +85,11 @@ jobs:
   - script: |
       pylint src --output-format=junit > sareports/pylint_$(python_version).xml
     displayName: 'Running Pylint Static Analysis'
-    condition: and(always(), in(variables['python_version'], '3.4', '3.5', '3.6', '3.7'))
+    condition: and(always(), in(variables['python_version'], '3.4', '3.5', '3.6'), ne(variables['Build.Reason'],'PullRequest'))
     continueOnError: true
 
   - task: PublishTestResults@2
-    condition: and(always(), in(variables['python_version'], '3.4', '3.5', '3.6', '3.7'))
+    condition: and(always(), in(variables['python_version'], '3.4', '3.5', '3.6'), ne(variables['Build.Reason'],'PullRequest'))
     continueOnError: true
     inputs:
       testRunner: JUnit
@@ -99,7 +109,7 @@ jobs:
       ArtifactName: Robot Test results
 
   - task: PublishBuildArtifacts@1
-    condition: always()
+    condition: and(always(), ne(variables['Build.Reason'],'PullRequest'))
     displayName: Archive Static Analysis Reports
     inputs:
       PathToPublish: sareports

@@ -4,4 +4,5 @@ flake8-docstrings
 pylint>=2.3.0; python_version >= '3.4'
 pylint_junit; python_version >= '3.4'
 unittest-xml-reporting
+git+https://github.com/rasjani/lintly.git@fix-windows
 -r requirements.txt
