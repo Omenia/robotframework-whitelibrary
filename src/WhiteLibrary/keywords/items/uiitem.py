@@ -1,7 +1,10 @@
+from robot.api import logger
+from robot.utils import timestr_to_secs
 from TestStack.White.UIItems import UIItem  # noqa: F401 #pylint: disable=unused-import
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from WhiteLibrary.utils.click import Clicks
+import time
 
 
 class UiItemKeywords(LibraryComponent):
@@ -82,3 +85,33 @@ class UiItemKeywords(LibraryComponent):
         item = self.state._get_item_by_locator(locator)
         if item.Enabled:
             raise AssertionError("Expected item with locator '{}' to be disabled but found enabled".format(locator))
+
+    @keyword
+    def wait_until_item_exists(self, locator, timeout):
+        self._wait_until_true(lambda: self.item_exists(locator),
+                              timeout,
+                              "Item with locator '{}' was not visible in {} seconds".format(locator, timestr_to_secs(timeout)))
+
+    @keyword
+    def wait_until_item_does_not_exist(self, locator, timeout):
+        self._wait_until_true(lambda: not self.item_exists(locator),
+                              timeout,
+                              "Item with locator '{}' did not disappear in {} seconds".format(locator, timestr_to_secs(timeout)))
+
+    def item_exists(self, locator):
+        s = self.state._get_search_criteria(locator)
+        logger.info("got search criteria time: {}".format(time.time()))
+        return self.state.window.Exists(s)
+
+    def _wait_until_true(self, condition, timeout, error_msg):
+        timeout = timestr_to_secs(timeout)
+        max_wait = time.time() + timeout
+        while True:
+            logger.info("check condition time: {}".format(time.time()))
+            if condition():
+                logger.info("found!")
+                break
+            logger.info("checked condition time: {}".format(time.time()))
+            if time.time() > max_wait:
+                raise TimeoutError(error_msg)
+            time.sleep(0.1)
