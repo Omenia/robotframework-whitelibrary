@@ -99,19 +99,15 @@ class UiItemKeywords(LibraryComponent):
                               "Item with locator '{}' did not disappear in {} seconds".format(locator, timestr_to_secs(timeout)))
 
     def item_exists(self, locator):
-        s = self.state._get_search_criteria(locator)
-        logger.info("got search criteria time: {}".format(time.time()))
-        return self.state.window.Exists(s)
+        search_criteria = self.state._get_search_criteria(locator)
+        return self.state.window.Exists(search_criteria)
 
     def _wait_until_true(self, condition, timeout, error_msg):
         timeout = timestr_to_secs(timeout)
         max_wait = time.time() + timeout
         while True:
-            logger.info("check condition time: {}".format(time.time()))
             if condition():
-                logger.info("found!")
                 break
-            logger.info("checked condition time: {}".format(time.time()))
             if time.time() > max_wait:
                 raise TimeoutError(error_msg)
             time.sleep(0.1)
