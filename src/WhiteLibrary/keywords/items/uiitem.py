@@ -1,4 +1,3 @@
-from robot.api import logger
 from robot.utils import timestr_to_secs
 from TestStack.White.UIItems import UIItem  # noqa: F401 #pylint: disable=unused-import
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
@@ -109,5 +108,5 @@ class UiItemKeywords(LibraryComponent):
             if condition():
                 break
             if time.time() > max_wait:
-                raise TimeoutError(error_msg)
+                raise AssertionError(error_msg)
             time.sleep(0.1)
