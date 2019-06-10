@@ -87,12 +87,34 @@ class UiItemKeywords(LibraryComponent):
 
     @keyword
     def wait_until_item_exists(self, locator, timeout):
+        """Waits until an item with given locator exists in the attached window.
+
+         Fails if ``timeout`` is exceeded.
+
+        ``locator`` is the locator of the item.
+        Locator syntax is explained in `Item locators`.
+
+        ``timeout`` is the maximum time to wait as a Robot time string.
+
+        See `Waiting and timeouts` for more information about waiting in WhiteLibrary.
+        """
         self._wait_until_true(lambda: self.item_exists(locator),
                               timeout,
                               "Item with locator '{}' was not visible in {} seconds".format(locator, timestr_to_secs(timeout)))
 
     @keyword
     def wait_until_item_does_not_exist(self, locator, timeout):
+        """Waits until no items with given locator exist in the attached window.
+
+         Fails if ``timeout`` is exceeded.
+
+        ``locator`` is the locator of the item.
+        Locator syntax is explained in `Item locators`.
+
+        ``timeout`` is the maximum time to wait as a Robot time string.
+
+        See `Waiting and timeouts` for more information about waiting in WhiteLibrary.
+        """
         self._wait_until_true(lambda: not self.item_exists(locator),
                               timeout,
                               "Item with locator '{}' did not disappear in {} seconds".format(locator, timestr_to_secs(timeout)))
