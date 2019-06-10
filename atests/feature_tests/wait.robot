@@ -13,7 +13,7 @@ ${FAST_ALERT}    text:Fast alert occurred
 Successful Wait Until Item Exists
     Click And Wait For Fast Alert
     Click Slow Alert
-    Wait Until Item Exists    ${SLOW_ALERT}    6 seconds
+    Wait Until Item Exists    ${SLOW_ALERT}    7 seconds
 
 Successful Wait Until Item Does Not Exist
     Click And Wait For Fast Alert
