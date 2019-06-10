@@ -98,7 +98,7 @@ class UiItemKeywords(LibraryComponent):
 
         See `Waiting and timeouts` for more information about waiting in WhiteLibrary.
         """
-        self._wait_until_true(lambda: self.item_exists(locator),
+        self._wait_until_true(lambda: self._item_exists(locator),
                               timeout,
                               "Item with locator '{}' was not visible in {} seconds".format(locator, timestr_to_secs(timeout)))
 
@@ -115,11 +115,11 @@ class UiItemKeywords(LibraryComponent):
 
         See `Waiting and timeouts` for more information about waiting in WhiteLibrary.
         """
-        self._wait_until_true(lambda: not self.item_exists(locator),
+        self._wait_until_true(lambda: not self._item_exists(locator),
                               timeout,
                               "Item with locator '{}' did not disappear in {} seconds".format(locator, timestr_to_secs(timeout)))
 
-    def item_exists(self, locator):
+    def _item_exists(self, locator):
         search_criteria = self.state._get_search_criteria(locator)
         return self.state.window.Exists(search_criteria)
 
