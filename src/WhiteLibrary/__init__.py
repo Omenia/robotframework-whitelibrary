@@ -130,7 +130,9 @@ class WhiteLibrary(DynamicCore):
 
     In situations that require additional waiting for UI items, see keywords `Wait Until Item Exists`
     and `Wait Until Item Does Not Exist`.
+
     """
+
     ROBOT_LIBRARY_VERSION = version.VERSION
     ROBOT_LIBRARY_SCOPE = "Global"
     ROBOT_LISTENER_API_VERSION = 2
