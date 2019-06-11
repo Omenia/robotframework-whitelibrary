@@ -8,5 +8,6 @@ from .progressbar import ProgressbarKeywords  # noqa: F401 #pylint: disable=unus
 from .slider import SliderKeywords  # noqa: F401 #pylint: disable=unused-import
 from .tab import TabKeywords  # noqa: F401 #pylint: disable=unused-import
 from .textbox import TextBoxKeywords  # noqa: F401 #pylint: disable=unused-import
+from .toolstrip import ToolStripKeywords  # noqa: F401 #pylint: disable=unused-import
 from .tree import TreeKeywords  # noqa: F401 #pylint: disable=unused-import
 from .uiitem import UiItemKeywords  # noqa: F401 #pylint: disable=unused-import
