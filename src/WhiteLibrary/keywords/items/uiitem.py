@@ -123,7 +123,8 @@ class UiItemKeywords(LibraryComponent):
         search_criteria = self.state._get_search_criteria(locator)
         return self.state.window.Exists(search_criteria)
 
-    def _wait_until_true(self, condition, timeout, error_msg):
+    @staticmethod
+    def _wait_until_true(condition, timeout, error_msg):
         timeout = timestr_to_secs(timeout)
         max_wait = time.time() + timeout
         while True:
