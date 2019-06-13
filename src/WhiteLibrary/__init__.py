@@ -1,6 +1,5 @@
 # pylint: disable=invalid-name
 import os
-from robot.api import logger  # noqa: F401 #pylint: disable=unused-import
 from robot.utils import is_truthy
 import clr
 DLL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin', 'TestStack.White.dll')
@@ -9,13 +8,13 @@ clr.AddReference(DLL_PATH)
 from System.Windows.Automation import AutomationElement, ControlType    # noqa: E402
 from TestStack.White.UIItems.Finders import SearchCriteria    # noqa: E402
 from TestStack.White.UIItems import UIItem    # noqa: E402
-from WhiteLibrary.keywords import ApplicationKeywords, KeyboardKeywords, WindowKeywords, ScreenshotKeywords, WhiteConfigurationKeywords    # noqa: E402
+from WhiteLibrary.keywords import (ApplicationKeywords, KeyboardKeywords, MouseKeywords,
+                                   WindowKeywords, ScreenshotKeywords, WhiteConfigurationKeywords)    # noqa: E402
 from WhiteLibrary.keywords.items import (ButtonKeywords,
                                          LabelKeywords,
                                          ListKeywords,
                                          ListViewKeywords,
                                          MenuKeywords,
-                                         MouseKeywords,
                                          ProgressbarKeywords,
                                          SliderKeywords,
                                          TabKeywords,
