@@ -36,6 +36,55 @@ Attach Window Object
     Attach Window    ${windows[3]}
     Window Title Should Be    Test title - 2
 
+Attach Nonexisting Window
+    Set White Find Window Timeout    2 s
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Attach Window    Bogus Window
+    Should Contain    ${error_msg}    after waiting for 2.0 seconds
+    [Teardown]    Set White Find Window Timeout    30 s
+
+Close Nonexisting Window
+    Set White Find Window Timeout    2 s
+    Attach Main Window
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Close Window    Bogus Window
+    Should Contain    ${error_msg}    after waiting for 2.0 seconds
+    [Teardown]    Set White Find Window Timeout    30 s
+
+Minimize Current Window
+    Maximize Window
+    Minimize Window
+    Window Should Be Minimized    ${TEST APPLICATION WINDOW TITLE}
+    [Teardown]    Restore Window
+
+Maximize Current Window
+    Minimize Window
+    Maximize Window
+    Window Should Be Maximized
+    [Teardown]    Restore Window
+
+Restore Current Window
+    Maximize Window
+    Restore Window
+    Window Should Be Restored
+    [Teardown]    Restore Window
+
+Failing Restored Check
+    Maximize Window
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Window Should Be Restored
+    Should Contain    ${error_msg}    Expected window state to be Restored, but found Maximized
+    [Teardown]    Restore Window
+
+Failing Minimized Check
+    Restore Window
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Window Should Be Minimized
+    Should Contain    ${error_msg}    Expected window state to be Minimized, but found Restored
+    [Teardown]    Restore Window
+
+Failing Maximized Check
+    Minimize Window
+    ${status}    ${error_msg}    Run Keyword And Ignore Error    Window Should Be Maximized
+    Should Contain    ${error_msg}    Expected window state to be Maximized, but found Minimized
+    [Teardown]    Restore Window
+
 *** Keywords ***
 Window Test Suite Setup
     Attach Main Window
