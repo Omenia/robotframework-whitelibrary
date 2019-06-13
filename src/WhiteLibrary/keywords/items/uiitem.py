@@ -1,7 +1,9 @@
+from robot.utils import timestr_to_secs
 from TestStack.White.UIItems import UIItem  # noqa: F401 #pylint: disable=unused-import
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from WhiteLibrary.utils.click import Clicks
+import time
 
 
 class UiItemKeywords(LibraryComponent):
@@ -82,3 +84,54 @@ class UiItemKeywords(LibraryComponent):
         item = self.state._get_item_by_locator(locator)
         if item.Enabled:
             raise AssertionError("Expected item with locator '{}' to be disabled but found enabled".format(locator))
+
+    @keyword
+    def wait_until_item_exists(self, locator, timeout):
+        """Waits until an item with given locator exists in the attached window.
+
+         Fails if ``timeout`` is exceeded.
+
+        ``locator`` is the locator of the item.
+        Locator syntax is explained in `Item locators`.
+
+        ``timeout`` is the maximum time to wait as a Robot time string.
+
+        See `Waiting and timeouts` for more information about waiting in WhiteLibrary.
+        """
+        self._wait_until_true(lambda: self._item_exists(locator),
+                              timeout,
+                              "Item with locator '{}' did not exist within {} seconds"
+                              .format(locator, timestr_to_secs(timeout)))
+
+    @keyword
+    def wait_until_item_does_not_exist(self, locator, timeout):
+        """Waits until no items with given locator exist in the attached window.
+
+         Fails if ``timeout`` is exceeded.
+
+        ``locator`` is the locator of the item.
+        Locator syntax is explained in `Item locators`.
+
+        ``timeout`` is the maximum time to wait as a Robot time string.
+
+        See `Waiting and timeouts` for more information about waiting in WhiteLibrary.
+        """
+        self._wait_until_true(lambda: not self._item_exists(locator),
+                              timeout,
+                              "Item with locator '{}' still existed after {} seconds"
+                              .format(locator, timestr_to_secs(timeout)))
+
+    def _item_exists(self, locator):
+        search_criteria = self.state._get_search_criteria(locator)
+        return self.state.window.Exists(search_criteria)
+
+    @staticmethod
+    def _wait_until_true(condition, timeout, error_msg):
+        timeout = timestr_to_secs(timeout)
+        max_wait = time.time() + timeout
+        while True:
+            if condition():
+                break
+            if time.time() > max_wait:
+                raise AssertionError(error_msg)
+            time.sleep(0.1)

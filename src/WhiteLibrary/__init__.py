@@ -118,6 +118,19 @@ class WhiteLibrary(DynamicCore):
     | | Click Button          | my_button | |
     | | Close Application     | | |
 
+    = Waiting and timeouts =
+    White handles a lot of the required waiting automatically, including waiting while the window is busy and
+    waiting for a window to appear.
+
+    White's internal waits use timeouts that can be read and configured with keywords:
+    - BusyTimeout defines how long to wait while the window is busy,
+      see `Get White Busy Timeout`, `Set White Busy Timeout`
+    - FindWindowTimeout defines how long to wait until the specified window is found,
+     see `Get White Find Window Timeout`, `Set White Find Window Timeout`.
+
+    In situations that require additional waiting for UI items, see keywords `Wait Until Item Exists`
+    and `Wait Until Item Does Not Exist`.
+
     """
 
     ROBOT_LIBRARY_VERSION = version.VERSION
