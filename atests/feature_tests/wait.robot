@@ -24,14 +24,14 @@ Failing Wait Until Item Exists
     Click And Wait For Fast Alert
     Click Slow Alert
     ${error_msg}    Run Keyword And Expect Error    *    Wait Until Item Exists    ${SLOW_ALERT}    2 seconds
-    Should Contain    ${error_msg}    Item with locator '${SLOW_ALERT}' was not visible in 2.0 seconds
+    Should Contain    ${error_msg}    Item with locator '${SLOW_ALERT}' did not exist within 2.0 seconds
     [Teardown]    Wait Until Item Exists     ${SLOW_ALERT}    6 seconds
 
 Failing Wait Until Item Does Not Exist
     Click And Wait For Fast Alert
     Click Slow Alert
     ${error_msg}    Run Keyword And Expect Error    *    Wait Until Item Does Not Exist    ${FAST_ALERT}    2 seconds
-    Should Contain    ${error_msg}    Item with locator '${FAST_ALERT}' did not disappear in 2.0 seconds
+    Should Contain    ${error_msg}    Item with locator '${FAST_ALERT}' still existed after 2.0 seconds
     [Teardown]    Wait Until Item Exists     ${SLOW_ALERT}    6 seconds
 
 *** Keywords ***
