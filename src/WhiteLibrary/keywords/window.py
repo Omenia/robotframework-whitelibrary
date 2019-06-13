@@ -1,4 +1,4 @@
-from robot.api import logger  # noqa: F401 #pylint: disable=unused-import
+from System import Enum
 from TestStack.White import AutomationException, Desktop
 from TestStack.White.Configuration import CoreAppXmlConfiguration
 from TestStack.White.Factory import InitializeOption  # noqa: E402
@@ -129,22 +129,6 @@ class WindowKeywords(LibraryComponent):
         window.DisplayState = DisplayState.Maximized
 
     @keyword
-    def window_should_be_maximized(self, locator=None):
-        """Verifies that a window is maximized.
-
-        ``locator`` is the locator of the window or a window object (optional).
-
-        If no ``locator`` value is given, the status of the currently attached window is verified.
-        See `Attach Window` for details about attaching a window and window locator syntax.
-        """
-        if locator is not None:
-            window = self._get_window(locator)
-        else:
-            window = self.state.window
-        if window.DisplayState != DisplayState.Maximized:
-            raise AssertionError("Expected window state to be maximized, but found {}".format(str(window.DisplayState)))
-
-    @keyword
     def minimize_window(self, locator=None):
         """Minimizes a window.
 
@@ -158,22 +142,6 @@ class WindowKeywords(LibraryComponent):
         else:
             window = self.state.window
         window.DisplayState = DisplayState.Minimized
-
-    @keyword
-    def window_should_be_minimized(self, locator=None):
-        """Verifies that a window is minimized.
-
-        ``locator`` is the locator of the window or a window object (optional).
-
-        If no ``locator`` value is given, the status of the currently attached window is verified.
-        See `Attach Window` for details about attaching a window and window locator syntax.
-        """
-        if locator is not None:
-            window = self._get_window(locator)
-        else:
-            window = self.state.window
-        if window.DisplayState != DisplayState.Minimized:
-            raise AssertionError("Expected window state to be minimized, but found {}".format(str(window.DisplayState)))
 
     @keyword
     def restore_window(self, window_title=None):
@@ -191,7 +159,29 @@ class WindowKeywords(LibraryComponent):
         window.DisplayState = DisplayState.Restored
 
     @keyword
-    def window_should_be_restored(self, window_title=None):
+    def window_should_be_maximized(self, locator=None):
+        """Verifies that a window is maximized.
+
+        ``locator`` is the locator of the window or a window object (optional).
+
+        If no ``locator`` value is given, the status of the currently attached window is verified.
+        See `Attach Window` for details about attaching a window and window locator syntax.
+        """
+        self._verify_window_state("Maximized", locator)
+
+    @keyword
+    def window_should_be_minimized(self, locator=None):
+        """Verifies that a window is minimized.
+
+        ``locator`` is the locator of the window or a window object (optional).
+
+        If no ``locator`` value is given, the status of the currently attached window is verified.
+        See `Attach Window` for details about attaching a window and window locator syntax.
+        """
+        self._verify_window_state("Minimized", locator)
+
+    @keyword
+    def window_should_be_restored(self, locator=None):
         """Verifies that a window is restored.
 
         ``locator`` is the locator of the window or a window object (optional).
@@ -199,12 +189,17 @@ class WindowKeywords(LibraryComponent):
         If title is not given, currently attached window status is queried.
         See `Attach Window` for more details.
         """
-        if window_title is not None:
-            window = self._get_window(window_title)
+        self._verify_window_state("Restored", locator)
+
+    def _verify_window_state(self, expected_state, locator):
+        if locator is not None:
+            window = self._get_window(locator)
         else:
             window = self.state.window
-        if window.DisplayState != DisplayState.Restored:
-            raise AssertionError("Expected window state to be restored, but found {}".format(str(window.DisplayState)))
+        actual_state = window.DisplayState
+        if actual_state != getattr(DisplayState, expected_state):
+            raise AssertionError("Expected window state to be {}, but found {}"
+                                 .format(expected_state, self._window_state_to_str(actual_state)))
 
     def _get_window(self, locator):
         if isinstance(locator, Window):
@@ -238,3 +233,7 @@ class WindowKeywords(LibraryComponent):
             locator = "title:" + locator
         idx = locator.index(":")
         return locator[:idx], locator[(idx + 1):]
+
+    @staticmethod
+    def _window_state_to_str(state):
+        return Enum.GetName(DisplayState, state)
