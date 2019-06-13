@@ -100,7 +100,8 @@ class UiItemKeywords(LibraryComponent):
         """
         self._wait_until_true(lambda: self._item_exists(locator),
                               timeout,
-                              "Item with locator '{}' was not visible in {} seconds".format(locator, timestr_to_secs(timeout)))
+                              "Item with locator '{}' did not exist within {} seconds"
+                              .format(locator, timestr_to_secs(timeout)))
 
     @keyword
     def wait_until_item_does_not_exist(self, locator, timeout):
@@ -117,7 +118,8 @@ class UiItemKeywords(LibraryComponent):
         """
         self._wait_until_true(lambda: not self._item_exists(locator),
                               timeout,
-                              "Item with locator '{}' did not disappear in {} seconds".format(locator, timestr_to_secs(timeout)))
+                              "Item with locator '{}' still existed after {} seconds"
+                              .format(locator, timestr_to_secs(timeout)))
 
     def _item_exists(self, locator):
         search_criteria = self.state._get_search_criteria(locator)
