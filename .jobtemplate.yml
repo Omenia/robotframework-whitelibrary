@@ -85,7 +85,7 @@ jobs:
       testRunner: JUnit
       testResultsFiles: sareports/pylint_$(python_version).xml
       testResultsTitle: Static Analysis Results from Pylint
-      testRunTitle: pylint-results-(python_version)
+      testRunTitle: pylint-results-$(python_version)
       publishRunAttachments: true
       failTaskOnFailedTests: true
 
