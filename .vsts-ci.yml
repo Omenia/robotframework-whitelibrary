@@ -45,7 +45,7 @@ jobs:
         architecture: 'x64'
 
     - script: |
-        pip install -r requirements-rel.txt
+        pip install -r requirements-dev.txt
       condition: succeeded()
       displayName: 'Install Release Dependencies'
 
@@ -54,6 +54,18 @@ jobs:
         targetType: inline
         script: echo $BUILD_BUILDNUMBER >> build.info
       displayName: Generate build.info
+
+    - task: DownloadPipelineArtifact@0
+      inputs:
+        artifactName: 'build_artifacts'
+      displayName: Copying White from pipeline artifacts.
+
+    - script: |
+        mkdir src\WhiteLibrary\bin\
+        copy packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll src\WhiteLibrary\bin\
+        copy packages\TestStack.White.0.13.3\lib\net40\TestStack.White.dll src\WhiteLibrary\bin\
+      continueOnError: false
+      displayName: Copy binaries to the library package
 
     - script: |
         python setup.py sdist --formats=zip bdist_wheel --universal
