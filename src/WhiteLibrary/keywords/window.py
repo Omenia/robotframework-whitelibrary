@@ -198,8 +198,8 @@ class WindowKeywords(LibraryComponent):
             window = self.state.window
         actual_state = window.DisplayState
         if actual_state != getattr(DisplayState, expected_state):
-            raise AssertionError("Expected window state to be {}, but found {}"
-                                 .format(expected_state, self._window_state_to_str(actual_state)))
+            raise AssertionError("Expected window state to be {}, but found {} ({})"
+                                 .format(expected_state, self._window_state_to_str(actual_state), actual_state))
 
     def _get_window(self, locator):
         if isinstance(locator, Window):
