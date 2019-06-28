@@ -27,6 +27,19 @@ Verify Mouse Move
     Should Be Equal As Numbers    330    ${MOUSE_X}
     Should Be Equal As Numbers    60    ${MOUSE_Y}
 
+Verify Mouse Right Button Down
+    Click Item    event_label
+    Mouse Right Button Down
+    Verify Label    selectionIndicatorLabel    right button down
+
+Verify Mouse Right Button Down And Up
+    Click Item    event_label
+    ${MOUSE_X}    ${MOUSE_Y}    Get Mouse Location
+    Mouse Right Button Down    ${MOUSE_X}    ${MOUSE_Y}
+    Sleep    1
+    Mouse Right Button Up
+    Verify Label    selectionIndicatorLabel    right button up
+
 Verify Mouse Left Button Down
     Click Item    event_label
     Mouse Left Button Down

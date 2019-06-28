@@ -55,6 +55,34 @@ class MouseKeywords(LibraryComponent):
         point = Mouse.Instance.Location
         return point.X - window_location.X, point.Y - window_location.Y
 
+    def _mouse_updown_action(self, x=None, y=None, action=None):
+        if action is None:
+            return
+        self._check_valid_x_y(x, y)
+        if (x is None) and (y is None):
+            action()
+        else:
+            self._set_mouse_point(x, y)
+            action()
+
+    @keyword
+    def mouse_right_button_down(self, x=None, y=None):
+        """Presses right mouse button down at given position.
+
+        Position (``x``, ``y``) is relative to application window top left.
+        If no coordinates are given it uses current mouse position.
+        """
+        self._mouse_updown_action(x, y, Mouse.Instance.RightDown)
+
+    @keyword
+    def mouse_right_button_up(self, x=None, y=None):
+        """Releases right mouse button up at given position.
+
+        Position (``x``, ``y``) is relative to application window top left.
+        If no coordinates are given it uses current mouse position.
+        """
+        self._mouse_updown_action(x, y, Mouse.Instance.RightUp)
+
     @keyword
     def mouse_left_button_down(self, x=None, y=None):
         """Presses left mouse button down at given position.
@@ -62,12 +90,7 @@ class MouseKeywords(LibraryComponent):
         Position (``x``, ``y``) is relative to application window top left.
         If no coordinates are given it uses current mouse position.
         """
-        self._check_valid_x_y(x, y)
-        if (x is None) and (y is None):
-            Mouse.Instance.LeftDown()
-        else:
-            self._set_mouse_point(x, y)
-            Mouse.Instance.LeftDown()
+        self._mouse_updown_action(x, y, Mouse.Instance.LeftDown)
 
     @keyword
     def mouse_left_button_up(self, x=None, y=None):
@@ -76,12 +99,7 @@ class MouseKeywords(LibraryComponent):
         Position (``x``, ``y``) is relative to application window top left.
         If no coordinates are given it uses current mouse position.
         """
-        self._check_valid_x_y(x, y)
-        if (x is None) and (y is None):
-            Mouse.Instance.LeftUp()
-        else:
-            self._set_mouse_point(x, y)
-            Mouse.Instance.LeftUp()
+        self._mouse_updown_action(x, y, Mouse.Instance.LeftUp)
 
     @keyword
     def mouse_right_click(self, x=None, y=None):
