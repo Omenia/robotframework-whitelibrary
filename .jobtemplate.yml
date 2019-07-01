@@ -27,7 +27,7 @@ jobs:
   - script: |
       mkdir src\WhiteLibrary\bin\
       copy $(nuget)\Castle.Core.3.3.0\lib\net45\Castle.Core.dll src\WhiteLibrary\bin\
-      copy $(nuget)\TestStack.White.0.13.3\lib\net40\TestStack.White.dll src\WhiteLibrary\bin\
+      copy $(nuget)\Salabs.TestStack.White.0.13.4\lib\net40\TestStack.White.dll src\WhiteLibrary\bin\
     continueOnError: false
     displayName: Copy binaries to the library package
 
