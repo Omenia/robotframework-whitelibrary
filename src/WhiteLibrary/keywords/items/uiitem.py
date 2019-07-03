@@ -3,7 +3,7 @@ from TestStack.White.UIItems import UIItem  # noqa: F401 #pylint: disable=unused
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from WhiteLibrary.utils.click import Clicks
-import time
+from WhiteLibrary.utils.wait import Wait
 
 
 class UiItemKeywords(LibraryComponent):
@@ -98,10 +98,10 @@ class UiItemKeywords(LibraryComponent):
 
         See `Waiting and timeouts` for more information about waiting in WhiteLibrary.
         """
-        self._wait_until_true(lambda: self._item_exists(locator),
-                              timeout,
-                              u"Item with locator '{}' did not exist within {} seconds"
-                              .format(locator, timestr_to_secs(timeout)))
+        Wait.until_true(lambda: self._item_exists(locator),
+                        timeout,
+                        u"Item with locator '{}' did not exist within {} seconds"
+                        .format(locator, timestr_to_secs(timeout)))
 
     @keyword
     def wait_until_item_does_not_exist(self, locator, timeout):
@@ -116,22 +116,11 @@ class UiItemKeywords(LibraryComponent):
 
         See `Waiting and timeouts` for more information about waiting in WhiteLibrary.
         """
-        self._wait_until_true(lambda: not self._item_exists(locator),
-                              timeout,
-                              u"Item with locator '{}' still existed after {} seconds"
-                              .format(locator, timestr_to_secs(timeout)))
+        Wait.until_true(lambda: not self._item_exists(locator),
+                        timeout,
+                        u"Item with locator '{}' still existed after {} seconds"
+                        .format(locator, timestr_to_secs(timeout)))
 
     def _item_exists(self, locator):
         search_criteria = self.state._get_search_criteria(locator)
         return self.state.window.Exists(search_criteria)
-
-    @staticmethod
-    def _wait_until_true(condition, timeout, error_msg):
-        timeout = timestr_to_secs(timeout)
-        max_wait = time.time() + timeout
-        while True:
-            if condition():
-                break
-            if time.time() > max_wait:
-                raise AssertionError(error_msg)
-            time.sleep(0.1)
