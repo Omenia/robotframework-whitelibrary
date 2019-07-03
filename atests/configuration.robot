@@ -6,7 +6,7 @@ Library    OperatingSystem
 Library    String
 Library    WhiteLibrary
 Suite Setup    None
-Suite Teardown    White Configuration Parameters Restore
+Test Teardown    White Configuration Parameters Restore
 
 *** Test Cases ***
 Set White Busy Timeout
@@ -29,11 +29,9 @@ Set White Drag Step Count
     ${WHITE_DRAG_STEP_COUNT}    Get White Drag Step Count
     Should Be Equal    ${WHITE_DRAG_STEP_COUNT}    ${3}
 
-
 *** Keywords ***
 White Configuration Parameters Restore
     #These defaults are defined in White Stack source code.
     Set White Busy Timeout    5000 ms
     Set White Find Window Timeout    30000 ms
     Set White Double Click Interval    0 ms
-

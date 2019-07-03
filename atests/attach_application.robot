@@ -14,6 +14,10 @@ Attach To A Running Application By Id
     Attach Application By Id    ${test application id}
     Application Should Be Attached
 
+Attach To A Running Application By Invalid Name
+    Run Keyword And Expect Error  Unable to locate application via identifier: ${INVALID TEST APPLICATION NAME}
+    ...                           Attach Application By Name    ${INVALID TEST APPLICATION NAME}
+
 *** Keywords ***
 Start Test Application
     ${handle} =    Start Process    ${TEST APPLICATION}
