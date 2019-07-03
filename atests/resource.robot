@@ -4,7 +4,9 @@ Library    WhiteLibrary
 
 *** Variables ***
 ${TEST APPLICATION}      ${EXECDIR}${/}UIAutomationTest${/}bin${/}Debug${/}UIAutomationTest.exe
+${DELAYED TEST APPLICATION}      ${EXECDIR}${/}UIAutomationTest${/}delayed_start.bat
 ${TEST APPLICATION NAME}    UIAutomationTest
+${INVALID TEST APPLICATION NAME}    UIAutomationTestThatDoesNotExist
 ${TEST APPLICATION WINDOW TITLE}    UI Automation Test Window
 ${TEST WHITE APPLICATION}      ${EXECDIR}${/}WhiteTestApp${/}WpfTestApplication.exe
 ${TEST WHITE APPLICATION NAME}    MainWindow
