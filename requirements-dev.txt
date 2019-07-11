@@ -3,6 +3,7 @@ flake8
 flake8-formatter-junit-xml
 flake8-docstrings
 flake8-comprehensions
+git+https://github.com/salabs/robotframework-junitlistener.git
 pylint>=2.3.0; python_version >= '3.4'
 pylint_junit; python_version >= '3.4'
 unittest-xml-reporting

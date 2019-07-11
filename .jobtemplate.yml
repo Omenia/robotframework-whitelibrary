@@ -46,14 +46,18 @@ jobs:
     displayName: Install WhiteLibrary
 
   - script: |
-      robot --outputdir output --noncritical unstable --xunit acceptancetests_$(python_version).xml $(extra_atest_params) --loglevel DEBUG:INFO atests
+      robot --outputdir output --noncritical unstable --listener JunitListener:acceptancetests_$(python_version)-junit8.xml:junit-8 $(extra_atest_params) --loglevel DEBUG:INFO atests
+      robot --outputdir output --noncritical unstable --listener JunitListener:acceptancetests_$(python_version)-junit9.xml:junit-9 $(extra_atest_params) --loglevel DEBUG:INFO atests
+      robot --outputdir output --noncritical unstable --listener JunitListener:acceptancetests_$(python_version)-junit10.xml:junit-10 $(extra_atest_params) --loglevel DEBUG:INFO atests
+      robot --outputdir output --noncritical unstable --listener JunitListener:acceptancetests_$(python_version)-JUnit.xml:JUnit $(extra_atest_params) --loglevel DEBUG:INFO atests
+      robot --outputdir output --noncritical unstable --listener JunitListener:acceptancetests_$(python_version)-xunit.xml:xunit $(extra_atest_params) --loglevel DEBUG:INFO atests
     displayName: Execute Acceptance tests
 
   - task: PublishTestResults@2
     condition: always()
     inputs:
       testRunner: JUnit
-      testResultsFiles: output/acceptancetests_$(python_version).xml
+      testResultsFiles: output/acceptancetests_$(python_version)*.xml
 
   - script: |
       mkdir sareports
