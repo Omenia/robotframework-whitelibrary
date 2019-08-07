@@ -72,7 +72,7 @@ class UiItemKeywords(LibraryComponent):
         """
         item = self.state._get_item_by_locator(locator)
         if not item.Enabled:
-            raise AssertionError("Expected item with locator '{}' to be enabled but found disabled".format(locator))
+            raise AssertionError(u"Expected item with locator '{}' to be enabled but found disabled".format(locator))
 
     @keyword
     def item_should_be_disabled(self, locator):
@@ -83,7 +83,7 @@ class UiItemKeywords(LibraryComponent):
         """
         item = self.state._get_item_by_locator(locator)
         if item.Enabled:
-            raise AssertionError("Expected item with locator '{}' to be disabled but found enabled".format(locator))
+            raise AssertionError(u"Expected item with locator '{}' to be disabled but found enabled".format(locator))
 
     @keyword
     def wait_until_item_exists(self, locator, timeout):
@@ -100,7 +100,7 @@ class UiItemKeywords(LibraryComponent):
         """
         self._wait_until_true(lambda: self._item_exists(locator),
                               timeout,
-                              "Item with locator '{}' did not exist within {} seconds"
+                              u"Item with locator '{}' did not exist within {} seconds"
                               .format(locator, timestr_to_secs(timeout)))
 
     @keyword
@@ -118,7 +118,7 @@ class UiItemKeywords(LibraryComponent):
         """
         self._wait_until_true(lambda: not self._item_exists(locator),
                               timeout,
-                              "Item with locator '{}' still existed after {} seconds"
+                              u"Item with locator '{}' still existed after {} seconds"
                               .format(locator, timestr_to_secs(timeout)))
 
     def _item_exists(self, locator):
