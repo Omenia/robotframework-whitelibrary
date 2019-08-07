@@ -34,6 +34,10 @@ Failing Wait Until Item Does Not Exist
     Should Contain    ${error_msg}    Item with locator '${FAST_ALERT}' still existed after 2.0 seconds
     [Teardown]    Wait Until Item Exists     ${SLOW_ALERT}    6 seconds
 
+Wait For Unexisting Item With Non-Ascii Characters
+    ${error_msg}    Run Keyword And Expect Error    *    Wait Until Item Exists    text:Fäst alert occurred    1 second
+    Should Contain    ${error_msg}    Item with locator 'text:Fäst alert occurred' did not exist within 1.0 seconds
+
 *** Keywords ***
 Click And Wait For Fast Alert
     Click Button    ${FAST_ALERT_BTN}

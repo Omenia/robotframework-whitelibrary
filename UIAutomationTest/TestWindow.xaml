@@ -28,6 +28,7 @@
                     <MockObject Name="Budgerigar" Scientific="Melopsittacus undulatus"/>
                     <MockObject Name="Common raven" Scientific="Corvus corax"/>
                     <MockObject Name="Dodo" Scientific="Raphus cucullatus"/>
+                    <MockObject Name="Varpuspöllö" Scientific="Glaucidium passerinum" />
                 </MockObjects>
             </x:XData>
         </XmlDataProvider>
