@@ -236,7 +236,7 @@ class WhiteLibrary(DynamicCore):
         expected_value = expected if case_sensitive else expected.upper()
         actual_value = actual if case_sensitive else actual.upper()
         if expected_value not in actual_value:
-            raise AssertionError("Expected value {} not found in {}".format(expected, actual))
+            raise AssertionError(u"Expected value {} not found in {}".format(expected, actual))
 
     @staticmethod
     def _verify_string_value(expected, actual, case_sensitive=True):
@@ -244,9 +244,9 @@ class WhiteLibrary(DynamicCore):
         expected_value = expected if case_sensitive else expected.upper()
         actual_value = actual if case_sensitive else actual.upper()
         if expected_value != actual_value:
-            raise AssertionError("Expected value {}, but found {}".format(expected, actual))
+            raise AssertionError(u"Expected value {}, but found {}".format(expected, actual))
 
     @staticmethod
     def _verify_value(expected, actual):
         if expected != actual:
-            raise AssertionError("Expected value {}, but found {}".format(expected, actual))
+            raise AssertionError(u"Expected value {}, but found {}".format(expected, actual))
