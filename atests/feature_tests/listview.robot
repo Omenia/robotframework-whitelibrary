@@ -110,3 +110,22 @@ Double Click Listview Cell
     Selction Indicator Should Be    Donald Knuth    Double Clicked
     Double Click Listview Cell By Index    list_view2    0    2
     Selction Indicator Should Be    Fiction    Double Clicked
+
+Listview Row With Non-Ascii Chars
+    Run Keyword And Expect Error    Cell did not contain text 'pölö'
+    ...                             Listview Cell Should Contain    birds    Bird    3    pölö
+    Run Keyword And Expect Error    Cell should not have contained text 'pöllö'
+    ...                             ListView Cell Should Not Contain    birds    Bird    3    pöllö
+    Run Keyword And Expect Error    Cell (3, 0) did not contain text 'pölö'
+    ...                             ListView Cell At Index Should Contain    birds    3    0    pölö
+    Run Keyword And Expect Error    Cell (3, 0) should not have contained text 'pöllö'
+    ...                             ListView Cell At Index Should Not Contain    birds    3    0    pöllö
+
+    Run Keyword And Expect Error    Cell text should have been 'pölö', found 'Varpuspöllö'
+    ...                             Listview Cell Text Should Be    birds    Bird    3    pölö
+    Run Keyword And Expect Error    Cell text should not have been 'Varpuspöllö'
+    ...                             Listview Cell Text Should Not Be    birds    Bird    3    Varpuspöllö
+    Run Keyword And Expect Error    Cell (3, 0) text should have been 'pölö', found 'Varpuspöllö'
+    ...                             Listview Cell Text At Index Should Be   birds    3    0    pölö
+    Run Keyword And Expect Error    Cell (3, 0) text should not have been 'Varpuspöllö'
+    ...                             Listview Cell Text At Index Should Not Be    birds    3    0    Varpuspöllö
