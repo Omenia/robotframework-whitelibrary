@@ -44,7 +44,7 @@ class ListKeywords(LibraryComponent):
         listbox = self.state._get_typed_item_by_locator(ListBox, locator)
         if listbox.SelectedItemText != expected:
             raise AssertionError(
-                "Expected listbox selection to be {}, was {}".format(expected, listbox.SelectedItemText)
+                u"Expected listbox selection to be {}, was {}".format(expected, listbox.SelectedItemText)
             )
 
     @keyword
@@ -64,7 +64,7 @@ class ListKeywords(LibraryComponent):
         except UIActionException as error:
             # Check error in case we get UIActionException with another message
             if "Item of text" in str(error):
-                raise AssertionError("ListBox with locator '{}' did not contain '{}'".format(locator, expected))
+                raise AssertionError(u"ListBox with locator '{}' did not contain '{}'".format(locator, expected))
             raise error
 
     @keyword
@@ -81,7 +81,7 @@ class ListKeywords(LibraryComponent):
         listbox = self.state._get_typed_item_by_locator(ListBox, locator)
         try:
             listbox.Item(str(expected))
-            raise AssertionError("ListBox with locator '{}' should not have contained '{}'".format(locator, expected))
+            raise AssertionError(u"ListBox with locator '{}' should not have contained '{}'".format(locator, expected))
         except UIActionException as error:
             # Check error in case we get UIActionException with another message
             if "Item of text" not in str(error):
@@ -154,7 +154,7 @@ class ListKeywords(LibraryComponent):
         except UIActionException as error:
             # Check error in case we get UIActionException with another message
             if "Item of text" in str(error):
-                raise AssertionError("ComboBox with locator '{}' did not contain '{}'".format(locator, expected))
+                raise AssertionError(u"ComboBox with locator '{}' did not contain '{}'".format(locator, expected))
             raise error
 
     @keyword
@@ -171,7 +171,7 @@ class ListKeywords(LibraryComponent):
         combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
         try:
             combobox.Item(str(expected))
-            raise AssertionError("ComboBox with locator '{}' should not have contained '{}'".format(locator, expected))
+            raise AssertionError(u"ComboBox with locator '{}' should not have contained '{}'".format(locator, expected))
         except UIActionException as error:
             # Check error in case we get UIActionException with another message
             if "Item of text" not in str(error):

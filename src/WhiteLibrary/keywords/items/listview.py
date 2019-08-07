@@ -126,7 +126,7 @@ class ListViewKeywords(LibraryComponent):
         """
         cell = self._get_cell_by_index(locator, row_index, column_index)
         if expected not in cell.Text:
-            raise AssertionError("Cell ({}, {}) did not contain text '{}'".format(row_index, column_index, expected))
+            raise AssertionError(u"Cell ({}, {}) did not contain text '{}'".format(row_index, column_index, expected))
 
     @keyword
     def listview_cell_at_index_should_not_contain(self, locator, row_index, column_index, expected):
@@ -137,7 +137,7 @@ class ListViewKeywords(LibraryComponent):
         cell = self._get_cell_by_index(locator, row_index, column_index)
         if expected in cell.Text:
             raise AssertionError(
-                "Cell ({}, {}) should not have contained text '{}'".format(row_index, column_index, expected)
+                u"Cell ({}, {}) should not have contained text '{}'".format(row_index, column_index, expected)
             )
 
     @keyword
@@ -148,7 +148,7 @@ class ListViewKeywords(LibraryComponent):
         """
         cell = self._get_cell(locator, column_name, row_index)
         if expected not in cell.Text:
-            raise AssertionError("Cell did not contain text '{}'".format(expected))
+            raise AssertionError(u"Cell did not contain text '{}'".format(expected))
 
     @keyword
     def listview_cell_should_not_contain(self, locator, column_name, row_index, expected):
@@ -158,7 +158,7 @@ class ListViewKeywords(LibraryComponent):
         """
         cell = self._get_cell(locator, column_name, row_index)
         if expected in cell.Text:
-            raise AssertionError("Cell should not have contained text '{}'".format(expected))
+            raise AssertionError(u"Cell should not have contained text '{}'".format(expected))
 
     @keyword
     def listview_cell_text_at_index_should_be(self, locator, row_index, column_index, expected):
@@ -169,7 +169,7 @@ class ListViewKeywords(LibraryComponent):
         cell = self._get_cell_by_index(locator, row_index, column_index)
         if cell.Text != expected:
             raise AssertionError(
-                "Cell ({}, {}) text should have been '{}', found '{}'".format(
+                u"Cell ({}, {}) text should have been '{}', found '{}'".format(
                     row_index, column_index, expected, cell.Text
                 )
             )
@@ -183,7 +183,7 @@ class ListViewKeywords(LibraryComponent):
         cell = self._get_cell_by_index(locator, row_index, column_index)
         if cell.Text == expected:
             raise AssertionError(
-                "Cell ({}, {}) text should not have been '{}'".format(row_index, column_index, expected)
+                u"Cell ({}, {}) text should not have been '{}'".format(row_index, column_index, expected)
             )
 
     @keyword
@@ -194,7 +194,7 @@ class ListViewKeywords(LibraryComponent):
         """
         cell = self._get_cell(locator, column_name, row_index)
         if cell.Text != expected:
-            raise AssertionError("Cell text should have been '{}', found '{}'".format(expected, cell.Text))
+            raise AssertionError(u"Cell text should have been '{}', found '{}'".format(expected, cell.Text))
 
     @keyword
     def listview_cell_text_should_not_be(self, locator, column_name, row_index, expected):
@@ -204,7 +204,7 @@ class ListViewKeywords(LibraryComponent):
         """
         cell = self._get_cell(locator, column_name, row_index)
         if cell.Text == expected:
-            raise AssertionError("Cell text should not have been '{}'".format(expected))
+            raise AssertionError(u"Cell text should not have been '{}'".format(expected))
 
     @keyword
     def listview_row_at_index_should_contain(self, locator, row_index, expected):
@@ -216,7 +216,7 @@ class ListViewKeywords(LibraryComponent):
         for cell in row.Cells:
             if expected in cell.Text:
                 return
-        raise AssertionError("Row {} did not contain text '{}'".format(row_index, expected))
+        raise AssertionError(u"Row {} did not contain text '{}'".format(row_index, expected))
 
     @keyword
     def listview_row_at_index_should_not_contain(self, locator, row_index, expected):
@@ -228,7 +228,7 @@ class ListViewKeywords(LibraryComponent):
         row = listview.Rows.Get(int(row_index))
         for cell in row.Cells:
             if expected in cell.Text:
-                raise AssertionError("Row {} should not have contained text '{}'".format(row_index, expected))
+                raise AssertionError(u"Row {} should not have contained text '{}'".format(row_index, expected))
 
     @keyword
     def listview_row_should_contain(self, locator, column_name, cell_text, expected):
@@ -241,7 +241,7 @@ class ListViewKeywords(LibraryComponent):
             if expected in cell.Text:
                 return
         raise AssertionError(
-            "Row defined by cell '{}'='{}' did not contain text '{}'".format(column_name, cell_text, expected)
+            u"Row defined by cell '{}'='{}' did not contain text '{}'".format(column_name, cell_text, expected)
         )
 
     @keyword
@@ -254,7 +254,7 @@ class ListViewKeywords(LibraryComponent):
         for cell in row.Cells:
             if expected in cell.Text:
                 raise AssertionError(
-                    "Row defined by cell '{}'='{}' should not have contained text '{}'".format(
+                    u"Row defined by cell '{}'='{}' should not have contained text '{}'".format(
                         column_name, cell_text, expected
                     )
                 )
