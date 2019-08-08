@@ -4,10 +4,9 @@ Library    String
 Library    WhiteLibrary
 Test Setup    Attach Main Window
 Test Teardown    Clean Application
-Resource          ..${/}resource.robot
+Resource    ../resource.robot
 
 *** Test Cases ***
-
 Calculate Using Index Locators
     Input Text To Textbox    index=0    1
     Select Combobox Value    index=0    +
@@ -28,6 +27,13 @@ Calculate Using Native Property Locators
     Input Text To Textbox    help_text=Second addend    21
     Click Button    btnCalc
     Verify Text In Textbox    help_text=Sum    33
+
+Calculate Using Partial Text
+    Input Text To Textbox    partial_text:alc1    1
+    Select Combobox Value    index:0    +
+    Input Text To Textbox    index:2    2
+    Click Button    partial_text:Calcul
+    Verify Text In Textbox    index:3    3
 
 Click Button With = In Locator Value
     Input Text To Textbox    txtA    1
