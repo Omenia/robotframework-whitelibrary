@@ -1,6 +1,7 @@
 # pylint: disable=invalid-name
 import os
 from robot.utils import is_truthy
+from robot.api import logger
 import clr
 DLL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin', 'TestStack.White.dll')
 clr.AddReference('System')
@@ -176,21 +177,37 @@ class WhiteLibrary(DynamicCore):
             if not isinstance(locator, item_type):
                 raise TypeError("Item object was not of the expected type")
             return locator
-        search_criteria = self._get_search_criteria(locator)
+        search_strategy, locator_value = self._parse_locator(locator)
+        if search_strategy == "partial_text":
+            return self._get_item_by_partial_text(locator_value, item_type)
+        search_criteria = self._get_search_criteria(search_strategy, locator_value)
         return self.window.Get[item_type](search_criteria)
 
     def _get_item_by_locator(self, locator):
         if isinstance(locator, UIItem):
             return locator
-        search_criteria = self._get_search_criteria(locator)
+        search_strategy, locator_value = self._parse_locator(locator)
+        if search_strategy == "partial_text":
+            return self._get_item_by_partial_text(locator_value)
+        search_criteria = self._get_search_criteria(search_strategy, locator_value)
         return self.window.Get(search_criteria)
 
+    def _get_item_by_partial_text(self, partial_text, item_type=None):
+        return next(self._get_multiple_items_by_partial_text(partial_text, item_type))
+
     def _get_multiple_items_by_locator(self, locator):
-        search_criteria = self._get_search_criteria(locator)
+        search_strategy, locator_value = self._parse_locator(locator)
+        search_criteria = self._get_search_criteria(search_strategy, locator_value)
         return self.window.GetMultiple(search_criteria)
 
-    def _get_search_criteria(self, locator):
-        search_strategy, locator_value = self._parse_locator(locator)
+    def _get_multiple_items_by_partial_text(self, partial_text, item_type=None):
+        items = self.window.GetMultiple(SearchCriteria.All)
+        try:
+            return (i for i in items if (i.GetType() == clr.GetClrType(item_type)) and (partial_text in i.Name))
+        except StopIteration:
+            raise ValueError("not found")  # replace with same exception type as white uses when not found
+
+    def _get_search_criteria(self, search_strategy, locator_value):
         if search_strategy == "index":
             locator_value = int(locator_value)
 
