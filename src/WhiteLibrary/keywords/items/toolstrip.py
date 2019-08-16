@@ -17,7 +17,7 @@ class ToolStripKeywords(LibraryComponent):
 
     def _get_toolstrip_button_by_index(self, locator, index):
         toolstrip = self.state._get_typed_item_by_locator(ToolStrip, locator)
-        search_criteria = self.state._get_search_criteria("control_type:Button")
+        search_criteria = self.state._get_search_criteria("control_type", "Button")
         try:
             return toolstrip.GetMultiple(search_criteria)[index]
         except IndexError:

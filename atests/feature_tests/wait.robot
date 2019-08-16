@@ -20,6 +20,11 @@ Successful Wait Until Item Does Not Exist
     Click Slow Alert
     Wait Until Item Does Not Exist    ${FAST_ALERT}    6 seconds
 
+Successful Wait Until Item With Partial Text Exists
+    Click And Wait For Fast Alert
+    Click Slow Alert
+    Wait Until Item Exists    partial_text:Slow al    7 seconds
+
 Failing Wait Until Item Exists
     Click And Wait For Fast Alert
     Click Slow Alert

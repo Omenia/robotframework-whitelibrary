@@ -122,5 +122,8 @@ class UiItemKeywords(LibraryComponent):
                         .format(locator, timestr_to_secs(timeout)))
 
     def _item_exists(self, locator):
-        search_criteria = self.state._get_search_criteria(locator)
+        search_strategy, locator_value = self.state._parse_locator(locator)
+        if search_strategy == "partial_text":
+            return any(locator_value in item.Name for item in self.state.window.Items)
+        search_criteria = self.state._get_search_criteria(search_strategy, locator_value)
         return self.state.window.Exists(search_criteria)
