@@ -1,7 +1,6 @@
 # pylint: disable=invalid-name
 import os
 from robot.utils import is_truthy
-from robot.api import logger
 import clr
 DLL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin', 'TestStack.White.dll')
 clr.AddReference('System')
@@ -243,7 +242,8 @@ class WhiteLibrary(DynamicCore):
         except StopIteration:
             raise ValueError("not found")  # replace with same exception type as white uses when not found
 
-    def _get_search_criteria(self, search_strategy, locator_value):
+    @staticmethod
+    def _get_search_criteria(search_strategy, locator_value):
         if search_strategy == "index":
             locator_value = int(locator_value)
 
