@@ -79,6 +79,7 @@ class WhiteLibrary(DynamicCore):
     | help_text         | Search by HelpTextProperty.        |
     | class_name        | Search by class name.              |
     | control_type      | Search by control type.            |
+    | partial_text      | Search by text that the item text/name contains. |
 
     Examples:
     | `Click Button` | myButton         | # clicks button by its AutomationID |
