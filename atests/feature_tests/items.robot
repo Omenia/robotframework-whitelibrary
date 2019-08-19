@@ -38,33 +38,6 @@ Verify Get Text
     ${output_txt}=   Get Text From Textbox     txtA
     Should Be Equal As Strings    ${output_txt}    ${input_txt}
 
-Verify Operation Selections
-    Select Combobox Value    op    +
-    Verify Combobox Selection    op    +
-    Select Combobox Value    op    -
-    Verify Combobox Selection    op    -
-    Select Combobox Value    op    *
-    Verify Combobox Selection    op    *
-    Select Combobox Value    op    /
-    Verify Combobox Selection    op    /
-    Select Combobox Value    op    %
-    Verify Combobox Selection    op    %
-    Select Combobox Index    index=0    1    #multiplication
-    Verify Combobox Selection    op    *
-
-Combobox Contains
-    Combobox Should Contain    op    +
-    Combobox Should Contain    op    /
-    Combobox Should Contain    op    %
-    Run Keyword And Expect Error    ComboBox with locator 'op' did not contain '&'
-    ...                             Combobox Should Contain    op    &
-    Run Keyword And Expect Error    ComboBox with locator 'op' did not contain 'plus'
-    ...                             Combobox Should Contain    op    plus
-    Combobox Should Not Contain    op    &
-    Combobox Should Not Contain    op    plus
-    Run Keyword And Expect Error    ComboBox with locator 'op' should not have contained '+'
-    ...                             Combobox Should Not Contain    op    +
-
 Verify Button
     Button Text Should Contain    btnCalc    Calculate (=)
 
@@ -153,22 +126,6 @@ Verify Get Check Box State
     Toggle Check Box    cb_omena
     ${new_check_box_state}=   Get Check Box State   cb_omena
     Should Not Be Equal     ${old_check_box_state}   ${new_check_box_state}
-
-Verify ListBox
-    Select Listbox Index    list_box    1
-    Listbox Selection Should Be    list_box    Toni
-    Select Listbox Value    list_box    Teppo
-    Listbox Selection Should Be    list_box    Teppo
-    Run Keyword And Expect Error    Expected listbox selection to be Yamis, was Teppo
-    ...                             Listbox Selection Should Be    list_box    Yamis
-
-ListBox Contains
-    Listbox Should Contain    list_box    Toni
-    Run Keyword And Expect Error    ListBox with locator 'list_box' did not contain 'Donald Trump'
-    ...                             Listbox Should Contain    list_box    Donald Trump
-    Listbox Should Not Contain    list_box    Donald Trump
-    Run Keyword And Expect Error    ListBox with locator 'list_box' should not have contained 'Toni'
-    ...                             Listbox Should Not Contain    list_box    Toni
 
 Click An Item
     Click Item    rb_ismo

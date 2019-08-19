@@ -31,6 +31,16 @@ class ListKeywords(LibraryComponent):
         listbox.Select(int(item_index))
 
     @keyword
+    def get_listbox_selected_text(self, locator):
+        """Returns the text of the selected listbox item.
+
+        ``locator`` is the locator of the listbox or ListBox item object.
+        Locator syntax is explained in `Item locators`.
+        """
+        listbox = self.state._get_typed_item_by_locator(ListBox, locator)
+        return listbox.SelectedItemText
+
+    @keyword
     def listbox_selection_should_be(self, locator, expected):
         """Checks the listbox selection.
 
@@ -101,8 +111,7 @@ class ListKeywords(LibraryComponent):
 
     @keyword
     def select_combobox_index(self, locator, item_index):
-        """
-        Selects a value from combobox by using its index.
+        """Selects a value from combobox by using its index.
 
         ``locator`` is the locator of the combobox or ComboBox item object.
         Locator syntax is explained in `Item locators`.
@@ -111,6 +120,16 @@ class ListKeywords(LibraryComponent):
         """
         combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
         combobox.Select(int(item_index))
+
+    @keyword
+    def get_combobox_selected_text(self, locator):
+        """Returns the text of the selected combobox item.
+
+        ``locator`` is the locator of the combobox or ComboBox item object.
+        Locator syntax is explained in `Item locators`.
+        """
+        combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
+        return combobox.SelectedItemText
 
     @keyword
     def verify_combobox_item(self, locator, expected):
