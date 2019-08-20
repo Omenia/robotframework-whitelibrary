@@ -51,7 +51,10 @@ List UI Items
     ${items}    Get Items    control_type=Button
     ${count}    Get Length    ${items}
     Should Be True    ${count} > 1
+    ${items}    Get Items    partial_text:a
+    ${count}    Get Length    ${items}
+    Should Be True    ${count} > 1
 
-Unexisting Locator
+Unexisting Locators
     ${error}    Run Keyword And Expect Error    *    Click Item    unexisting-locator=whatever
     Should Contain    ${error}    'unexisting-locator' is not a valid locator prefix
