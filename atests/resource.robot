@@ -3,17 +3,15 @@ Library    String
 Library    WhiteLibrary
 
 *** Variables ***
-${TEST APPLICATION}      ${EXECDIR}${/}UIAutomationTest${/}bin${/}Debug${/}UIAutomationTest.exe
-${DELAYED TEST APPLICATION}      ${EXECDIR}${/}UIAutomationTest${/}delayed_start.bat
+${TEST APPLICATION}      ${EXECDIR}/UIAutomationTest/bin/Debug/UIAutomationTest.exe
+${DELAYED TEST APPLICATION}      ${EXECDIR}/UIAutomationTest/delayed_start.bat
 ${TEST APPLICATION NAME}    UIAutomationTest
 ${INVALID TEST APPLICATION NAME}    UIAutomationTestThatDoesNotExist
 ${TEST APPLICATION WINDOW TITLE}    UI Automation Test Window
-${TEST WHITE APPLICATION}      ${EXECDIR}${/}WhiteTestApp${/}WpfTestApplication.exe
+${TEST WHITE APPLICATION}      ${EXECDIR}/WhiteTestApp/WpfTestApplication.exe
 ${TEST WHITE APPLICATION NAME}    MainWindow
 
-
 *** Keywords ***
-
 Launch Application For Test
     [Arguments]    ${args}=${EMPTY}
     Set Log Level    Info
@@ -43,7 +41,7 @@ Setup For Tab 2 Tests
     Attach Main Window
     Select Tab Page    tabControl    Tab2
 
-Selction Indicator Should Be
+Selection Indicator Should Be
     [Arguments]    ${node label}    ${status}
     [Documentation]    Note that node label is case sensitive
     ${status}=    Convert To Lowercase    ${status}

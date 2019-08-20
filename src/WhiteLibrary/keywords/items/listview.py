@@ -83,6 +83,25 @@ class ListViewKeywords(LibraryComponent):
         Clicks.double_click(row, x_offset, y_offset)
 
     @keyword
+    def double_click_listview_row_by_text(self, locator, text, x_offset=0, y_offset=0):
+        """Double clicks a listview row with matching text.
+
+        ``locator`` is the locator of the listview or the ListView item object.
+        Locator syntax is explained in `Item locators`.
+
+        ``text`` is the exact text of the row. If there are multiple cells on the row, the text will be matched
+        against the first cell.
+
+        Optional arguments ``x_offset`` and ``y_offset`` can be used to define the coordinates to click at,
+        relative to the center of the item.
+
+        Example:
+        | Double Click Listview Row By Text | id:cities | Berlin |
+        """
+        row = self._get_row_by_text(locator, text)
+        Clicks.double_click(row, x_offset, y_offset)
+
+    @keyword
     def get_listview_cell_text(self, locator, column_name, row_index):
         """Returns text of a listview cell.
 
@@ -296,6 +315,15 @@ class ListViewKeywords(LibraryComponent):
         Clicks.right_click(row, x_offset, y_offset)
 
     @keyword
+    def right_click_listview_row_by_text(self, locator, text, x_offset=0, y_offset=0):
+        """Right clicks a listview row with matching text.
+
+        See `Double Click Listview Row By Text` for details about arguments ``locator`` and ``text``.
+        """
+        row = self._get_row_by_text(locator, text)
+        Clicks.right_click(row, x_offset, y_offset)
+
+    @keyword
     def select_listview_cell(self, locator, column_name, row_index):
         """Selects a listview cell.
 
@@ -331,6 +359,15 @@ class ListViewKeywords(LibraryComponent):
         listview = self.state._get_typed_item_by_locator(ListView, locator)
         listview.Select(int(row_index))
 
+    @keyword
+    def select_listview_row_by_text(self, locator, text):
+        """Selects a listview row with matching text.
+
+        See `Double Click Listview Row By Text` for details about arguments ``locator`` and ``text``.
+        """
+        row = self._get_row_by_text(locator, text)
+        row.Select()
+
     def _get_row(self, locator, column_name, cell_text):
         listview = self.state._get_typed_item_by_locator(ListView, locator)
         return listview.Rows.Get(column_name, cell_text)
@@ -338,6 +375,10 @@ class ListViewKeywords(LibraryComponent):
     def _get_row_by_index(self, locator, index):
         listview = self.state._get_typed_item_by_locator(ListView, locator)
         return listview.Rows.Get(int(index))
+
+    def _get_row_by_text(self, locator, text):
+        listview = self.state._get_typed_item_by_locator(ListView, locator)
+        return next((row for row in listview.Rows if row.Cells[0].Text == text), None)
 
     def _get_cell(self, locator, column_name, row_index):
         listview = self.state._get_typed_item_by_locator(ListView, locator)

@@ -74,42 +74,48 @@ Get Text From ListView
 
 Select Listview Row
     Select ListView Row By Index    birds    1
-    Selction Indicator Should Be     Row 1    Selected
+    Selection Indicator Should Be     Row 1    Selected
     Select ListView Row By Index    list_view    2
-    Selction Indicator Should Be    Row 2     Selected
+    Selection Indicator Should Be    Row 2     Selected
     Select ListView Row    list_view    Title    Robinson Crusoe
-    Selction Indicator Should Be    Row 0     Selected
+    Selection Indicator Should Be    Row 0     Selected
+    Select Listview Row By Text    list_view    The Art of Computer Programming
+    Selection Indicator Should Be     Row 2     Selected
 
 Select Listview Cell
     Select Listview Cell    list_view2    Author    1
-    Selction Indicator Should Be    Various Artists     Selected
+    Selection Indicator Should Be    Various Artists     Selected
     Select Listview Cell By Index    list_view2    2    2
-    Selction Indicator Should Be    Science    Selected
+    Selection Indicator Should Be    Science    Selected
 
 Right Click Listview Row
     # click twice because first click selects the row
     Repeat Keyword    2    Right Click Listview Row    birds    Bird    Dodo
-    Selction Indicator Should Be     Row 2     Right Clicked
+    Selection Indicator Should Be     Row 2     Right Clicked
     Repeat Keyword    2    Right Click Listview Row By Index    birds    0
-    Selction Indicator Should Be    Row 0     Right Clicked
+    Selection Indicator Should Be    Row 0     Right Clicked
+    Repeat Keyword    2    Right Click Listview Row By Text    birds    Varpuspöllö
+    Selection Indicator Should Be     Row 3     Right Clicked
 
 Right Click Listview Cell
     Repeat Keyword    2    Right Click Listview Cell    list_view2    Title    1
-    Selction Indicator Should Be    Bible     Right Clicked
+    Selection Indicator Should Be    Bible     Right Clicked
     Repeat Keyword    2    Right Click Listview Cell By Index    list_view2    0    0
-    Selction Indicator Should Be    Daniel Defoe     Right Clicked
+    Selection Indicator Should Be    Daniel Defoe     Right Clicked
 
 Double Click Listview Row
     Double Click ListView Row    birds    Bird    Dodo
-    Selction Indicator Should Be    Row 2     Double Clicked
+    Selection Indicator Should Be    Row 2     Double Clicked
     Double Click ListView Row By Index    birds    1
-    Selction Indicator Should Be    Row 1     Double Clicked
+    Selection Indicator Should Be    Row 1     Double Clicked
+    Double Click Listview Row By Text    list_view    The Art of Computer Programming
+    Selection Indicator Should Be    Row 2    Double Clicked
 
 Double Click Listview Cell
     Double Click Listview Cell    list_view2    Author    2
-    Selction Indicator Should Be    Donald Knuth    Double Clicked
+    Selection Indicator Should Be    Donald Knuth    Double Clicked
     Double Click Listview Cell By Index    list_view2    0    2
-    Selction Indicator Should Be    Fiction    Double Clicked
+    Selection Indicator Should Be    Fiction    Double Clicked
 
 Listview Row With Non-Ascii Chars
     Run Keyword And Expect Error    Cell did not contain text 'pölö'
