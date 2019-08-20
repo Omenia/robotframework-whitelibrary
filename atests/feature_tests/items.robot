@@ -252,23 +252,23 @@ Try To Press Unsupported Special Key
 Handle Tree Nodes
     [Setup]    Setup for Tab 2 Tests
     Select Tree Node    tree    @{Tree node 1}
-    Selction Indicator Should Be     Tree node 1     Selected
+    Selection Indicator Should Be     Tree node 1     Selected
     Expand Tree Node    tree    @{Tree node 1}
-    Selction Indicator Should Be    Tree node 1     Expanded
+    Selection Indicator Should Be    Tree node 1     Expanded
     Double Click Tree Node    tree    @{Tree node 1}
-    Selction Indicator Should Be    Tree node 1    Double-clicked
+    Selection Indicator Should Be    Tree node 1    Double-clicked
     Right Click Tree Node    tree    @{Tree node 1.1}
-    Selction Indicator Should Be    Tree node 1.1    Right-clicked
+    Selection Indicator Should Be    Tree node 1.1    Right-clicked
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Handle ToolStripButtons
     [Setup]    Setup for Tab 2 Tests
     Click Button    text=Toolstrip button 1
-    Selction Indicator Should Be    Toolstrip button 1     Clicked
+    Selection Indicator Should Be    Toolstrip button 1     Clicked
     Click Button    text=Toolstrip button 2
-    Selction Indicator Should Be     Toolstrip button 2     Clicked
+    Selection Indicator Should Be     Toolstrip button 2     Clicked
     Click Button    text=Toolstrip button 3
-    Selction Indicator Should Be    Toolstrip button 3    Clicked
+    Selection Indicator Should Be    Toolstrip button 3    Clicked
     [Teardown]    Select Tab Page    tabControl    Tab1
 
 Popup menu with subitems
