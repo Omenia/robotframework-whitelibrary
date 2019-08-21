@@ -202,19 +202,20 @@ class WhiteLibrary(DynamicCore):
         search_strategy, locator_value = self._parse_locator(locator)
 
         if search_strategy == "partial_text":
-            return list(self._get_multiple_items_by_partial_text(locator))
+            return list(self._get_multiple_items_by_partial_text(locator_value))
 
         search_criteria = self._get_search_criteria(search_strategy, locator_value)
         return self.window.GetMultiple(search_criteria)
 
     def _get_item_by_partial_text(self, partial_text, item_type=None):
-        return next(self._get_multiple_items_by_partial_text(partial_text, item_type), None)
+        items = self._get_multiple_items_by_partial_text(partial_text)
+        if item_type is None:
+            return next(items, None)
+        return next((item for item in items if (item.GetType() == clr.GetClrType(item_type))), None)
 
-    def _get_multiple_items_by_partial_text(self, partial_text, item_type=None):
+    def _get_multiple_items_by_partial_text(self, partial_text):
         items = self.window.GetMultiple(SearchCriteria.All)
-        if item_type is not None:
-            items = (i for i in items if (i.GetType() == clr.GetClrType(item_type)))
-        return (i for i in items if partial_text in i.Name)
+        return (item for item in items if partial_text in item.Name)
 
     @staticmethod
     def _get_search_criteria(search_strategy, locator_value):
