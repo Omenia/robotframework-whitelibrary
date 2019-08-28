@@ -36,6 +36,12 @@ Combobox Contains
     Run Keyword And Expect Error    ComboBox with locator 'op' should not have contained '+'
     ...                             Combobox Should Not Contain    op    +
 
+Try Select In Disabled Combobox
+    Run Keyword And Expect Error    Could not select item 'can't select this' because the ComboBox was disabled
+    ...                             Select Combobox Value    disabled_combo    can't select this
+    Run Keyword And Expect Error    Could not select item at 3 because the ComboBox was disabled
+    ...                             Select Combobox Index    disabled_combo    3
+
 Listbox Selected Text
     Select Listbox Value    list_box    Teppo
     ${selected_value}    Get Listbox Selected Text    list_box

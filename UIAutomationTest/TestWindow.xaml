@@ -106,7 +106,21 @@
                                 <Label Content="Password:" Height="26.46" HorizontalAlignment="Left" />
                                 <PasswordBox x:Name="passwordBox" Height="18.96" Margin="10,5,10,5" />
                             </StackPanel>
-                            <Label Name="eventIndicatorLabel" MouseDoubleClick="doubleClickLabel">Double click me</Label>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200"></ColumnDefinition>
+                                    <ColumnDefinition Width="200"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <ComboBox x:Name="disabled_combo" HorizontalAlignment="Left" Margin="0,5,0,5" 
+                                          VerticalAlignment="Top" Width="Auto" IsEnabled="False" IsReadOnly="True"
+                                          SelectedIndex="0" Grid.Column="1" Grid.Row="2">
+                                    <ComboBoxItem Content="this combobox is disabled"/>
+                                    <ComboBoxItem Content="can't select this"/>
+                                    <ComboBoxItem Content="can't select this either"/>
+                                    <ComboBoxItem Content="can't select any of these"/>
+                                </ComboBox>
+                                <Label Name="eventIndicatorLabel" MouseDoubleClick="doubleClickLabel">Double click me</Label>
+                            </Grid>
                             <ListBox Margin="30,0,25,0" x:Name="list_box" VerticalAlignment="Bottom" Grid.Column="1">
                                 <ListBox.ContextMenu>
                                     <ContextMenu>

@@ -1,6 +1,7 @@
 from robot.api import logger  # noqa:  F401 #pylint: disable=unused-import
 from TestStack.White.UIItems.ListBoxItems import ComboBox, ListBox
 from TestStack.White.UIItems import UIActionException
+from WhiteLibrary.exceptions import ItemDisabledError
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 
@@ -107,6 +108,8 @@ class ListKeywords(LibraryComponent):
         ``value`` is the value to be selected.
         """
         combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
+        if not combobox.Enabled:
+            raise ItemDisabledError(u"Could not select item '{}' because the ComboBox was disabled".format(value))
         combobox.Select(value)
 
     @keyword
@@ -119,6 +122,8 @@ class ListKeywords(LibraryComponent):
         ``item_index`` is the index to be selected.
         """
         combobox = self.state._get_typed_item_by_locator(ComboBox, locator)
+        if not combobox.Enabled:
+            raise ItemDisabledError(u"Could not select item at {} because the ComboBox was disabled".format(item_index))
         combobox.Select(int(item_index))
 
     @keyword
