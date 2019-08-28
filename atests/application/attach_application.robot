@@ -3,7 +3,7 @@ Library    WhiteLibrary
 Library    Process
 Test Setup    Start Test Application
 Test Teardown    Terminate Process    ${handle}    kill=true
-Resource    resource.robot
+Resource    ../resource.robot
 
 *** Test Cases ***
 Attach To A Running Application By Name
