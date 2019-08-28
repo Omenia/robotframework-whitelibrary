@@ -1,5 +1,4 @@
-from robot.api import logger  # noqa: F401 #pylint: disable=unused-import
-from System.Diagnostics import ProcessStartInfo
+from System.Diagnostics import Process, ProcessStartInfo
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
 from WhiteLibrary.utils.wait import Wait
@@ -86,3 +85,17 @@ class ApplicationKeywords(LibraryComponent):
         self.state.app.Close()
         self.state.app = None
         self.state.window = None
+
+    @keyword
+    def wait_until_application_has_stopped(self, name, timeout):
+        """Waits until no process with the given name exists.
+
+        `name` is the name of the process
+
+        `timeout` is the maximum time to wait as a Robot time string.
+
+        Example:
+        | Wait Until Application Has Stopped | calc | # waits until calc.exe process does not exist |
+        """
+        Wait.until_true(lambda: not Process.GetProcessesByName(name), timeout,
+                        "Application '{}' did not exit within {}".format(name, timeout))

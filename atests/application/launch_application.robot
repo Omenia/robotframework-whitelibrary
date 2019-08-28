@@ -7,13 +7,13 @@ Library    WhiteLibrary
 Library    Process
 Library    OperatingSystem
 Library    String
-Resource    resource.robot
+Resource    ../resource.robot
 
 Test Template     Launch Application With Arguments
 
 *** Test Cases ***              Arguments            Expected result
 No Arguments                    ${EMPTY}             No command line args provided
-Empty String	                ""                   ${EMPTY}
+Empty String                    ""                   ${EMPTY}
 Space                           ${EMPTY_STRING}      ${EMPTY_STRING2}
 Single Argument                 -single_argument     -single_argument
 Single Argument With Space      "-single argument"   -single argument
