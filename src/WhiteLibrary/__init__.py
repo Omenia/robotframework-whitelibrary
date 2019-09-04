@@ -228,16 +228,16 @@ class WhiteLibrary(DynamicCore):
         return min(locator.index(":"), locator.index("="))
 
     def _start_keyword(self, name, attrs):  # pylint: disable=unused-argument, no-self-use
-        # TODO: run only before WhiteLibrary keywords!
-        update_white_log_level()
+        if attrs["libname"] == "WhiteLibrary":
+            update_white_log_level()
 
     def _end_keyword(self, name, attrs):  # pylint: disable=unused-argument
         if attrs['status'] == 'FAIL':
             if self.screenshots_enabled:
                 self.screenshooter.take_desktop_screenshot()
-        # TODO: run only after WhiteLibrary keywords!
-        self.log_writer.log_white_output()
-        self.log_writer.reset_white_output()
+        if attrs["libname"] == "WhiteLibrary":
+            self.log_writer.log_white_output()
+            self.log_writer.reset_white_output()
 
     @staticmethod
     def _contains_string_value(expected, actual, case_sensitive=True):
