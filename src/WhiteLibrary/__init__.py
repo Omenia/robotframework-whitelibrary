@@ -1,6 +1,7 @@
 # pylint: disable=invalid-name
 import os
 from robot.utils import is_truthy
+from robot.api import logger
 import clr
 DLL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin', 'TestStack.White.dll')
 clr.AddReference('System')
@@ -227,10 +228,13 @@ class WhiteLibrary(DynamicCore):
         return min(locator.index(":"), locator.index("="))
 
     def _start_keyword(self, name, attrs):  # pylint: disable=unused-argument
+        logger.info("JANI: start_keyword({})".format(name), also_console=True)
         self.keyword_depth += 1
 
     def _end_keyword(self, name, attrs):  # pylint: disable=unused-argument
+        logger.info("JANI: end_keyword({})".format(name), also_console=True)
         self.keyword_depth -= 1
+        logger.info("JANI: screenshots_enabled = {}, keyword_depth == {}".format(self.screenshots_enabled, self.keyword_depth))
         if attrs['status'] == 'FAIL' and self.keyword_depth == 0:
             if self.screenshots_enabled:
                 self.screenshooter.take_desktop_screenshot()
