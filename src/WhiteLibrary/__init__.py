@@ -233,11 +233,11 @@ class WhiteLibrary(DynamicCore):
 
     def _end_keyword(self, name, attrs):  # pylint: disable=unused-argument
         logger.info("JANI: end_keyword({})".format(name), also_console=True)
-        self.keyword_depth -= 1
         logger.info("JANI: screenshots_enabled = {}, keyword_depth == {}".format(self.screenshots_enabled, self.keyword_depth))
-        if attrs['status'] == 'FAIL' and self.keyword_depth == 0:
+        if attrs['status'] == 'FAIL' and self.keyword_depth == 1:
             if self.screenshots_enabled:
                 self.screenshooter.take_desktop_screenshot()
+        self.keyword_depth -= 1
 
     @staticmethod
     def _contains_string_value(expected, actual, case_sensitive=True):
