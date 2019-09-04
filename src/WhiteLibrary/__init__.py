@@ -151,6 +151,7 @@ class WhiteLibrary(DynamicCore):
         self.screenshooter = None
         self.ROBOT_LIBRARY_LISTENER = self  # pylint: disable=invalid-name
         self.screenshots_enabled = True
+        self.keyword_depth = 0
         self.libraries = [ApplicationKeywords(self),
                           ButtonKeywords(self),
                           KeyboardKeywords(self),
@@ -225,8 +226,12 @@ class WhiteLibrary(DynamicCore):
             return locator.index("=")
         return min(locator.index(":"), locator.index("="))
 
+    def _start_keyword(self, name, attrs):  # pylint: disable=unused-argument
+        self.keyword_depth += 1
+
     def _end_keyword(self, name, attrs):  # pylint: disable=unused-argument
-        if attrs['status'] == 'FAIL':
+        self.keyword_depth -= 1
+        if attrs['status'] == 'FAIL' and self.keyword_depth == 0:
             if self.screenshots_enabled:
                 self.screenshooter.take_desktop_screenshot()
 
