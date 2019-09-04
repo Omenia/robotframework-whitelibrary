@@ -50,6 +50,7 @@ Set Screenshot Directory
 Screenshot Setup
     Attach Main Window
     ${COUNT}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
+    Log To Console   Screenshots count: ${COUNT} at ${TEST NAME}
     Set Test Variable    ${COUNT}
 
 New Screenshot Should Be Created
