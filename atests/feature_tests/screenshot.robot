@@ -13,11 +13,17 @@ Take screenshots
     New Screenshot Should Be Created
     Take Desktop Screenshot
     New Screenshot Should Be Created
-
 Take Screenshot On failure
     [Setup]    Screenshot Setup
     Run Keyword And Expect Error    *    Should Be True    ${FALSE}
     New Screenshot Should Be Created
+
+
+Keyword Chain With Failure
+    [Setup]    Screenshot Setup
+    Run Keyword And Expect Error    *    First Level
+    New Screenshot Should Be Created
+
 
 Disable And Enable Screenshots On Failure
     [Setup]    Screenshot Setup
@@ -55,3 +61,11 @@ New Screenshot Should Not Be Created
     ${new_count}=    Count Files In Directory    ${OUTPUTDIR}    whitelib_screenshot_*.png
     Should Be Equal    ${new_count}    ${COUNT}
 
+Third Level
+  Fail    "Explicit fail to trigger screenshots"
+
+Second Level
+  Third Level
+
+First Level
+  Second Level
