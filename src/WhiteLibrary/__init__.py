@@ -8,6 +8,7 @@ clr.AddReference(DLL_PATH)
 from System.Windows.Automation import AutomationElement, ControlType    # noqa: E402
 from TestStack.White.UIItems.Finders import SearchCriteria    # noqa: E402
 from TestStack.White.UIItems import UIItem    # noqa: E402
+from WhiteLibrary.utils.logging import LogWriter, update_white_log_level    # noqa: E402
 from WhiteLibrary.keywords import (ApplicationKeywords, KeyboardKeywords, MouseKeywords,
                                    WindowKeywords, ScreenshotKeywords, WhiteConfigurationKeywords)    # noqa: E402
 from WhiteLibrary.keywords.items import (ButtonKeywords,
@@ -151,6 +152,7 @@ class WhiteLibrary(DynamicCore):
         self.screenshooter = None
         self.ROBOT_LIBRARY_LISTENER = self  # pylint: disable=invalid-name
         self.screenshots_enabled = True
+        self.log_writer = LogWriter()
         self.libraries = [ApplicationKeywords(self),
                           ButtonKeywords(self),
                           KeyboardKeywords(self),
@@ -225,10 +227,17 @@ class WhiteLibrary(DynamicCore):
             return locator.index("=")
         return min(locator.index(":"), locator.index("="))
 
+    def _start_keyword(self, name, attrs):  # pylint: disable=unused-argument, no-self-use
+        # TODO: run only before WhiteLibrary keywords!
+        update_white_log_level()
+
     def _end_keyword(self, name, attrs):  # pylint: disable=unused-argument
         if attrs['status'] == 'FAIL':
             if self.screenshots_enabled:
                 self.screenshooter.take_desktop_screenshot()
+        # TODO: run only after WhiteLibrary keywords!
+        self.log_writer.log_white_output()
+        self.log_writer.reset_white_output()
 
     @staticmethod
     def _contains_string_value(expected, actual, case_sensitive=True):
