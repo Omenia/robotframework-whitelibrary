@@ -231,7 +231,7 @@ valid-metaclass-classmethod-first-arg=cls
 [DESIGN]
 
 max-args=10
-max-attributes=7
+max-attributes=10
 max-bool-expr=5
 max-branches=12
 max-locals=15

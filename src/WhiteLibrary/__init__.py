@@ -169,7 +169,36 @@ class WhiteLibrary(DynamicCore):
                           UiItemKeywords(self),
                           WindowKeywords(self),
                           ScreenshotKeywords(self, screenshot_dir)]
+        self._running_keyword = None
+        self._running_on_failure_keyword = False
         DynamicCore.__init__(self, self.libraries)
+
+    def run_keyword(self, name, args, kwargs):  # pylint: disable=signature-differs
+        """Reimplemtation of run_keyword.
+
+        calls robot framework's own implementation but handles screenshots if/when exceptions are triggered.
+        """
+        self._running_keyword = name
+        try:
+            return DynamicCore.run_keyword(self, name, args, kwargs)
+        except Exception:
+            self._failure_occurred()
+            raise
+        finally:
+            self._running_keyword = None
+
+    def _failure_occurred(self):
+        # this if-guard here is to prevent recursion if there's 
+        # error in taking of a screenshot. 
+        # Might be safe to remove 
+        if self._running_on_failure_keyword:
+            return
+        try:
+            self._running_on_failure_keyword = True
+            if self.screenshots_enabled:
+                self.screenshooter.take_desktop_screenshot()
+        finally:
+            self._running_on_failure_keyword = False
 
     def _get_typed_item_by_locator(self, item_type, locator):
         if isinstance(locator, UIItem):
@@ -226,9 +255,7 @@ class WhiteLibrary(DynamicCore):
         return min(locator.index(":"), locator.index("="))
 
     def _end_keyword(self, name, attrs):  # pylint: disable=unused-argument
-        if attrs['status'] == 'FAIL':
-            if self.screenshots_enabled:
-                self.screenshooter.take_desktop_screenshot()
+        pass
 
     @staticmethod
     def _contains_string_value(expected, actual, case_sensitive=True):
