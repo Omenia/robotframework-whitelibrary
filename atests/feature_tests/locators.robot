@@ -58,3 +58,5 @@ List UI Items
 Unexisting Locators
     ${error}    Run Keyword And Expect Error    *    Click Item    unexisting-locator=whatever
     Should Contain    ${error}    'unexisting-locator' is not a valid locator prefix
+    ${error}    Run Keyword And Expect Error    *    Click Item    partial_text:this-does-not-exist
+    Should Contain    ${error}    Item with locator 'partial_text:this-does-not-exist' was not found
