@@ -24,6 +24,7 @@ Successful Wait Until Item With Partial Text Exists
     Click And Wait For Fast Alert
     Click Slow Alert
     Wait Until Item Exists    partial_text:Slow al    7 seconds
+    [Teardown]    Wait Until Item Exists     ${SLOW_ALERT}    6 seconds
 
 Failing Wait Until Item Exists
     Click And Wait For Fast Alert
