@@ -23,6 +23,7 @@ from WhiteLibrary.keywords.items import (ButtonKeywords,
                                          TextBoxKeywords,
                                          UiItemKeywords)   # noqa: E402
 from WhiteLibrary.keywords.robotlibcore import DynamicCore   # noqa: E402
+from WhiteLibrary.errors import ItemNotFoundError   # noqa: E402
 from WhiteLibrary import version   # noqa: E402
 
 
@@ -238,9 +239,12 @@ class WhiteLibrary(DynamicCore):
 
     def _get_item_by_partial_text(self, partial_text, item_type=None):
         items = self._get_multiple_items_by_partial_text(partial_text)
-        if item_type is None:
-            return next(items, None)
-        return next((item for item in items if (item.GetType() == clr.GetClrType(item_type))), None)
+        try:
+            if item_type is None:
+                return next(items)
+            return next((item for item in items if (item.GetType() == clr.GetClrType(item_type))))
+        except StopIteration:
+            raise ItemNotFoundError(u"Item with locator 'partial_text:{}' was not found".format(partial_text))
 
     def _get_multiple_items_by_partial_text(self, partial_text):
         items = self.window.GetMultiple(SearchCriteria.All)
