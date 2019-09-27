@@ -213,7 +213,7 @@ class WhiteLibrary(DynamicCore):
         try:
             if item_type is None:
                 return next(items)
-            return next((item for item in items if (item.GetType() == clr.GetClrType(item_type))))
+            return next((item for item in items if item.GetType() == clr.GetClrType(item_type)))
         except StopIteration:
             raise ItemNotFoundError(u"Item with partial text '{}' was not found".format(partial_text))
 
