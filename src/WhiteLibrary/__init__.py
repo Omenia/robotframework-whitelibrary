@@ -215,7 +215,7 @@ class WhiteLibrary(DynamicCore):
                 return next(items)
             return next((item for item in items if (item.GetType() == clr.GetClrType(item_type))))
         except StopIteration:
-            raise ItemNotFoundError(u"Item with locator 'partial_text:{}' was not found".format(partial_text))
+            raise ItemNotFoundError(u"Item with partial text '{}' was not found".format(partial_text))
 
     def _get_multiple_items_by_partial_text(self, partial_text):
         items = self.window.GetMultiple(SearchCriteria.All)
