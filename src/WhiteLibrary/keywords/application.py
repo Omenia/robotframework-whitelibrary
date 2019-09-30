@@ -1,3 +1,4 @@
+from robot.utils import secs_to_timestr, timestr_to_secs
 from System.Diagnostics import Process, ProcessStartInfo
 from WhiteLibrary.keywords.librarycomponent import LibraryComponent
 from WhiteLibrary.keywords.robotlibcore import keyword
@@ -97,5 +98,6 @@ class ApplicationKeywords(LibraryComponent):
         Example:
         | Wait Until Application Has Stopped | calc | # waits until calc.exe process does not exist |
         """
+        timeout = timestr_to_secs(timeout)
         Wait.until_true(lambda: not Process.GetProcessesByName(name), timeout,
-                        "Application '{}' did not exit within {}".format(name, timeout))
+                        "Application '{}' did not exit within {}".format(name, secs_to_timestr(timeout)))

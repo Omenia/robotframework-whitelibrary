@@ -12,5 +12,5 @@ Wait Until Application Has Stopped
     Wait Until Application Has Stopped    ${PROCESS_NAME}     20
 
 Failing Wait Until Application Has Stopped
-    Close Application
-    Wait Until Application Has Stopped    ${PROCESS_NAME}     1
+    Run Keyword And Expect Error    Application 'UIAutomationTest' did not exit within 1 second    Wait Until Application Has Stopped    ${PROCESS_NAME}     1
+    [Teardown]    Close Application
