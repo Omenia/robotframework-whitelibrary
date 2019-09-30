@@ -188,9 +188,9 @@ class WhiteLibrary(DynamicCore):
             self._running_keyword = None
 
     def _failure_occurred(self):
-        # this if-guard here is to prevent recursion if there's 
-        # error in taking of a screenshot. 
-        # Might be safe to remove 
+        # this if-guard here is to prevent recursion if there's
+        # error in taking of a screenshot.
+        # Might be safe to remove
         if self._running_on_failure_keyword:
             return
         try:
