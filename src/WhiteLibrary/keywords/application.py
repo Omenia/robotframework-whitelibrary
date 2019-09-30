@@ -88,7 +88,7 @@ class ApplicationKeywords(LibraryComponent):
         self.state.window = None
 
     @keyword
-    def wait_until_application_has_stopped(self, name, timeout):
+    def wait_until_application_has_stopped(self, name, timeout):  # pylint:disable=no-self-use
         """Waits until no process with the given name exists.
 
         `name` is the name of the process
