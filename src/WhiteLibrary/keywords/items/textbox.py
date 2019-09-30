@@ -14,7 +14,7 @@ class TextBoxKeywords(LibraryComponent):
         ``input_value`` is the text to write.
         """
         text_box = self.state._get_typed_item_by_locator(TextBox, locator)
-        text_box.Text = input_value
+        text_box.BulkText = input_value
 
     @keyword
     def verify_text_in_textbox(self, locator, expected):
