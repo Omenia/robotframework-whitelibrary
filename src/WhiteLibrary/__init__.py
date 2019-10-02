@@ -174,7 +174,7 @@ class WhiteLibrary(DynamicCore):
         DynamicCore.__init__(self, self.libraries)
 
     def run_keyword(self, name, args, kwargs):  # pylint: disable=signature-differs
-        """Reimplemtation of run_keyword.
+        """Reimplementation of run_keyword.
 
         calls robot framework's own implementation but handles screenshots if/when exceptions are triggered.
         """
