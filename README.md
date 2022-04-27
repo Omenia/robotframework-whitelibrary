@@ -1,4 +1,6 @@
+# Deprecation notice
 
+Please note that the underlying White framework has been deprecated (Dec 2019). That means we will stop developing this wrapper library and encourage users to migrate to other tools. Please check [White automation framework](https://github.com/TestStack/White) project page for suggestions.
 
 # Introduction
 
